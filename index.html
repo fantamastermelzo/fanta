@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FantaMelzo 🏊 — ASD Master Melzo</title>
+<link href="index_files/css2.css" rel="stylesheet">
+<style>
+  :root {
+    --blu: #003399;
+    --blu-scuro: #001a66;
+    --blu-mid: #0044cc;
+    --giallo: #FFD700;
+    --giallo-chiaro: #FFE866;
+    --bianco: #ffffff;
+    --grigio-bg: #f0f4ff;
+    --grigio: #8899bb;
+    --acqua: #00ccff;
+    --rosso: #ff3333;
+    --verde: #00cc66;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--grigio-bg);
+    color: #111;
+    overflow-x: hidden;
+  }
+
+  /* ====== HEADER ====== */
+  header {
+    background: var(--blu-scuro);
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 3px solid var(--giallo);
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 64px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: var(--giallo);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .logo-text { line-height: 1; }
+  .logo-text .brand { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--giallo); letter-spacing: 2px; }
+  .logo-text .sub { font-size: 10px; color: var(--grigio); letter-spacing: 1px; text-transform: uppercase; }
+
+  nav { display: flex; gap: 4px; }
+  nav button {
+    background: none; border: none; cursor: pointer;
+    color: #aabbdd; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px; font-weight: 600; letter-spacing: 1px;
+    padding: 8px 16px; border-radius: 6px;
+    text-transform: uppercase; transition: all 0.2s;
+  }
+  nav button:hover { background: rgba(255,215,0,0.1); color: var(--giallo); }
+  nav button.active { background: var(--giallo); color: var(--blu-scuro); }
+
+  /* ====== HERO ====== */
+  .hero {
+    background: linear-gradient(135deg, var(--blu-scuro) 0%, var(--blu-mid) 60%, #0066ff 100%);
+    padding: 80px 24px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 30px,
+      rgba(255,215,0,0.03) 30px, rgba(255,215,0,0.03) 60px
+    );
+  }
+  .hero-content { max-width: 1200px; margin: 0 auto; position: relative; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--giallo); color: var(--blu-scuro);
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 10vw, 120px);
+    color: white; line-height: 0.9;
+    letter-spacing: 4px; margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--giallo); }
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px; font-weight: 400;
+    color: rgba(255,255,255,0.7); margin-bottom: 32px;
+    letter-spacing: 1px;
+  }
+  .hero-stats {
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .val {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+    color: var(--giallo); line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: 11px; color: rgba(255,255,255,0.5);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .waves {
+    position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 40px; overflow: hidden;
+  }
+  .waves svg { width: 100%; height: 40px; }
+
+  /* ====== SECTIONS ====== */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; color: var(--blu-scuro);
+    letter-spacing: 2px; margin-bottom: 8px;
+  }
+  .section-title span { color: var(--blu-mid); }
+  .section-divider {
+    width: 60px; height: 4px;
+    background: var(--giallo);
+    border-radius: 2px; margin-bottom: 32px;
+  }
+
+  /* ====== REGOLAMENTO ====== */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; margin-bottom: 40px;
+  }
+  .rule-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    border-top: 4px solid var(--blu);
+    box-shadow: 0 2px 12px rgba(0,51,153,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .rule-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,51,153,0.15); }
+  .rule-card.giallo { border-top-color: var(--giallo); }
+  .rule-card.verde { border-top-color: var(--verde); }
+  .rule-card.rosso { border-top-color: var(--rosso); }
+  .rule-icon { font-size: 36px; margin-bottom: 12px; }
+  .rule-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--blu-scuro);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .rule-card p { font-size: 14px; color: #555; line-height: 1.6; }
+  .rule-card .pts {
+    display: inline-block; margin-top: 10px;
+    background: var(--blu-scuro); color: var(--giallo);
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 14px; padding: 4px 12px; border-radius: 20px;
+  }
+  .rule-card.giallo .pts { background: var(--giallo); color: var(--blu-scuro); }
+  .rule-card.verde .pts { background: var(--verde); color: white; }
+  .rule-card.rosso .pts { background: var(--rosso); color: white; }
+
+  /* Budget box */
+  .budget-box {
+    background: linear-gradient(135deg, var(--blu-scuro), var(--blu-mid));
+    border-radius: 16px; padding: 32px; color: white;
+    display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .budget-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px; color: var(--giallo); line-height: 1;
+  }
+  .budget-info h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 700; letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .budget-info p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+  /* ====== LISTONE ====== */
+  .listone-filters {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;
+  }
+  .filter-btn {
+    background: white; border: 2px solid #dde; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+    font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 8px 20px; border-radius: 30px; color: #667;
+    transition: all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--blu-scuro); color: var(--giallo); border-color: var(--blu-scuro);
+  }
+  .search-box {
+    flex: 1; min-width: 200px; max-width: 320px;
+    display: flex; align-items: center;
+    background: white; border: 2px solid #dde; border-radius: 30px;
+    padding: 0 16px; gap: 8px;
+  }
+  .search-box input {
+    border: none; outline: none; font-family: 'Barlow', sans-serif;
+    font-size: 14px; color: #333; flex: 1; padding: 8px 0;
+    background: transparent;
+  }
+
+  .listone-table {
+    background: white; border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,51,153,0.08);
+  }
+  .listone-header {
+    display: grid;
+    grid-template-columns: 48px 1fr 80px 80px 100px 120px;
+    background: var(--blu-scuro); color: var(--giallo);
+    padding: 12px 20px; gap: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .athlete-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 80px 80px 100px 120px;
+    padding: 14px 20px; gap: 12px; align-items: center;
+    border-bottom: 1px solid #eef;
+    transition: background 0.15s; cursor: pointer;
+  }
+  .athlete-row:hover { background: #f0f4ff; }
+  .athlete-row:last-child { border-bottom: none; }
+  .athlete-rank {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+    color: var(--grigio); text-align: center;
+  }
+  .athlete-rank.top3 { color: var(--giallo); }
+  .athlete-name { font-weight: 600; color: var(--blu-scuro); font-size: 15px; }
+  .athlete-cat {
+    font-size: 11px; color: var(--grigio);
+    font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .athlete-score { font-weight: 500; color: #444; font-size: 14px; text-align: right; }
+  .clorini-badge {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+    text-align: center;
+  }
+  .clorini-badge.high { color: var(--rosso); }
+  .clorini-badge.mid { color: var(--blu-mid); }
+  .clorini-badge.low { color: var(--grigio); }
+
+  .add-btn {
+    border: 2px solid var(--blu); background: none; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--blu); padding: 6px 16px; border-radius: 20px;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .add-btn:hover { background: var(--blu); color: white; }
+  .add-btn.added { background: var(--verde); color: white; border-color: var(--verde); }
+  .add-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ====== ISCRIZIONE ====== */
+  .iscr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media(max-width:768px){ .iscr-grid { grid-template-columns: 1fr; } }
+
+  .form-card {
+    background: white; border-radius: 16px; padding: 32px;
+    box-shadow: 0 2px 20px rgba(0,51,153,0.08);
+  }
+  .form-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--blu-scuro); margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--grigio);
+    margin-bottom: 6px;
+  }
+  .form-group input, .form-group select {
+    width: 100%; padding: 12px 16px;
+    border: 2px solid #dde; border-radius: 8px;
+    font-family: 'Barlow', sans-serif; font-size: 14px;
+    color: #333; outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--blu-mid);
+  }
+
+  .team-slots {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .team-slot {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-radius: 10px;
+    border: 2px dashed #dde; background: #f8faff;
+    transition: all 0.2s; min-height: 56px;
+  }
+  .team-slot.filled { border-style: solid; border-color: var(--blu); background: white; }
+  .slot-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 24px;
+    color: var(--grigio); min-width: 28px; text-align: center;
+  }
+  .slot-num.filled { color: var(--giallo-chiaro); background: var(--blu-scuro); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .slot-info { flex: 1; }
+  .slot-name { font-weight: 600; color: var(--blu-scuro); font-size: 14px; }
+  .slot-clorini { font-size: 12px; color: var(--grigio); }
+  .slot-remove {
+    background: none; border: none; cursor: pointer;
+    color: var(--rosso); font-size: 18px; padding: 4px;
+    transition: transform 0.2s;
+  }
+  .slot-remove:hover { transform: scale(1.2); }
+
+  .budget-tracker {
+    background: linear-gradient(135deg, var(--blu-scuro), var(--blu-mid));
+    border-radius: 12px; padding: 20px; margin-top: 16px; color: white;
+  }
+  .budget-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 10px; height: 8px; margin: 12px 0; overflow: hidden; }
+  .budget-bar { height: 100%; background: var(--giallo); border-radius: 10px; transition: width 0.4s; }
+  .budget-nums {
+    display: flex; justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+  }
+  .budget-spent { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--giallo); }
+
+  .submit-btn {
+    width: 100%; padding: 16px;
+    background: var(--giallo); color: var(--blu-scuro);
+    border: none; cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+    letter-spacing: 2px; border-radius: 10px;
+    transition: all 0.2s; margin-top: 16px;
+  }
+  .submit-btn:hover { background: var(--giallo-chiaro); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,215,0,0.4); }
+  .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* ====== CLASSIFICA ====== */
+  .class-card {
+    background: white; border-radius: 16px;
+    overflow: hidden; box-shadow: 0 2px 20px rgba(0,51,153,0.08);
+    margin-bottom: 16px;
+  }
+  .class-header {
+    background: var(--blu-scuro); color: white;
+    padding: 20px 24px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .class-header .team-name {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+    color: var(--giallo); letter-spacing: 2px;
+  }
+  .class-header .manager { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .class-header .total-pts {
+    text-align: right;
+  }
+  .class-header .total-pts .num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--giallo); line-height: 1;
+  }
+  .class-header .total-pts .lbl { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+  .rank-badge {
+    font-family: 'Bebas Neue', sans-serif; font-size: 64px;
+    color: rgba(255,255,255,0.08); line-height: 1;
+    min-width: 72px; text-align: center;
+  }
+  .class-athletes { padding: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .mini-athlete {
+    display: flex; align-items: center; gap: 8px;
+    background: #f0f4ff; border-radius: 8px; padding: 8px 14px;
+    flex: 1; min-width: 160px;
+  }
+  .mini-athlete .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blu-mid); flex-shrink: 0; }
+  .mini-athlete .an { font-size: 13px; font-weight: 600; color: var(--blu-scuro); }
+  .mini-athlete .ap { font-size: 12px; color: var(--grigio); margin-left: auto; font-family: 'Barlow Condensed', sans-serif; }
+
+  .update-notice {
+    background: linear-gradient(90deg, rgba(0,204,102,0.1), rgba(0,204,102,0.05));
+    border-left: 4px solid var(--verde);
+    border-radius: 8px; padding: 14px 20px; margin-bottom: 32px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .update-notice p { font-size: 13px; color: #446; }
+  .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--verde); flex-shrink: 0; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+  /* Top podium */
+  .podium {
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 16px; margin-bottom: 48px; padding: 0 24px;
+  }
+  .podium-block {
+    flex: 1; max-width: 200px; text-align: center;
+  }
+  .podium-block .p-name {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; color: var(--blu-scuro); margin-bottom: 6px;
+  }
+  .podium-block .p-pts {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: white; line-height: 1.2;
+  }
+  .podium-block .p-lbl { font-size: 11px; color: rgba(255,255,255,0.7); }
+  .podium-block .p-box {
+    border-radius: 12px 12px 0 0; padding: 20px 12px;
+    position: relative;
+  }
+  .p1 .p-box { background: linear-gradient(135deg, #c9a227, #FFD700); height: 140px; }
+  .p2 .p-box { background: linear-gradient(135deg, #8a9bb0, #b0bec5); height: 110px; }
+  .p3 .p-box { background: linear-gradient(135deg, #a0673a, #cd7f32); height: 90px; }
+  .podium-medal { font-size: 32px; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: var(--blu-scuro);
+    border-top: 3px solid var(--giallo);
+    padding: 32px 24px; text-align: center;
+    color: rgba(255,255,255,0.4); font-size: 13px;
+  }
+  footer strong { color: var(--giallo); }
+
+  /* Mobile nav */
+  @media(max-width:640px){
+    nav button { padding: 8px 10px; font-size: 12px; }
+    .listone-header, .athlete-row { grid-template-columns: 40px 1fr 70px 90px; }
+    .listone-header > *:nth-child(3),
+    .listone-header > *:nth-child(5),
+    .athlete-row > *:nth-child(3),
+    .athlete-row > *:nth-child(5){ display:none; }
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--blu-scuro); color: var(--giallo);
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 16px; letter-spacing: 1px;
+    padding: 14px 24px; border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.3s; z-index: 1000;
+    border-left: 4px solid var(--giallo);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Overlay iscrizione successo */
+  .overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,20,80,0.85); z-index: 200;
+    align-items: center; justify-content: center;
+  }
+  .overlay.show { display: flex; }
+  .overlay-box {
+    background: white; border-radius: 20px; padding: 48px 40px;
+    text-align: center; max-width: 460px; width: 90%;
+    animation: bounceIn 0.4s;
+  }
+  @keyframes bounceIn {
+    0%{transform:scale(0.7);opacity:0}
+    70%{transform:scale(1.05)}
+    100%{transform:scale(1);opacity:1}
+  }
+  .overlay-icon { font-size: 64px; margin-bottom: 16px; }
+  .overlay-box h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px;
+    color: var(--blu-scuro); letter-spacing: 2px; margin-bottom: 12px;
+  }
+  .overlay-box p { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 24px; }
+  .overlay-close {
+    background: var(--blu-scuro); color: var(--giallo);
+    border: none; cursor: pointer; border-radius: 10px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px;
+    letter-spacing: 2px; padding: 12px 32px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">🏊</div>
+      <div class="logo-text">
+        <div class="brand">FantaMelzo</div>
+        <div class="sub">ASD Master Melzo · FIN</div>
+      </div>
+    </a>
+    <nav>
+      <button class="active" onclick="showSection('home')">Home</button>
+      <button onclick="showSection('regolamento')" class="">Regolamento</button>
+      <button onclick="showSection('listone')">Listone</button>
+      <button onclick="showSection('iscrizione')">Iscriviti</button>
+      <button onclick="showSection('classifica')">Classifica</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HOME -->
+<section id="home" class="section active">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🏆 Stagione 2024/2025</div>
+      <h1>FANTA<span>MELZO</span></h1>
+      <p class="hero-sub">Il fantasy game ufficiale della ASD Master Melzo · Circuito FIN</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="val">32</div><div class="lbl">Atleti in rosa</div></div>
+        <div class="hero-stat"><div class="val">5</div><div class="lbl">Atleti per team</div></div>
+        <div class="hero-stat"><div class="val">100</div><div class="lbl">Clorini budget</div></div>
+        <div class="hero-stat"><div class="val">∞</div><div class="lbl">Sfide</div></div>
+      </div>
+    </div>
+    <div class="waves">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0,20 C240,40 480,0 720,20 C960,40 1200,0 1440,20 L1440,40 L0,40Z" fill="#f0f4ff"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="container">
+    <div class="rules-grid">
+      <div class="rule-card giallo">
+        <div class="rule-icon">💰</div>
+        <h3>Costruisci il tuo team</h3>
+        <p>Scegli 5 atleti dal listone con un budget di <strong>100 Clorini</strong>. La valutazione è calcolata su classifica sociale e presenze agli allenamenti.</p>
+        <span class="pts">100 Clorini budget</span>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🏅</div>
+        <h3>Punteggio FIN</h3>
+        <p>Il tuo team guadagna punti basati sul punteggio FIN medio degli atleti selezionati ad ogni gara del circuito.</p>
+        <span class="pts">Punti FIN ÷ 10</span>
+      </div>
+      <div class="rule-card verde">
+        <div class="rule-icon">🎯</div>
+        <h3>Bonus &amp; Malus</h3>
+        <p>Podio, record, staffette, trasferte con notti in hotel, 
+stacanovisti... ogni gara è una nuova opportunità per scalare la 
+classifica.</p>
+        <span class="pts">Fino a +50 pts</span>
+      </div>
+      <div class="rule-card rosso">
+        <div class="rule-icon">📡</div>
+        <h3>Classifica Live</h3>
+        <p>La classifica si aggiorna in tempo reale dopo ogni gara tramite i fogli Google Sheet ufficiali della squadra.</p>
+        <span class="pts">Aggiornamento live</span>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:16px;">
+      <button class="submit-btn" style="max-width:320px; display:inline-block;" onclick="showSection('listone')">
+        🏊 VAI AL LISTONE →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- REGOLAMENTO -->
+<section id="regolamento" class="section">
+  <div class="container">
+    <div class="section-title">Rego<span>lamento</span></div>
+    <div class="section-divider"></div>
+
+    <div class="budget-box">
+      <div class="budget-num">100</div>
+      <div class="budget-info">
+        <h3>🪙 Clorini — La valuta del FantaMelzo</h3>
+        <p>
+          Ogni partecipante dispone di <strong>100 Clorini</strong> per acquistare 5 atleti dal listone.<br>
+          La valutazione di ogni atleta = <em>(Supermaster ÷ 100) × 60% + (Classifica Società ÷ 10) × 30% + (Presenze ÷ 10) × 10%</em><br>
+          Il budget è calibrato per bilanciare la scelta: i 5 top costerebbero ~153 Clorini, quindi serve strategia!
+        </p>
+      </div>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-icon">📊</div>
+        <h3>Punteggio Base</h3>
+        <p>Per ogni gara individuale dell'atleta nel circuito FIN, si calcola il suo punteggio FIN e lo si divide per 10.</p>
+        <span class="pts">Punti FIN ÷ 10</span>
+      </div>
+      <div class="rule-card giallo">
+        <div class="rule-icon">🏟️</div>
+        <h3>Presenza Gara</h3>
+        <p>Ogni atleta che partecipa a una gara individuale porta punti bonus al proprio fantasy manager.</p>
+        <span class="pts">+5 punti</span>
+      </div>
+      <div class="rule-card giallo">
+        <div class="rule-icon">🤽</div>
+        <h3>Staffetta</h3>
+        <p>Se l'atleta partecipa a una staffetta (indipendentemente dal risultato), il manager riceve un bonus.</p>
+        <span class="pts">+5 punti</span>
+      </div>
+      <div class="rule-card verde">
+        <div class="rule-icon">🥇</div>
+        <h3>Podio di Categoria</h3>
+        <p>Oro, Argento o Bronzo nella propria categoria di età portano bonus significativi.</p>
+        <span class="pts">Oro +50 · Arg +20 · Bro +5</span>
+      </div>
+      <div class="rule-card verde">
+        <div class="rule-icon">🏆</div>
+        <h3>Record Sociale</h3>
+        <p>Stabilire un record del sodalizio porta punti extra: assoluto più del record di categoria.</p>
+        <span class="pts">Assoluto +20 · Cat. +10</span>
+      </div>
+      <div class="rule-card giallo">
+        <div class="rule-icon">⚡</div>
+        <h3>Stacanovista</h3>
+        <p>Se l'atleta gareggia in 2 o più gare nello stesso giorno di gara.</p>
+        <span class="pts">+5 punti</span>
+      </div>
+      <div class="rule-card giallo">
+        <div class="rule-icon">🏨</div>
+        <h3>Bonus Trasferta</h3>
+        <p>Per ogni notte di trasferta dell'atleta (da schema alberghiero ufficiale della squadra).</p>
+        <span class="pts">+5 per notte</span>
+      </div>
+      <div class="rule-card verde">
+        <div class="rule-icon">🧴</div>
+        <h3>Fedeltà al Cloro</h3>
+        <p>Atleti con più di 50 presenze all'allenamento in stagione ricevono un bonus permanente.</p>
+        <span class="pts">+10 punti</span>
+      </div>
+      <div class="rule-card rosso">
+        <div class="rule-icon">❌</div>
+        <h3>Malus: DNF / Squalifica</h3>
+        <p>Se un atleta viene squalificato o non termina la gara (Did Not Finish), il manager perde punti.</p>
+        <span class="pts">-15 punti</span>
+      </div>
+    </div>
+
+    <div style="background:white; border-radius:16px; padding:32px; box-shadow: 0 2px 20px rgba(0,51,153,0.08); margin-top:8px;">
+      <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; color:var(--blu-scuro); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;">📌 Come si calcola il punteggio settimanale</h3>
+      <p style="font-size:14px; line-height:1.8; color:#555;">
+        Il punteggio del tuo team ad ogni gara è la <strong>somma</strong> dei punteggi individuali di tutti e 5 i tuoi atleti.<br>
+        Ogni atleta guadagna: <code style="background:#f0f4ff; padding:2px 8px; border-radius:4px;">(FIN ÷ 10) + presenza + staffette + bonus podio + bonus record + bonus trasferta ± malus</code><br><br>
+        La classifica finale di stagione è data dalla <strong>somma cumulativa</strong> di tutti i punti accumulati nelle gare.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- LISTONE -->
+<section id="listone" class="section">
+  <div class="container">
+    <div class="section-title">Il <span>Listone</span></div>
+    <div class="section-divider"></div>
+
+    <div class="listone-filters">
+      <button class="filter-btn active" onclick="filterAthletes('tutti', this)">Tutti</button>
+      <button class="filter-btn" onclick="filterAthletes('top', this)">⭐ Top (&gt;27🪙)</button>
+      <button class="filter-btn" onclick="filterAthletes('mid', this)">💪 Medi (21–27🪙)</button>
+      <button class="filter-btn" onclick="filterAthletes('low', this)">💡 Occasioni (&lt;21🪙)</button>
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Cerca atleta..." oninput="searchAthletes()">
+      </div>
+    </div>
+
+    <div class="listone-table">
+      <div class="listone-header">
+        <div>#</div>
+        <div>Atleta</div>
+        <div style="text-align:right">Soc.</div>
+        <div style="text-align:right">Pres.</div>
+        <div style="text-align:center">Clorini</div>
+        <div style="text-align:center">Squadra</div>
+      </div>
+      <div id="athleteList"></div>
+    </div>
+
+    <p style="font-size:12px; color:var(--grigio); margin-top:12px; text-align:center;">
+      💡 Clorini = (Supermaster ÷ 100)×60% + (Soc ÷ 10)×30% + (Pres ÷ 10)×10% — Vai su <strong>Iscriviti</strong> per formare il tuo team
+    </p>
+  </div>
+</section>
+
+<!-- ISCRIZIONE -->
+<section id="iscrizione" class="section">
+  <div class="container">
+    <div class="section-title">Iscri<span>viti</span></div>
+    <div class="section-divider"></div>
+
+    <div class="iscr-grid">
+      <div class="form-card">
+        <h3>👤 I tuoi dati</h3>
+        <div class="form-group">
+          <label>Nome completo</label>
+          <input type="text" id="managerName" placeholder="Es. Mario Rossi">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="managerEmail" placeholder="mario@email.com">
+        </div>
+        <div class="form-group">
+          <label>Nome della tua squadra</label>
+          <input type="text" id="teamName" placeholder="Es. Squali Gialli FC">
+        </div>
+
+        <div class="budget-tracker">
+          <div style="display:flex; justify-content:space-between; align-items:baseline;">
+            <div>
+              <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; opacity:0.6; margin-bottom:2px;">Budget speso</div>
+              <div class="budget-spent"><span id="spentClorini">0.00</span> / 100</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px; opacity:0.6; text-transform:uppercase;">Rimanenti</div>
+              <div style="font-family:'Bebas Neue'; font-size:28px; color:var(--giallo);" id="remainingClorini">100.00 🪙</div>
+            </div>
+          </div>
+          <div class="budget-bar-wrap">
+            <div class="budget-bar" id="budgetBar" style="width: 0%; background: var(--giallo);"></div>
+          </div>
+          <div style="font-size:12px; opacity:0.6; text-align:center;">Atleti selezionati: <span id="selectedCount">0</span> / 5</div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="submitTeam()" disabled="disabled">
+          🏊 CONFERMA ISCRIZIONE
+        </button>
+      </div>
+
+      <div class="form-card">
+        <h3>🏊 Il tuo team (<span id="slotCount">0</span>/5)</h3>
+        <div class="team-slots" id="teamSlots"><div class="team-slot">
+        <div class="slot-num">1</div>
+        <div style="font-size:13px; color:var(--grigio);">Slot vuoto — aggiungi dal listone</div>
+      </div><div class="team-slot">
+        <div class="slot-num">2</div>
+        <div style="font-size:13px; color:var(--grigio);">Slot vuoto — aggiungi dal listone</div>
+      </div><div class="team-slot">
+        <div class="slot-num">3</div>
+        <div style="font-size:13px; color:var(--grigio);">Slot vuoto — aggiungi dal listone</div>
+      </div><div class="team-slot">
+        <div class="slot-num">4</div>
+        <div style="font-size:13px; color:var(--grigio);">Slot vuoto — aggiungi dal listone</div>
+      </div><div class="team-slot">
+        <div class="slot-num">5</div>
+        <div style="font-size:13px; color:var(--grigio);">Slot vuoto — aggiungi dal listone</div>
+      </div></div>
+        <div style="margin-top:24px; padding-top:20px; border-top:2px solid #eef;">
+          <p style="font-size:13px; color:var(--grigio);">👈 Aggiungi atleti dal <a href="#" onclick="showSection('listone'); return false;" style="color:var(--blu-mid); font-weight:600;">Listone</a> — max 5 atleti con budget di 100 Clorini</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSIFICA -->
+<section id="classifica" class="section">
+  <div class="container">
+    <div class="section-title">Classi<span>fica</span></div>
+    <div class="section-divider"></div>
+
+    <div class="update-notice">
+      <div class="live-dot"></div>
+      <p><strong>Classifica LIVE</strong> — Si aggiorna ad ogni gara tramite i Google Sheet ufficiali ASD Master Melzo. Ultima gara registrata: <strong>Nord Padania – Lodi</strong></p>
+    </div>
+
+    <div id="podiumSection"></div>
+    <div id="classificaList"></div>
+
+    <div style="background:white; border-radius:12px; padding:20px 24px; margin-top:24px; border-left:4px solid var(--acqua); box-shadow:0 2px 12px rgba(0,51,153,0.06);">
+      <p style="font-size:13px; color:#556; line-height:1.7;">
+        📋 <strong>Come si aggiorna:</strong> Dopo ogni gara del 
+circuito FIN, i responsabili inseriscono i risultati nel Google Sheet 
+ufficiale. Il sistema calcola automaticamente punteggi, bonus e malus 
+aggiornando questa classifica in tempo reale.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAY SUCCESS -->
+<div class="overlay" id="successOverlay">
+  <div class="overlay-box">
+    <div class="overlay-icon">🏆</div>
+    <h2>Iscrizione Inviata!</h2>
+    <p id="successMsg">Il tuo team è stato registrato. Buona fortuna nella stagione FantaMelzo 2024/2025! Riceverai una conferma via email.</p>
+    <button class="overlay-close" onclick="document.getElementById('successOverlay').classList.remove('show'); showSection('classifica')">
+      VAI ALLA CLASSIFICA
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <p>🏊 <strong>FantaMelzo</strong> — Gioco ufficiale ASD Master Melzo · Circuito FIN 2024/2025</p>
+  <p style="margin-top:8px;">Un progetto della squadra, per la squadra. Forza <strong>Melzo</strong>! 💛💙</p>
+</footer>
+
+<script>
+// ============================================================
+// DATI ATLETI — calcolati dai Google Sheet
+// ============================================================
+// Formula: Clorini normalizzati (min-max) — FIN 60% + Sociale 30% + Presenze 10%
+const athletes = [
+  { name:"Sinigaglia Luca", social:179, pres:61, clorini:43.0, fin:876.5 },
+  { name:"Broccolino Marco", social:230, pres:60, clorini:39.01, fin:775.8 },
+  { name:"Pitalieri Francesca", social:76, pres:73, clorini:38.7, fin:892.6 },
+  { name:"Broccolino Susanna", social:142, pres:14, clorini:36.42, fin:852.1 },
+  { name:"Somigliana Ugo", social:94, pres:24, clorini:35.4, fin:870.2 },
+  { name:"Galiano Ilaria", social:45, pres:73, clorini:34.94, fin:864.8 },
+  { name:"Rovida Cristina", social:207, pres:32, clorini:34.72, fin:756.8 },
+  { name:"Zerbo Arcangelo", social:124, pres:78, clorini:33.58, fin:773.2 },
+  { name:"Brambilla Mauro", social:112, pres:63, clorini:33.54, fin:795.4 },
+  { name:"Neri Umberto", social:195, pres:73, clorini:32.12, fin:695.4 },
+  { name:"Vassura Edoardo", social:7, pres:69, clorini:30.92, fin:842.6 },
+  { name:"Raviola Tomaso", social:35, pres:53, clorini:30.74, fin:829.2 },
+  { name:"Salomone Roberto", social:93, pres:1, clorini:30.49, fin:819.1 },
+  { name:"Bottari Selene", social:45, pres:31, clorini:30.3, fin:832.6 },
+  { name:"Crespi Enrico", social:15, pres:86, clorini:28.74, fin:790.1 },
+  { name:"Mainetti Giovanni", social:192, pres:0, clorini:28.67, fin:708.7 },
+  { name:"Somigliana Anna", social:21, pres:45, clorini:28.49, fin:815.3 },
+  { name:"Accomasso Davide", social:45, pres:29, clorini:28.19, fin:803.7 },
+  { name:"Azin Claudio", social:55, pres:0, clorini:27.82, fin:813.9 },
+  { name:"Abrusci Domenico", social:36, pres:1, clorini:27.05, fin:818.2 },
+  { name:"Facchinetti Pierpaolo", social:36, pres:74, clorini:27.03, fin:757.3 },
+  { name:"Broccolino Filippo", social:22, pres:0, clorini:26.94, fin:829.5 },
+  { name:"Balicchia Filippo", social:24, pres:0, clorini:26.93, fin:827.7 },
+  { name:"Leoni Alessandro", social:26, pres:56, clorini:26.43, fin:772.1 },
+  { name:"Cesarini Andrea", social:0, pres:0, clorini:26.35, fin:839.8 },
+  { name:"Romano Giuseppe", social:23, pres:0, clorini:26.05, fin:815.7 },
+  { name:"Ferrari Bravo Cristina", social:75, pres:36, clorini:25.96, fin:740.0 },
+  { name:"Martelli Daria", social:31, pres:72, clorini:25.71, fin:744.1 },
+  { name:"Pirola Vincenzo", social:17, pres:87, clorini:25.11, fin:735.0 },
+  { name:"Arioli Angelo", social:10, pres:45, clorini:25.1, fin:775.8 },
+  { name:"Campari Fulvio", social:15, pres:19, clorini:24.94, fin:790.8 },
+  { name:"Brambilla Cecilia", social:43, pres:65, clorini:24.36, fin:720.2 },
+  { name:"Bottari Jacopo", social:0, pres:0, clorini:24.1, fin:807.3 },
+  { name:"Bottari Ciro", social:10, pres:14, clorini:23.92, fin:784.5 },
+  { name:"Ferraro Sergio", social:3, pres:67, clorini:23.81, fin:744.9 },
+  { name:"Parisi Matteo", social:0, pres:50, clorini:22.46, fin:742.0 },
+  { name:"Dossena Fabiana", social:55, pres:59, clorini:22.17, fin:683.2 },
+  { name:"Bottari Giuseppe", social:47, pres:45, clorini:22.15, fin:701.4 },
+  { name:"Botteghi Alessio", social:11, pres:54, clorini:22.06, fin:723.5 },
+  { name:"Jacazio Giovanni", social:51, pres:0, clorini:21.99, fin:733.0 },
+  { name:"Mercati Gherardo", social:253, pres:0, clorini:21.83, fin:557.6 },
+  { name:"Di Bernardo Fulvia", social:129, pres:0, clorini:21.72, fin:662.3 },
+  { name:"Rosa Giulia", social:3, pres:20, clorini:20.92, fin:742.1 },
+  { name:"Colombo Lucia", social:17, pres:0, clorini:20.14, fin:735.5 },
+  { name:"Bonomi Mattia", social:27, pres:0, clorini:19.89, fin:723.3 },
+  { name:"Migliazza Anna", social:14, pres:29, clorini:19.52, fin:705.0 },
+  { name:"Lucchini Francesca", social:38, pres:37, clorini:18.61, fin:664.6 },
+  { name:"Scala Sandra", social:21, pres:70, clorini:17.63, fin:637.5 },
+  { name:"Baldo Veronica", social:44, pres:0, clorini:17.21, fin:670.0 },
+  { name:"Bitto Alessandro", social:44, pres:0, clorini:17.15, fin:669.0 },
+  { name:"De Gaspari Emilia", social:48, pres:0, clorini:16.69, fin:659.0 },
+  { name:"Scotti Silvio", social:41, pres:8, clorini:16.44, fin:654.7 },
+  { name:"Pandolfi Maria", social:7, pres:55, clorini:15.97, fin:638.0 },
+  { name:"Smiroldo Giorgio", social:0, pres:10, clorini:15.89, fin:680.2 },
+  { name:"Barbic Franca", social:24, pres:27, clorini:15.17, fin:635.2 },
+  { name:"Naborri Annamaria", social:44, pres:0, clorini:14.84, fin:635.7 },
+  { name:"Longaretti Fabio", social:9, pres:56, clorini:14.17, fin:609.4 },
+  { name:"Zuccardi Gianluigi", social:39, pres:0, clorini:13.19, fin:616.1 },
+  { name:"Alessandrello Federico", social:11, pres:31, clorini:12.99, fin:611.5 },
+  { name:"Zuccardi Merli Gianluigi", social:0, pres:57, clorini:12.34, fin:589.8 },
+  { name:"Naborri Anna", social:0, pres:0, clorini:9.72, fin:599.3 },
+  { name:"Valla Nicola", social:81, pres:0, clorini:4.8, fin:458.8 },
+  { name:"Ponzi Maurizio", social:11, pres:62, clorini:4.22, fin:0 },
+  { name:"Pirola Alessandro", social:11, pres:62, clorini:4.22, fin:0 },
+  { name:"Pirola Anna", social:11, pres:51, clorini:3.58, fin:0 },
+  { name:"Blanda Calogero", social:11, pres:15, clorini:1.51, fin:0 },
+  { name:"Sigona Attilio", social:11, pres:14, clorini:1.46, fin:0 },
+  { name:"Pomero Vittorio", social:11, pres:0, clorini:0.65, fin:0 },
+  { name:"Bissi Luigi", social:11, pres:0, clorini:0.65, fin:0 },
+  { name:"Fossati Enrico", social:11, pres:0, clorini:0.65, fin:0 },
+];
+
+// Classifica demo (aggiornata dopo gare)
+const demoClassifica = [
+  { team:"Squali Gialli", manager:"Luca R.", pts:847, athletes:["Sinigaglia Luca","Broccolino Susanna","Raviola Tomaso","Neri Umberto","Pirola Vincenzo"] },
+  { team:"Cloro Addicts", manager:"Marco B.", pts:791, athletes:["Crespi Enrico","Zerbo Arcangelo","Brambilla Mauro","Salomone Roberto","Rovida Cristina"] },
+  { team:"H2O Warriors", manager:"Sara T.", pts:734, athletes:["Pitalieri Francesca","Broccolino Marco","Galiano Ilaria","Leoni Alessandro","Mainetti Giovanni"] },
+  { team:"Pool Position", manager:"Giorgio M.", pts:698, athletes:["Bottari Selene","Facchinetti Pierpaolo","Brambilla Cecilia","Ferrari Bravo Cristina","Dossena Fabiana"] },
+  { team:"Torpedini",     manager:"Anna P.", pts:612, athletes:["Accomasso Davide","Mercati Gherardo","Naborri Annamaria","Bonomi Mattia","Somigliana Ugo"] },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let currentFilter = 'tutti';
+let team = [];
+const BUDGET = 100;
+
+// ============================================================
+// NAV
+// ============================================================
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach((b, i) => {
+    const map = ['home','regolamento','listone','iscrizione','classifica'];
+    b.classList.toggle('active', map[i] === id);
+  });
+  if (id === 'listone') renderAthletes();
+  if (id === 'classifica') renderClassifica();
+  if (id === 'iscrizione') renderTeamSlots();
+}
+
+// ============================================================
+// LISTONE
+// ============================================================
+function filterAthletes(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAthletes();
+}
+
+function searchAthletes() { renderAthletes(); }
+
+function renderAthletes() {
+  const q = document.getElementById('searchInput')?.value.toLowerCase() || '';
+  let list = athletes.filter(a => {
+    if (q && !a.name.toLowerCase().includes(q)) return false;
+    if (currentFilter === 'top') return a.clorini >= 27;
+    if (currentFilter === 'mid') return a.clorini >= 21 && a.clorini < 27;
+    if (currentFilter === 'low') return a.clorini < 21;
+    return true;
+  });
+
+  const container = document.getElementById('athleteList');
+  container.innerHTML = list.map((a, i) => {
+    const inTeam = team.some(t => t.name === a.name);
+    const canAdd = !inTeam && team.length < 5 && (spentClorini() + a.clorini) <= BUDGET + 0.001;
+    const tier = a.clorini >= 27 ? 'high' : a.clorini >= 21 ? 'mid' : 'low';
+    const rank = athletes.indexOf(a) + 1;
+    return `<div class="athlete-row" onclick="toggleAthlete('${a.name}')">
+      <div class="athlete-rank ${rank<=3?'top3':''}">${rank}</div>
+      <div>
+        <div class="athlete-name">${a.name}</div>
+        <div class="athlete-cat">Soc: ${a.social}pt · Pres: ${a.pres}</div>
+      </div>
+      <div class="athlete-score" style="text-align:right">${a.social}</div>
+      <div class="athlete-score" style="text-align:right">${a.pres}</div>
+      <div class="clorini-badge ${tier}">🪙 ${a.clorini.toFixed(1)}</div>
+      <div style="text-align:center">
+        <button class="add-btn ${inTeam?'added':''}" 
+          ${(!canAdd && !inTeam)?'disabled':''}
+          onclick="event.stopPropagation(); toggleAthlete('${a.name}')">
+          ${inTeam ? '✓ Nel team' : '+ Aggiungi'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function spentClorini() { return team.reduce((s, a) => s + a.clorini, 0); }
+
+function toggleAthlete(name) {
+  const a = athletes.find(x => x.name === name);
+  if (!a) return;
+  const idx = team.findIndex(t => t.name === name);
+  if (idx >= 0) {
+    team.splice(idx, 1);
+    showToast(`❌ ${name.split(' ')[0]} rimosso dal team`);
+  } else {
+    if (team.length >= 5) { showToast('⚠️ Hai già 5 atleti nel team!'); return; }
+    if (spentClorini() + a.clorini > BUDGET + 0.001) { showToast(`💸 Budget insufficiente! Ti mancano ${(spentClorini()+a.clorini-BUDGET).toFixed(2)} Clorini`); return; }
+    team.push(a);
+    showToast(`✅ ${name.split(' ')[0]} aggiunto al team!`);
+  }
+  renderAthletes();
+  renderTeamSlots();
+  updateBudget();
+}
+
+// ============================================================
+// ISCRIZIONE
+// ============================================================
+function renderTeamSlots() {
+  const container = document.getElementById('teamSlots');
+  if (!container) return;
+  let html = '';
+  for (let i = 0; i < 5; i++) {
+    const a = team[i];
+    if (a) {
+      html += `<div class="team-slot filled">
+        <div class="slot-num filled">${i+1}</div>
+        <div class="slot-info">
+          <div class="slot-name">${a.name}</div>
+          <div class="slot-clorini">🪙 ${a.clorini.toFixed(2)} Clorini</div>
+        </div>
+        <button class="slot-remove" onclick="toggleAthlete('${a.name}')">✕</button>
+      </div>`;
+    } else {
+      html += `<div class="team-slot">
+        <div class="slot-num">${i+1}</div>
+        <div style="font-size:13px; color:var(--grigio);">Slot vuoto — aggiungi dal listone</div>
+      </div>`;
+    }
+  }
+  container.innerHTML = html;
+  document.getElementById('slotCount').textContent = team.length;
+  updateBudget();
+}
+
+function updateBudget() {
+  const spent = spentClorini();
+  const remaining = BUDGET - spent;
+  const pct = Math.min((spent / BUDGET) * 100, 100);
+  const el = document.getElementById('spentClorini');
+  if (el) el.textContent = spent.toFixed(2);
+  const re = document.getElementById('remainingClorini');
+  if (re) re.textContent = remaining.toFixed(2) + ' 🪙';
+  const bar = document.getElementById('budgetBar');
+  if (bar) {
+    bar.style.width = pct + '%';
+    bar.style.background = pct > 90 ? '#ff5555' : pct > 70 ? '#ffaa00' : 'var(--giallo)';
+  }
+  const sc = document.getElementById('selectedCount');
+  if (sc) sc.textContent = team.length;
+  const btn = document.getElementById('submitBtn');
+  if (btn) btn.disabled = team.length < 5 || !document.getElementById('managerName')?.value || !document.getElementById('teamName')?.value;
+}
+
+document.addEventListener('input', () => updateBudget());
+
+function submitTeam() {
+  const name = document.getElementById('managerName').value;
+  const tname = document.getElementById('teamName').value;
+  if (!name || !tname || team.length < 5) { showToast('⚠️ Completa tutti i campi e seleziona 5 atleti!'); return; }
+  document.getElementById('successMsg').innerHTML = `Il tuo team <strong>"${tname}"</strong> gestito da <strong>${name}</strong> è stato registrato con successo!<br><br>I tuoi 5 atleti: ${team.map(a=>a.name.split(' ')[0]).join(', ')}.<br>Buona fortuna! 🏊💙`;
+  document.getElementById('successOverlay').classList.add('show');
+}
+
+// ============================================================
+// CLASSIFICA
+// ============================================================
+function renderClassifica() {
+  const sorted = [...demoClassifica].sort((a, b) => b.pts - a.pts);
+
+  // Podium top 3
+  const p = document.getElementById('podiumSection');
+  if (!p) return;
+  const top3 = sorted.slice(0, 3);
+  p.innerHTML = `<div class="podium">
+    <div class="podium-block p2">
+      <div class="p-name">${top3[1]?.team || '—'}</div>
+      <div class="p-box"><div class="podium-medal">🥈</div><div class="p-pts">${top3[1]?.pts || 0}</div><div class="p-lbl">punti</div></div>
+    </div>
+    <div class="podium-block p1">
+      <div class="p-name">${top3[0]?.team || '—'}</div>
+      <div class="p-box"><div class="podium-medal">🥇</div><div class="p-pts">${top3[0]?.pts || 0}</div><div class="p-lbl">punti</div></div>
+    </div>
+    <div class="podium-block p3">
+      <div class="p-name">${top3[2]?.team || '—'}</div>
+      <div class="p-box"><div class="podium-medal">🥉</div><div class="p-pts">${top3[2]?.pts || 0}</div><div class="p-lbl">punti</div></div>
+    </div>
+  </div>`;
+
+  const cl = document.getElementById('classificaList');
+  cl.innerHTML = sorted.map((t, i) => `
+    <div class="class-card">
+      <div class="class-header">
+        <div class="rank-badge">${i+1}</div>
+        <div>
+          <div class="team-name">${t.team}</div>
+          <div class="manager">👤 ${t.manager}</div>
+        </div>
+        <div class="total-pts">
+          <div class="num">${t.pts}</div>
+          <div class="lbl">punti totali</div>
+        </div>
+      </div>
+      <div class="class-athletes">
+        ${t.athletes.map(a => `<div class="mini-athlete"><div class="dot"></div><div class="an">${a}</div><div class="ap">—</div></div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+// Il listone viene renderizzato quando si apre la sezione (in showSection)
+// Qui inizializziamo solo gli slot del team
+renderTeamSlots();
+</script>
+
+
+</body></html>
