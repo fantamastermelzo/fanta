@@ -418,41 +418,67 @@ function showSection(id){
   if(id==="classifica")renderClassifica();
   if(id==="iscrizione")renderTeamSlots();
 }
-function filterAthletes(f,btn){currentFilter=f;document.querySelectorAll(".fbtn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");renderAthletes()}
+// Pre-calcola rank e tier una volta sola
+const athletesMeta = athletes.map((a,i)=>({
+  rank: i+1,
+  rc: i===0?"gold":i===1?"silver":i===2?"bronze":"",
+  tier: a.clorini>=400?"hi":a.clorini>=200?"md":"lo",
+  soc: a.sociale.toLocaleString("it"),
+  c: a.clorini.toFixed(1)
+}));
+const teamSet = new Set();
+
+let _renderTimer = null;
+function filterAthletes(f,btn){
+  currentFilter=f;
+  document.querySelectorAll(".fbtn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  renderAthletes();
+}
 function renderAthletes(){
+  // Debounce per la ricerca
+  clearTimeout(_renderTimer);
+  _renderTimer = setTimeout(_doRender, 60);
+}
+function _doRender(){
   const q=(document.getElementById("searchInput")?.value||"").toLowerCase();
-  const list=athletes.filter(a=>{
-    if(q&&!a.name.toLowerCase().includes(q))return false;
-    if(currentFilter==="top")return a.clorini>=400;
-    if(currentFilter==="mid")return a.clorini>=200&&a.clorini<400;
-    if(currentFilter==="low")return a.clorini<200;
-    return true;
-  });
-  document.getElementById("athleteList").innerHTML=list.map(a=>{
-    const inTeam=team.some(t=>t.name===a.name);
-    const canAdd=!inTeam&&team.length<5&&(spentClorini()+a.clorini)<=BUDGET+0.1;
-    const rank=athletes.indexOf(a)+1;
-    const rc=rank===1?"gold":rank===2?"silver":rank===3?"bronze":"";
-    const tier=a.clorini>=400?"hi":a.clorini>=200?"md":"lo";
-    return "<div class='arow' onclick=\"toggleAthlete('"+a.name+"')\">"
-      +"<div class='arank "+rc+"'>"+rank+"</div>"
-      +"<div><div class='aname'>"+a.name+"</div><div class='acat'>Soc. "+a.sociale.toLocaleString("it")+" - Pres. "+a.pres+"</div></div>"
-      +"<div class='ascore'>"+a.sociale.toLocaleString("it")+"</div>"
+  const spent = spentClorini();
+  const parts = [];
+  for(let i=0;i<athletes.length;i++){
+    const a=athletes[i];
+    const m=athletesMeta[i];
+    if(q&&!a.name.toLowerCase().includes(q)) continue;
+    if(currentFilter==="top"&&a.clorini<400) continue;
+    if(currentFilter==="mid"&&(a.clorini<200||a.clorini>=400)) continue;
+    if(currentFilter==="low"&&a.clorini>=200) continue;
+    const inTeam=teamSet.has(a.name);
+    const canAdd=!inTeam&&team.length<5&&(spent+a.clorini)<=BUDGET+0.1;
+    parts.push(
+      "<div class='arow' onclick=\"toggleAthlete('"+a.name+"')\">"
+      +"<div class='arank "+m.rc+"'>"+m.rank+"</div>"
+      +"<div><div class='aname'>"+a.name+"</div><div class='acat'>Soc. "+m.soc+" · Pres. "+a.pres+"</div></div>"
+      +"<div class='ascore'>"+m.soc+"</div>"
       +"<div class='ascore'>"+a.pres+"</div>"
-      +"<div class='cpill "+tier+"'>"+a.clorini.toFixed(1)+"</div>"
-      +"<div style='text-align:center'><button class='abtn "+(inTeam?"added":"")+"' "+(!canAdd&&!inTeam?"disabled":"")+" onclick=\"event.stopPropagation();toggleAthlete('"+a.name+"')\">"+(inTeam?"Nel team":"+ Aggiungi")+"</button></div>"
-      +"</div>";
-  }).join("");
+      +"<div class='cpill "+m.tier+"'>"+m.c+"</div>"
+      +"<div style='text-align:center'><button class='abtn"+(inTeam?" added":"")+"'"
+      +(!canAdd&&!inTeam?" disabled":"")
+      +" onclick=\"event.stopPropagation();toggleAthlete('"+a.name+"')\">"
+      +(inTeam?"✓ Nel team":"+ Aggiungi")+"</button></div>"
+      +"</div>"
+    );
+  }
+  document.getElementById("athleteList").innerHTML=parts.join("");
 }
 function spentClorini(){return team.reduce((s,a)=>s+a.clorini,0)}
 function toggleAthlete(name){
   const a=athletes.find(x=>x.name===name);if(!a)return;
   const idx=team.findIndex(t=>t.name===name);
-  if(idx>=0){team.splice(idx,1);showToast("Rimosso: "+name.split(" ")[0]);}
+
+  if(idx>=0){team.splice(idx,1);teamSet.delete(name);showToast("Rimosso: "+name.split(" ")[0]);}
   else{
     if(team.length>=5){showToast("Hai gia 5 atleti!");return;}
     if(spentClorini()+a.clorini>BUDGET+0.1){showToast("Budget insufficiente!");return;}
-    team.push(a);showToast("Aggiunto: "+name.split(" ")[0]);
+    team.push(a);teamSet.add(name);showToast("Aggiunto: "+name.split(" ")[0]);
   }
   renderAthletes();renderTeamSlots();updateBudget();
 }
