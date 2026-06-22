@@ -1,0 +1,1702 @@
+{
+  "stagione": "2025-2026",
+  "ultima_gara": "Lodi - Barbarossa",
+  "data_aggiornamento": "2026-06-07",
+  "classifica_atleti": [
+    {
+      "rank": 1,
+      "atleta": "Mainetti Giovanni",
+      "punti": 3456.2
+    },
+    {
+      "rank": 2,
+      "atleta": "Neri Umberto",
+      "punti": 3237.0
+    },
+    {
+      "rank": 3,
+      "atleta": "Mercati Gherardo",
+      "punti": 3018.7
+    },
+    {
+      "rank": 4,
+      "atleta": "Dotti Valter",
+      "punti": 2220.9
+    },
+    {
+      "rank": 5,
+      "atleta": "Sperandio Dario",
+      "punti": 1876.1
+    },
+    {
+      "rank": 6,
+      "atleta": "Salomone Roberto",
+      "punti": 1748.2
+    },
+    {
+      "rank": 7,
+      "atleta": "Somigliana Ugo",
+      "punti": 1745.2
+    },
+    {
+      "rank": 8,
+      "atleta": "Broccolino Marco",
+      "punti": 1723.2
+    },
+    {
+      "rank": 9,
+      "atleta": "Sinigaglia Luca",
+      "punti": 1507.2
+    },
+    {
+      "rank": 10,
+      "atleta": "Floris Cristina",
+      "punti": 1452.5
+    },
+    {
+      "rank": 11,
+      "atleta": "Di Bernardo Fulvia",
+      "punti": 1443.2
+    },
+    {
+      "rank": 12,
+      "atleta": "Brambilla Mauro",
+      "punti": 1439.6
+    },
+    {
+      "rank": 13,
+      "atleta": "Ceriani Paolo",
+      "punti": 1437.3
+    },
+    {
+      "rank": 14,
+      "atleta": "Crespi Enrico",
+      "punti": 1385.2
+    },
+    {
+      "rank": 15,
+      "atleta": "Zerbo Arcangelo",
+      "punti": 1221.6
+    },
+    {
+      "rank": 16,
+      "atleta": "Pitalieri Francesca",
+      "punti": 1217.6
+    },
+    {
+      "rank": 17,
+      "atleta": "Ferrari Bravo Cristina",
+      "punti": 1143.5
+    },
+    {
+      "rank": 18,
+      "atleta": "Bottari Giuseppe",
+      "punti": 1065.5
+    },
+    {
+      "rank": 19,
+      "atleta": "Bottari Selene",
+      "punti": 1007.0
+    },
+    {
+      "rank": 20,
+      "atleta": "Bitto Alessandro",
+      "punti": 925.0
+    },
+    {
+      "rank": 21,
+      "atleta": "Romano Giuseppe",
+      "punti": 900.1
+    },
+    {
+      "rank": 22,
+      "atleta": "Pirola Vincenzo",
+      "punti": 842.4
+    },
+    {
+      "rank": 23,
+      "atleta": "Somigliana Anna",
+      "punti": 841.1
+    },
+    {
+      "rank": 24,
+      "atleta": "Dossena Fabiana",
+      "punti": 838.6
+    },
+    {
+      "rank": 25,
+      "atleta": "Raviola Tomaso",
+      "punti": 819.6
+    },
+    {
+      "rank": 26,
+      "atleta": "Facchinetti Pierpaolo",
+      "punti": 792.0
+    },
+    {
+      "rank": 27,
+      "atleta": "Pirola Alessandro",
+      "punti": 786.2
+    },
+    {
+      "rank": 28,
+      "atleta": "Galiano Ilaria",
+      "punti": 784.1
+    },
+    {
+      "rank": 29,
+      "atleta": "Rovida Cristina",
+      "punti": 774.8
+    },
+    {
+      "rank": 30,
+      "atleta": "Accomasso Davide",
+      "punti": 748.0
+    },
+    {
+      "rank": 31,
+      "atleta": "Brambilla Cecilia",
+      "punti": 745.7
+    },
+    {
+      "rank": 32,
+      "atleta": "Leoni Alessandro",
+      "punti": 737.1
+    },
+    {
+      "rank": 33,
+      "atleta": "Valla Nicola",
+      "punti": 737.0
+    },
+    {
+      "rank": 34,
+      "atleta": "Bottari Ciro",
+      "punti": 731.5
+    },
+    {
+      "rank": 35,
+      "atleta": "Baldo Veronica",
+      "punti": 710.4
+    },
+    {
+      "rank": 36,
+      "atleta": "Abrusci Domenico",
+      "punti": 659.5
+    },
+    {
+      "rank": 37,
+      "atleta": "Parisi Matteo",
+      "punti": 648.4
+    },
+    {
+      "rank": 38,
+      "atleta": "Sena Lucia",
+      "punti": 620.2
+    },
+    {
+      "rank": 39,
+      "atleta": "Martelli Daria",
+      "punti": 614.8
+    },
+    {
+      "rank": 40,
+      "atleta": "Longaretti Fabio",
+      "punti": 572.2
+    },
+    {
+      "rank": 41,
+      "atleta": "Vassura Edoardo",
+      "punti": 547.0
+    },
+    {
+      "rank": 42,
+      "atleta": "Pandolfi Maria",
+      "punti": 418.3
+    },
+    {
+      "rank": 43,
+      "atleta": "De Gaspari Emilia",
+      "punti": 411.9
+    },
+    {
+      "rank": 44,
+      "atleta": "Lucchini Francesca",
+      "punti": 407.8
+    },
+    {
+      "rank": 45,
+      "atleta": "Broccolino Susanna",
+      "punti": 386.9
+    },
+    {
+      "rank": 46,
+      "atleta": "Broccolino Filippo",
+      "punti": 375.2
+    },
+    {
+      "rank": 47,
+      "atleta": "Ferraro Sergio",
+      "punti": 359.5
+    },
+    {
+      "rank": 48,
+      "atleta": "Zuccardi Merli Gianluigi",
+      "punti": 357.6
+    },
+    {
+      "rank": 49,
+      "atleta": "Barbic Franca",
+      "punti": 344.4
+    },
+    {
+      "rank": 50,
+      "atleta": "Migliazza Anna",
+      "punti": 334.6
+    },
+    {
+      "rank": 51,
+      "atleta": "Balicchia Filippo",
+      "punti": 331.2
+    },
+    {
+      "rank": 52,
+      "atleta": "Scotti Silvio",
+      "punti": 320.0
+    },
+    {
+      "rank": 53,
+      "atleta": "Naborri Annamaria",
+      "punti": 311.1
+    },
+    {
+      "rank": 54,
+      "atleta": "Scala Sandra",
+      "punti": 300.1
+    },
+    {
+      "rank": 55,
+      "atleta": "Botteghi Alessio",
+      "punti": 255.4
+    },
+    {
+      "rank": 56,
+      "atleta": "Pirola Anna",
+      "punti": 202.4
+    },
+    {
+      "rank": 57,
+      "atleta": "Campari Fulvio",
+      "punti": 172.6
+    },
+    {
+      "rank": 58,
+      "atleta": "Alessandrello Federico",
+      "punti": 168.0
+    },
+    {
+      "rank": 59,
+      "atleta": "Sigona Attilio",
+      "punti": 155.8
+    }
+  ],
+  "dettaglio_gare": {
+    "Abrusci Domenico": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 227.7
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 250.1
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 181.8
+      }
+    ],
+    "Accomasso Davide": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 226.8
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 175.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 345.7
+      }
+    ],
+    "Alessandrello Federico": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 168.0
+      }
+    ],
+    "Baldo Veronica": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 217.0
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 151.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 341.8
+      }
+    ],
+    "Balicchia Filippo": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 149.0
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 182.2
+      }
+    ],
+    "Barbic Franca": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 200.7
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 143.7
+      }
+    ],
+    "Bitto Alessandro": [
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 249.5
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-22",
+        "punti": 132.8
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 141.1
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 264.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 137.1
+      }
+    ],
+    "Bottari Ciro": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 258.3
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 172.2
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 301.0
+      }
+    ],
+    "Bottari Giuseppe": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 230.6
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 182.5
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 167.4
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 83.8
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": -25.0
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 198.2
+      },
+      {
+        "gara": "Cremona - Baldesio",
+        "data": "2026-05-30",
+        "punti": 228.0
+      }
+    ],
+    "Bottari Selene": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 414.7
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 230.8
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 71.3
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 290.2
+      }
+    ],
+    "Botteghi Alessio": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 91.6
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 163.7
+      }
+    ],
+    "Brambilla Cecilia": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-22",
+        "punti": 75.3
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 201.7
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 158.2
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 310.5
+      }
+    ],
+    "Brambilla Mauro": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 186.6
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 212.4
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 230.4
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 177.5
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 180.1
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 195.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 257.0
+      }
+    ],
+    "Broccolino Filippo": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 278.6
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 91.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 5.0
+      }
+    ],
+    "Broccolino Marco": [
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 259.1
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 159.9
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": -25.0
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 365.6
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 355.7
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 313.8
+      },
+      {
+        "gara": "Lodi - Barbarossa",
+        "data": "2026-06-07",
+        "punti": 294.1
+      }
+    ],
+    "Broccolino Susanna": [
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 133.9
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 253.0
+      }
+    ],
+    "Campari Fulvio": [
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 172.6
+      }
+    ],
+    "Ceriani Paolo": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 360.4
+      },
+      {
+        "gara": "Brescia",
+        "data": "2026-01-25",
+        "punti": 275.8
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 182.5
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 292.1
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 326.6
+      }
+    ],
+    "Crespi Enrico": [
+      {
+        "gara": "Verolanuova",
+        "data": "2025-10-26",
+        "punti": 228.9
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-22",
+        "punti": 87.0
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 180.8
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 332.8
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 229.6
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 76.3
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 249.8
+      }
+    ],
+    "De Gaspari Emilia": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 264.5
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 147.5
+      }
+    ],
+    "Di Bernardo Fulvia": [
+      {
+        "gara": "Trieste",
+        "data": "2025-11-03",
+        "punti": 310.5
+      },
+      {
+        "gara": "Trieste",
+        "data": "2025-11-09",
+        "punti": 294.9
+      },
+      {
+        "gara": "Belluno",
+        "data": "2025-11-22",
+        "punti": 216.2
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 165.1
+      },
+      {
+        "gara": "Regionali Friuli V. G.",
+        "data": "2026-02-15",
+        "punti": 215.8
+      },
+      {
+        "gara": "Le Bandie - Spresiano",
+        "data": "2026-04-12",
+        "punti": 240.7
+      }
+    ],
+    "Dossena Fabiana": [
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 176.1
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 191.4
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 170.9
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 150.1
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 150.1
+      }
+    ],
+    "Dotti Valter": [
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 165.7
+      },
+      {
+        "gara": "Novara",
+        "data": "2026-01-18",
+        "punti": 217.7
+      },
+      {
+        "gara": "Brescia",
+        "data": "2026-01-25",
+        "punti": 235.9
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 192.0
+      },
+      {
+        "gara": "Insubrika  - Setsto Calende",
+        "data": "2026-03-15",
+        "punti": 266.7
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 145.5
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 218.6
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 303.4
+      },
+      {
+        "gara": "Cremona - Baldesio",
+        "data": "2026-05-30",
+        "punti": 253.9
+      },
+      {
+        "gara": "Lodi - Barbarossa",
+        "data": "2026-06-07",
+        "punti": 221.3
+      }
+    ],
+    "Facchinetti Pierpaolo": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 306.0
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 188.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 297.3
+      }
+    ],
+    "Ferrari Bravo Cristina": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 310.2
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 162.8
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 212.8
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 197.8
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 260.0
+      }
+    ],
+    "Ferraro Sergio": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 194.4
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 160.1
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 5.0
+      }
+    ],
+    "Floris Cristina": [
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 210.9
+      },
+      {
+        "gara": "Parabiago - Legnano",
+        "data": "2025-11-30",
+        "punti": 160.2
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 224.2
+      },
+      {
+        "gara": "Novara",
+        "data": "2026-01-18",
+        "punti": 217.5
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 225.9
+      },
+      {
+        "gara": "Insubrika  - Setsto Calende",
+        "data": "2026-03-15",
+        "punti": 203.3
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 210.4
+      }
+    ],
+    "Galiano Ilaria": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 268.8
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 198.3
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 317.0
+      }
+    ],
+    "Leoni Alessandro": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-22",
+        "punti": 78.7
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 189.5
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 166.7
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 302.2
+      }
+    ],
+    "Longaretti Fabio": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 243.9
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 138.9
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 189.3
+      }
+    ],
+    "Lucchini Francesca": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 232.7
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 175.2
+      }
+    ],
+    "Mainetti Giovanni": [
+      {
+        "gara": "Verolanuova",
+        "data": "2025-10-26",
+        "punti": 391.0
+      },
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 234.2
+      },
+      {
+        "gara": "Parabiago - Legnano",
+        "data": "2025-11-30",
+        "punti": 260.6
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 381.9
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 255.3
+      },
+      {
+        "gara": "Novara",
+        "data": "2026-01-18",
+        "punti": 247.9
+      },
+      {
+        "gara": "Brescia",
+        "data": "2026-01-25",
+        "punti": 239.2
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 230.4
+      },
+      {
+        "gara": "Insubrika  - Setsto Calende",
+        "data": "2026-03-15",
+        "punti": 267.5
+      },
+      {
+        "gara": "Sondrio",
+        "data": "2026-03-28",
+        "punti": 267.9
+      },
+      {
+        "gara": "Tradate",
+        "data": "2026-04-19",
+        "punti": 274.5
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 179.3
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 226.4
+      }
+    ],
+    "Martelli Daria": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 199.6
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 158.7
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 256.6
+      }
+    ],
+    "Mercati Gherardo": [
+      {
+        "gara": "Verolanuova",
+        "data": "2025-10-26",
+        "punti": 322.3
+      },
+      {
+        "gara": "Bologna",
+        "data": "2025-11-16",
+        "punti": 289.0
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-22",
+        "punti": 80.6
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 216.1
+      },
+      {
+        "gara": "Parabiago - Legnano",
+        "data": "2025-11-30",
+        "punti": 333.7
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 372.4
+      },
+      {
+        "gara": "Bolzano",
+        "data": "2025-12-13",
+        "punti": 323.4
+      },
+      {
+        "gara": "Novara",
+        "data": "2026-01-18",
+        "punti": 222.7
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 106.2
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 89.5
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 298.5
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 364.3
+      }
+    ],
+    "Migliazza Anna": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 181.2
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 153.4
+      }
+    ],
+    "Naborri Annamaria": [
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 143.4
+      },
+      {
+        "gara": "Cremona - Baldesio",
+        "data": "2026-05-30",
+        "punti": 167.7
+      }
+    ],
+    "Neri Umberto": [
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 235.6
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 233.8
+      },
+      {
+        "gara": "Parabiago - Legnano",
+        "data": "2025-11-30",
+        "punti": 257.2
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 343.1
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 266.7
+      },
+      {
+        "gara": "Novara",
+        "data": "2026-01-18",
+        "punti": 237.4
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 232.0
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 237.1
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 259.1
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 250.1
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 431.6
+      },
+      {
+        "gara": "Lodi - Barbarossa",
+        "data": "2026-06-07",
+        "punti": 253.2
+      }
+    ],
+    "Pandolfi Maria": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 216.4
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 201.9
+      }
+    ],
+    "Parisi Matteo": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 193.1
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 163.7
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 291.6
+      }
+    ],
+    "Pirola Alessandro": [
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 150.1
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 188.4
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 160.0
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 287.8
+      }
+    ],
+    "Pirola Anna": [
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 121.4
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 80.9
+      }
+    ],
+    "Pirola Vincenzo": [
+      {
+        "gara": "Saronno",
+        "data": "2025-11-09",
+        "punti": 158.8
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 185.5
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 165.5
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 332.6
+      }
+    ],
+    "Pitalieri Francesca": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 220.0
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 388.0
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 195.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 414.0
+      }
+    ],
+    "Raviola Tomaso": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 436.4
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": -25.0
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 408.3
+      }
+    ],
+    "Romano Giuseppe": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 260.5
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 225.4
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 179.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 234.6
+      }
+    ],
+    "Rovida Cristina": [
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 222.9
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 390.2
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 161.7
+      }
+    ],
+    "Salomone Roberto": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 169.5
+      },
+      {
+        "gara": "Campionati Italiani Invernali - Torino",
+        "data": "2025-12-06",
+        "punti": 177.6
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 305.0
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 230.6
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 233.8
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 278.7
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 353.0
+      }
+    ],
+    "Scala Sandra": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 87.5
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 145.2
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 67.5
+      }
+    ],
+    "Scotti Silvio": [
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 184.8
+      },
+      {
+        "gara": "Lodi - Barbarossa",
+        "data": "2026-06-07",
+        "punti": 135.2
+      }
+    ],
+    "Sena Lucia": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 246.8
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 128.4
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 84.8
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 160.2
+      }
+    ],
+    "Sigona Attilio": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 155.8
+      }
+    ],
+    "Sinigaglia Luca": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 198.6
+      },
+      {
+        "gara": "Campionati Italiani Invernali - Torino",
+        "data": "2025-12-06",
+        "punti": 195.7
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 396.9
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 239.4
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 113.1
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 93.2
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 270.2
+      }
+    ],
+    "Somigliana Anna": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 253.8
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 205.6
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 381.7
+      }
+    ],
+    "Somigliana Ugo": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 193.2
+      },
+      {
+        "gara": "Campionati Italiani Invernali - Torino",
+        "data": "2025-12-06",
+        "punti": 189.9
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 244.7
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 213.9
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 258.3
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 189.3
+      },
+      {
+        "gara": "Tradate",
+        "data": "2026-04-19",
+        "punti": 140.5
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 315.5
+      }
+    ],
+    "Sperandio Dario": [
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-22",
+        "punti": 93.5
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 132.5
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 351.5
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 222.0
+      },
+      {
+        "gara": "Leonessa d'Italia - Brescia",
+        "data": "2026-03-22",
+        "punti": 198.6
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 244.8
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-10",
+        "punti": 208.2
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 425.0
+      }
+    ],
+    "Valla Nicola": [
+      {
+        "gara": "Verolanuova",
+        "data": "2025-10-26",
+        "punti": 155.4
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-22",
+        "punti": 56.9
+      },
+      {
+        "gara": "Lodi - Gonzaga",
+        "data": "2025-11-23",
+        "punti": 100.0
+      },
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 205.2
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 118.7
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 49.0
+      },
+      {
+        "gara": "Padania - Lodi",
+        "data": "2026-05-24",
+        "punti": 51.9
+      }
+    ],
+    "Vassura Edoardo": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 221.3
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 184.5
+      },
+      {
+        "gara": "Pavia - Lodi",
+        "data": "2026-04-12",
+        "punti": 141.2
+      }
+    ],
+    "Zerbo Arcangelo": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 416.7
+      },
+      {
+        "gara": "DDS - Lodi",
+        "data": "2026-01-11",
+        "punti": 203.1
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 205.5
+      },
+      {
+        "gara": "Piacenza",
+        "data": "2026-05-24",
+        "punti": 396.3
+      }
+    ],
+    "Zuccardi Merli Gianluigi": [
+      {
+        "gara": "Bocconi",
+        "data": "2025-12-13",
+        "punti": 224.5
+      },
+      {
+        "gara": "Regionali Lombardia",
+        "data": "2026-02-07",
+        "punti": 133.0
+      }
+    ]
+  }
+}
