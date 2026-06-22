@@ -283,10 +283,8 @@ footer strong{color:var(--gold2)}
     </div>
 
     <div class="ltable">
-      <div class="lhead">
+      <div class="lhead" style="grid-template-columns:44px 1fr 130px 120px">
         <div>#</div><div>Atleta</div>
-        <div style="text-align:right">Classifica Soc.</div>
-        <div style="text-align:right">Pres.</div>
         <div style="text-align:center">Clorini &#127915;</div>
         <div style="text-align:center">Azione</div>
       </div>
@@ -337,15 +335,8 @@ footer strong{color:var(--gold2)}
   <div class="container">
     <div class="sec-title">Classi<span>fica</span></div>
     <div class="sec-bar"></div>
-    <div class="live-bar">
-      <div class="ldot"></div>
-      <p><strong style="color:var(--green)">Classifica LIVE</strong> &mdash; Aggiornamento dopo ogni gara. Ultima: <strong style="color:var(--p5)">Piacenza 24 Maggio 2026</strong></p>
-    </div>
     <div id="podiumSection"></div>
     <div id="classificaList"></div>
-    <div class="info-box" style="margin-top:18px">
-      <p style="font-size:13px;color:var(--tmid);line-height:1.7">&#128203; <strong>Come si aggiorna:</strong> Dopo ogni gara FIN i risultati vengono inseriti nel Google Sheet ufficiale. Il sistema calcola automaticamente punteggi, bonus e malus.</p>
-    </div>
   </div>
 </section>
 
@@ -483,6 +474,7 @@ function renderAthletes(){
 function _doRender(){
   const q=(document.getElementById("searchInput")?.value||"").toLowerCase();
   const spent = spentClorini();
+  const gridCols="grid-template-columns:44px 1fr 130px 120px";
   const parts = [];
   for(let i=0;i<athletes.length;i++){
     const a=athletes[i];
@@ -494,16 +486,14 @@ function _doRender(){
     const inTeam=teamSet.has(a.name);
     const canAdd=!inTeam&&team.length<5&&(spent+a.clorini)<=BUDGET+0.1;
     parts.push(
-      "<div class='arow' onclick=\"toggleAthlete('"+a.name+"')\">"
+      "<div class='arow' style='"+gridCols+"' onclick=\"toggleAthlete('"+a.name+"')\">"
       +"<div class='arank "+m.rc+"'>"+m.rank+"</div>"
-      +"<div><div class='aname'>"+a.name+"</div><div class='acat'>Soc. "+m.soc+" · Pres. "+a.pres+"</div></div>"
-      +"<div class='ascore'>"+m.soc+"</div>"
-      +"<div class='ascore'>"+a.pres+"</div>"
-      +"<div class='cpill "+m.tier+"'>"+m.c+"</div>"
+      +"<div><div class='aname'>"+a.name+"</div></div>"
+      +"<div class='cpill "+m.tier+"' style='text-align:center'>"+m.c+" &#127915;</div>"
       +"<div style='text-align:center'><button class='abtn"+(inTeam?" added":"")+"'"
       +(!canAdd&&!inTeam?" disabled":"")
       +" onclick=\"event.stopPropagation();toggleAthlete('"+a.name+"')\">"
-      +(inTeam?"✓ Nel team":"+ Aggiungi")+"</button></div>"
+      +(inTeam?"&#10003; Nel team":"+ Aggiungi")+"</button></div>"
       +"</div>"
     );
   }
@@ -573,17 +563,37 @@ function submitTeam(){
 function renderClassifica(){
   const s=[...demoClassifica].sort((a,b)=>b.pts-a.pts);
   const p=document.getElementById("podiumSection");if(!p)return;
+
+  // Podio top 3
   p.innerHTML="<div class='podium'>"
     +"<div class='pb p2'><div class='pname'>"+s[1].team+"</div><div class='pbox'><div class='medal'>&#129352;</div><div class='ppts'>"+s[1].pts+"</div><div class='plbl'>punti</div></div></div>"
     +"<div class='pb p1'><div class='pname'>"+s[0].team+"</div><div class='pbox'><div class='medal'>&#129351;</div><div class='ppts'>"+s[0].pts+"</div><div class='plbl'>punti</div></div></div>"
     +"<div class='pb p3'><div class='pname'>"+s[2].team+"</div><div class='pbox'><div class='medal'>&#129353;</div><div class='ppts'>"+s[2].pts+"</div><div class='plbl'>punti</div></div></div>"
     +"</div>";
-  document.getElementById("classificaList").innerHTML=s.map((t,i)=>
-    "<div class='ccard'>"
-    +"<div class='ccard-head'><div class='crank'>"+(i+1)+"</div><div style='flex:1'><div class='cteam'>"+t.team+"</div><div class='cmanager'>"+t.manager+"</div></div><div style='text-align:right'><div class='cpts-num'>"+t.pts+"</div><div class='cpts-lbl'>punti</div></div></div>"
-    +"<div class='ccard-body'>"+t.athletes.map(a=>"<div class='mini-a'><div class='mini-dot'></div><div class='mini-n'>"+a+"</div></div>").join("")+"</div>"
-    +"</div>"
-  ).join("");
+
+  // Classifica completa pulita
+  const rows=s.map((t,i)=>{
+    const medal=i===0?"&#129351;":i===1?"&#129352;":i===2?"&#129353;":"";
+    const bg=i===0?"rgba(225,185,0,0.08)":i===1?"rgba(130,170,190,0.08)":i===2?"rgba(180,110,50,0.08)":"transparent";
+    const border=i<s.length-1?"border-bottom:1px solid rgba(255,255,255,0.5);":"";
+    return "<div style='display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;"
+      +"padding:14px 20px;"+border+"background:"+bg+"'>"
+      +"<div style='font-family:\"Bebas Neue\",sans-serif;font-size:"+(medal?"24px":"30px")+";text-align:center;color:rgba(0,90,130,0.4)'>"+(medal||(i+1))+"</div>"
+      +"<div>"
+      +"<div style='font-family:\"Bebas Neue\",sans-serif;font-size:21px;letter-spacing:1px;color:var(--p5)'>"+t.team+"</div>"
+      +"<div style='font-size:11px;color:var(--tlight)'>&#128100; "+t.manager+"</div>"
+      +"</div>"
+      +"<div style='text-align:right'>"
+      +"<div style='font-family:\"Bebas Neue\",sans-serif;font-size:32px;line-height:1;color:var(--gold)'>"+t.pts+"</div>"
+      +"<div style='font-size:10px;color:var(--tlight);text-transform:uppercase;letter-spacing:1px'>punti</div>"
+      +"</div>"
+      +"</div>";
+  }).join("");
+
+  document.getElementById("classificaList").innerHTML=
+    "<div style='background:rgba(255,255,255,0.54);border:1px solid rgba(255,255,255,0.88);"
+    +"border-radius:20px;overflow:hidden;backdrop-filter:blur(18px);"
+    +"box-shadow:0 6px 26px rgba(0,90,140,0.09);margin-top:8px'>"+rows+"</div>";
 }
 function showToast(msg){
   const t=document.getElementById("toast");t.textContent=msg;
