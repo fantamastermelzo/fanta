@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -252,6 +253,35 @@ footer strong{color:var(--gold2)}
         <input type="text" id="searchInput" placeholder="Cerca atleta..." oninput="renderAthletes()">
       </div>
     </div>
+    <!-- BUDGET LIVE nel listone -->
+    <div id="listoneBudget" style="
+      background:linear-gradient(135deg,rgba(6,84,112,0.92),rgba(0,90,130,0.85));
+      border:1px solid rgba(255,255,255,0.18); border-radius:16px;
+      padding:14px 20px; margin-bottom:14px;
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+      box-shadow:0 4px 18px rgba(0,50,90,0.2);
+    ">
+      <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:200px">
+        <div style="font-size:11px;color:rgba(185,228,248,0.7);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Budget rimasto</div>
+        <div style="font-family:'Bebas Neue';font-size:32px;color:var(--gold);line-height:1" id="lBudget">1500 &#127915;</div>
+      </div>
+      <div style="flex:2;min-width:160px">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:rgba(185,228,248,0.6);margin-bottom:4px">
+          <span id="lAtleti">0 / 5 atleti</span>
+          <span id="lSpeso">speso: 0</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.14);border-radius:10px;height:6px;overflow:hidden">
+          <div id="lBar" style="height:100%;border-radius:10px;background:linear-gradient(90deg,#6de0f8,var(--gold));transition:width .4s;width:0%"></div>
+        </div>
+      </div>
+      <button onclick="showSection('iscrizione')" style="
+        background:var(--gold);color:var(--p5);border:none;cursor:pointer;
+        font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;
+        padding:8px 18px;border-radius:10px;white-space:nowrap;
+        box-shadow:0 2px 10px rgba(245,200,0,0.3);transition:all .2s;
+      " id="lIscriviBtn">&#127944; ISCRIVITI</button>
+    </div>
+
     <div class="ltable">
       <div class="lhead">
         <div>#</div><div>Atleta</div>
@@ -320,11 +350,21 @@ footer strong{color:var(--gold2)}
 </section>
 
 <div class="overlay" id="successOverlay">
-  <div class="obox glass">
-    <div class="oicon">&#127942;</div>
-    <h2>Iscrizione Inviata!</h2>
-    <p id="successMsg">Il tuo team e stato registrato. Buona fortuna!</p>
-    <button class="oclose" onclick="document.getElementById('successOverlay').classList.remove('show');showSection('classifica')">VAI ALLA CLASSIFICA</button>
+  <div class="obox glass" style="max-width:480px">
+    <div class="oicon">🏊</div>
+    <h2 style="color:var(--p5)">Iscrizione Avvenuta!</h2>
+    <p id="successMsg"></p>
+    <div style="
+      background:linear-gradient(135deg,rgba(6,84,112,0.9),rgba(0,90,130,0.8));
+      border-radius:14px; padding:16px 20px; margin:16px 0;
+      border:1px solid rgba(255,255,255,0.15);
+    ">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">&#127944; Buon Gioco!</div>
+      <div style="font-size:13px;color:rgba(200,235,250,0.85);line-height:1.6">Segui la classifica dopo ogni gara e tifa per i tuoi atleti. Che la piscina sia con te! 🌊</div>
+    </div>
+    <button class="oclose" style="width:100%;font-size:19px;padding:14px" onclick="document.getElementById('successOverlay').classList.remove('show');showSection('classifica')">
+      &#128202; GUARDA LA CLASSIFICA &rarr;
+    </button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -496,18 +536,38 @@ function renderTeamSlots(){
 }
 function updateBudget(){
   const spent=spentClorini(),rem=BUDGET-spent,pct=Math.min(spent/BUDGET*100,100);
+  const gradOk="linear-gradient(90deg,#6de0f8,var(--gold))";
+  const gradWarn="linear-gradient(90deg,#d08800,var(--gold))";
+  const gradOver="linear-gradient(90deg,#d02848,#e05030)";
+  const grad=pct>90?gradOver:pct>70?gradWarn:gradOk;
+
+  // barra iscrizione
   const e=document.getElementById("spentClorini");if(e)e.textContent=spent.toFixed(1);
   const r=document.getElementById("remainingClorini");if(r)r.textContent=rem.toFixed(1);
-  const bar=document.getElementById("budgetBar");
-  if(bar){bar.style.width=pct+"%";bar.style.background=pct>90?"linear-gradient(90deg,#d02848,#e05030)":pct>70?"linear-gradient(90deg,#d08800,var(--gold))":"linear-gradient(90deg,#6de0f8,var(--gold))";}
+  const bar=document.getElementById("budgetBar");if(bar){bar.style.width=pct+"%";bar.style.background=grad;}
   document.getElementById("selectedCount").textContent=team.length;
+
+  // barra listone
+  const lb=document.getElementById("lBudget");if(lb)lb.innerHTML=rem.toFixed(1)+" &#127915;";
+  const ls=document.getElementById("lSpeso");if(ls)ls.textContent="speso: "+spent.toFixed(1);
+  const la=document.getElementById("lAtleti");if(la)la.textContent=team.length+" / 5 atleti";
+  const lbar=document.getElementById("lBar");if(lbar){lbar.style.width=pct+"%";lbar.style.background=grad;}
+  const libtn=document.getElementById("lIscriviBtn");
+  if(libtn){
+    libtn.style.background=team.length===5?"var(--green)":"var(--gold)";
+    libtn.textContent=team.length===5?"✓ Team completo! Iscriviti":"🏊 Iscriviti";
+  }
+
   const btn=document.getElementById("submitBtn");
   if(btn)btn.disabled=team.length<5||!document.getElementById("managerName")?.value||!document.getElementById("teamName")?.value;
 }
 function submitTeam(){
   const name=document.getElementById("managerName").value,tname=document.getElementById("teamName").value;
   if(!name||!tname||team.length<5){showToast("Completa tutti i campi!");return;}
-  document.getElementById("successMsg").innerHTML="Il tuo team <strong>"+tname+"</strong> di <strong>"+name+"</strong> e stato registrato!<br><br>Atleti: "+team.map(a=>a.name.split(" ")[0]).join(", ")+".";
+  document.getElementById("successMsg").innerHTML=
+    "Il team <strong>"+tname+"</strong> di <strong>"+name+"</strong> &egrave; registrato!<br>"
+    +"<br><span style='font-size:13px;color:var(--tmid)'>I tuoi 5 atleti: "
+    +team.map(a=>"<strong>"+a.name.split(" ")[0]+"</strong>").join(", ")+"</span>";
   document.getElementById("successOverlay").classList.add("show");
 }
 function renderClassifica(){
