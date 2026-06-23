@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -438,7 +437,9 @@ function submitTeam(){
   if(!name||!tname||team.length<5){showToast("Completa tutti i campi!");return;}
   const btn=document.getElementById("submitBtn");btn.disabled=true;btn.textContent="Invio in corso...";
   const payload={manager:name,email:email,team:tname,athletes:team.map(a=>a.name),totalClorini:spentClorini().toFixed(1)};
-  fetch(APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  // Usa GET con parametro data per evitare CORS
+  var url=APPS_SCRIPT_URL+"?data="+encodeURIComponent(JSON.stringify(payload));
+  fetch(url,{method:"GET",mode:"no-cors"})
     .then(()=>_showSuccess(name,tname)).catch(()=>_showSuccess(name,tname));
 }
 function _showSuccess(name,tname){
