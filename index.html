@@ -403,6 +403,7 @@ function toggleAthlete(name){
     if(team.length>=5){showToast("Hai gia 5 atleti!");return;}
     if(spentClorini()+a.clorini>BUDGET+0.1){showToast("Budget insufficiente!");return;}
     team.push(a);teamSet.add(name);showToast("Aggiunto: "+name.split(" ")[0]);
+    if(team.length===5){setTimeout(()=>showSection('iscrizione'),600);}
   }
   renderAthletes();renderTeamSlots();updateBudget();
 }
@@ -412,7 +413,7 @@ function renderTeamSlots(){
   for(let i=0;i<5;i++){
     const a=team[i];
     h+=a?"<div class='slot filled'><div class='slotnum filled'>"+(i+1)+"</div><div style='flex:1'><div class='slot-name'>"+a.name+"</div><div class='slot-c'>"+a.clorini.toFixed(1)+" clorini</div></div><button class='slot-rm' onclick=\"toggleAthlete('"+a.name+"')\">&#10005;</button></div>"
-      :"<div class='slot'><div class='slotnum'>"+(i+1)+"</div><div style='font-size:13px;color:var(--tlight)'>Slot vuoto - aggiungi dal listone</div></div>";
+      :"<div class='slot' onclick='showSection(\"listone\")' style='cursor:pointer'><div class='slotnum'>"+(i+1)+"</div><div style='font-size:13px;color:var(--tlight)'>+ Aggiungi atleta</div><span style='margin-left:auto;font-family:Bebas Neue,sans-serif;font-size:13px;color:var(--p3);letter-spacing:1px'>LISTONE &rarr;</span></div>";
   }
   c.innerHTML=h;document.getElementById("slotCount").textContent=team.length;updateBudget();
 }
