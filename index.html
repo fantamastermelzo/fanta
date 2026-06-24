@@ -449,23 +449,26 @@ function _showSuccess(name,tname){
   document.getElementById("submitBtn").disabled=false;document.getElementById("submitBtn").textContent="&#127944; CONFERMA ISCRIZIONE";
 }
 function renderClassifica(){
-  // Mostra loading
   const p=document.getElementById("podiumSection");
   const cl=document.getElementById("classificaList");
-  if(p) p.innerHTML="<div style='text-align:center;padding:40px;color:var(--tlight);font-family:\"Barlow Condensed\",sans-serif;font-size:16px;letter-spacing:1px'>&#9203; Caricamento classifica...</div>";
+  if(p) p.innerHTML="<div style='text-align:center;padding:40px;color:var(--tlight);font-family:\"Barlow Condensed\",sans-serif;font-size:16px;letter-spacing:1px'>&#9203; Caricamento...</div>";
   if(cl) cl.innerHTML="";
-  // Carica squadre iscritte dal Google Sheet
-  fetch(APPS_SCRIPT_URL+"?action=leggi",{method:"GET",mode:"cors"})
-    .then(r=>r.json())
-    .then(data=>{
-      if(data.success && data.squadre && data.squadre.length>0){
-        const demo=demoClassifica.filter(d=>!data.squadre.find(r=>r.team===d.team));
-        _renderClassificaConSquadre([...data.squadre,...demo]);
-      } else {
-        _renderClassificaConSquadre(demoClassifica);
-      }
-    })
-    .catch(()=>_renderClassificaConSquadre(demoClassifica));
+  // Usa JSONP per bypassare CORS
+  window._fantaCallback = function(data){
+    if(data.success && data.squadre && data.squadre.length>0){
+      const demo=demoClassifica.filter(d=>!data.squadre.find(r=>r.team===d.team));
+      _renderClassificaConSquadre([...data.squadre,...demo]);
+    } else {
+      _renderClassificaConSquadre(demoClassifica);
+    }
+    // Rimuovi lo script tag dopo uso
+    const old=document.getElementById("fantaScript");if(old)old.remove();
+  };
+  const s=document.createElement("script");
+  s.id="fantaScript";
+  s.src=APPS_SCRIPT_URL+"?action=leggi&callback=_fantaCallback";
+  s.onerror=()=>_renderClassificaConSquadre(demoClassifica);
+  document.head.appendChild(s);
 }
 function _renderClassificaConSquadre(squadre){
   const s=[...squadre].sort((a,b)=>b.pts-a.pts);
