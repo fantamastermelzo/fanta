@@ -449,9 +449,26 @@ function _showSuccess(name,tname){
   document.getElementById("submitBtn").disabled=false;document.getElementById("submitBtn").textContent="&#127944; CONFERMA ISCRIZIONE";
 }
 function renderClassifica(){
-  const allTeams=[...registeredTeams];
-  demoClassifica.forEach(d=>{if(!allTeams.find(t=>t.team===d.team))allTeams.push(d);});
-  const s=[...allTeams].sort((a,b)=>b.pts-a.pts);
+  // Mostra loading
+  const p=document.getElementById("podiumSection");
+  const cl=document.getElementById("classificaList");
+  if(p) p.innerHTML="<div style='text-align:center;padding:40px;color:var(--tlight);font-family:\"Barlow Condensed\",sans-serif;font-size:16px;letter-spacing:1px'>&#9203; Caricamento classifica...</div>";
+  if(cl) cl.innerHTML="";
+  // Carica squadre iscritte dal Google Sheet
+  fetch(APPS_SCRIPT_URL+"?action=leggi",{method:"GET",mode:"cors"})
+    .then(r=>r.json())
+    .then(data=>{
+      if(data.success && data.squadre && data.squadre.length>0){
+        const demo=demoClassifica.filter(d=>!data.squadre.find(r=>r.team===d.team));
+        _renderClassificaConSquadre([...data.squadre,...demo]);
+      } else {
+        _renderClassificaConSquadre(demoClassifica);
+      }
+    })
+    .catch(()=>_renderClassificaConSquadre(demoClassifica));
+}
+function _renderClassificaConSquadre(squadre){
+  const s=[...squadre].sort((a,b)=>b.pts-a.pts);
   const p=document.getElementById("podiumSection");if(!p)return;
   p.innerHTML="<div class='podium'>"
     +"<div class='pb p2'><div class='pname'>"+s[1].team+"</div><div class='pbox'><div class='medal'>&#129352;</div><div class='ppts'>"+s[1].pts+"</div><div class='plbl'>punti</div></div></div>"
