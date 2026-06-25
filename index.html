@@ -355,7 +355,7 @@ const athletes=[
   {name:"Alessandrello Federico",clorini:100.0,sex:"M"},{name:"Sigona Attilio",clorini:86.6,sex:"M"},
   {name:"Pirola Anna",clorini:54.7,sex:"F"},{name:"Ponzi Maurizio",clorini:15.5,sex:"M"},
   {name:"Arioli Angelo",clorini:11.2,sex:"M"},{name:"Rosa Giulia",clorini:5.0,sex:"F"},
-  {name:"Blanda Calogero",clorini:3.8,sex:"F"},{name:"Smiroldo Giorgio",clorini:2.5,sex:"M"},{name:"Bissi Luigi",clorini:0.8,sex:"M"},
+  {name:"Blanda Calogero",clorini:3.8,sex:"M"},{name:"Smiroldo Giorgio",clorini:2.5,sex:"M"},{name:"Bissi Luigi",clorini:0.8,sex:"M"},
 ];
 const athletesMeta=athletes.map((a,i)=>({rank:i+1,rc:i===0?"gold":i===1?"silver":i===2?"bronze":"",tier:a.clorini>=400?"hi":a.clorini>=200?"md":"lo",c:a.clorini.toFixed(1)}));
 const demoClassifica=[
@@ -405,12 +405,18 @@ function toggleAthlete(name){
     if(spentClorini()+a.clorini>BUDGET+0.1){showToast("Budget insufficiente!");return;}
     // Controllo autocandidatura
     const managerName=(document.getElementById("managerName")?.value||"").trim().toLowerCase();
-    if(managerName && name.toLowerCase().includes(managerName.split(" ")[0].toLowerCase()) && managerName.length>2){
-      showToast("Non puoi scegliere te stesso! 😄");return;
+    if(managerName && managerName.length>2){
+      const nameParts=managerName.split(" ").filter(p=>p.length>2);
+      const athleteLower=name.toLowerCase();
+      if(nameParts.some(p=>athleteLower.includes(p))){
+        showToast("Non puoi scegliere te stesso! 😄");return;
+      }
     }
-    // Controllo mix genere: non superare 3 dello stesso sesso
-    const sameCount=team.filter(t=>t.sex===a.sex).length;
-    if(sameCount>=3){showToast("Servono almeno 2 "+(a.sex==="M"?"donne":"uomini")+"! ⚖️");return;}
+    // Controllo mix genere: max 3 dello stesso sesso
+    const donne=team.filter(t=>t.sex==="F").length;
+    const uomini=team.filter(t=>t.sex==="M").length;
+    if(a.sex==="M" && uomini>=3){showToast("Max 3 uomini! Aggiungi una donna ⚖️");return;}
+    if(a.sex==="F" && donne>=3){showToast("Max 3 donne! Aggiungi un uomo ⚖️");return;}
     team.push(a);teamSet.add(name);showToast("Aggiunto: "+name.split(" ")[0]);
     if(team.length===5){setTimeout(()=>showSection('iscrizione'),600);}
   }
