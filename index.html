@@ -471,24 +471,20 @@ function _showSuccess(name,tname){
 function renderClassifica(){
   const p=document.getElementById("podiumSection");
   const cl=document.getElementById("classificaList");
-  if(p) p.innerHTML="<div style='text-align:center;padding:40px;color:var(--tlight);font-family:\"Barlow Condensed\",sans-serif;font-size:16px;letter-spacing:1px'>&#9203; Caricamento...</div>";
+  if(p) p.innerHTML="<div style='text-align:center;padding:40px;color:var(--tlight);font-family:\"Barlow Condensed\",sans-serif;font-size:16px;letter-spacing:1px'>&#9203; Caricamento classifica...</div>";
   if(cl) cl.innerHTML="";
-  // Usa JSONP per bypassare CORS
-  window._fantaCallback = function(data){
-    if(data.success && data.squadre && data.squadre.length>0){
-      const demo=demoClassifica.filter(d=>!data.squadre.find(r=>r.team===d.team));
-      _renderClassificaConSquadre([...data.squadre,...demo]);
-    } else {
-      _renderClassificaConSquadre(demoClassifica);
-    }
-    // Rimuovi lo script tag dopo uso
-    const old=document.getElementById("fantaScript");if(old)old.remove();
-  };
-  const s=document.createElement("script");
-  s.id="fantaScript";
-  s.src=APPS_SCRIPT_URL+"?action=leggi&callback=_fantaCallback";
-  s.onerror=()=>_renderClassificaConSquadre(demoClassifica);
-  document.head.appendChild(s);
+  // Leggi JSON da GitHub
+  const jsonUrl="https://raw.githubusercontent.com/fantamastermelzo/fanta/main/classifica_fanta.json?t="+Date.now();
+  fetch(jsonUrl)
+    .then(r=>r.json())
+    .then(data=>{
+      if(data.classifica && data.classifica.length>0){
+        _renderClassificaConSquadre(data.classifica);
+      } else {
+        _renderClassificaConSquadre(demoClassifica);
+      }
+    })
+    .catch(()=>_renderClassificaConSquadre(demoClassifica));
 }
 function _renderClassificaConSquadre(squadre){
   const s=[...squadre].sort((a,b)=>b.pts-a.pts);
