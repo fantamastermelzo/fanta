@@ -410,11 +410,7 @@ const athletes=[
   {name:"Valla Nicola",clorini:96.7,sex:"M"}
 ];
 const athletesMeta=athletes.map((a,i)=>({rank:i+1,rc:i===0?"gold":i===1?"silver":i===2?"bronze":"",tier:a.clorini>=100?"hi":a.clorini>=80?"md":"lo",c:a.clorini.toFixed(1)}));
-const demoClassifica=[
-  {team:"Squali Gialli",manager:"Luca R.",pts:2340},{team:"Cloro Addicts",manager:"Marco B.",pts:2180},
-  {team:"H2O Warriors",manager:"Sara T.",pts:1970},{team:"Pool Position",manager:"Giorgio M.",pts:1820},
-  {team:"Torpedini",manager:"Anna P.",pts:1650},
-];
+const demoClassifica=[];
 function showSection(id){
   document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -502,17 +498,41 @@ function updateBudget(){
 }
 function submitTeam(){
   const name=document.getElementById("managerName").value,email=document.getElementById("managerEmail").value,tname=document.getElementById("teamName").value;
-  if(!name||!tname||team.length<5){showToast("Completa tutti i campi!");return;}
+  if(!name||!email||!tname||team.length<5){showToast("Completa tutti i campi!");return;}
   // Verifica mix genere
   const donne=team.filter(a=>a.sex==="F").length;
   const uomini=team.filter(a=>a.sex==="M").length;
   if(donne<2||uomini<2){showToast("Servono almeno 2 donne e 2 uomini! ⚖️");return;}
-  const btn=document.getElementById("submitBtn");btn.disabled=true;btn.textContent="Invio in corso...";
-  const payload={manager:name,email:email,team:tname,athletes:team.map(a=>a.name),totalClorini:spentClorini().toFixed(1)};
-  // Usa GET con parametro data per evitare CORS
-  var url=APPS_SCRIPT_URL+"?data="+encodeURIComponent(JSON.stringify(payload));
-  fetch(url,{method:"GET",mode:"no-cors"})
-    .then(()=>_showSuccess(name,tname)).catch(()=>_showSuccess(name,tname));
+  const btn=document.getElementById("submitBtn");
+  btn.disabled=true;btn.textContent="Verifico iscrizione...";
+  // Prima controlla se email già iscritta
+  const checkUrl=APPS_SCRIPT_URL+"?action=leggi&callback=_checkEmail_"+Date.now();
+  window._pendingSubmit={name,email,tname,btn};
+  window._checkEmailCallback=function(data){
+    const existing=data.squadre||[];
+    const emailLower=email.trim().toLowerCase();
+    const giàIscritto=existing.some(s=>s.email&&s.email.trim().toLowerCase()===emailLower);
+    if(giàIscritto){
+      showToast("Sei già iscritto con questa email! 🚫");
+      btn.disabled=false;btn.textContent="&#127944; CONFERMA ISCRIZIONE";
+      return;
+    }
+    // Ok, procedi con l'iscrizione
+    const payload={manager:name,email:email,team:tname,athletes:team.map(a=>a.name),totalClorini:spentClorini().toFixed(1)};
+    var url=APPS_SCRIPT_URL+"?data="+encodeURIComponent(JSON.stringify(payload));
+    fetch(url,{method:"GET",mode:"no-cors"})
+      .then(()=>_showSuccess(name,tname)).catch(()=>_showSuccess(name,tname));
+  };
+  // Usa JSONP per leggere iscrizioni esistenti
+  const s=document.createElement("script");
+  s.src=APPS_SCRIPT_URL+"?action=leggi&callback=_checkEmailCallback";
+  s.onerror=function(){
+    // Se non riesce a verificare, procede comunque
+    const payload={manager:name,email:email,team:tname,athletes:team.map(a=>a.name),totalClorini:spentClorini().toFixed(1)};
+    fetch(APPS_SCRIPT_URL+"?data="+encodeURIComponent(JSON.stringify(payload)),{method:"GET",mode:"no-cors"})
+      .then(()=>_showSuccess(name,tname)).catch(()=>_showSuccess(name,tname));
+  };
+  document.head.appendChild(s);
 }
 function _showSuccess(name,tname){
   registeredTeams.push({team:tname,manager:name,pts:0});
@@ -541,11 +561,26 @@ function renderClassifica(){
 function _renderClassificaConSquadre(squadre){
   const s=[...squadre].sort((a,b)=>b.pts-a.pts);
   const p=document.getElementById("podiumSection");if(!p)return;
-  p.innerHTML="<div class='podium'>"
-    +"<div class='pb p2'><div class='pname'>"+s[1].team+"</div><div class='pbox'><div class='medal'>&#129352;</div><div class='ppts'>"+s[1].pts+"</div><div class='plbl'>punti</div></div></div>"
-    +"<div class='pb p1'><div class='pname'>"+s[0].team+"</div><div class='pbox'><div class='medal'>&#129351;</div><div class='ppts'>"+s[0].pts+"</div><div class='plbl'>punti</div></div></div>"
-    +"<div class='pb p3'><div class='pname'>"+s[2].team+"</div><div class='pbox'><div class='medal'>&#129353;</div><div class='ppts'>"+s[2].pts+"</div><div class='plbl'>punti</div></div></div>"
-    +"</div>";
+
+  if(s.length===0){
+    p.innerHTML="<div style='text-align:center;padding:60px 20px'>"
+      +"<div style='font-size:52px;margin-bottom:16px'>🏊</div>"
+      +"<div style='font-family:\"Bebas Neue\",sans-serif;font-size:28px;letter-spacing:2px;color:var(--p5);margin-bottom:8px'>Classifica in arrivo!</div>"
+      +"<div style='font-size:14px;color:var(--tlight)'>Le squadre appariranno qui dopo le prime iscrizioni.<br>Iscriviti e dai il via alla sfida! 🇮🇹</div>"
+      +"</div>";
+    document.getElementById("classificaList").innerHTML="";
+    return;
+  }
+  // Podio solo se ci sono almeno 3 squadre
+  if(s.length>=3){
+    p.innerHTML="<div class='podium'>"
+      +"<div class='pb p2'><div class='pname'>"+s[1].team+"</div><div class='pbox'><div class='medal'>&#129352;</div><div class='ppts'>"+s[1].pts+"</div><div class='plbl'>punti</div></div></div>"
+      +"<div class='pb p1'><div class='pname'>"+s[0].team+"</div><div class='pbox'><div class='medal'>&#129351;</div><div class='ppts'>"+s[0].pts+"</div><div class='plbl'>punti</div></div></div>"
+      +"<div class='pb p3'><div class='pname'>"+s[2].team+"</div><div class='pbox'><div class='medal'>&#129353;</div><div class='ppts'>"+s[2].pts+"</div><div class='plbl'>punti</div></div></div>"
+      +"</div>";
+  } else {
+    p.innerHTML="";
+  }
   const rows=s.map((t,i)=>{
     const medal=i===0?"&#129351;":i===1?"&#129352;":i===2?"&#129353;":"";
     const bg=i===0?"rgba(225,185,0,0.08)":i===1?"rgba(130,170,190,0.08)":i===2?"rgba(180,110,50,0.08)":"transparent";
