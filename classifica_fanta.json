@@ -158,6 +158,97 @@
       ],
       "pts": 0,
       "clorini": 675.4
+    },
+    {
+      "team": "Maestri dell'Acqua",
+      "manager": "Annamaria Naborri",
+      "athletes": [
+        "Somigliana Anna",
+        "Rovida Cristina",
+        "Mercati Gherardo",
+        "Neri Umberto",
+        "Broccolino Marco"
+      ],
+      "pts": 0,
+      "clorini": 646.2
+    },
+    {
+      "team": "Delfino guasto",
+      "manager": "silvio scotti",
+      "athletes": [
+        "Somigliana Anna",
+        "Bottari Selene",
+        "Neri Umberto",
+        "Broccolino Marco",
+        "Brambilla Mauro"
+      ],
+      "pts": 0,
+      "clorini": 696.8
+    },
+    {
+      "team": "Clorotossici",
+      "manager": "Vincenzo Pirola",
+      "athletes": [
+        "Somigliana Anna",
+        "Sena Lucia",
+        "Sperandio Dario",
+        "Zerbo Arcangelo",
+        "Neri Umberto"
+      ],
+      "pts": 0,
+      "clorini": 685.9
+    },
+    {
+      "team": "I Fanta qualsiasi sono una boiata pazzesca",
+      "manager": "Davide accomasso",
+      "athletes": [
+        "Somigliana Anna",
+        "Leoni Alessandro",
+        "Brambilla Cecilia",
+        "Martelli Daria",
+        "Somigliana Ugo"
+      ],
+      "pts": 0,
+      "clorini": 657.6
+    },
+    {
+      "team": "Gli Ondivaghi 〰️",
+      "manager": "Cristina Ferrari Bravo",
+      "athletes": [
+        "Somigliana Anna",
+        "Sinigaglia Luca",
+        "Crespi Enrico",
+        "Raviola Tomaso",
+        "Martelli Daria"
+      ],
+      "pts": 0,
+      "clorini": 698.2
+    },
+    {
+      "team": "Quelli con le Birkenstock",
+      "manager": "Cecilia Brambilla",
+      "athletes": [
+        "Migliazza Anna",
+        "Broccolino Susanna",
+        "Sperandio Dario",
+        "Vassura Edoardo",
+        "Parisi Matteo"
+      ],
+      "pts": 0,
+      "clorini": 674.2
+    },
+    {
+      "team": "Pescidabrodo",
+      "manager": "Arcangelo Zerbo",
+      "athletes": [
+        "Broccolino Marco",
+        "Rovida Cristina",
+        "Neri Umberto",
+        "Brambilla Cecilia",
+        "Bottari Giuseppe"
+      ],
+      "pts": 0,
+      "clorini": 611.1
     }
   ]
 }
