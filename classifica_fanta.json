@@ -1,6 +1,85 @@
 {
   "stagione": "Italiani Master Riccione 2026",
   "ultima_gara": "",
-  "data_aggiornamento": "",
-  "classifica": []
+  "data_aggiornamento": "2026-06-27",
+  "classifica": [
+    {
+      "team": "Cucciolo Merda",
+      "manager": "Dario Sperandio",
+      "athletes": [
+        "Bottari Selene",
+        "Brambilla Cecilia",
+        "Leoni Alessandro",
+        "Crespi Enrico",
+        "Pitalieri Francesca"
+      ],
+      "pts": 0,
+      "clorini": 680.8
+    },
+    {
+      "team": "Stars and Stripes Great White Sharks",
+      "manager": "Luca Sinigaglia",
+      "athletes": [
+        "Bottari Selene",
+        "Somigliana Ugo",
+        "Pitalieri Francesca",
+        "Rovida Cristina",
+        "Neri Umberto"
+      ],
+      "pts": 0,
+      "clorini": 695.9
+    },
+    {
+      "team": "Alianti tirreni",
+      "manager": "Edoardo Vassura",
+      "athletes": [
+        "Bottari Selene",
+        "Pitalieri Francesca",
+        "Sperandio Dario",
+        "Brambilla Mauro",
+        "Leoni Alessandro"
+      ],
+      "pts": 0,
+      "clorini": 698.1
+    },
+    {
+      "team": "Meltzunami",
+      "manager": "Susanna Broccolino",
+      "athletes": [
+        "Bottari Selene",
+        "Brambilla Mauro",
+        "Sperandio Dario",
+        "Broccolino Marco",
+        "Rovida Cristina"
+      ],
+      "pts": 0,
+      "clorini": 684.2
+    },
+    {
+      "team": "Ciccipasticci",
+      "manager": "Mauro Brambilla",
+      "athletes": [
+        "Pitalieri Francesca",
+        "Raviola Tomaso",
+        "Mercati Gherardo",
+        "Botteghi Alessio",
+        "Bottari Selene"
+      ],
+      "pts": 0,
+      "clorini": 684.3
+    },
+    {
+      "team": "L'importante è battere Cucciolo Merda",
+      "manager": "Lusi Sena",
+      "athletes": [
+        "Sperandio Dario",
+        "Somigliana Ugo",
+        "Somigliana Anna",
+        "Botteghi Alessio",
+        "Ferrari Bravo Cristina"
+      ],
+      "pts": 0,
+      "clorini": 696.0
+    }
+  ]
 }
