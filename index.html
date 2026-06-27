@@ -152,18 +152,31 @@ footer strong{color:var(--gold2);}
 
 <section id="home" class="section active">
   <div class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">&#127942; Stagione 2025 / 2026</div>
+    <!-- Banda tricolore top -->
+    <div style="position:absolute;top:0;left:0;right:0;height:12px;display:flex;z-index:2">
+      <div style="flex:1;background:#009246"></div>
+      <div style="flex:1;background:#fff"></div>
+      <div style="flex:1;background:#ce2b37"></div>
+    </div>
+    <div class="hero-inner" style="padding-top:16px">
+      <div class="eyebrow" style="margin-bottom:18px">&#127942; Italiani Master Riccione 2026</div>
       <div class="hero-logo">
         <img src="https://raw.githubusercontent.com/fantamastermelzo/fanta/main/logo_nuovo.jpg" alt="Master Melzo">
       </div>
       <h1><span class="ha">FANTA</span><span class="hg">MELZO</span></h1>
-      <p class="hero-sub">Il fantasy game ufficiale della ASD Master Melzo &middot; Circuito FIN</p>
+      <p class="hero-sub">Campionati Italiani Master Estivi 2026 &middot; Riccione 29 Giugno &mdash; 5 Luglio</p>
+      <!-- Decorazione tricolore sotto il titolo -->
+      <div style="display:flex;gap:3px;margin-bottom:28px;align-items:center">
+        <div style="height:3px;width:40px;background:#009246;border-radius:2px"></div>
+        <div style="height:3px;width:40px;background:#fff;border-radius:2px;border:1px solid rgba(0,0,0,0.08)"></div>
+        <div style="height:3px;width:40px;background:#ce2b37;border-radius:2px"></div>
+        <div style="height:3px;flex:1;background:linear-gradient(90deg,rgba(0,90,140,0.15),transparent);border-radius:2px;margin-left:4px"></div>
+      </div>
       <div class="hero-stats">
-        <div class="hstat"><div class="v">65</div><div class="l">Atleti</div></div>
+        <div class="hstat"><div class="v">38</div><div class="l">Atleti</div></div>
         <div class="hstat"><div class="v">5</div><div class="l">Per team</div></div>
-        <div class="hstat"><div class="v">1500</div><div class="l">Clorini</div></div>
-        <div class="hstat"><div class="v">&infin;</div><div class="l">Sfide</div></div>
+        <div class="hstat"><div class="v">500</div><div class="l">Clorini</div></div>
+        <div class="hstat"><div class="v">7</div><div class="l">Giorni</div></div>
       </div>
     </div>
     <div class="hero-waves">
@@ -175,10 +188,18 @@ footer strong{color:var(--gold2);}
   </div>
   <div class="container">
     <div class="home-grid">
-      <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,var(--p3),var(--p4))"></div><div class="hcard-icon">&#128176;</div><h3>Costruisci il team</h3><p>Scegli 5 atleti con 1500 Clorini. Valutazione: classifica sociale (75%) + presenze (25%).</p><span class="hcard-pill pb2">1500 Clorini budget</span></div>
+      <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,var(--p3),var(--p4))"></div><div class="hcard-icon">&#128176;</div><h3>Costruisci il team</h3><p>Scegli 5 atleti con 500 Clorini. Valutazione: media Supermaster &divide; 10 + gare &times; 10 + staffette &times; 10.</p><span class="hcard-pill pb2">500 Clorini budget</span></div>
       <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,#00a8c4,var(--p4))"></div><div class="hcard-icon">&#127885;</div><h3>Punteggio FIN</h3><p>Il tuo team accumula punti dal punteggio FIN medio dei 5 atleti a ogni gara del circuito.</p><span class="hcard-pill pb2">FIN &divide; 10 per gara</span></div>
       <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,#00b890,#007a60)"></div><div class="hcard-icon">&#9889;</div><h3>Bonus &amp; Malus</h3><p>Podio, record, staffette, stacanovisti, gara sociale&hellip; ogni gara porta nuove opportunit&agrave;.</p><span class="hcard-pill pv">Fino a +50 pts</span></div>
-      <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,var(--gold),#d08800)"></div><div class="hcard-icon">&#128225;</div><h3>Classifica Live</h3><p>Aggiornamento automatico dopo ogni gara tramite i Google Sheet ufficiali della squadra.</p><span class="hcard-pill pg">Live dopo ogni gara</span></div>
+      <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,var(--gold),#d08800)"></div><div class="hcard-icon">&#128197;</div><h3>Programma Gare</h3><p>
+        <strong style="color:var(--p5)">Lun 29/6</strong> — 1500 SL<br>
+        <strong style="color:var(--p5)">Mar 30/6</strong> — 800 SL, 400 MI, 200 FA<br>
+        <strong style="color:var(--p5)">Mer 1/7</strong> — 400 SL, 200 MI/DO/RA<br>
+        <strong style="color:var(--p5)">Gio 2/7</strong> — 200 SL, 100 FA, 50 DO, Mistaffetta SL<br>
+        <strong style="color:var(--p5)">Ven 3/7</strong> — 100 RA, 50 FA, 100 SL, Mistaffetta Mista<br>
+        <strong style="color:var(--p5)">Sab 4/7</strong> — 100 DO, 50 RA, 50 SL, Staff Mista<br>
+        <strong style="color:var(--p5)">Dom 5/7</strong> — Staff Stile
+      </p><span class="hcard-pill pg">Riccione 29 Giu &mdash; 5 Lug</span></div>
     </div>
     <div style="text-align:center"><button class="sbtn" style="max-width:310px;display:inline-block" onclick="showSection('listone')">&#127944; VAI AL LISTONE &rarr;</button></div>
   </div>
@@ -189,16 +210,16 @@ footer strong{color:var(--gold2);}
     <div class="sec-title">Rego<span>lamento</span></div>
     <div class="sec-bar"></div>
     <div class="budget-banner">
-      <div class="budget-num">1500</div>
+      <div class="budget-num">500</div>
       <div class="budget-info">
         <h3>&#127915; Clorini &mdash; la valuta del FantaMelzo</h3>
-        <p>Ogni partecipante ha <em>1500 Clorini</em> per 5 atleti.<br>
-        Formula: <em>(Classifica Sociale &divide; 10) &times; 75% + Presenze &times; 25%</em><br>
-        I top 5 costerebbero ~2467: servono scelte strategiche!</p>
+        <p>Ogni partecipante ha <em>500 Clorini</em> per 5 atleti.<br>
+        Formula: <em>(Media Supermaster &divide; 10) + (Gare &times; 10) + (Staffette &times; 10)</em><br>
+        I top 5 costerebbero ~750: servono scelte strategiche!</p>
       </div>
     </div>
     <div class="rules-grid">
-      <div class="rcard"><div style="height:3px;border-radius:2px;margin-bottom:13px;background:linear-gradient(90deg,var(--p3),var(--p4))"></div><div class="rcard-icon">&#128202;</div><h3>Punteggio Base</h3><p>Punteggio FIN dell'atleta diviso per 10.</p><span class="rcard-pts" style="background:rgba(0,130,170,0.1);color:var(--p5)">FIN &divide; 10</span></div>
+      <div class="rcard"><div style="height:3px;border-radius:2px;margin-bottom:13px;background:linear-gradient(90deg,var(--p3),var(--p4))"></div><div class="rcard-icon">&#128202;</div><h3>Punteggio Base</h3><p>Punteggio FIN dell'atleta nella gara, diviso per 10.</p><span class="rcard-pts" style="background:rgba(0,130,170,0.1);color:var(--p5)">FIN &divide; 10</span></div>
       <div class="rcard"><div style="height:3px;border-radius:2px;margin-bottom:13px;background:linear-gradient(90deg,var(--gold),#d08800)"></div><div class="rcard-icon">&#127967;</div><h3>Presenza Gara</h3><p>Ogni gara individuale disputata.</p><span class="rcard-pts" style="background:rgba(230,170,0,0.13);color:#7a5800">+5 punti</span></div>
       <div class="rcard"><div style="height:3px;border-radius:2px;margin-bottom:13px;background:linear-gradient(90deg,#00b890,#007a60)"></div><div class="rcard-icon">&#127967;</div><h3>Gara Sociale</h3><p>Partecipazione a una gara sociale del sodalizio.</p><span class="rcard-pts" style="background:rgba(0,170,120,0.1);color:#005038">+10 punti</span></div>
       <div class="rcard"><div style="height:3px;border-radius:2px;margin-bottom:13px;background:linear-gradient(90deg,var(--gold),#d08800)"></div><div class="rcard-icon">&#129329;</div><h3>Staffetta</h3><p>Partecipazione a qualsiasi staffetta.</p><span class="rcard-pts" style="background:rgba(230,170,0,0.13);color:#7a5800">+5 punti</span></div>
@@ -221,6 +242,31 @@ footer strong{color:var(--gold2);}
   <div class="container">
     <div class="sec-title">Il <span>Listone</span></div>
     <div class="sec-bar"></div>
+    <!-- Formula clorini -->
+    <div style="background:linear-gradient(135deg,rgba(6,84,112,0.88),rgba(0,90,130,0.78));border:1px solid rgba(255,255,255,0.17);border-radius:18px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 18px rgba(0,50,90,0.2)">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(185,228,248,0.7);margin-bottom:12px">&#127915; Come si calcola il valore di ogni atleta</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:11px 16px;text-align:center;flex:1;min-width:110px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);line-height:1">SM &divide; 10</div>
+          <div style="font-size:11px;color:rgba(185,228,248,0.75);margin-top:3px">Media Supermaster<br>2025-2026 diviso 10</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:rgba(255,255,255,0.4)">+</div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:11px 16px;text-align:center;flex:1;min-width:110px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);line-height:1">GARE &times; 10</div>
+          <div style="font-size:11px;color:rgba(185,228,248,0.75);margin-top:3px">N&deg; gare individuali<br>per 10</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:rgba(255,255,255,0.4)">+</div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:11px 16px;text-align:center;flex:1;min-width:110px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);line-height:1">STAFF &times; 10</div>
+          <div style="font-size:11px;color:rgba(185,228,248,0.75);margin-top:3px">N&deg; staffette<br>per 10</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:rgba(255,255,255,0.4)">=</div>
+        <div style="background:rgba(245,200,0,0.18);border:1px solid rgba(245,200,0,0.35);border-radius:12px;padding:11px 16px;text-align:center;flex:1;min-width:110px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);line-height:1">CLORINI &#127915;</div>
+          <div style="font-size:11px;color:rgba(185,228,248,0.75);margin-top:3px">Valore dell'atleta<br>nel listone</div>
+        </div>
+      </div>
+    </div>
     <div class="lbudget-bar">
       <div>
         <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(185,228,248,0.7);margin-bottom:2px">Clorini rimasti</div>
@@ -250,7 +296,7 @@ footer strong{color:var(--gold2);}
       </div>
       <div id="athleteList"></div>
     </div>
-    <p style="font-size:11px;color:var(--tlight);text-align:center;margin-top:11px">&#127915; Clorini = (Classifica Sociale &divide; 10) &times; 75% + Presenze &times; 25% &nbsp;&middot;&nbsp; Budget 1500&#127915; per 5 atleti</p>
+    <p style="font-size:11px;color:var(--tlight);text-align:center;margin-top:11px">&#127915; Clorini = (Media Supermaster &divide; 10) + (Gare &times; 10) + (Staffette &times; 10) &nbsp;&middot;&nbsp; Budget 500&#127915; per 5 atleti</p>
   </div>
 </section>
 
@@ -268,7 +314,7 @@ footer strong{color:var(--gold2);}
           <div style="display:flex;justify-content:space-between;align-items:baseline">
             <div>
               <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(185,228,248,0.7);margin-bottom:2px">Budget speso</div>
-              <div style="font-family:'Bebas Neue';font-size:34px;color:#fff;line-height:1"><span id="spentClorini">0</span><span style="font-size:15px;opacity:.5"> / 1500</span></div>
+              <div style="font-family:'Bebas Neue';font-size:34px;color:#fff;line-height:1"><span id="spentClorini">0</span><span style="font-size:15px;opacity:.5"> / 500</span></div>
             </div>
             <div style="text-align:right">
               <div style="font-size:10px;color:rgba(185,228,248,0.7);text-transform:uppercase;letter-spacing:1px">Rimanenti</div>
@@ -315,49 +361,55 @@ footer strong{color:var(--gold2);}
 <div class="toast" id="toast"></div>
 
 <footer>
-  <p>&#127944; <strong>FantaMelzo</strong> &mdash; Gioco ufficiale ASD Master Melzo &middot; Circuito FIN 2025/2026</p>
+  <p>&#127944; <strong>FantaMelzo</strong> &mdash; Gioco ufficiale ASD Master Melzo &middot; Italiani Master Riccione 2026</p>
   <p style="margin-top:5px">Un progetto della squadra, per la squadra. Forza <strong>Melzo</strong>! &#128155;&#128153;</p>
 </footer>
 
 <script>
-const BUDGET=1500,APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbyv-bkQOjxpgKFQejghrrfku87sFLRPzG_M-bWcbjkkt799XvIQN-dMIi5fsbAOzcrf/exec";
+const BUDGET=500,APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbyv-bkQOjxpgKFQejghrrfku87sFLRPzG_M-bWcbjkkt799XvIQN-dMIi5fsbAOzcrf/exec";
 let currentFilter="tutti",team=[],registeredTeams=[];
 const teamSet=new Set();
 const athletes=[
-  {name:"Bottari Selene",clorini:504.8,sex:"F"},{name:"Galiano Ilaria",clorini:493.8,sex:"F"},
-  {name:"Sinigaglia Luca",clorini:493.8,sex:"M"},{name:"Pitalieri Francesca",clorini:489.3,sex:"F"},
-  {name:"Somigliana Ugo",clorini:485.3,sex:"M"},{name:"Zerbo Arcangelo",clorini:482.2,sex:"M"},
-  {name:"Sperandio Dario",clorini:481.5,sex:"M"},{name:"Neri Umberto",clorini:477.2,sex:"M"},
-  {name:"Salomone Roberto",clorini:471.8,sex:"M"},{name:"Somigliana Anna",clorini:470.8,sex:"F"},
-  {name:"Crespi Enrico",clorini:470.0,sex:"M"},{name:"Mainetti Giovanni",clorini:444.0,sex:"M"},
-  {name:"Bottari Ciro",clorini:439.0,sex:"M"},{name:"Facchinetti Pierpaolo",clorini:438.2,sex:"M"},
-  {name:"Romano Giuseppe",clorini:432.3,sex:"M"},{name:"Accomasso Davide",clorini:426.0,sex:"M"},
-  {name:"Brambilla Mauro",clorini:414.7,sex:"M"},{name:"Ceriani Paolo",clorini:408.5,sex:"M"},
-  {name:"Ferrari Bravo Cristina",clorini:395.3,sex:"F"},{name:"Martelli Daria",clorini:389.1,sex:"F"},
-  {name:"Bottari Giuseppe",clorini:387.2,sex:"M"},{name:"Brambilla Cecilia",clorini:380.0,sex:"F"},
-  {name:"Baldo Veronica",clorini:373.5,sex:"F"},{name:"Pirola Vincenzo",clorini:372.9,sex:"M"},
-  {name:"Leoni Alessandro",clorini:359.7,sex:"M"},{name:"Parisi Matteo",clorini:351.8,sex:"M"},
-  {name:"Raviola Tomaso",clorini:349.0,sex:"M"},{name:"Pirola Alessandro",clorini:347.6,sex:"M"},
-  {name:"Mercati Gherardo",clorini:329.1,sex:"M"},{name:"Sena Lucia",clorini:327.3,sex:"F"},
-  {name:"Longaretti Fabio",clorini:307.3,sex:"M"},{name:"Bitto Alessandro",clorini:305.8,sex:"M"},
-  {name:"Vassura Edoardo",clorini:280.3,sex:"M"},{name:"Pandolfi Maria",clorini:271.2,sex:"F"},
-  {name:"Abrusci Domenico",clorini:266.1,sex:"M"},{name:"Lucchini Francesca",clorini:262.6,sex:"F"},
-  {name:"Broccolino Marco",clorini:257.3,sex:"M"},{name:"Broccolino Susanna",clorini:248.7,sex:"F"},
-  {name:"Ferraro Sergio",clorini:237.6,sex:"M"},{name:"Dossena Fabiana",clorini:233.4,sex:"F"},
-  {name:"Zuccardi Merli Gianluigi",clorini:226.2,sex:"M"},{name:"Barbic Franca",clorini:220.0,sex:"F"},
-  {name:"Migliazza Anna",clorini:213.2,sex:"F"},{name:"Balicchia Filippo",clorini:210.9,sex:"M"},
-  {name:"De Gaspari Emilia",clorini:206.2,sex:"F"},{name:"Botteghi Alessio",clorini:178.8,sex:"M"},
-  {name:"Broccolino Filippo",clorini:160.2,sex:"M"},{name:"Rovida Cristina",clorini:152.7,sex:"F"},
-  {name:"Naborri Annamaria",clorini:148.3,sex:"F"},{name:"Valla Nicola",clorini:148.0,sex:"M"},
-  {name:"Floris Cristina",clorini:143.2,sex:"F"},{name:"Dotti Valter",clorini:136.5,sex:"M"},
-  {name:"Campari Fulvio",clorini:122.9,sex:"M"},{name:"Scala Sandra",clorini:115.0,sex:"F"},
-  {name:"Di Bernardo Fulvia",clorini:112.6,sex:"F"},{name:"Scotti Silvio",clorini:106.8,sex:"M"},
-  {name:"Alessandrello Federico",clorini:100.0,sex:"M"},{name:"Sigona Attilio",clorini:86.6,sex:"M"},
-  {name:"Pirola Anna",clorini:54.7,sex:"F"},{name:"Ponzi Maurizio",clorini:15.5,sex:"M"},
-  {name:"Arioli Angelo",clorini:11.2,sex:"M"},{name:"Rosa Giulia",clorini:5.0,sex:"F"},
-  {name:"Blanda Calogero",clorini:3.8,sex:"M"},{name:"Smiroldo Giorgio",clorini:2.5,sex:"M"},{name:"Bissi Luigi",clorini:0.8,sex:"M"},
+  {name:"Bottari Selene",clorini:155.9,sex:"F"},
+  {name:"Somigliana Anna",clorini:153.7,sex:"F"},
+  {name:"Pitalieri Francesca",clorini:148.3,sex:"F"},
+  {name:"Sinigaglia Luca",clorini:146.7,sex:"M"},
+  {name:"Somigliana Ugo",clorini:146.0,sex:"M"},
+  {name:"Galiano Ilaria",clorini:145.7,sex:"F"},
+  {name:"Broccolino Susanna",clorini:145.6,sex:"F"},
+  {name:"Vassura Edoardo",clorini:145.4,sex:"M"},
+  {name:"Sena Lucia",clorini:143.0,sex:"F"},
+  {name:"Crespi Enrico",clorini:141.2,sex:"M"},
+  {name:"Salomone Roberto",clorini:140.9,sex:"M"},
+  {name:"Brambilla Mauro",clorini:140.7,sex:"M"},
+  {name:"Sperandio Dario",clorini:139.8,sex:"M"},
+  {name:"Raviola Tomaso",clorini:134.1,sex:"M"},
+  {name:"Dotti Valter",clorini:133.5,sex:"M"},
+  {name:"Ferrari Bravo Cristina",clorini:133.0,sex:"F"},
+  {name:"Ceriani Paolo",clorini:132.3,sex:"M"},
+  {name:"Romano Giuseppe",clorini:131.3,sex:"M"},
+  {name:"Accomasso Davide",clorini:128.3,sex:"M"},
+  {name:"Zerbo Arcangelo",clorini:127.2,sex:"M"},
+  {name:"Parisi Matteo",clorini:124.8,sex:"M"},
+  {name:"Broccolino Marco",clorini:124.3,sex:"M"},
+  {name:"Ferraro Sergio",clorini:123.6,sex:"M"},
+  {name:"Botteghi Alessio",clorini:123.5,sex:"M"},
+  {name:"Rovida Cristina",clorini:123.5,sex:"F"},
+  {name:"Martelli Daria",clorini:122.5,sex:"F"},
+  {name:"Mercati Gherardo",clorini:122.5,sex:"M"},
+  {name:"Pirola Vincenzo",clorini:122.5,sex:"M"},
+  {name:"Neri Umberto",clorini:122.2,sex:"M"},
+  {name:"Brambilla Cecilia",clorini:122.0,sex:"F"},
+  {name:"Bottari Giuseppe",clorini:119.1,sex:"M"},
+  {name:"Migliazza Anna",clorini:118.6,sex:"F"},
+  {name:"Naborri Annamaria",clorini:115.3,sex:"F"},
+  {name:"Leoni Alessandro",clorini:113.4,sex:"M"},
+  {name:"Longaretti Fabio",clorini:111.0,sex:"M"},
+  {name:"Scotti Silvio",clorini:108.4,sex:"M"},
+  {name:"Facchinetti Pierpaolo",clorini:106.0,sex:"M"},
+  {name:"Valla Nicola",clorini:96.7,sex:"M"}
 ];
-const athletesMeta=athletes.map((a,i)=>({rank:i+1,rc:i===0?"gold":i===1?"silver":i===2?"bronze":"",tier:a.clorini>=400?"hi":a.clorini>=200?"md":"lo",c:a.clorini.toFixed(1)}));
+const athletesMeta=athletes.map((a,i)=>({rank:i+1,rc:i===0?"gold":i===1?"silver":i===2?"bronze":"",tier:a.clorini>=100?"hi":a.clorini>=80?"md":"lo",c:a.clorini.toFixed(1)}));
 const demoClassifica=[
   {team:"Squali Gialli",manager:"Luca R.",pts:2340},{team:"Cloro Addicts",manager:"Marco B.",pts:2180},
   {team:"H2O Warriors",manager:"Sara T.",pts:1970},{team:"Pool Position",manager:"Giorgio M.",pts:1820},
