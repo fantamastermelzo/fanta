@@ -1,0 +1,163 @@
+{
+  "stagione": "Italiani Master Riccione 2026",
+  "ultima_gara": "",
+  "data_aggiornamento": "2026-06-27",
+  "classifica": [
+    {
+      "team": "Cucciolo Merda",
+      "manager": "Dario Sperandio",
+      "athletes": [
+        "Bottari Selene",
+        "Brambilla Cecilia",
+        "Leoni Alessandro",
+        "Crespi Enrico",
+        "Pitalieri Francesca"
+      ],
+      "pts": 0,
+      "clorini": 680.8
+    },
+    {
+      "team": "Stars and Stripes Great White Sharks🦈🇺🇸",
+      "manager": "Luca Sinigaglia",
+      "athletes": [
+        "Bottari Selene",
+        "Somigliana Ugo",
+        "Pitalieri Francesca",
+        "Rovida Cristina",
+        "Neri Umberto"
+      ],
+      "pts": 0,
+      "clorini": 695.9
+    },
+    {
+      "team": "Alianti tirreni",
+      "manager": "Edoardo Vassura",
+      "athletes": [
+        "Bottari Selene",
+        "Pitalieri Francesca",
+        "Sperandio Dario",
+        "Brambilla Mauro",
+        "Leoni Alessandro"
+      ],
+      "pts": 0,
+      "clorini": 698.1
+    },
+    {
+      "team": "Meltzunami",
+      "manager": "Susanna Broccolino",
+      "athletes": [
+        "Bottari Selene",
+        "Brambilla Mauro",
+        "Sperandio Dario",
+        "Broccolino Marco",
+        "Rovida Cristina"
+      ],
+      "pts": 0,
+      "clorini": 684.2
+    },
+    {
+      "team": "Ciccipasticci",
+      "manager": "Mauro Brambilla",
+      "athletes": [
+        "Pitalieri Francesca",
+        "Raviola Tomaso",
+        "Mercati Gherardo",
+        "Botteghi Alessio",
+        "Bottari Selene"
+      ],
+      "pts": 0,
+      "clorini": 684.3
+    },
+    {
+      "team": "L’importante è battere Cucciolo Merda",
+      "manager": "Lusi Sena",
+      "athletes": [
+        "Sperandio Dario",
+        "Somigliana Ugo",
+        "Somigliana Anna",
+        "Botteghi Alessio",
+        "Ferrari Bravo Cristina"
+      ],
+      "pts": 0,
+      "clorini": 696.0
+    },
+    {
+      "team": "BROCCHINACQUA",
+      "manager": "Marco Pier Broccolino",
+      "athletes": [
+        "Pitalieri Francesca",
+        "Ceriani Paolo",
+        "Broccolino Susanna",
+        "Mercati Gherardo",
+        "Rovida Cristina"
+      ],
+      "pts": 0,
+      "clorini": 672.2
+    },
+    {
+      "team": "FC pescipalla di bronzo",
+      "manager": "Francesca Pitalieri",
+      "athletes": [
+        "Bottari Selene",
+        "Broccolino Susanna",
+        "Somigliana Ugo",
+        "Mercati Gherardo",
+        "Zerbo Arcangelo"
+      ],
+      "pts": 0,
+      "clorini": 697.2
+    },
+    {
+      "team": "NuotoMaleMaNuoto",
+      "manager": "Maria Cristina Rovida",
+      "athletes": [
+        "Neri Umberto",
+        "Broccolino Marco",
+        "Broccolino Susanna",
+        "Somigliana Ugo",
+        "Bottari Selene"
+      ],
+      "pts": 0,
+      "clorini": 694.0
+    },
+    {
+      "team": "Gli acquatori",
+      "manager": "Virginia Vassenna",
+      "athletes": [
+        "Sena Lucia",
+        "Botteghi Alessio",
+        "Sperandio Dario",
+        "Bottari Selene",
+        "Raviola Tomaso"
+      ],
+      "pts": 0,
+      "clorini": 696.3
+    },
+    {
+      "team": "Culi Sudati",
+      "manager": "Alessio Botteghi",
+      "athletes": [
+        "Sinigaglia Luca",
+        "Sena Lucia",
+        "Accomasso Davide",
+        "Parisi Matteo",
+        "Bottari Selene"
+      ],
+      "pts": 0,
+      "clorini": 698.7
+    },
+    {
+      "team": "la visione della riga da vicino",
+      "manager": "Alessandro Leoni",
+      "athletes": [
+        "Martelli Daria",
+        "Brambilla Cecilia",
+        "Accomasso Davide",
+        "Bottari Selene",
+        "Sinigaglia Luca"
+      ],
+      "pts": 0,
+      "clorini": 675.4
+    }
+  ]
+}
