@@ -1,7 +1,7 @@
 {
   "stagione": "Italiani Master Riccione 2026",
   "ultima_gara": "",
-  "data_aggiornamento": "2026-06-27",
+  "data_aggiornamento": "2026-06-28",
   "classifica": [
     {
       "team": "Cucciolo Merda",
@@ -249,6 +249,45 @@
       ],
       "pts": 0,
       "clorini": 611.1
+    },
+    {
+      "team": "NON MANCO UN ALLENAMENTO ….+ TOM",
+      "manager": "Daria",
+      "athletes": [
+        "Galiano Ilaria",
+        "Pitalieri Francesca",
+        "Raviola Tomaso",
+        "Pirola Vincenzo",
+        "Crespi Enrico"
+      ],
+      "pts": 0,
+      "clorini": 691.8
+    },
+    {
+      "team": "I MASTER_IZZATI",
+      "manager": "Daniel Rogati",
+      "athletes": [
+        "Pitalieri Francesca",
+        "Vassura Edoardo",
+        "Sperandio Dario",
+        "Sena Lucia",
+        "Botteghi Alessio"
+      ],
+      "pts": 0,
+      "clorini": 700.0
+    },
+    {
+      "team": "Master Millza",
+      "manager": "Tomaso Rav",
+      "athletes": [
+        "Sena Lucia",
+        "Bottari Selene",
+        "Sperandio Dario",
+        "Salomone Roberto",
+        "Leoni Alessandro"
+      ],
+      "pts": 0,
+      "clorini": 693.0
     }
   ]
 }
