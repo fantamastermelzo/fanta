@@ -574,14 +574,55 @@ function _renderClassificaConSquadre(squadre){
   const rows=s.map((t,i)=>{
     const medal=i===0?"&#129351;":i===1?"&#129352;":i===2?"&#129353;":"";
     const bg=i===0?"rgba(225,185,0,0.08)":i===1?"rgba(130,170,190,0.08)":i===2?"rgba(180,110,50,0.08)":"transparent";
-    return "<div style='display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.5);background:"+bg+"'>"
+    const hasAtleti=t.atleti&&t.atleti.length>0;
+    const rowId="crow-"+i;
+    const detId="cdet-"+i;
+    // Dettaglio atleti
+    let detHtml="";
+    if(hasAtleti){
+      const atletiRows=t.atleti.map(a=>{
+        const nome=typeof a==="string"?a:a.nome;
+        const pts=typeof a==="object"&&a.pts!=null?a.pts:null;
+        return "<div style='display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,110,150,0.08);'>"
+          +"<div style='display:flex;align-items:center;gap:9px'>"
+          +"<div style='width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--p3),var(--p5));flex-shrink:0'></div>"
+          +"<span style='font-size:13px;font-weight:600;color:var(--p5)'>"+nome+"</span>"
+          +"</div>"
+          +"<span style='font-family:\"Bebas Neue\",sans-serif;font-size:18px;color:"+(pts!=null?"var(--gold)":"rgba(0,90,130,0.25)")+";letter-spacing:1px'>"+(pts!=null?pts+"<span style='font-size:11px;color:var(--tlight);margin-left:3px'>pt</span>":"—")+"</span>"
+          +"</div>";
+      }).join("");
+      detHtml="<div id='"+detId+"' style='display:none;padding:14px 20px 16px;background:rgba(6,84,112,0.04);border-top:1px solid rgba(0,110,150,0.1);'>"
+        +"<div style='font-family:\"Barlow Condensed\",sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tlight);margin-bottom:10px'>&#127954; Atleti in squadra</div>"
+        +atletiRows
+        +"</div>";
+    }
+    const chevron=hasAtleti?"<span id='chev-"+i+"' style='font-size:11px;color:var(--tlight);transition:transform .2s;display:inline-block'>&#9660;</span>":"";
+    const clickAttr=hasAtleti?" onclick=\"_toggleDet('"+detId+"','chev-"+i+"')\" style='cursor:pointer;'":"";
+    return "<div style='border-bottom:1px solid rgba(255,255,255,0.5)'>"
+      +"<div"+clickAttr+" style='display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;padding:14px 20px;background:"+bg+";transition:background .15s;' onmouseenter=\"this.style.background='rgba(255,255,255,0.45)'\" onmouseleave=\"this.style.background='"+bg+"'\">"
       +"<div style='font-family:\"Bebas Neue\",sans-serif;font-size:"+(medal?"24px":"30px")+";text-align:center;color:rgba(0,90,130,0.4)'>"+(medal||(i+1))+"</div>"
-      +"<div><div style='font-family:\"Bebas Neue\",sans-serif;font-size:21px;letter-spacing:1px;color:var(--p5)'>"+t.team+"</div>"
-      +"<div style='font-size:11px;color:var(--tlight)'>&#128100; "+t.manager+"</div></div>"
+      +"<div>"
+        +"<div style='display:flex;align-items:center;gap:7px'>"
+          +"<div style='font-family:\"Bebas Neue\",sans-serif;font-size:21px;letter-spacing:1px;color:var(--p5)'>"+t.team+"</div>"
+          +chevron
+        +"</div>"
+        +"<div style='font-size:11px;color:var(--tlight)'>&#128100; "+t.manager+"</div>"
+      +"</div>"
       +"<div style='text-align:right'><div style='font-family:\"Bebas Neue\",sans-serif;font-size:32px;line-height:1;color:var(--gold)'>"+t.pts+"</div>"
-      +"<div style='font-size:10px;color:var(--tlight);text-transform:uppercase;letter-spacing:1px'>punti</div></div></div>";
+      +"<div style='font-size:10px;color:var(--tlight);text-transform:uppercase;letter-spacing:1px'>punti</div></div>"
+      +"</div>"
+      +detHtml
+      +"</div>";
   }).join("");
   document.getElementById("classificaList").innerHTML="<div style='background:rgba(255,255,255,0.54);border:1px solid rgba(255,255,255,0.88);border-radius:20px;overflow:hidden;margin-top:8px'>"+rows+"</div>";
+}
+function _toggleDet(detId,chevId){
+  const det=document.getElementById(detId);
+  const chev=document.getElementById(chevId);
+  if(!det)return;
+  const open=det.style.display==="none";
+  det.style.display=open?"block":"none";
+  if(chev)chev.style.transform=open?"rotate(180deg)":"rotate(0deg)";
 }
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 renderTeamSlots();
