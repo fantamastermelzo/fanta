@@ -152,7 +152,6 @@ footer strong{color:var(--gold2);}
 
 <section id="home" class="section active">
   <div class="hero">
-    <!-- Banda tricolore top -->
     <div style="position:absolute;top:0;left:0;right:0;height:12px;display:flex;z-index:2">
       <div style="flex:1;background:#009246"></div>
       <div style="flex:1;background:#fff"></div>
@@ -165,7 +164,6 @@ footer strong{color:var(--gold2);}
       </div>
       <h1><span class="ha">FANTA</span><span class="hg">MELZO</span></h1>
       <p class="hero-sub">Campionati Italiani Master Estivi 2026 &middot; Riccione 29 Giugno &mdash; 5 Luglio</p>
-      <!-- Decorazione tricolore sotto il titolo -->
       <div style="display:flex;gap:3px;margin-bottom:28px;align-items:center">
         <div style="height:3px;width:40px;background:#009246;border-radius:2px"></div>
         <div style="height:3px;width:40px;background:#fff;border-radius:2px;border:1px solid rgba(0,0,0,0.08)"></div>
@@ -242,7 +240,6 @@ footer strong{color:var(--gold2);}
   <div class="container">
     <div class="sec-title">Il <span>Listone</span></div>
     <div class="sec-bar"></div>
-    <!-- Formula clorini -->
     <div style="background:linear-gradient(135deg,rgba(6,84,112,0.88),rgba(0,90,130,0.78));border:1px solid rgba(255,255,255,0.17);border-radius:18px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 18px rgba(0,50,90,0.2)">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(185,228,248,0.7);margin-bottom:12px">&#127915; Come si calcola il valore di ogni atleta</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
@@ -270,7 +267,7 @@ footer strong{color:var(--gold2);}
     <div class="lbudget-bar">
       <div>
         <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(185,228,248,0.7);margin-bottom:2px">Clorini rimasti</div>
-        <div class="lbnum" id="lBudget">1500 &#127915;</div>
+        <div class="lbnum" id="lBudget">700 &#127915;</div>
       </div>
       <div class="lbbar-wrap">
         <div class="lbinfo"><span id="lAtleti">0 / 5 atleti</span><span id="lSpeso">speso: 0</span></div>
@@ -318,7 +315,7 @@ footer strong{color:var(--gold2);}
             </div>
             <div style="text-align:right">
               <div style="font-size:10px;color:rgba(185,228,248,0.7);text-transform:uppercase;letter-spacing:1px">Rimanenti</div>
-              <div style="font-family:'Bebas Neue';font-size:24px;color:var(--gold)" id="remainingClorini">1500</div>
+              <div style="font-family:'Bebas Neue';font-size:24px;color:var(--gold)" id="remainingClorini">700</div>
             </div>
           </div>
           <div class="bbar-wrap"><div class="bbar" id="budgetBar" style="width:0%"></div></div>
@@ -330,7 +327,7 @@ footer strong{color:var(--gold2);}
         <h3>&#127944; Il tuo team (<span id="slotCount">0</span>/5)</h3>
         <div class="slots" id="teamSlots"></div>
         <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,110,150,0.14)">
-          <p style="font-size:12px;color:var(--tlight)">&#128072; Aggiungi dal <a href="#" onclick="showSection('listone');return false;" style="color:var(--p4);font-weight:700">Listone</a> &mdash; max 5 con 1500&#127915;</p>
+          <p style="font-size:12px;color:var(--tlight)">&#128072; Aggiungi dal <a href="#" onclick="showSection('listone');return false;" style="color:var(--p4);font-weight:700">Listone</a> &mdash; max 5 con 700&#127915;</p>
         </div>
       </div>
     </div>
@@ -449,17 +446,20 @@ function toggleAthlete(name){
   const idx=team.findIndex(t=>t.name===name);
   if(idx>=0){team.splice(idx,1);teamSet.delete(name);showToast("Rimosso: "+name.split(" ")[0]);}
   else{
-    if(team.length>=5){showToast("Hai gia 5 atleti!");return;}
+    if(team.length>=5){showToast("Hai già 5 atleti!");return;}
     if(spentClorini()+a.clorini>BUDGET+0.1){showToast("Budget insufficiente!");return;}
-    // Controllo autocandidatura
-    const managerName=(document.getElementById("managerName")?.value||"").trim().toLowerCase();
-    if(managerName && managerName.length>2){
-      const nameParts=managerName.split(" ").filter(p=>p.length>2);
-      const athleteLower=name.toLowerCase();
-      if(nameParts.some(p=>athleteLower.includes(p))){
+
+    // Controllo autocandidatura — blocca solo se nome E cognome coincidono entrambi
+    const managerRaw=(document.getElementById("managerName")?.value||"").trim().toLowerCase();
+    if(managerRaw && managerRaw.length>2){
+      const managerParts=new Set(managerRaw.split(" ").filter(p=>p.length>1));
+      const athleteParts=name.toLowerCase().split(" ").filter(p=>p.length>1);
+      const matchCount=athleteParts.filter(p=>managerParts.has(p)).length;
+      if(matchCount>=2){
         showToast("Non puoi scegliere te stesso! 😄");return;
       }
     }
+
     // Controllo mix genere: max 3 dello stesso sesso
     const donne=team.filter(t=>t.sex==="F").length;
     const uomini=team.filter(t=>t.sex==="M").length;
@@ -499,15 +499,11 @@ function updateBudget(){
 function submitTeam(){
   const name=document.getElementById("managerName").value,email=document.getElementById("managerEmail").value,tname=document.getElementById("teamName").value;
   if(!name||!email||!tname||team.length<5){showToast("Completa tutti i campi!");return;}
-  // Verifica mix genere
   const donne=team.filter(a=>a.sex==="F").length;
   const uomini=team.filter(a=>a.sex==="M").length;
   if(donne<2||uomini<2){showToast("Servono almeno 2 donne e 2 uomini! ⚖️");return;}
   const btn=document.getElementById("submitBtn");
   btn.disabled=true;btn.textContent="Verifico iscrizione...";
-  // Prima controlla se email già iscritta
-  const checkUrl=APPS_SCRIPT_URL+"?action=leggi&callback=_checkEmail_"+Date.now();
-  window._pendingSubmit={name,email,tname,btn};
   window._checkEmailCallback=function(data){
     const existing=data.squadre||[];
     const emailLower=email.trim().toLowerCase();
@@ -517,17 +513,14 @@ function submitTeam(){
       btn.disabled=false;btn.textContent="&#127944; CONFERMA ISCRIZIONE";
       return;
     }
-    // Ok, procedi con l'iscrizione
     const payload={manager:name,email:email,team:tname,athletes:team.map(a=>a.name),totalClorini:spentClorini().toFixed(1)};
     var url=APPS_SCRIPT_URL+"?data="+encodeURIComponent(JSON.stringify(payload));
     fetch(url,{method:"GET",mode:"no-cors"})
       .then(()=>_showSuccess(name,tname)).catch(()=>_showSuccess(name,tname));
   };
-  // Usa JSONP per leggere iscrizioni esistenti
   const s=document.createElement("script");
   s.src=APPS_SCRIPT_URL+"?action=leggi&callback=_checkEmailCallback";
   s.onerror=function(){
-    // Se non riesce a verificare, procede comunque
     const payload={manager:name,email:email,team:tname,athletes:team.map(a=>a.name),totalClorini:spentClorini().toFixed(1)};
     fetch(APPS_SCRIPT_URL+"?data="+encodeURIComponent(JSON.stringify(payload)),{method:"GET",mode:"no-cors"})
       .then(()=>_showSuccess(name,tname)).catch(()=>_showSuccess(name,tname));
@@ -536,7 +529,7 @@ function submitTeam(){
 }
 function _showSuccess(name,tname){
   registeredTeams.push({team:tname,manager:name,pts:0});
-  document.getElementById("successMsg").innerHTML="Il team <strong>"+tname+"</strong> di <strong>"+name+"</strong> e registrato!<br><span style='font-size:13px;color:var(--tmid)'>Atleti: "+team.map(a=>a.name.split(" ")[0]).join(", ")+"</span>";
+  document.getElementById("successMsg").innerHTML="Il team <strong>"+tname+"</strong> di <strong>"+name+"</strong> è registrato!<br><span style='font-size:13px;color:var(--tmid)'>Atleti: "+team.map(a=>a.name.split(" ")[0]).join(", ")+"</span>";
   document.getElementById("successOverlay").classList.add("show");
   document.getElementById("submitBtn").disabled=false;document.getElementById("submitBtn").textContent="&#127944; CONFERMA ISCRIZIONE";
 }
@@ -545,7 +538,6 @@ function renderClassifica(){
   const cl=document.getElementById("classificaList");
   if(p) p.innerHTML="<div style='text-align:center;padding:40px;color:var(--tlight);font-family:\"Barlow Condensed\",sans-serif;font-size:16px;letter-spacing:1px'>&#9203; Caricamento classifica...</div>";
   if(cl) cl.innerHTML="";
-  // Leggi JSON da GitHub
   const jsonUrl="https://raw.githubusercontent.com/fantamastermelzo/fanta/main/classifica_fanta.json?t="+Date.now();
   fetch(jsonUrl)
     .then(r=>r.json())
@@ -561,7 +553,6 @@ function renderClassifica(){
 function _renderClassificaConSquadre(squadre){
   const s=[...squadre].sort((a,b)=>b.pts-a.pts);
   const p=document.getElementById("podiumSection");if(!p)return;
-
   if(s.length===0){
     p.innerHTML="<div style='text-align:center;padding:60px 20px'>"
       +"<div style='font-size:52px;margin-bottom:16px'>🏊</div>"
@@ -571,7 +562,6 @@ function _renderClassificaConSquadre(squadre){
     document.getElementById("classificaList").innerHTML="";
     return;
   }
-  // Podio solo se ci sono almeno 3 squadre
   if(s.length>=3){
     p.innerHTML="<div class='podium'>"
       +"<div class='pb p2'><div class='pname'>"+s[1].team+"</div><div class='pbox'><div class='medal'>&#129352;</div><div class='ppts'>"+s[1].pts+"</div><div class='plbl'>punti</div></div></div>"
