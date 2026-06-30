@@ -674,6 +674,60 @@
           "pts": null
         }
       ]
+    },
+    {
+      "team": "Meltzunami",
+      "manager": "Susanna Broccolino",
+      "pts": 0,
+      "atleti": [
+        {
+          "nome": "Bottari Selene",
+          "pts": null
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": null
+        },
+        {
+          "nome": "Broccolino Marco",
+          "pts": null
+        },
+        {
+          "nome": "Rovida Cristina",
+          "pts": null
+        },
+        {
+          "nome": "Mercati Gherardo",
+          "pts": null
+        }
+      ]
+    },
+    {
+      "team": "Dorso e pregiudizio",
+      "manager": "Filippo Broccolino",
+      "pts": 0,
+      "atleti": [
+        {
+          "nome": "Mercati Gherardo",
+          "pts": null
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": null
+        },
+        {
+          "nome": "Salomone Roberto",
+          "pts": null
+        },
+        {
+          "nome": "Somigliana Anna",
+          "pts": null
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": null
+        }
+      ]
     }
   ]
 }
