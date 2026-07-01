@@ -3,7 +3,7 @@
     {
       "team": "Master Milza",
       "manager": "Tomaso Raviola",
-      "pts": 99.2,
+      "pts": 128.1,
       "atleti": [
         {
           "nome": "Sena Lucia",
@@ -19,7 +19,7 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 73.1
+          "pts": 102
         },
         {
           "nome": "Leoni Alessandro",
@@ -30,7 +30,7 @@
     {
       "team": "Dorso e pregiudizio",
       "manager": "Filippo Broccolino",
-      "pts": 99.2,
+      "pts": 128.1,
       "atleti": [
         {
           "nome": "Mercati Gherardo",
@@ -42,7 +42,7 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 73.1
+          "pts": 102
         },
         {
           "nome": "Somigliana Anna",
@@ -57,7 +57,7 @@
     {
       "team": "Li faremo tutti Neri",
       "manager": "Umberto Neri",
-      "pts": 73.1,
+      "pts": 102,
       "atleti": [
         {
           "nome": "Romano Giuseppe",
@@ -65,7 +65,7 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 73.1
+          "pts": 102
         },
         {
           "nome": "Sena Lucia",
