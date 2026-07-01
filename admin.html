@@ -518,6 +518,11 @@ function parseResults(text, filename){
 
       if(!nomeRegex.test(line) && !nomeRegex2.test(line)) continue;
 
+      // Verifica società: cerca "melzo" nella riga corrente OPPURE nella riga successiva
+      // (nel formato 1500SL la società è sulla riga dopo; nel formato 200m è sulla stessa riga)
+      const lineToCheck = (line + " " + (lines[i+1]||"") + " " + (lines[i-1]||"")).toLowerCase();
+      if(!lineToCheck.includes("melzo")) continue;
+
       if(true){
         // Già trovato?
         if(trovati.find(t => t.nome === atleta.orig)) continue;
