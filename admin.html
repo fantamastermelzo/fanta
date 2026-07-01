@@ -226,6 +226,9 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
     <div class="step" id="s3">
       <div class="step-num">3</div> Pubblica
     </div>
+    <div class="step" id="s4" onclick="goManuale()" style="cursor:pointer;">
+      <div class="step-num">✏️</div> Modifica Manuale
+    </div>
   </div>
 
   <!-- PANNELLO 1 -->
@@ -324,6 +327,65 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
     </div>
   </div>
 
+  <!-- PANNELLO 4: MODIFICA MANUALE -->
+  <div class="panel" id="panel4">
+    <div class="glass">
+      <div class="sec-title">MODIFICA <span>MANUALE</span></div>
+      <div class="sec-bar"></div>
+      <p style="font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.6;">
+        Aggiungi o togli punti manualmente a qualsiasi atleta. Usa per bonus speciali, record sociali, stacanovista, fedeltà al cloro o correzioni.
+      </p>
+
+      <!-- Selezione atleta -->
+      <label>Seleziona Atleta</label>
+      <select id="man-atleta" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.88);background:rgba(255,255,255,0.72);font-family:'Barlow',sans-serif;font-size:14px;color:var(--tdark);outline:none;margin-bottom:16px;">
+        <option value="">— scegli atleta —</option>
+      </select>
+
+      <!-- Tipo bonus/malus -->
+      <label>Tipo</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="bonus-tipo-btns">
+        <button class="btn btn-ghost bonus-tipo" data-pts="20" data-label="Record assoluto sodalizio" onclick="selectTipo(this)">🏆 Record assoluto +20</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="10" data-label="Record di categoria" onclick="selectTipo(this)">🥇 Record categoria +10</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="10" data-label="Fedeltà al cloro" onclick="selectTipo(this)">💙 Fedeltà al cloro +10</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="5" data-label="Stacanovista" onclick="selectTipo(this)">💪 Stacanovista +5</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="-15" data-label="Squalifica/DNF" onclick="selectTipo(this)">❌ Squalifica -15</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="0" data-label="Personalizzato" onclick="selectTipo(this)">✏️ Personalizzato</button>
+      </div>
+
+      <!-- Punti personalizzati -->
+      <div id="man-custom-row" style="display:none;margin-bottom:16px;">
+        <label>Punti (usa - per malus)</label>
+        <input type="number" id="man-pts-custom" placeholder="es. 15 oppure -10" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.88);background:rgba(255,255,255,0.72);font-family:'Barlow',sans-serif;font-size:14px;color:var(--tdark);outline:none;margin-bottom:0;">
+      </div>
+
+      <!-- Note -->
+      <label>Nota (opzionale)</label>
+      <input type="text" id="man-nota" placeholder="es. Record sociale 200 dorso, Stacanovista 3 gare…" style="margin-bottom:20px;">
+
+      <!-- Preview -->
+      <div id="man-preview" style="display:none;padding:14px 18px;border-radius:12px;background:rgba(42,168,204,0.1);border:1px solid rgba(42,168,204,0.25);margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;font-size:15px;color:var(--p4);font-weight:600;"></div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="applicaBonus()" id="man-apply-btn">✅ Applica</button>
+        <button class="btn btn-ghost" onclick="goStep(1)">← Torna ai PDF</button>
+      </div>
+      <div class="status-box" id="status-man"></div>
+    </div>
+
+    <!-- Log modifiche sessione -->
+    <div class="glass" id="man-log-box" style="display:none;">
+      <div class="sec-title" style="font-size:28px;">LOG <span>MODIFICHE</span></div>
+      <div class="sec-bar"></div>
+      <div id="man-log"></div>
+      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-success" onclick="pubblicaManuale()" id="man-publish-btn">🚀 Pubblica su GitHub</button>
+      </div>
+      <div class="loading" id="loading-man"><div class="spinner"></div><span>Pubblicazione in corso...</span></div>
+      <div class="status-box" id="status-man2"></div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -354,6 +416,151 @@ const PTS = {individuale:10, staffetta:5, oro:50, argento:20, bronzo:5, record_a
 
 let classificaData = null;
 let risultatiGara = []; // atleti trovati con punti
+let selectedTipoPts = null;
+let selectedTipoLabel = "";
+let logModifiche = [];
+
+// ========== MODIFICA MANUALE ==========
+function goManuale(){
+  // Popola select atleti
+  const sel = document.getElementById("man-atleta");
+  sel.innerHTML = '<option value="">— scegli atleta —</option>';
+  ATLETI.forEach(a => {
+    const opt = document.createElement("option");
+    opt.value = a; opt.textContent = a;
+    sel.appendChild(opt);
+  });
+  sel.onchange = updateManPreview;
+  document.getElementById("man-pts-custom").oninput = updateManPreview;
+  // Reset
+  document.querySelectorAll(".bonus-tipo").forEach(b => b.classList.remove("btn-primary"));
+  document.querySelectorAll(".bonus-tipo").forEach(b => b.classList.add("btn-ghost"));
+  selectedTipoPts = null; selectedTipoLabel = "";
+  document.getElementById("man-custom-row").style.display = "none";
+  document.getElementById("man-preview").style.display = "none";
+  document.getElementById("status-man").classList.remove("show");
+  // Mostra pannello
+  [1,2,3,4].forEach(i => document.getElementById(`panel${i}`).classList.toggle("active", i===4));
+  [1,2,3].forEach(i => {
+    const s = document.getElementById(`s${i}`);
+    s.classList.remove("active","done");
+    s.classList.add("done");
+  });
+  document.getElementById("s4").classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function selectTipo(btn){
+  document.querySelectorAll(".bonus-tipo").forEach(b => { b.classList.remove("btn-primary"); b.classList.add("btn-ghost"); });
+  btn.classList.add("btn-primary"); btn.classList.remove("btn-ghost");
+  selectedTipoPts = parseFloat(btn.dataset.pts);
+  selectedTipoLabel = btn.dataset.label;
+  const isCustom = selectedTipoLabel === "Personalizzato";
+  document.getElementById("man-custom-row").style.display = isCustom ? "block" : "none";
+  updateManPreview();
+}
+
+function updateManPreview(){
+  const atleta = document.getElementById("man-atleta").value;
+  let pts = selectedTipoPts;
+  if(selectedTipoLabel === "Personalizzato") pts = parseFloat(document.getElementById("man-pts-custom").value) || 0;
+  const nota = document.getElementById("man-nota").value;
+  const prev = document.getElementById("man-preview");
+  if(!atleta || pts === null){ prev.style.display="none"; return; }
+  const segno = pts >= 0 ? "+" : "";
+  prev.style.display = "block";
+  prev.innerHTML = `👤 <strong>${atleta}</strong> → ${segno}${pts} pt &nbsp;·&nbsp; ${selectedTipoLabel}${nota ? " · " + nota : ""}`;
+}
+
+function applicaBonus(){
+  const atleta = document.getElementById("man-atleta").value;
+  let pts = selectedTipoPts;
+  if(selectedTipoLabel === "Personalizzato") pts = parseFloat(document.getElementById("man-pts-custom").value) || 0;
+  const nota = document.getElementById("man-nota").value;
+
+  if(!atleta){ showStatus("status-man","⚠️ Seleziona un atleta.","error"); return; }
+  if(pts === null || isNaN(pts)){ showStatus("status-man","⚠️ Seleziona il tipo di bonus/malus.","error"); return; }
+  if(!classificaData){ showStatus("status-man","❌ Classifica non caricata. Ricarica la pagina.","error"); return; }
+
+  // Applica punti all'atleta in tutte le squadre
+  let trovato = false;
+  classificaData.classifica.forEach(team => {
+    team.atleti.forEach(a => {
+      const nA = a.nome.toLowerCase().trim();
+      const nR = atleta.toLowerCase().trim();
+      if(nA === nR){
+        a.pts = Math.round(((a.pts || 0) + pts) * 10) / 10;
+        trovato = true;
+      }
+    });
+    team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts || 0), 0) * 10) / 10;
+  });
+  classificaData.classifica.sort((a,b) => b.pts - a.pts);
+
+  if(!trovato){ showStatus("status-man","⚠️ Atleta non trovato nella classifica.","error"); return; }
+
+  // Aggiungi al log
+  const segno = pts >= 0 ? "+" : "";
+  logModifiche.push({ atleta, pts, label: selectedTipoLabel, nota });
+
+  // Aggiorna log UI
+  document.getElementById("man-log-box").style.display = "block";
+  document.getElementById("man-log").innerHTML = logModifiche.map((m,i) => `
+    <div class="edit-row">
+      <div class="edit-name">${m.atleta}</div>
+      <div class="bonus-pill ${m.pts>=0?'pill-green':'pill-red'}">${m.pts>=0?'+':''}${m.pts} pt</div>
+      <div class="edit-detail">${m.label}${m.nota?' · '+m.nota:''}</div>
+    </div>`).join("");
+
+  showStatus("status-man", `✅ ${segno}${pts} pt applicati a ${atleta}!`, "success");
+
+  // Reset form
+  document.getElementById("man-atleta").value = "";
+  document.getElementById("man-nota").value = "";
+  document.getElementById("man-preview").style.display = "none";
+  document.querySelectorAll(".bonus-tipo").forEach(b => { b.classList.remove("btn-primary"); b.classList.add("btn-ghost"); });
+  selectedTipoPts = null; selectedTipoLabel = "";
+  document.getElementById("man-custom-row").style.display = "none";
+}
+
+async function pubblicaManuale(){
+  const token = document.getElementById("gh-token").value.trim();
+  if(!token){
+    document.getElementById("config-panel").style.display = "block";
+    showStatus("status-man2","⚠️ Inserisci il GitHub Token nella sezione configurazione (Passo 1).","error");
+    return;
+  }
+  document.getElementById("man-publish-btn").disabled = true;
+  document.getElementById("loading-man").classList.add("show");
+  document.getElementById("status-man2").classList.remove("show");
+  try {
+    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json"}
+    });
+    const shaData = await shaResp.json();
+    if(!shaData.sha) throw new Error("File non trovato nel repo GitHub.");
+    const jsonStr = JSON.stringify(classificaData, null, 2);
+    const bytes = new TextEncoder().encode(jsonStr);
+    const binStr = Array.from(bytes).map(b => String.fromCharCode(b)).join('');
+    const content = btoa(binStr);
+    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
+      method:"PUT",
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
+      body:JSON.stringify({ message:`✏️ Modifica manuale classifica`, content, sha: shaData.sha })
+    });
+    const putData = await putResp.json();
+    if(putData.content){
+      logModifiche = [];
+      document.getElementById("man-log-box").style.display = "none";
+      showStatus("status-man2","🎉 Pubblicato su GitHub!","success");
+    } else throw new Error(putData.message||"Errore salvataggio");
+  } catch(e){
+    showStatus("status-man2",`❌ Errore: ${e.message}`,"error");
+  } finally {
+    document.getElementById("man-publish-btn").disabled = false;
+    document.getElementById("loading-man").classList.remove("show");
+  }
+}
 
 // ========== LOGIN ==========
 function doLogin(){
