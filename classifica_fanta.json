@@ -3,7 +3,7 @@
     {
       "team": "Li faremo tutti Neri",
       "manager": "Umberto Neri",
-      "pts": 343.4,
+      "pts": 424.7,
       "atleti": [
         {
           "nome": "Romano Giuseppe",
@@ -19,10 +19,37 @@
         },
         {
           "nome": "Rovida Maria Cristina",
-          "pts": 162.6
+          "pts": 243.9
         },
         {
           "nome": "Somigliana Anna",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Meltzunami",
+      "manager": "Susanna Broccolino",
+      "pts": 338.2,
+      "atleti": [
+        {
+          "nome": "Bottari Selene",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 94.3
+        },
+        {
+          "nome": "Broccolino Marco",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 243.9
+        },
+        {
+          "nome": "Mercati Gherardo",
           "pts": 0
         }
       ]
@@ -82,28 +109,109 @@
       ]
     },
     {
-      "team": "Meltzunami",
-      "manager": "Susanna Broccolino",
-      "pts": 256.9,
+      "team": "Stars and Stripes Great White Sharks🦈🇺🇸",
+      "manager": "Luca Sinigaglia",
+      "pts": 243.9,
       "atleti": [
         {
           "nome": "Bottari Selene",
           "pts": 0
         },
         {
-          "nome": "Sperandio Dario",
-          "pts": 94.3
+          "nome": "Somigliana Ugo",
+          "pts": 0
         },
+        {
+          "nome": "Pitalieri Francesca",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 243.9
+        },
+        {
+          "nome": "Neri Umberto",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "BROCHINACQUA",
+      "manager": "Marco Pier Broccolino",
+      "pts": 243.9,
+      "atleti": [
+        {
+          "nome": "Pitalieri Francesca",
+          "pts": 0
+        },
+        {
+          "nome": "Ceriani Paolo",
+          "pts": 0
+        },
+        {
+          "nome": "Broccolino Susanna",
+          "pts": 0
+        },
+        {
+          "nome": "Mercati Gherardo",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 243.9
+        }
+      ]
+    },
+    {
+      "team": "Maestri dell'Acqua",
+      "manager": "Annamaria Naborri",
+      "pts": 243.9,
+      "atleti": [
+        {
+          "nome": "Somigliana Anna",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 243.9
+        },
+        {
+          "nome": "Mercati Gherardo",
+          "pts": 0
+        },
+        {
+          "nome": "Neri Umberto",
+          "pts": 0
+        },
+        {
+          "nome": "Broccolino Marco",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Pescidabrodo",
+      "manager": "Arcangelo Zerbo",
+      "pts": 243.9,
+      "atleti": [
         {
           "nome": "Broccolino Marco",
           "pts": 0
         },
         {
           "nome": "Rovida Maria Cristina",
-          "pts": 162.6
+          "pts": 243.9
         },
         {
-          "nome": "Mercati Gherardo",
+          "nome": "Neri Umberto",
+          "pts": 0
+        },
+        {
+          "nome": "Brambilla Cecilia",
+          "pts": 0
+        },
+        {
+          "nome": "Bottari Giuseppe",
           "pts": 0
         }
       ]
@@ -131,114 +239,6 @@
         },
         {
           "nome": "Leoni Alessandro",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Stars and Stripes Great White Sharks🦈🇺🇸",
-      "manager": "Luca Sinigaglia",
-      "pts": 162.6,
-      "atleti": [
-        {
-          "nome": "Bottari Selene",
-          "pts": 0
-        },
-        {
-          "nome": "Somigliana Ugo",
-          "pts": 0
-        },
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 162.6
-        },
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "BROCHINACQUA",
-      "manager": "Marco Pier Broccolino",
-      "pts": 162.6,
-      "atleti": [
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": 0
-        },
-        {
-          "nome": "Ceriani Paolo",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Susanna",
-          "pts": 0
-        },
-        {
-          "nome": "Mercati Gherardo",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 162.6
-        }
-      ]
-    },
-    {
-      "team": "Maestri dell'Acqua",
-      "manager": "Annamaria Naborri",
-      "pts": 162.6,
-      "atleti": [
-        {
-          "nome": "Somigliana Anna",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 162.6
-        },
-        {
-          "nome": "Mercati Gherardo",
-          "pts": 0
-        },
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Pescidabrodo",
-      "manager": "Arcangelo Zerbo",
-      "pts": 162.6,
-      "atleti": [
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 162.6
-        },
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        },
-        {
-          "nome": "Brambilla Cecilia",
-          "pts": 0
-        },
-        {
-          "nome": "Bottari Giuseppe",
           "pts": 0
         }
       ]
