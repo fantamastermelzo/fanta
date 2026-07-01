@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FantaMelzo Admin — Riccione 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --p3:#2aa8cc;--p4:#0e7a9e;--p5:#065470;
+  --gold:#f5c800;--gold2:#ffe566;
+  --tdark:#054060;--tmid:#1a6888;--tlight:#4a9ab8;
+  --red:#d02848;--green:#009870;
+}
+body{
+  font-family:"Barlow",-apple-system,sans-serif;
+  min-height:100vh;color:var(--tdark);overflow-x:hidden;
+  background:radial-gradient(ellipse 130% 55% at 50% 0%,#baeef9 0%,transparent 52%),
+    radial-gradient(ellipse 70% 70% at 5% 55%,#c8f0fa 0%,transparent 48%),
+    radial-gradient(ellipse 70% 70% at 95% 35%,#b8ecf8 0%,transparent 48%),
+    linear-gradient(180deg,#d4f4fc 0%,#aee5f3 40%,#8ed6ec 75%,#70c8e4 100%);
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(-42deg,transparent 0,transparent 58px,rgba(255,255,255,0.07) 58px,rgba(255,255,255,0.07) 60px),
+    repeating-linear-gradient(42deg,transparent 0,transparent 78px,rgba(255,255,255,0.05) 78px,rgba(255,255,255,0.05) 80px);
+  animation:ripple 10s linear infinite;
+}
+@keyframes ripple{0%{background-position:0 0,0 0}100%{background-position:120px 120px,-160px 160px}}
+
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(195,238,252,0.74);
+  backdrop-filter:blur(28px) saturate(200%);
+  -webkit-backdrop-filter:blur(28px) saturate(200%);
+  border-bottom:1px solid rgba(255,255,255,0.85);
+  box-shadow:0 2px 22px rgba(0,110,160,0.1),inset 0 1px 0 rgba(255,255,255,0.95);
+}
+.hi{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;}
+.logo-text{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:3px;color:var(--p5);}
+.logo-text span{color:var(--p3);}
+.badge{background:rgba(6,84,112,0.88);color:#fff;font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;}
+
+.container{max-width:1100px;margin:0 auto;padding:40px 24px;position:relative;z-index:1;}
+
+.glass{
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.85);
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,90,140,0.1),inset 0 1px 0 rgba(255,255,255,0.92);
+  padding:28px;
+  margin-bottom:20px;
+}
+
+.sec-title{font-family:"Bebas Neue",sans-serif;font-size:42px;letter-spacing:3px;color:var(--p5);margin-bottom:4px;}
+.sec-title span{color:var(--p3);}
+.sec-bar{width:44px;height:3px;border-radius:2px;margin-bottom:24px;background:linear-gradient(90deg,var(--p3),var(--gold));}
+
+/* LOGIN */
+#login-screen{max-width:420px;margin:80px auto;}
+.login-title{font-family:"Bebas Neue",sans-serif;font-size:52px;letter-spacing:4px;color:var(--p5);text-align:center;margin-bottom:4px;}
+.login-title span{color:var(--gold);}
+.login-sub{font-family:"Barlow Condensed",sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--tlight);text-align:center;margin-bottom:32px;}
+label{display:block;font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tmid);margin-bottom:6px;}
+input[type=password],input[type=text],textarea{
+  width:100%;padding:12px 16px;border-radius:12px;
+  border:1px solid rgba(255,255,255,0.88);
+  background:rgba(255,255,255,0.72);
+  font-family:"Barlow",sans-serif;font-size:14px;color:var(--tdark);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  margin-bottom:16px;
+}
+input:focus,textarea:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
+textarea{resize:vertical;min-height:160px;font-size:13px;line-height:1.6;}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:13px 26px;border-radius:30px;border:none;cursor:pointer;
+  transition:all .22s;
+}
+.btn-primary{background:linear-gradient(135deg,var(--p4),var(--p5));color:#fff;box-shadow:0 4px 18px rgba(6,84,112,0.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(6,84,112,0.4);}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-success{background:linear-gradient(135deg,#009870,#006a4e);color:#fff;box-shadow:0 4px 18px rgba(0,152,112,0.3);}
+.btn-success:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,152,112,0.4);}
+.btn-success:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-ghost{background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.88);color:var(--p4);}
+.btn-ghost:hover{background:rgba(255,255,255,0.88);}
+
+/* STEPS */
+.steps{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
+.step{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 18px;border-radius:30px;
+  font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.88);
+  color:var(--tlight);transition:all .3s;
+}
+.step.active{background:rgba(6,84,112,0.88);color:#fff;border-color:transparent;}
+.step.done{background:rgba(0,152,112,0.15);color:var(--green);border-color:rgba(0,152,112,0.3);}
+.step-num{
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;
+  background:rgba(255,255,255,0.3);
+}
+.step.active .step-num{background:rgba(255,255,255,0.25);}
+.step.done .step-num{background:var(--green);color:#fff;}
+
+/* PANNELLI */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* RISULTATI ANALISI */
+.atleta-card{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px;border-radius:14px;margin-bottom:10px;
+  background:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.88);
+  transition:transform .2s;
+}
+.atleta-card:hover{transform:translateX(3px);}
+.atleta-avatar{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Bebas Neue",sans-serif;font-size:18px;
+  background:linear-gradient(135deg,var(--p3),var(--p5));color:#fff;
+  flex-shrink:0;
+}
+.atleta-name{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:700;color:var(--p5);margin-bottom:4px;}
+.atleta-gare{font-size:12px;color:var(--tmid);line-height:1.7;}
+.atleta-pts{
+  margin-left:auto;text-align:right;flex-shrink:0;
+}
+.pts-num{font-family:"Bebas Neue",sans-serif;font-size:36px;line-height:1;color:var(--p5);}
+.pts-label{font-size:10px;color:var(--tlight);text-transform:uppercase;letter-spacing:1px;}
+
+.bonus-pill{
+  display:inline-block;font-family:"Barlow Condensed",sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:2px 9px;border-radius:20px;margin:2px 3px 2px 0;
+}
+.pill-green{background:rgba(0,152,112,0.12);color:var(--green);border:1px solid rgba(0,152,112,0.25);}
+.pill-gold{background:rgba(245,200,0,0.15);color:#7a5800;border:1px solid rgba(245,200,0,0.3);}
+.pill-red{background:rgba(208,40,72,0.1);color:var(--red);border:1px solid rgba(208,40,72,0.2);}
+.pill-blue{background:rgba(42,168,204,0.12);color:var(--p4);border:1px solid rgba(42,168,204,0.25);}
+
+/* CLASSIFICA PREVIEW */
+.team-row{
+  display:grid;grid-template-columns:40px 1fr auto;gap:12px;
+  align-items:center;padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.52);
+  transition:background .15s;
+}
+.team-row:last-child{border-bottom:none;}
+.team-row:hover{background:rgba(255,255,255,0.5);}
+.rank-num{font-family:"Bebas Neue",sans-serif;font-size:22px;color:rgba(0,90,130,0.3);text-align:center;}
+.rank-num.r1{color:var(--gold);}
+.rank-num.r2{color:#aaa;}
+.rank-num.r3{color:#cd7f32;}
+.team-name{font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:700;color:var(--p5);}
+.team-manager{font-size:12px;color:var(--tlight);}
+.team-pts-big{font-family:"Bebas Neue",sans-serif;font-size:28px;color:var(--p5);}
+
+/* STATUS */
+.status-box{
+  padding:14px 18px;border-radius:12px;margin-top:16px;
+  font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:600;
+  letter-spacing:0.5px;display:none;
+}
+.status-box.show{display:block;}
+.status-success{background:rgba(0,152,112,0.12);color:var(--green);border:1px solid rgba(0,152,112,0.25);}
+.status-error{background:rgba(208,40,72,0.1);color:var(--red);border:1px solid rgba(208,40,72,0.2);}
+.status-info{background:rgba(42,168,204,0.12);color:var(--p4);border:1px solid rgba(42,168,204,0.25);}
+
+/* LOADING */
+.loading{display:none;align-items:center;gap:12px;padding:20px;color:var(--p4);}
+.loading.show{display:flex;}
+.spinner{
+  width:24px;height:24px;border:3px solid rgba(42,168,204,0.2);
+  border-top-color:var(--p3);border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* CONFIG BOX */
+.config-row{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;}
+.config-row>div{flex:1;min-width:200px;}
+
+/* SEZIONE CONFIG NASCOSTA */
+.config-toggle{
+  font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;color:var(--tlight);
+  cursor:pointer;display:flex;align-items:center;gap:6px;
+  padding:8px 0;border:none;background:none;
+}
+.config-toggle:hover{color:var(--p4);}
+
+/* MOBILE */
+@media(max-width:640px){
+  .steps{gap:6px;}
+  .step{padding:8px 12px;font-size:11px;}
+  .atleta-card{flex-wrap:wrap;}
+  .atleta-pts{margin-left:0;}
+  .config-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="logo-text">FANTA<span>MELZO</span></div>
+    <div class="badge">🏊 Admin Riccione 2026</div>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div class="container" id="login-screen">
+  <div class="glass">
+    <div class="login-title">ADMIN<br><span>ACCESS</span></div>
+    <div class="login-sub">FantaMelzo · Riccione 2026</div>
+    <div>
+      <label>Password Admin</label>
+      <input type="password" id="pwd-input" placeholder="Inserisci password…" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn btn-primary" onclick="doLogin()" style="width:100%;justify-content:center;">
+      🔐 Accedi
+    </button>
+    <div id="login-error" class="status-box status-error"></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="container" id="main-app" style="display:none;">
+
+  <!-- STEP INDICATOR -->
+  <div class="steps">
+    <div class="step active" id="step1-ind">
+      <div class="step-num">1</div> Incolla Risultati
+    </div>
+    <div class="step" id="step2-ind">
+      <div class="step-num">2</div> Analisi Claude
+    </div>
+    <div class="step" id="step3-ind">
+      <div class="step-num">3</div> Pubblica
+    </div>
+  </div>
+
+  <!-- PANNELLO 1: INPUT -->
+  <div class="panel active" id="panel1">
+    <div class="glass">
+      <div class="sec-title">INCOLLA <span>RISULTATI</span></div>
+      <div class="sec-bar"></div>
+
+      <p style="font-size:14px;color:var(--tmid);margin-bottom:18px;line-height:1.6;">
+        Vai sul sito FIN, copia i risultati della gara (o più gare) e incollali qui sotto.<br>
+        Claude riconoscerà automaticamente gli atleti del Master Melzo e calcolerà i punti.
+      </p>
+
+      <label>Tipo di gara</label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;">
+        <button class="btn btn-ghost race-type-btn active" data-type="individuale" onclick="selectRaceType(this)">🏊 Individuale (+10 pt)</button>
+        <button class="btn btn-ghost race-type-btn" data-type="staffetta" onclick="selectRaceType(this)">🤝 Staffetta (+5 pt)</button>
+        <button class="btn btn-ghost race-type-btn" data-type="sociale" onclick="selectRaceType(this)">🏠 Gara Sociale (+10 pt)</button>
+      </div>
+
+      <label>Risultati FIN (copia e incolla dal sito o dal PDF)</label>
+      <textarea id="fin-results" placeholder="Incolla qui i risultati della gara FIN...
+
+Esempio:
+1  BOTTARI Selene    35F   2'45.30   5'32.10   ARRIVO 10'45.20
+   ASD Master Melzo  1989
+
+2  ROSSI Mario..."></textarea>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+        <button class="btn btn-primary" onclick="analyzeResults()" id="analyze-btn">
+          🤖 Analizza con Claude
+        </button>
+        <button class="btn btn-ghost" onclick="document.getElementById('fin-results').value=''">
+          🗑️ Pulisci
+        </button>
+      </div>
+
+      <div class="loading" id="loading1">
+        <div class="spinner"></div>
+        <span>Claude sta analizzando i risultati...</span>
+      </div>
+      <div class="status-box" id="status1"></div>
+
+      <!-- CONFIG nascosta -->
+      <div style="margin-top:24px;border-top:1px solid rgba(255,255,255,0.6);padding-top:18px;">
+        <button class="config-toggle" onclick="toggleConfig()">⚙️ Configurazione GitHub e API <span id="config-arrow">▼</span></button>
+        <div id="config-panel" style="display:none;margin-top:16px;">
+          <div class="config-row">
+            <div>
+              <label>GitHub Token</label>
+              <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+            </div>
+            <div>
+              <label>Anthropic API Key</label>
+              <input type="password" id="api-key" placeholder="sk-ant-xxxxxxxxxxxx">
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--tlight);margin-top:-8px;">
+            ⚠️ Inserisci una volta per sessione. Non vengono mai salvate.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANNELLO 2: ANALISI -->
+  <div class="panel" id="panel2">
+    <div class="glass">
+      <div class="sec-title">ATLETI <span>RICONOSCIUTI</span></div>
+      <div class="sec-bar"></div>
+      <p style="font-size:14px;color:var(--tmid);margin-bottom:20px;">
+        Claude ha riconosciuto questi atleti del Master Melzo nei risultati. Verifica i punti e poi pubblica.
+      </p>
+      <div id="atleti-list"></div>
+
+      <div style="margin-top:20px;padding:16px;border-radius:14px;background:rgba(6,84,112,0.06);border:1px solid rgba(6,84,112,0.1);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tmid);margin-bottom:6px;">Note da Claude</div>
+        <div id="claude-notes" style="font-size:13px;color:var(--tmid);line-height:1.7;"></div>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <button class="btn btn-ghost" onclick="goStep(1)">← Modifica</button>
+        <button class="btn btn-success" onclick="publishResults()" id="publish-btn">
+          🚀 Pubblica su GitHub
+        </button>
+      </div>
+
+      <div class="loading" id="loading2">
+        <div class="spinner"></div>
+        <span>Aggiornamento classifica su GitHub...</span>
+      </div>
+      <div class="status-box" id="status2"></div>
+    </div>
+
+    <!-- CLASSIFICA PREVIEW -->
+    <div class="glass">
+      <div class="sec-title">CLASSIFICA <span>AGGIORNATA</span></div>
+      <div class="sec-bar"></div>
+      <div id="classifica-preview" style="border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.88);"></div>
+    </div>
+  </div>
+
+  <!-- PANNELLO 3: SUCCESSO -->
+  <div class="panel" id="panel3">
+    <div class="glass" style="text-align:center;padding:52px 28px;">
+      <div style="font-size:72px;margin-bottom:16px;">🎉</div>
+      <div class="sec-title" style="font-size:52px;">PUBBLICATO!</div>
+      <div class="sec-bar" style="margin:12px auto 20px;"></div>
+      <p style="font-size:16px;color:var(--tmid);margin-bottom:28px;line-height:1.7;">
+        La classifica è stata aggiornata su GitHub.<br>
+        Vercel pubblicherà il sito aggiornato entro 30–60 secondi. 🏊
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="goStep(1)">
+          ➕ Aggiungi altri risultati
+        </button>
+        <a href="https://fantamastermelzo.github.io/fanta/" target="_blank" class="btn btn-ghost">
+          🌐 Vai al sito
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ==================== CONFIG ====================
+const ADMIN_PASSWORD = "melzo2026";
+const GITHUB_REPO = "fantamastermelzo/fanta";
+const GITHUB_FILE = "classifica_fanta.json";
+
+// Lista atleti FantaMelzo (dal JSON)
+const ATLETI_FANTAMELZO = [
+  "Bottari Selene","Brambilla Cecilia","Leoni Alessandro","Crespi Enrico","Pitalieri Francesca",
+  "Somigliana Ugo","Rovida Cristina","Neri Umberto","Sperandio Dario","Brambilla Mauro",
+  "Raviola Tomaso","Mercati Gherardo","Botteghi Alessio","Sena Lucia","Ferrari Bravo Cristina",
+  "Ceriani Paolo","Broccolino Susanna","Broccolino Marco","Zerbo Arcangelo","Martelli Daria",
+  "Accomasso Davide","Parisi Matteo","Sinigaglia Luca","Somigliana Anna","Migliazza Anna",
+  "Vassura Edoardo","Salomone Roberto","Romano Giuseppe","Galiano Ilaria","Pirola Vincenzo",
+  "Dotti Valter","Bottari Giuseppe"
+];
+
+// Punteggi regolamento
+const PUNTI = {
+  individuale: 10, staffetta: 5, sociale: 10,
+  oro: 50, argento: 20, bronzo: 5,
+  record_assoluto: 20, record_categoria: 10,
+  stacanovista: 5, fedelta: 10,
+  squalifica: -15, dns: -15
+};
+
+let classificaData = null;
+let analisiRisultati = null;
+let selectedRaceType = "individuale";
+
+// ==================== LOGIN ====================
+function doLogin() {
+  const pwd = document.getElementById("pwd-input").value;
+  if (pwd === ADMIN_PASSWORD) {
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("main-app").style.display = "block";
+    loadClassifica();
+  } else {
+    const err = document.getElementById("login-error");
+    err.textContent = "❌ Password errata. Riprova.";
+    err.classList.add("show");
+  }
+}
+
+// ==================== CLASSIFICA ====================
+async function loadClassifica() {
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_FILE}?t=${Date.now()}`);
+    classificaData = await r.json();
+  } catch(e) {
+    console.error("Errore caricamento classifica:", e);
+  }
+}
+
+// ==================== UI ====================
+function selectRaceType(btn) {
+  document.querySelectorAll(".race-type-btn").forEach(b => b.classList.remove("active","btn-primary"));
+  document.querySelectorAll(".race-type-btn").forEach(b => b.classList.add("btn-ghost"));
+  btn.classList.add("active","btn-primary");
+  btn.classList.remove("btn-ghost");
+  selectedRaceType = btn.dataset.type;
+}
+
+function toggleConfig() {
+  const p = document.getElementById("config-panel");
+  const a = document.getElementById("config-arrow");
+  if(p.style.display === "none") { p.style.display = "block"; a.textContent = "▲"; }
+  else { p.style.display = "none"; a.textContent = "▼"; }
+}
+
+function goStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById(`panel${i}`).classList.toggle("active", i===n);
+    const ind = document.getElementById(`step${i}-ind`);
+    ind.classList.remove("active","done");
+    if(i < n) ind.classList.add("done");
+    if(i === n) ind.classList.add("active");
+  });
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function showStatus(id, msg, type) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = `status-box show status-${type}`;
+}
+
+// ==================== ANALISI ====================
+async function analyzeResults() {
+  const testo = document.getElementById("fin-results").value.trim();
+  if(!testo) { showStatus("status1","⚠️ Incolla prima i risultati FIN.","error"); return; }
+
+  const apiKey = document.getElementById("api-key").value.trim();
+  if(!apiKey) {
+    // Mostra il config panel se non c'è la chiave
+    document.getElementById("config-panel").style.display = "block";
+    document.getElementById("config-arrow").textContent = "▲";
+    showStatus("status1","⚠️ Inserisci prima la tua Anthropic API Key nella sezione configurazione qui sopra.","error");
+    return;
+  }
+
+  document.getElementById("analyze-btn").disabled = true;
+  document.getElementById("loading1").classList.add("show");
+  document.getElementById("status1").classList.remove("show");
+
+  const atletiList = ATLETI_FANTAMELZO.join(", ");
+  const prompt = `Sei un assistente per FantaMelzo, un fantanuoto dell'ASD Master Melzo.
+
+REGOLAMENTO PUNTI:
+- Gara individuale: +${PUNTI.individuale} pt
+- Staffetta: +${PUNTI.staffetta} pt
+- Gara sociale: +${PUNTI.sociale} pt
+- 1° posto (oro): +${PUNTI.oro} pt
+- 2° posto (argento): +${PUNTI.argento} pt
+- 3° posto (bronzo): +${PUNTI.bronzo} pt
+- Record assoluto sodalizio: +${PUNTI.record_assoluto} pt
+- Record di categoria: +${PUNTI.record_categoria} pt
+- Stacanovista (2+ gare stesso giorno): +${PUNTI.stacanovista} pt
+- Fedeltà al cloro (50+ presenze): +${PUNTI.fedelta} pt
+- Squalifica/DNF: ${PUNTI.squalifica} pt
+- Punti FIN: prendi il punteggio FIN dall'arrivo, dividilo per 10
+
+TIPO DI GARA CORRENTE: ${selectedRaceType}
+
+ATLETI DEL MASTER MELZO DA CERCARE:
+${atletiList}
+
+RISULTATI FIN DA ANALIZZARE:
+${testo}
+
+ISTRUZIONI:
+1. Cerca nei risultati SOLO gli atleti del Master Melzo elencati sopra (confronto cognome+nome, anche con ordine invertito)
+2. Per ognuno calcola i punti totali: punti gara + bonus posizione + eventuali malus
+3. I punti FIN = numero ARRIVO diviso 10 (arrotonda a 1 decimale). Se non c'è un campo punti FIN esplicito, usa il tempo di arrivo e segnalalo
+4. Indica chiaramente ogni componente del punteggio
+5. Se un atleta è SQ o DNF, applica il malus
+6. Se vedi "RI" o "RE" accanto all'arrivo = record italiano/europeo (conta come record assoluto)
+
+Rispondi SOLO con questo JSON (niente altro, niente markdown):
+{
+  "atleti": [
+    {
+      "nome": "Cognome Nome",
+      "pos": 1,
+      "categoria": "35F",
+      "gara": "100m Stile Libero",
+      "arrivo": "1'23.45",
+      "pts_fin": 12.3,
+      "pts_gara": 10,
+      "pts_podio": 50,
+      "pts_record": 0,
+      "pts_stacanovista": 0,
+      "pts_malus": 0,
+      "pts_totale": 72.3,
+      "bonus": ["Oro +50", "Gara individuale +10"],
+      "malus": [],
+      "note": ""
+    }
+  ],
+  "gara_nome": "100m Stile Libero",
+  "data": "29/06/2026",
+  "note_generali": "Trovati 3 atleti su 32 presenti nei risultati.",
+  "atleti_non_trovati": ["Lista atleti cercati ma non presenti in questa gara"]
+}`;
+
+  try {
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 2000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    const data = await resp.json();
+    if(data.error) throw new Error(data.error.message);
+
+    let raw = data.content[0].text.trim();
+    raw = raw.replace(/```json|```/g, "").trim();
+    analisiRisultati = JSON.parse(raw);
+
+    renderAnalisi();
+    goStep(2);
+
+  } catch(e) {
+    showStatus("status1", `❌ Errore: ${e.message}`, "error");
+  } finally {
+    document.getElementById("analyze-btn").disabled = false;
+    document.getElementById("loading1").classList.remove("show");
+  }
+}
+
+// ==================== RENDER ANALISI ====================
+function renderAnalisi() {
+  const list = document.getElementById("atleti-list");
+  const notes = document.getElementById("claude-notes");
+
+  if(!analisiRisultati.atleti || analisiRisultati.atleti.length === 0) {
+    list.innerHTML = `<div class="status-box show status-info">ℹ️ Nessun atleta del Master Melzo trovato in questa gara.</div>`;
+    notes.textContent = analisiRisultati.note_generali || "";
+    updateClassificaPreview();
+    return;
+  }
+
+  list.innerHTML = analisiRisultati.atleti.map(a => {
+    const initials = a.nome.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
+    const posMedal = a.pos === 1 ? "🥇" : a.pos === 2 ? "🥈" : a.pos === 3 ? "🥉" : `#${a.pos}`;
+    const bonusPills = (a.bonus||[]).map(b => `<span class="bonus-pill pill-green">+${b}</span>`).join("");
+    const malusPills = (a.malus||[]).map(m => `<span class="bonus-pill pill-red">${m}</span>`).join("");
+    const finPill = a.pts_fin > 0 ? `<span class="bonus-pill pill-blue">FIN ÷10: +${a.pts_fin}</span>` : "";
+
+    return `
+    <div class="atleta-card">
+      <div class="atleta-avatar">${initials}</div>
+      <div style="flex:1;">
+        <div class="atleta-name">${posMedal} ${a.nome}</div>
+        <div class="atleta-gare">
+          ${a.gara} · ${a.categoria} · Arrivo: ${a.arrivo}
+        </div>
+        <div style="margin-top:6px;">
+          ${finPill}${bonusPills}${malusPills}
+        </div>
+        ${a.note ? `<div style="font-size:11px;color:var(--tlight);margin-top:4px;">💬 ${a.note}</div>` : ""}
+      </div>
+      <div class="atleta-pts">
+        <div class="pts-num">${a.pts_totale}</div>
+        <div class="pts-label">punti</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  let noteText = analisiRisultati.note_generali || "";
+  if(analisiRisultati.atleti_non_trovati?.length > 0) {
+    noteText += ` Non presenti in questa gara: ${analisiRisultati.atleti_non_trovati.join(", ")}.`;
+  }
+  notes.textContent = noteText;
+
+  // Aggiorna la classifica in memoria
+  aggiornaPuntiInMemoria();
+  updateClassificaPreview();
+}
+
+// ==================== AGGIORNA PUNTI ====================
+function aggiornaPuntiInMemoria() {
+  if(!classificaData || !analisiRisultati) return;
+
+  analisiRisultati.atleti.forEach(atletaAnalisi => {
+    classificaData.classifica.forEach(team => {
+      team.atleti.forEach(atleta => {
+        // Confronto fuzzy cognome+nome
+        const nomeJson = atleta.nome.toLowerCase().replace(/\s+/g," ").trim();
+        const nomeAna = atletaAnalisi.nome.toLowerCase().replace(/\s+/g," ").trim();
+        const [cj, nj] = nomeJson.split(" ");
+        const [ca, na] = nomeAna.split(" ");
+
+        if((nomeJson === nomeAna) ||
+           (cj && nj && ca && na && ((cj===ca && nj===na)||(cj===na && nj===ca)))) {
+          atleta.pts = (atleta.pts || 0) + atletaAnalisi.pts_totale;
+        }
+      });
+      // Ricalcola totale team
+      team.pts = team.atleti.reduce((sum, a) => sum + (a.pts || 0), 0);
+    });
+  });
+
+  // Ordina per punti
+  classificaData.classifica.sort((a,b) => b.pts - a.pts);
+}
+
+// ==================== CLASSIFICA PREVIEW ====================
+function updateClassificaPreview() {
+  if(!classificaData) return;
+  const el = document.getElementById("classifica-preview");
+  el.innerHTML = classificaData.classifica.map((team, i) => {
+    const rank = i+1;
+    const rankClass = rank===1?"r1":rank===2?"r2":rank===3?"r3":"";
+    return `
+    <div class="team-row">
+      <div class="rank-num ${rankClass}">${rank}</div>
+      <div>
+        <div class="team-name">${team.team}</div>
+        <div class="team-manager">Manager: ${team.manager}</div>
+      </div>
+      <div class="team-pts-big">${team.pts}</div>
+    </div>`;
+  }).join("");
+}
+
+// ==================== PUBBLICA ====================
+async function publishResults() {
+  const token = document.getElementById("gh-token").value.trim();
+  if(!token) {
+    document.getElementById("config-panel").style.display = "block";
+    document.getElementById("config-arrow").textContent = "▲";
+    showStatus("status2","⚠️ Inserisci il GitHub Token nella sezione configurazione (Passo 1).","error");
+    return;
+  }
+
+  document.getElementById("publish-btn").disabled = true;
+  document.getElementById("loading2").classList.add("show");
+  document.getElementById("status2").classList.remove("show");
+
+  try {
+    // 1. Prendi SHA del file attuale
+    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+      headers: { "Authorization": `token ${token}`, "Accept": "application/vnd.github.v3+json" }
+    });
+    const shaData = await shaResp.json();
+    if(!shaData.sha) throw new Error("File non trovato nel repo. Controlla il nome del file.");
+
+    // 2. Pubblica il file aggiornato
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(classificaData, null, 2))));
+    const garaInfo = analisiRisultati ? `${analisiRisultati.gara_nome} - ${analisiRisultati.data}` : "aggiornamento";
+
+    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `token ${token}`,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: `🏊 Aggiorna classifica: ${garaInfo}`,
+        content: content,
+        sha: shaData.sha
+      })
+    });
+
+    const putData = await putResp.json();
+    if(putData.content) {
+      goStep(3);
+    } else {
+      throw new Error(putData.message || "Errore durante il salvataggio");
+    }
+
+  } catch(e) {
+    showStatus("status2", `❌ Errore: ${e.message}`, "error");
+  } finally {
+    document.getElementById("publish-btn").disabled = false;
+    document.getElementById("loading2").classList.remove("show");
+  }
+}
+</script>
+</body>
+</html>
