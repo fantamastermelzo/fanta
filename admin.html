@@ -338,7 +338,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 // Atleti Master Melzo
 const ATLETI = [
   "Bottari Selene","Brambilla Cecilia","Leoni Alessandro","Crespi Enrico","Pitalieri Francesca",
-  "Somigliana Ugo","Rovida Cristina","Neri Umberto","Sperandio Dario","Brambilla Mauro",
+  "Somigliana Ugo","Rovida Maria Cristina","Neri Umberto","Sperandio Dario","Brambilla Mauro",
   "Raviola Tomaso","Mercati Gherardo","Botteghi Alessio","Sena Lucia","Ferrari Bravo Cristina",
   "Ceriani Paolo","Broccolino Susanna","Broccolino Marco","Zerbo Arcangelo","Martelli Daria",
   "Accomasso Davide","Parisi Matteo","Sinigaglia Luca","Somigliana Anna","Migliazza Anna",
@@ -501,13 +501,24 @@ function parseResults(text, filename){
     // Cerca ogni atleta nel testo
     for(const atleta of atletiLower){
       const cognome = atleta.parts[0];
-      const nome = atleta.parts.slice(1).join(" ");
+      const nomi = atleta.parts.slice(1); // tutti i nomi (es. ["maria","cristina"])
 
-      // Pattern: COGNOME (maiuscolo) NOME (maiuscolo o misto)
-      const regexStr = `\\b${cognome}\\b[\\s]+${nome.replace(" ","[\\s]+")}\\b`;
-      const regex = new RegExp(regexStr, "i");
+      // Match flessibile:
+      // 1. Cognome deve essere presente
+      // 2. Almeno il PRIMO nome deve essere presente dopo il cognome
+      // 3. Eventuali secondi nomi intermedi (es. "Maria") sono opzionali
+      const cognomeRegex = new RegExp(`\\b${cognome}\\b`, "i");
+      if(!cognomeRegex.test(line)) continue;
 
-      if(regex.test(line)){
+      // Controlla che il cognome sia seguito dai nomi (tutti o almeno il primo+ultimo)
+      const primoNome = nomi[0];
+      const ultimoNome = nomi[nomi.length-1];
+      const nomeRegex = new RegExp(`\\b${cognome}\\b[\\s\\w]*\\b${ultimoNome}\\b`, "i");
+      const nomeRegex2 = new RegExp(`\\b${cognome}\\b[\\s]+${primoNome}\\b`, "i");
+
+      if(!nomeRegex.test(line) && !nomeRegex2.test(line)) continue;
+
+      if(true){
         // Già trovato?
         if(trovati.find(t => t.nome === atleta.orig)) continue;
 
@@ -591,12 +602,14 @@ function aggiornaPunti(){
       team.atleti.forEach(atleta => {
         const nA = atleta.nome.toLowerCase().trim();
         const nR = r.nome.toLowerCase().trim();
-        // match diretto o invertito (Cognome Nome / Nome Cognome)
         const partsA = nA.split(" ");
         const partsR = nR.split(" ");
-        const match = nA===nR ||
-          (partsA.length>=2 && partsR.length>=2 &&
-            partsA[0]===partsR[0] && partsA.slice(1).join(" ")===partsR.slice(1).join(" "));
+        // Match: stesso cognome + almeno un nome in comune
+        const cognomeMatch = partsA[0] === partsR[0];
+        const nomiA = partsA.slice(1);
+        const nomiR = partsR.slice(1);
+        const nomeMatch = nomiA.some(n => nomiR.includes(n));
+        const match = nA===nR || (cognomeMatch && nomeMatch);
         if(match){
           atleta.pts = Math.round(((atleta.pts||0) + r.ptsTot)*10)/10;
         }
