@@ -1,6 +1,87 @@
 {
   "classifica": [
     {
+      "team": "Master Milza",
+      "manager": "Tomaso Raviola",
+      "pts": 275.1,
+      "atleti": [
+        {
+          "nome": "Sena Lucia",
+          "pts": 0
+        },
+        {
+          "nome": "Bottari Selene",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 94.3
+        },
+        {
+          "nome": "Salomone Roberto",
+          "pts": 180.8
+        },
+        {
+          "nome": "Leoni Alessandro",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Dorso e pregiudizio",
+      "manager": "Filippo Broccolino",
+      "pts": 275.1,
+      "atleti": [
+        {
+          "nome": "Mercati Gherardo",
+          "pts": 0
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": 0
+        },
+        {
+          "nome": "Salomone Roberto",
+          "pts": 180.8
+        },
+        {
+          "nome": "Somigliana Anna",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 94.3
+        }
+      ]
+    },
+    {
+      "team": "Li faremo tutti Neri",
+      "manager": "Umberto Neri",
+      "pts": 262.1,
+      "atleti": [
+        {
+          "nome": "Romano Giuseppe",
+          "pts": 0
+        },
+        {
+          "nome": "Salomone Roberto",
+          "pts": 180.8
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3
+        },
+        {
+          "nome": "Somigliana Anna",
+          "pts": 0
+        }
+      ]
+    },
+    {
       "team": "Alianti tirreni",
       "manager": "Edoardo Vassura",
       "pts": 185.3,
@@ -190,60 +271,6 @@
       ]
     },
     {
-      "team": "Master Milza",
-      "manager": "Tomaso Raviola",
-      "pts": 94.3,
-      "atleti": [
-        {
-          "nome": "Sena Lucia",
-          "pts": 0
-        },
-        {
-          "nome": "Bottari Selene",
-          "pts": 0
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 94.3
-        },
-        {
-          "nome": "Salomone Roberto",
-          "pts": 0
-        },
-        {
-          "nome": "Leoni Alessandro",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Dorso e pregiudizio",
-      "manager": "Filippo Broccolino",
-      "pts": 94.3,
-      "atleti": [
-        {
-          "nome": "Mercati Gherardo",
-          "pts": 0
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0
-        },
-        {
-          "nome": "Salomone Roberto",
-          "pts": 0
-        },
-        {
-          "nome": "Somigliana Anna",
-          "pts": 0
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 94.3
-        }
-      ]
-    },
-    {
       "team": "Delfino guasto",
       "manager": "Silvio Scotti",
       "pts": 91,
@@ -374,33 +401,6 @@
         },
         {
           "nome": "Bottari Giuseppe",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Li faremo tutti Neri",
-      "manager": "Umberto Neri",
-      "pts": 81.3,
-      "atleti": [
-        {
-          "nome": "Romano Giuseppe",
-          "pts": 0
-        },
-        {
-          "nome": "Salomone Roberto",
-          "pts": 0
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 81.3
-        },
-        {
-          "nome": "Somigliana Anna",
           "pts": 0
         }
       ]
