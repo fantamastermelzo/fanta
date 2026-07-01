@@ -3,7 +3,7 @@
     {
       "team": "Master Milza",
       "manager": "Tomaso Raviola",
-      "pts": 128.1,
+      "pts": 154.2,
       "atleti": [
         {
           "nome": "Sena Lucia",
@@ -15,7 +15,7 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
         },
         {
           "nome": "Salomone Roberto",
@@ -30,7 +30,7 @@
     {
       "team": "Dorso e pregiudizio",
       "manager": "Filippo Broccolino",
-      "pts": 128.1,
+      "pts": 154.2,
       "atleti": [
         {
           "nome": "Mercati Gherardo",
@@ -50,7 +50,34 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
+        }
+      ]
+    },
+    {
+      "team": "Alianti tirreni",
+      "manager": "Edoardo Vassura",
+      "pts": 107.4,
+      "atleti": [
+        {
+          "nome": "Bottari Selene",
+          "pts": null
+        },
+        {
+          "nome": "Pitalieri Francesca",
+          "pts": null
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 52.2
+        },
+        {
+          "nome": "Brambilla Mauro",
+          "pts": 55.2
+        },
+        {
+          "nome": "Leoni Alessandro",
+          "pts": null
         }
       ]
     },
@@ -82,36 +109,9 @@
       ]
     },
     {
-      "team": "Alianti tirreni",
-      "manager": "Edoardo Vassura",
-      "pts": 53.7,
-      "atleti": [
-        {
-          "nome": "Bottari Selene",
-          "pts": null
-        },
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": null
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 26.1
-        },
-        {
-          "nome": "Brambilla Mauro",
-          "pts": 27.6
-        },
-        {
-          "nome": "Leoni Alessandro",
-          "pts": null
-        }
-      ]
-    },
-    {
       "team": "Delfino guasto",
       "manager": "Silvio Scotti",
-      "pts": 27.6,
+      "pts": 55.2,
       "atleti": [
         {
           "nome": "Somigliana Anna",
@@ -131,18 +131,18 @@
         },
         {
           "nome": "Brambilla Mauro",
-          "pts": 27.6
+          "pts": 55.2
         }
       ]
     },
     {
       "team": "L'importante è battere Cucciolo Merda",
       "manager": "Lucia Sena",
-      "pts": 26.1,
+      "pts": 52.2,
       "atleti": [
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
         },
         {
           "nome": "Somigliana Ugo",
@@ -165,7 +165,7 @@
     {
       "team": "Gli acquatori",
       "manager": "Virginia Vassenna",
-      "pts": 26.1,
+      "pts": 52.2,
       "atleti": [
         {
           "nome": "Sena Lucia",
@@ -177,7 +177,7 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
         },
         {
           "nome": "Bottari Selene",
@@ -192,7 +192,7 @@
     {
       "team": "Clorotossici",
       "manager": "Vincenzo Pirola",
-      "pts": 26.1,
+      "pts": 52.2,
       "atleti": [
         {
           "nome": "Somigliana Anna",
@@ -204,7 +204,7 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
         },
         {
           "nome": "Zerbo Arcangelo",
@@ -219,7 +219,7 @@
     {
       "team": "Quelli con le Birkenstock",
       "manager": "Cecilia Brambilla",
-      "pts": 26.1,
+      "pts": 52.2,
       "atleti": [
         {
           "nome": "Migliazza Anna",
@@ -231,7 +231,7 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
         },
         {
           "nome": "Vassura Edoardo",
@@ -246,7 +246,7 @@
     {
       "team": "I MASTER_IZZATI",
       "manager": "Daniel Rogati",
-      "pts": 26.1,
+      "pts": 52.2,
       "atleti": [
         {
           "nome": "Pitalieri Francesca",
@@ -258,7 +258,7 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
         },
         {
           "nome": "Sena Lucia",
@@ -273,7 +273,7 @@
     {
       "team": "Meltzunami",
       "manager": "Susanna Broccolino",
-      "pts": 26.1,
+      "pts": 52.2,
       "atleti": [
         {
           "nome": "Bottari Selene",
@@ -281,7 +281,7 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 26.1
+          "pts": 52.2
         },
         {
           "nome": "Broccolino Marco",
