@@ -538,17 +538,27 @@ function renderClassifica(){
   const cl=document.getElementById("classificaList");
   if(p) p.innerHTML="<div style='text-align:center;padding:40px;color:var(--tlight);font-family:\"Barlow Condensed\",sans-serif;font-size:16px;letter-spacing:1px'>&#9203; Caricamento classifica...</div>";
   if(cl) cl.innerHTML="";
-  const jsonUrl="https://raw.githubusercontent.com/fantamastermelzo/fanta/main/classifica_fanta.json?t="+Date.now();
-  fetch(jsonUrl)
+  // Usa GitHub API per evitare cache di raw.githubusercontent.com
+  const apiUrl="https://api.github.com/repos/fantamastermelzo/fanta/contents/classifica_fanta.json";
+  fetch(apiUrl, {headers:{"Accept":"application/vnd.github.v3+json"}})
     .then(r=>r.json())
-    .then(data=>{
+    .then(apiData=>{
+      // Il contenuto è in base64
+      const jsonStr = decodeURIComponent(escape(atob(apiData.content.replace(/\n/g,''))));
+      const data = JSON.parse(jsonStr);
       if(data.classifica && data.classifica.length>0){
         _renderClassificaConSquadre(data.classifica);
       } else {
         _renderClassificaConSquadre(demoClassifica);
       }
     })
-    .catch(()=>_renderClassificaConSquadre(demoClassifica));
+    .catch(()=>{
+      // Fallback a raw se API non funziona
+      fetch("https://raw.githubusercontent.com/fantamastermelzo/fanta/main/classifica_fanta.json?t="+Date.now())
+        .then(r=>r.json())
+        .then(data=>{ if(data.classifica&&data.classifica.length>0) _renderClassificaConSquadre(data.classifica); else _renderClassificaConSquadre(demoClassifica); })
+        .catch(()=>_renderClassificaConSquadre(demoClassifica));
+    });
 }
 function _renderClassificaConSquadre(squadre){
   const s=[...squadre].sort((a,b)=>b.pts-a.pts);
