@@ -1,6 +1,87 @@
 {
   "classifica": [
     {
+      "team": "Master Milza",
+      "manager": "Tomaso Raviola",
+      "pts": 44.2,
+      "atleti": [
+        {
+          "nome": "Sena Lucia",
+          "pts": null
+        },
+        {
+          "nome": "Bottari Selene",
+          "pts": null
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": null
+        },
+        {
+          "nome": "Salomone Roberto",
+          "pts": 44.2
+        },
+        {
+          "nome": "Leoni Alessandro",
+          "pts": null
+        }
+      ]
+    },
+    {
+      "team": "Li faremo tutti Neri",
+      "manager": "Umberto Neri",
+      "pts": 44.2,
+      "atleti": [
+        {
+          "nome": "Romano Giuseppe",
+          "pts": null
+        },
+        {
+          "nome": "Salomone Roberto",
+          "pts": 44.2
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": null
+        },
+        {
+          "nome": "Rovida Cristina",
+          "pts": null
+        },
+        {
+          "nome": "Somigliana Anna",
+          "pts": null
+        }
+      ]
+    },
+    {
+      "team": "Dorso e pregiudizio",
+      "manager": "Filippo Broccolino",
+      "pts": 44.2,
+      "atleti": [
+        {
+          "nome": "Mercati Gherardo",
+          "pts": null
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": null
+        },
+        {
+          "nome": "Salomone Roberto",
+          "pts": 44.2
+        },
+        {
+          "nome": "Somigliana Anna",
+          "pts": null
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": null
+        }
+      ]
+    },
+    {
       "team": "Cucciolo Merda",
       "manager": "Dario Sperandio",
       "pts": 0,
@@ -541,60 +622,6 @@
       ]
     },
     {
-      "team": "Master Milza",
-      "manager": "Tomaso Raviola",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Sena Lucia",
-          "pts": null
-        },
-        {
-          "nome": "Bottari Selene",
-          "pts": null
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": null
-        },
-        {
-          "nome": "Salomone Roberto",
-          "pts": null
-        },
-        {
-          "nome": "Leoni Alessandro",
-          "pts": null
-        }
-      ]
-    },
-    {
-      "team": "Li faremo tutti Neri",
-      "manager": "Umberto Neri",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Romano Giuseppe",
-          "pts": null
-        },
-        {
-          "nome": "Salomone Roberto",
-          "pts": null
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": null
-        },
-        {
-          "nome": "Rovida Cristina",
-          "pts": null
-        },
-        {
-          "nome": "Somigliana Anna",
-          "pts": null
-        }
-      ]
-    },
-    {
       "team": "Virate&drammi",
       "manager": "Selene Bottari",
       "pts": 0,
@@ -698,33 +725,6 @@
         },
         {
           "nome": "Mercati Gherardo",
-          "pts": null
-        }
-      ]
-    },
-    {
-      "team": "Dorso e pregiudizio",
-      "manager": "Filippo Broccolino",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Mercati Gherardo",
-          "pts": null
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": null
-        },
-        {
-          "nome": "Salomone Roberto",
-          "pts": null
-        },
-        {
-          "nome": "Somigliana Anna",
-          "pts": null
-        },
-        {
-          "nome": "Sperandio Dario",
           "pts": null
         }
       ]
