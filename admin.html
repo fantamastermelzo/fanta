@@ -738,7 +738,11 @@ async function publishResults(){
     const shaData = await shaResp.json();
     if(!shaData.sha) throw new Error("File non trovato nel repo GitHub.");
 
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(classificaData,null,2))));
+    // Encoding sicuro per Unicode (emoji, caratteri speciali)
+    const jsonStr = JSON.stringify(classificaData, null, 2);
+    const bytes = new TextEncoder().encode(jsonStr);
+    const binStr = Array.from(bytes).map(b => String.fromCharCode(b)).join('');
+    const content = btoa(binStr);
     const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
       method:"PUT",
       headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
