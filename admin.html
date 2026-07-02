@@ -296,6 +296,8 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
       </div>
 
       <!-- Proposte nuovi record di club (categoria + assoluto), da confermare manualmente -->
+      <div id="duplicate-warning-box" style="display:none;margin-top:16px;"></div>
+
       <div id="record-proposte-box" style="display:none;margin-top:20px;border-top:1px solid rgba(255,255,255,0.6);padding-top:18px;"></div>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
@@ -400,6 +402,7 @@ const ADMIN_PASSWORD = "melzo2026";
 const GITHUB_REPO = "fantamastermelzo/fanta";
 const GITHUB_FILE = "classifica_fanta.json";
 const GITHUB_RECORDS_FILE = "records_individuali.json";
+const GITHUB_RECORDS_STAFFETTA_FILE = "records_staffette.json";
 
 // Workerless PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -431,8 +434,15 @@ const PTS = {individuale:10, staffetta:5, oro:50, argento:20, bronzo:5, record_a
 let classificaData = null;
 let recordsData = null;          // dati record categoria/assoluto club (records_individuali.json)
 let recordsLoadError = false;    // true se il file record non è stato trovato/caricato
+let recordsStaffetta = null;     // dati record categoria/assoluto club per le staffette (records_staffette.json)
+let recordsStaffettaLoadError = false;
 let risultatiGara = []; // atleti trovati con punti
 let recordProposals = []; // proposte di aggiornamento record da confermare
+let appliedRaceIdsThisSession = new Set(); // gare già applicate in questa sessione (anche se non ancora pubblicate)
+let currentRaceId = null;
+let currentRaceAlreadyApplied = false;
+let currentRaceDuplicateInfo = null; // {when, garaName, dataGara}
+let currentGaraName = "", currentDataGara = "", currentIsStaffetta = false, currentPtsGara = 0;
 let selectedTipoPts = null;
 let selectedTipoLabel = "";
 let logModifiche = [];
@@ -461,6 +471,17 @@ function normEventCode(code){
   if(code.endsWith("MI")) code = code.slice(0,-2) + "MX";
   return code;
 }
+
+// Calcola un identificativo stabile della gara, basato sul CONTENUTO (gara + data + atleti Melzo + i loro
+// tempi/arrivo), non sul nome del file. Così anche un PDF rinominato o ricaricato per errore viene riconosciuto
+// come lo stesso risultato, mentre una correzione reale (tempi diversi) non viene bloccata per errore.
+function computeRaceId(garaName, dataGara, isStaffetta, trovati){
+  const parti = trovati
+    .map(t => `${t.nome}:${t.arrivo||"-"}:${t.isSQ?"SQ":t.isNP?"NP":"OK"}`)
+    .sort();
+  return `${(garaName||"").trim().toLowerCase()}|${(dataGara||"").trim()}|${isStaffetta?"staffetta":"individuale"}|${parti.join(",")}`;
+}
+
 
 // Mappa nome disciplina italiano -> suffisso codice
 const STROKE_MAP = [
@@ -543,6 +564,104 @@ function checkRecordClub(eventCode, genere, categoria, secondiArrivo){
     });
   }
   return out;
+}
+
+// ========== SUPPORTO STAFFETTE ==========
+
+// Soglie età (somma anni dei 4 atleti) usate dalla FIN per le categorie di staffetta:
+// la sigla stampata (es. "240") è la soglia minima della fascia; la fascia arriva
+// fino alla soglia successiva -1 (es. "240" -> "240-279").
+const RELAY_THRESHOLDS = [80,100,120,160,200,240,280,320,360,400];
+function relayRangeForCode(code){
+  code = parseInt(code, 10);
+  if(isNaN(code)) return null;
+  let idx = RELAY_THRESHOLDS.indexOf(code);
+  if(idx === -1){
+    const lower = RELAY_THRESHOLDS.filter(t => t <= code).pop();
+    if(lower === undefined) return null;
+    code = lower;
+    idx = RELAY_THRESHOLDS.indexOf(lower);
+  }
+  const upper = (idx+1 < RELAY_THRESHOLDS.length) ? RELAY_THRESHOLDS[idx+1]-1 : code+999;
+  return `${code}-${upper}`;
+}
+
+// Riconosce la specialità staffetta (es. "4X50SL") dal testo/nome file
+function detectStaffettaSpecialty(text, filename){
+  const t = (text||"") + " " + (filename||"");
+  const m = t.match(/(\d)\s*[xX]\s*(\d{2,4})\s*m?\s*(Stile Libero|Dorso|Rana|Farfalla|Misti?|Mist)/i);
+  if(m){
+    const n = m[1], dist = m[2];
+    let stroke = "SL";
+    if(/dorso/i.test(m[3])) stroke = "DO";
+    else if(/rana/i.test(m[3])) stroke = "RA";
+    else if(/farfalla/i.test(m[3])) stroke = "FA";
+    else if(/mist/i.test(m[3])) stroke = "MX";
+    else if(/stile/i.test(m[3])) stroke = "SL";
+    return `${n}X${dist}${stroke}`;
+  }
+  // fallback dal nome file, es. CLS-MAX-M050SL-TIM-ALL.pdf -> 4x50SL (le staffette FIN sono sempre 4x)
+  const m2 = (filename||"").toUpperCase().match(/(\d{2,4})(SL|DO|RA|FA|MX|MI)\b/);
+  if(m2){
+    let stroke = m2[2] === "MI" ? "MX" : m2[2];
+    return `4X${m2[1]}${stroke}`;
+  }
+  return null;
+}
+
+// Riconosce il genere della staffetta (mista/maschile/femminile) dal titolo gara
+function detectStaffettaGender(text){
+  if(/mist[ae]|mixed/i.test(text)) return "miststaffette";
+  if(/maschi/i.test(text)) return "uomini";
+  if(/femmine/i.test(text)) return "donne";
+  return null;
+}
+
+// Confronta il tempo di una staffetta con le tabelle record di club (categoria + assoluto).
+function checkRecordStaffetta(specialty, gender, catCode, secondiArrivo){
+  const out = { ptsRecord: 0, labelRecord: null, proposte: [] };
+  if(!specialty || !gender || secondiArrivo == null) return out;
+  if(!recordsStaffetta || !recordsStaffetta[specialty] || !recordsStaffetta[specialty][gender]) return out;
+
+  const bucket = recordsStaffetta[specialty][gender];
+  const recAssoluto = bucket.assoluto;
+  const range = catCode != null ? relayRangeForCode(catCode) : null;
+  const recCategoria = (range && bucket.categorie) ? bucket.categorie[range] : null;
+
+  const beatsAssoluto = !recAssoluto || (recAssoluto.secondi != null && secondiArrivo < recAssoluto.secondi);
+  const beatsCategoria = !!range && (!recCategoria || (recCategoria.secondi != null && secondiArrivo < recCategoria.secondi));
+
+  if(beatsAssoluto){
+    out.ptsRecord = PTS.record_assoluto;
+    out.labelRecord = `Record assoluto staffetta club +${PTS.record_assoluto}`;
+  } else if(beatsCategoria){
+    out.ptsRecord = PTS.record_categoria;
+    out.labelRecord = `Record categoria staffetta club +${PTS.record_categoria}`;
+  }
+
+  if(beatsAssoluto){
+    out.proposte.push({ kind:"staffetta", tipo: "assoluto", specialty, gender, catRange: null, vecchio: recAssoluto, nuovoSecondi: secondiArrivo });
+  }
+  if(beatsCategoria){
+    out.proposte.push({ kind:"staffetta", tipo: "categoria", specialty, gender, catRange: range, vecchio: recCategoria, nuovoSecondi: secondiArrivo });
+  }
+  return out;
+}
+
+// Cerca nella riga un atleta della lista ATLETI (stessa euristica cognome+nome usata per le gare individuali)
+function matchAtletaInLine(line, atletiLower){
+  for(const atleta of atletiLower){
+    const cognome = atleta.parts[0];
+    const nomi = atleta.parts.slice(1);
+    const cognomeRegex = new RegExp(`\\b${cognome}\\b`, "i");
+    if(!cognomeRegex.test(line)) continue;
+    const primoNome = nomi[0];
+    const ultimoNome = nomi[nomi.length-1];
+    const nomeRegex = new RegExp(`\\b${cognome}\\b[\\s\\w]*\\b${ultimoNome}\\b`, "i");
+    const nomeRegex2 = new RegExp(`\\b${cognome}\\b[\\s]+${primoNome}\\b`, "i");
+    if(nomeRegex.test(line) || nomeRegex2.test(line)) return atleta;
+  }
+  return null;
 }
 
 // ========== MODIFICA MANUALE ==========
@@ -698,6 +817,7 @@ function doLogin(){
     document.getElementById("config-arrow").textContent = "▲";
     loadClassifica();
     loadRecords();
+    loadRecordsStaffetta();
   } else {
     showStatus("login-error","❌ Password errata.","error");
   }
@@ -722,6 +842,20 @@ async function loadRecords(){
     console.warn("Record di club non caricati:", e.message);
     recordsData = null;
     recordsLoadError = true;
+  }
+}
+
+// ========== RECORD DI CLUB STAFFETTE (categoria + assoluto) ==========
+async function loadRecordsStaffetta(){
+  recordsStaffettaLoadError = false;
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_RECORDS_STAFFETTA_FILE}?t=${Date.now()}`);
+    if(!r.ok) throw new Error("File record staffette non trovato nel repo ("+r.status+")");
+    recordsStaffetta = await r.json();
+  } catch(e){
+    console.warn("Record staffette di club non caricati:", e.message);
+    recordsStaffetta = null;
+    recordsStaffettaLoadError = true;
   }
 }
 
@@ -811,7 +945,7 @@ function parseResults(text, filename){
   let garaName = "";
   const garaPatterns = [
     /(\d+)\s*m\s*(Stile Libero|Dorso|Rana|Farfalla|Misti?|Delfino)/i,
-    /(4[xX]50)\s*(Stile Libero|Dorso|Rana|Farfalla|Misti?|Mistaffetta)/i,
+    /(\d[xX]\d+)\s*m?\s*(Stile Libero|Dorso|Rana|Farfalla|Misti?|Mistaffetta)/i,
     /(800|1500)\s*(Stile Libero)/i
   ];
   for(const line of lines){
@@ -823,12 +957,18 @@ function parseResults(text, filename){
   }
   if(!garaName) garaName = filename.replace(".pdf","").replace(/_/g," ");
 
-  // Rileva se staffetta
-  const isStaffetta = STAFFETTE.some(s => garaName.toUpperCase().includes(s) || filename.toUpperCase().includes(s));
+  // Rileva se staffetta: controlla l'intero testo del PDF (non solo nome file/gara),
+  // perché il nome file spesso non contiene "staffetta"/"4x50" in modo riconoscibile.
+  const isStaffetta = /\bSTAFFETTA\b/i.test(text) || /\d\s*[xX]\s*\d+\s*m/i.test(text) ||
+    STAFFETTE.some(s => garaName.toUpperCase().includes(s) || filename.toUpperCase().includes(s));
   const ptsGara = isStaffetta ? PTS.staffetta : PTS.individuale;
 
   // Codice specialità per il controllo record (solo gare individuali)
   const eventCode = isStaffetta ? null : detectEventCode(filename, garaName);
+
+  // Specialità e genere della staffetta (per il controllo record di club staffette)
+  const staffettaSpecialty = isStaffetta ? detectStaffettaSpecialty(text, filename) : null;
+  const staffettaGender = isStaffetta ? detectStaffettaGender(garaName + " " + text.slice(0,500)) : null;
 
   // Data gara
   let dataGara = "";
@@ -848,9 +988,109 @@ function parseResults(text, filename){
   }));
 
   let currentCategoria = null; // {categoria:"M60", genere:"donne"} - aggiornata leggendo le intestazioni "MASTER XXF/M"
+  let currentTeam = null; // stato della squadra staffetta corrente (solo se isStaffetta)
+  const nomiSconosciuti = []; // nominativi "melzo" non riconosciuti (sia gare individuali che staffette)
+
+  // Finalizza il blocco squadra staffetta corrente (se è Master Melzo Nuoto) e genera i risultati
+  function finalizeTeam(){
+    if(!currentTeam || !currentTeam.isMelzo || currentTeam.athletesMatched.length === 0){
+      currentTeam = null;
+      return;
+    }
+    const nonValido = currentTeam.status === "SQ" || currentTeam.status === "NP";
+    const ptsBase = nonValido ? 0 : PTS.staffetta;
+    const ptsMalus = currentTeam.status === "SQ" ? PTS.squalifica : 0;
+
+    let ptsRecord = 0, labelRecord = null;
+    if(!nonValido && staffettaSpecialty && staffettaGender && currentTeam.arrivoSeconds != null){
+      const check = checkRecordStaffetta(staffettaSpecialty, staffettaGender, currentTeam.catCode, currentTeam.arrivoSeconds);
+      ptsRecord = check.ptsRecord;
+      labelRecord = check.labelRecord;
+      if(check.proposte.length){
+        check.proposte.forEach(p => proposteRecord.push({
+          ...p,
+          atleti: currentTeam.athletesMatched.map(a => a.atleta.orig),
+          tempo: currentTeam.arrivo
+        }));
+      }
+    }
+
+    const ptsTot = Math.round((ptsBase + ptsRecord + ptsMalus)*10)/10;
+    const bonus = [];
+    const malus = [];
+    if(!nonValido){
+      bonus.push(`Staffetta +${PTS.staffetta}`);
+      if(labelRecord) bonus.push("🏆 "+labelRecord);
+    }
+    if(currentTeam.status === "SQ") malus.push(`Squalifica ${PTS.squalifica}`);
+    if(currentTeam.status === "NP") malus.push(`Non partito (NP) — 0 pt`);
+
+    currentTeam.athletesMatched.forEach(({atleta, line}) => {
+      const cm = line.match(/\b(\d{2})([MF])\b/);
+      trovati.push({
+        nome: atleta.orig,
+        pos: currentTeam.pos,
+        arrivo: currentTeam.arrivo,
+        categoria: cm ? "M"+cm[1] : null,
+        genere: cm ? (cm[2]==="F" ? "donne" : "uomini") : null,
+        isSQ: currentTeam.status === "SQ",
+        isNP: currentTeam.status === "NP",
+        isStaffetta: true,
+        ptsBase, ptsPodio: 0, ptsRecord, ptsMalus, ptsFin: 0,
+        ptsTot,
+        bonus, malus
+      });
+    });
+    currentTeam = null;
+  }
 
   for(let i=0; i<lines.length; i++){
     const line = lines[i];
+
+    if(isStaffetta){
+      // Intestazione di sezione ("MASTER 280X ...") o "NON CLASSIFICATI": chiude il blocco squadra corrente
+      if(/^MASTER\s+\d+X/i.test(line) || line.trim().toUpperCase() === "NON CLASSIFICATI"){
+        finalizeTeam();
+        continue;
+      }
+      // Riga squadra: inizia con un numero di posizione (le righe atleta dentro il blocco non hanno mai un numero iniziale)
+      const teamLeadMatch = line.match(/^\s*(\d+)\s+/);
+      if(teamLeadMatch){
+        finalizeTeam(); // chiude il blocco precedente prima di aprirne uno nuovo
+        const pos = parseInt(teamLeadMatch[1]);
+        const isMelzo = /melzo/i.test(line);
+        let status = "ok";
+        if(/\bSQ\s*$/.test(line)) status = "SQ";
+        else if(/\bNP\s*$/.test(line)) status = "NP";
+        const tempi = line.match(/(?:\d+'\d+\.\d+|\b\d{1,2}\.\d{2}\b)/g);
+        const arrivo = (status === "ok" && tempi) ? tempi[tempi.length-1] : null;
+        const catMatch = line.match(/^\s*\d+\s+.+?\s+(\d{2,4})\s+/);
+        const catCode = catMatch ? catMatch[1] : null;
+        currentTeam = {
+          isMelzo, status, pos, arrivo,
+          arrivoSeconds: arrivo ? timeToSeconds(arrivo) : null,
+          catCode, athletesMatched: []
+        };
+        continue;
+      }
+      // Riga atleta dentro il blocco squadra corrente
+      if(currentTeam && currentTeam.isMelzo && currentTeam.athletesMatched.length < 4){
+        const looksLikeAthleteRow = /\b\d{4}\s+\d{2}[MF]\b/.test(line);
+        if(looksLikeAthleteRow){
+          const matched = matchAtletaInLine(line, atletiLower);
+          if(matched && !currentTeam.athletesMatched.find(a => a.atleta.orig === matched.orig)){
+            currentTeam.athletesMatched.push({atleta: matched, line});
+            consumedLines.add(i);
+          } else if(!matched){
+            const nm = line.match(/^([A-Za-zÀ-ÿ' \.\-]+?)\s+\d{4}\s+\d{2}[MF]/);
+            const nomeGrezzo = nm ? nm[1].trim() : line.trim();
+            if(!nomiSconosciuti.includes(nomeGrezzo)) nomiSconosciuti.push(nomeGrezzo);
+          }
+          if(currentTeam.athletesMatched.length >= 4) finalizeTeam();
+        }
+      }
+      continue;
+    }
 
     // Aggiorna la categoria corrente se la riga è un'intestazione "MASTER XXF"/"MASTER XXM"
     const catHeader = parseCategoriaHeader(line);
@@ -966,28 +1206,37 @@ function parseResults(text, filename){
       }
     }
   }
+  if(isStaffetta) finalizeTeam(); // chiude l'ultimo blocco squadra se il file finisce senza intestazione successiva
 
-  // Seconda passata: righe con "melzo" non associate a nessun atleta noto in ATLETI.
-  // Aiuta a scoprire nominativi mancanti dalla lista (es. nuovi tesserati non ancora inseriti).
-  const nomiSconosciuti = [];
-  const rigaConNomeRegex = /^\s*(?:\d+\s+)?([A-Za-zÀ-ÿ' \.\-]+?)\s+\d{2}[MF]\s+\d{4}\s+.*melzo/i;
-  for(let i=0; i<lines.length; i++){
-    if(consumedLines.has(i)) continue;
-    const line = lines[i];
-    if(!/melzo/i.test(line)) continue;
-    const m = line.match(rigaConNomeRegex);
-    const nomeGrezzo = m ? m[1].trim() : line.trim();
-    if(!nomiSconosciuti.includes(nomeGrezzo)) nomiSconosciuti.push(nomeGrezzo);
+  // Seconda passata (solo gare individuali): righe con "melzo" non associate a nessun atleta noto in ATLETI.
+  // Per le staffette il controllo equivalente avviene già durante il parsing del blocco squadra.
+  if(!isStaffetta){
+    const rigaConNomeRegex = /^\s*(?:\d+\s+)?([A-Za-zÀ-ÿ' \.\-]+?)\s+\d{2}[MF]\s+\d{4}\s+.*melzo/i;
+    for(let i=0; i<lines.length; i++){
+      if(consumedLines.has(i)) continue;
+      const line = lines[i];
+      if(!/melzo/i.test(line)) continue;
+      const m = line.match(rigaConNomeRegex);
+      const nomeGrezzo = m ? m[1].trim() : line.trim();
+      if(!nomiSconosciuti.includes(nomeGrezzo)) nomiSconosciuti.push(nomeGrezzo);
+    }
   }
 
   risultatiGara = trovati;
   recordProposals = proposteRecord;
+  currentGaraName = garaName; currentDataGara = dataGara; currentIsStaffetta = isStaffetta; currentPtsGara = ptsGara;
 
   document.getElementById("loading1").classList.remove("show");
 
   const avvisi = [];
   if(isStaffetta){
-    avvisi.push("ℹ️ Gara a staffetta: il controllo automatico dei record di club è disponibile solo per le gare individuali.");
+    if(!staffettaSpecialty){
+      avvisi.push("⚠️ Specialità staffetta non riconosciuta: il controllo dei record di club è stato saltato per questa gara.");
+    } else if(!staffettaGender){
+      avvisi.push("⚠️ Genere staffetta (mista/maschile/femminile) non riconosciuto: il controllo dei record di club è stato saltato per questa gara.");
+    } else if(recordsStaffettaLoadError){
+      avvisi.push("⚠️ Tabelle record di club per le staffette non trovate nel repo GitHub (records_staffette.json): il controllo dei record è stato saltato.");
+    }
   } else if(!eventCode){
     avvisi.push("⚠️ Specialità non riconosciuta dal nome file: il controllo dei record di club è stato saltato per questa gara.");
   } else if(recordsLoadError){
@@ -998,11 +1247,64 @@ function parseResults(text, filename){
   }
   if(avvisi.length) showStatus("status1", avvisi.join("  ·  "), "error");
 
-  // Aggiorna classifica in memoria
-  if(classificaData) aggiornaPunti();
+  // Controllo anti-duplicati: stessa gara + stessi atleti Melzo + stessi tempi già applicati in precedenza?
+  currentRaceId = trovati.length ? computeRaceId(garaName, dataGara, isStaffetta, trovati) : null;
+  currentRaceDuplicateInfo = null;
+  currentRaceAlreadyApplied = false;
+  if(currentRaceId){
+    const persisted = (classificaData && Array.isArray(classificaData._garePubblicate)) ? classificaData._garePubblicate : [];
+    const foundPersisted = persisted.find(g => g.id === currentRaceId);
+    if(foundPersisted){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: foundPersisted.pubblicatoIl || "in una pubblicazione precedente" };
+    } else if(appliedRaceIdsThisSession.has(currentRaceId)){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: "già in questa sessione (non ancora pubblicata)" };
+    }
+  }
+
+  // Aggiorna classifica in memoria — SALTATO se la gara risulta un duplicato, per non sommare due volte i punti.
+  if(classificaData && currentRaceId && !currentRaceAlreadyApplied){
+    aggiornaPunti();
+    appliedRaceIdsThisSession.add(currentRaceId);
+  }
   renderPannello2(garaName, dataGara, isStaffetta, ptsGara);
+  renderDuplicateWarning();
   renderProposteRecord();
   goStep(2);
+}
+
+// Mostra un avviso bloccante se questa gara (stessi atleti+tempi) risulta già applicata/pubblicata,
+// con un pulsante esplicito per forzare comunque l'applicazione (solo se l'utente ha verificato che non è un duplicato).
+function renderDuplicateWarning(){
+  const box = document.getElementById("duplicate-warning-box");
+  if(!box) return;
+  if(!currentRaceAlreadyApplied){
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+  box.style.display = "block";
+  box.innerHTML = `
+    <div class="status-box status-error show" style="margin-bottom:10px;">
+      🚫 <strong>Questa gara risulta già applicata</strong> (${currentRaceDuplicateInfo ? currentRaceDuplicateInfo.when : ""}):
+      stessi atleti Melzo con esattamente gli stessi tempi di arrivo. I punti qui sotto NON sono stati sommati alla classifica,
+      per evitare di raddoppiarli. Se sei certo che non sia un duplicato (es. la gara è stata rinuotata a parità di tempo, caso rarissimo),
+      puoi forzare l'applicazione col pulsante sotto.
+    </div>
+    <button class="btn btn-ghost" style="border-color:var(--red);color:var(--red);" onclick="forzaApplicaGaraDuplicata()">⚠️ Applica comunque i punti (ignora la protezione anti-duplicati)</button>
+  `;
+}
+
+function forzaApplicaGaraDuplicata(){
+  if(!currentRaceId || !classificaData) return;
+  aggiornaPunti();
+  appliedRaceIdsThisSession.add(currentRaceId);
+  currentRaceAlreadyApplied = false; // ora è stata applicata "consapevolmente" in questa sessione
+  currentRaceDuplicateInfo = null;
+  renderDuplicateWarning();
+  renderPannello2(currentGaraName, currentDataGara, currentIsStaffetta, currentPtsGara);
+  showStatus("status2", "⚠️ Punti applicati forzatamente ignorando la protezione anti-duplicati.", "error");
 }
 
 // ========== AGGIORNA PUNTI IN MEMORIA ==========
@@ -1098,7 +1400,7 @@ function renderProposteRecord(){
   }
 
   box.style.display = "block";
-  const genereLabel = g => g==="donne" ? "Donne" : "Uomini";
+  const genereLabel = g => g==="donne" ? "Donne" : g==="uomini" ? "Uomini" : "Mista";
   const secToStr = s => {
     if(s == null) return "—";
     const m = Math.floor(s/60), r = (s - m*60).toFixed(2).padStart(5,"0");
@@ -1110,24 +1412,36 @@ function renderProposteRecord(){
     <p style="font-size:14px;margin-bottom:14px;color:var(--tmid);">
       Nulla viene salvato finché non premi "Conferma e pubblica nuovi record". Deseleziona le voci che non vuoi aggiornare.
     </p>
-    ${recordProposals.map((p,idx) => `
+    ${recordProposals.map((p,idx) => {
+      const isStaffettaProp = p.kind === "staffetta";
+      const chiSono = isStaffettaProp ? p.atleti.join(", ") : p.atleta;
+      const gara = isStaffettaProp ? p.specialty : p.eventCode;
+      const tipoLabel = p.tipo==="assoluto"
+        ? "· <span style='color:var(--red)'>Record ASSOLUTO club</span>"
+        : `· Record categoria ${isStaffettaProp ? p.catRange : p.categoria}`;
+      const vecchioLabel = p.vecchio
+        ? (isStaffettaProp ? `${(p.vecchio.atleti||[]).join(", ")} — ${secToStr(p.vecchio.secondi)}` : `${p.vecchio.nome} ${p.vecchio.cognome} — ${secToStr(p.vecchio.secondi)}`)
+        : "nessun record precedente";
+      return `
       <div class="edit-row" style="align-items:flex-start;">
         <input type="checkbox" id="rec-prop-${idx}" checked style="margin-top:4px;">
         <div style="flex:1;">
-          <strong>${p.atleta}</strong> — ${p.eventCode} ${genereLabel(p.genere)}
-          ${p.tipo==="assoluto" ? "· <span style='color:var(--red)'>Record ASSOLUTO club</span>" : `· Record categoria ${p.categoria}`}
+          <strong>${chiSono}</strong> — ${gara} ${genereLabel(p.genere||p.gender)}
+          ${tipoLabel}
           <div class="edit-detail">
-            Vecchio: ${p.vecchio ? `${p.vecchio.nome} ${p.vecchio.cognome} — ${secToStr(p.vecchio.secondi)}` : "nessun record precedente"}
+            Vecchio: ${vecchioLabel}
             &nbsp;→&nbsp; Nuovo: <strong>${secToStr(p.nuovoSecondi)}</strong>
           </div>
         </div>
-      </div>`).join("")}
+      </div>`;
+    }).join("")}
     <button class="btn-primary" style="margin-top:14px;" onclick="pubblicaRecord()">Conferma e pubblica nuovi record</button>
     <div id="status-record" class="status-box"></div>
   `;
 }
 
-// Pubblica su GitHub solo le proposte di record confermate (checkbox selezionate)
+// Pubblica su GitHub solo le proposte di record confermate (checkbox selezionate).
+// Le proposte individuali vanno in records_individuali.json, quelle di staffetta in records_staffette.json.
 async function pubblicaRecord(){
   const token = document.getElementById("gh-token").value.trim();
   if(!token){
@@ -1135,10 +1449,8 @@ async function pubblicaRecord(){
     showStatus("status-record","⚠️ Inserisci il GitHub Token nella sezione configurazione (Passo 1).","error");
     return;
   }
-  if(!recordsData){
-    // repo senza file record ancora: partiamo da struttura vuota
-    recordsData = {};
-  }
+  if(!recordsData) recordsData = {};
+  if(!recordsStaffetta) recordsStaffetta = {};
 
   const confermate = recordProposals.filter((p,idx) => {
     const cb = document.getElementById(`rec-prop-${idx}`);
@@ -1146,8 +1458,11 @@ async function pubblicaRecord(){
   });
   if(!confermate.length){ showStatus("status-record","⚠️ Nessuna proposta selezionata.","error"); return; }
 
-  // Applica le modifiche confermate alla copia locale di recordsData
-  confermate.forEach(p => {
+  const confIndividuali = confermate.filter(p => p.kind !== "staffetta");
+  const confStaffette = confermate.filter(p => p.kind === "staffetta");
+
+  // Applica le proposte individuali confermate alla copia locale di recordsData
+  confIndividuali.forEach(p => {
     recordsData[p.eventCode] = recordsData[p.eventCode] || {donne:{assoluto:null,categorie:{}}, uomini:{assoluto:null,categorie:{}}};
     const bucket = recordsData[p.eventCode][p.genere] = recordsData[p.eventCode][p.genere] || {assoluto:null, categorie:{}};
     const [cognome, ...nomeParts] = p.atleta.split(" ");
@@ -1162,37 +1477,53 @@ async function pubblicaRecord(){
     else bucket.categorie[p.categoria] = nuovoRec;
   });
 
-  try {
-    // Verifica se il file esiste già (per ottenere lo sha da aggiornare)
+  // Applica le proposte di staffetta confermate alla copia locale di recordsStaffetta
+  confStaffette.forEach(p => {
+    recordsStaffetta[p.specialty] = recordsStaffetta[p.specialty] || {donne:{assoluto:null,categorie:{}}, uomini:{assoluto:null,categorie:{}}, miststaffette:{assoluto:null,categorie:{}}};
+    const bucket = recordsStaffetta[p.specialty][p.gender] = recordsStaffetta[p.specialty][p.gender] || {assoluto:null, categorie:{}};
+    const nuovoRec = {
+      atleti: p.atleti.map(a => a.toUpperCase()),
+      tempo: p.tempo,
+      secondi: Math.round(p.nuovoSecondi*100)/100,
+      data: new Date().toISOString().slice(0,10)
+    };
+    if(p.tipo === "assoluto") bucket.assoluto = nuovoRec;
+    else bucket.categorie[p.catRange] = nuovoRec;
+  });
+
+  async function putFile(path, data, message){
     let sha = null;
-    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_RECORDS_FILE}`,{
+    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${path}`,{
       headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json"}
     });
     if(shaResp.ok){
       const shaData = await shaResp.json();
       sha = shaData.sha || null;
     }
-
-    const jsonStr = JSON.stringify(recordsData, null, 2);
+    const jsonStr = JSON.stringify(data, null, 2);
     const bytes = new TextEncoder().encode(jsonStr);
     const binStr = Array.from(bytes).map(b => String.fromCharCode(b)).join('');
     const content = btoa(binStr);
-    const body = { message: "🏆 Aggiorna record di club", content };
+    const body = { message, content };
     if(sha) body.sha = sha;
-
-    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_RECORDS_FILE}`,{
+    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${path}`,{
       method:"PUT",
       headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
       body: JSON.stringify(body)
     });
     const putData = await putResp.json();
-    if(putData.content){
-      recordsLoadError = false;
-      showStatus("status-record","🎉 Record pubblicati su GitHub!","success");
-      // Rimuovi dalla lista le proposte appena confermate
-      recordProposals = recordProposals.filter(p => !confermate.includes(p));
-      renderProposteRecord();
-    } else throw new Error(putData.message||"Errore salvataggio");
+    if(!putData.content) throw new Error(putData.message||"Errore salvataggio "+path);
+  }
+
+  try {
+    if(confIndividuali.length) await putFile(GITHUB_RECORDS_FILE, recordsData, "🏆 Aggiorna record di club");
+    if(confStaffette.length) await putFile(GITHUB_RECORDS_STAFFETTA_FILE, recordsStaffetta, "🏆 Aggiorna record di club (staffette)");
+    recordsLoadError = false;
+    recordsStaffettaLoadError = false;
+    showStatus("status-record","🎉 Record pubblicati su GitHub!","success");
+    // Rimuovi dalla lista le proposte appena confermate
+    recordProposals = recordProposals.filter(p => !confermate.includes(p));
+    renderProposteRecord();
   } catch(e){
     showStatus("status-record",`❌ Errore: ${e.message}`,"error");
   }
@@ -1236,6 +1567,19 @@ async function publishResults(){
     return;
   }
   if(!classificaData){ showStatus("status2","❌ Classifica non caricata.","error"); return; }
+
+  // Registra questa gara come "pubblicata" per la protezione anti-duplicati (solo se non già presente)
+  if(currentRaceId){
+    if(!Array.isArray(classificaData._garePubblicate)) classificaData._garePubblicate = [];
+    if(!classificaData._garePubblicate.some(g => g.id === currentRaceId)){
+      classificaData._garePubblicate.push({
+        id: currentRaceId,
+        gara: currentGaraName,
+        data: currentDataGara,
+        pubblicatoIl: new Date().toISOString()
+      });
+    }
+  }
 
   document.getElementById("publish-btn").disabled = true;
   document.getElementById("loading2").classList.add("show");
