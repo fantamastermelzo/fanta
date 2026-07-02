@@ -400,7 +400,7 @@
         "nome": "STEFANO",
         "cognome": "IACOBONE",
         "tempo": "00:01:09.00",
-        "secondi": 69.0,
+        "secondi": 69,
         "data": "2018-05-27"
       },
       "categorie": {
@@ -415,7 +415,7 @@
           "nome": "STEFANO",
           "cognome": "IACOBONE",
           "tempo": "00:01:09.00",
-          "secondi": 69.0,
+          "secondi": 69,
           "data": "2018-05-27"
         },
         "M35": {
@@ -457,7 +457,7 @@
           "nome": "GIUSEPPE",
           "cognome": "ROMANO",
           "tempo": "00:01:29.00",
-          "secondi": 89.0,
+          "secondi": 89,
           "data": "2025-06-28"
         },
         "M65": {
@@ -799,7 +799,7 @@
           "nome": "PAOLO",
           "cognome": "MALOBERTI",
           "tempo": "00:20:34.00",
-          "secondi": 1234.0,
+          "secondi": 1234,
           "data": "2006-06-25"
         },
         "M50": {
@@ -970,7 +970,7 @@
           "nome": "ANDREA",
           "cognome": "COSTA",
           "tempo": "00:03:28.00",
-          "secondi": 208.0,
+          "secondi": 208,
           "data": "2018-07-12"
         },
         "M45": {
@@ -1385,7 +1385,7 @@
           "nome": "GIANFRANCO",
           "cognome": "MASALA",
           "tempo": "00:03:21.00",
-          "secondi": 201.0,
+          "secondi": 201,
           "data": "1992-02-23"
         },
         "M30": {
@@ -1441,7 +1441,7 @@
           "nome": "CLAUDIO",
           "cognome": "AZIN",
           "tempo": "00:03:49.00",
-          "secondi": 229.0,
+          "secondi": 229,
           "data": "2022-06-30"
         }
       }
@@ -2110,9 +2110,9 @@
         "M85": {
           "nome": "GHERARDO",
           "cognome": "MERCATI",
-          "tempo": "00:01:09.23",
-          "secondi": 69.23,
-          "data": "2026-05-10"
+          "tempo": "1'07.46",
+          "secondi": 67.46,
+          "data": "2026-07-02"
         }
       }
     }
@@ -2540,7 +2540,7 @@
           "nome": "GIANFRANCO",
           "cognome": "MASALA",
           "tempo": "00:03:21.00",
-          "secondi": 201.0,
+          "secondi": 201,
           "data": "1992-02-23"
         },
         "M30": {
@@ -2596,7 +2596,7 @@
           "nome": "CLAUDIO",
           "cognome": "AZIN",
           "tempo": "00:03:49.00",
-          "secondi": 229.0,
+          "secondi": 229,
           "data": "2022-06-30"
         }
       }
