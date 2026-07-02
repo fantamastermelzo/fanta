@@ -295,6 +295,9 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
         <div id="edit-list"></div>
       </div>
 
+      <!-- Proposte nuovi record di club (categoria + assoluto), da confermare manualmente -->
+      <div id="record-proposte-box" style="display:none;margin-top:20px;border-top:1px solid rgba(255,255,255,0.6);padding-top:18px;"></div>
+
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
         <button class="btn btn-ghost" onclick="goStep(1)">← Carica altro PDF</button>
         <button class="btn btn-success" onclick="publishResults()" id="publish-btn">🚀 Pubblica su GitHub</button>
@@ -393,6 +396,7 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
 const ADMIN_PASSWORD = "melzo2026";
 const GITHUB_REPO = "fantamastermelzo/fanta";
 const GITHUB_FILE = "classifica_fanta.json";
+const GITHUB_RECORDS_FILE = "records_individuali.json";
 
 // Workerless PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -411,14 +415,131 @@ const ATLETI = [
 // Gare staffetta
 const STAFFETTE = ["4x50","4X50","STAFFETTA","MISTAFFETTA","RELAY"];
 
+// Elenco codici specialità validi (per riconoscerli dal nome file / dal testo del PDF)
+const EVENT_CODES = [
+  "50DO","100DO","200DO","50FA","100FA","200FA","200MX","400MX",
+  "50RA","100RA","200RA","50SL","100SL","200SL","400SL","800SL","1500SL"
+];
+
 // Regolamento punti
 const PTS = {individuale:10, staffetta:5, oro:50, argento:20, bronzo:5, record_assoluto:20, record_categoria:10, squalifica:-15};
 
 let classificaData = null;
+let recordsData = null;          // dati record categoria/assoluto club (records_individuali.json)
+let recordsLoadError = false;    // true se il file record non è stato trovato/caricato
 let risultatiGara = []; // atleti trovati con punti
+let recordProposals = []; // proposte di aggiornamento record da confermare
 let selectedTipoPts = null;
 let selectedTipoLabel = "";
 let logModifiche = [];
+
+// ========== UTILS TEMPO ==========
+// Converte un tempo testuale (formati PDF FIN o Excel) in secondi (float). Ritorna null se non valido.
+function timeToSeconds(t){
+  if(!t) return null;
+  t = String(t).trim();
+  // formato Excel "HH:MM:SS.cc"
+  let m = t.match(/^(\d+):(\d{2}):(\d{2})\.(\d+)$/);
+  if(m) return parseInt(m[1])*3600 + parseInt(m[2])*60 + parseInt(m[3]) + parseFloat("0."+m[4]);
+  // formato PDF "M'SS.cc" (es. 2'40.04)
+  m = t.match(/^(\d+)'(\d+)\.(\d+)$/);
+  if(m) return parseInt(m[1])*60 + parseInt(m[2]) + parseFloat("0."+m[3]);
+  // formato solo secondi "SS.cc" (es. 33.35, gare dei 50m)
+  m = t.match(/^(\d{1,2})\.(\d+)$/);
+  if(m) return parseInt(m[1]) + parseFloat("0."+m[2]);
+  return null;
+}
+
+// Normalizza codice specialità (Misti: MI -> MX, per allineare Excel record e testo FIN)
+function normEventCode(code){
+  if(!code) return code;
+  code = code.trim().toUpperCase();
+  if(code.endsWith("MI")) code = code.slice(0,-2) + "MX";
+  return code;
+}
+
+// Mappa nome disciplina italiano -> suffisso codice
+const STROKE_MAP = [
+  [/stile\s*libero/i, "SL"],
+  [/dorso/i, "DO"],
+  [/rana/i, "RA"],
+  [/farfalla|delfino/i, "FA"],
+  [/mist[oi]/i, "MX"]
+];
+
+// Cerca di individuare il codice specialità (es. "200DO") dal nome file o dal nome gara riconosciuto nel PDF
+function detectEventCode(filename, garaName){
+  // 1) dal nome file, es. CLS-MAF-200DO-TIM-ALL.pdf
+  const fromFile = (filename||"").toUpperCase().match(/(\d{2,4})(DO|FA|RA|SL|MX|MI)\b/);
+  if(fromFile){
+    const code = normEventCode(fromFile[1]+fromFile[2]);
+    if(EVENT_CODES.includes(code)) return code;
+  }
+  // 2) dal nome gara testuale, es. "200 m Dorso"
+  if(garaName){
+    const distMatch = garaName.match(/(\d{2,4})/);
+    if(distMatch){
+      for(const [re, suffix] of STROKE_MAP){
+        if(re.test(garaName)){
+          const code = normEventCode(distMatch[1]+suffix);
+          if(EVENT_CODES.includes(code)) return code;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+// Riconosce l'intestazione di categoria FIN, es. "MASTER 60F" -> {categoria:"M60", genere:"donne"}
+// La categoria "20" corrisponde a "U25" nelle tabelle record.
+function parseCategoriaHeader(line){
+  const m = line.match(/MASTER\s+(\d{2})\s*([FM])\b/i);
+  if(!m) return null;
+  const num = m[1];
+  const genereLettera = m[2].toUpperCase();
+  const categoria = (num === "20") ? "U25" : ("M"+num);
+  const genere = genereLettera === "F" ? "donne" : "uomini";
+  return {categoria, genere};
+}
+
+// Confronta il tempo di un atleta con le tabelle record di club (categoria + assoluto).
+// Ritorna { ptsRecord, labelRecord, proposte:[...] } — non modifica ancora i dati, propone solo.
+function checkRecordClub(eventCode, genere, categoria, secondiArrivo){
+  const out = { ptsRecord: 0, labelRecord: null, proposte: [] };
+  if(!eventCode || !genere || !categoria || secondiArrivo == null) return out;
+  if(!recordsData || !recordsData[eventCode] || !recordsData[eventCode][genere]) return out;
+
+  const bucket = recordsData[eventCode][genere];
+  const recAssoluto = bucket.assoluto;
+  const recCategoria = bucket.categorie ? bucket.categorie[categoria] : null;
+
+  const beatsAssoluto = !recAssoluto || (recAssoluto.secondi != null && secondiArrivo < recAssoluto.secondi);
+  const beatsCategoria = !recCategoria || (recCategoria.secondi != null && secondiArrivo < recCategoria.secondi);
+
+  // Punteggio: se batte l'assoluto vale anche come miglior tempo di categoria,
+  // ma il bonus non si somma: si applica solo il maggiore dei due.
+  if(beatsAssoluto){
+    out.ptsRecord = PTS.record_assoluto;
+    out.labelRecord = `Record assoluto club +${PTS.record_assoluto}`;
+  } else if(beatsCategoria){
+    out.ptsRecord = PTS.record_categoria;
+    out.labelRecord = `Record categoria club +${PTS.record_categoria}`;
+  }
+
+  if(beatsAssoluto){
+    out.proposte.push({
+      tipo: "assoluto", eventCode, genere, categoria: null,
+      vecchio: recAssoluto, nuovoSecondi: secondiArrivo
+    });
+  }
+  if(beatsCategoria){
+    out.proposte.push({
+      tipo: "categoria", eventCode, genere, categoria,
+      vecchio: recCategoria, nuovoSecondi: secondiArrivo
+    });
+  }
+  return out;
+}
 
 // ========== MODIFICA MANUALE ==========
 function goManuale(){
@@ -572,6 +693,7 @@ function doLogin(){
     document.getElementById("config-panel").style.display = "block";
     document.getElementById("config-arrow").textContent = "▲";
     loadClassifica();
+    loadRecords();
   } else {
     showStatus("login-error","❌ Password errata.","error");
   }
@@ -583,6 +705,20 @@ async function loadClassifica(){
     const r = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_FILE}?t=${Date.now()}`);
     classificaData = await r.json();
   } catch(e){ console.error("Classifica non caricata:",e); }
+}
+
+// ========== RECORD DI CLUB (categoria + assoluto) ==========
+async function loadRecords(){
+  recordsLoadError = false;
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_RECORDS_FILE}?t=${Date.now()}`);
+    if(!r.ok) throw new Error("File record non trovato nel repo ("+r.status+")");
+    recordsData = await r.json();
+  } catch(e){
+    console.warn("Record di club non caricati:", e.message);
+    recordsData = null;
+    recordsLoadError = true;
+  }
 }
 
 // ========== UI ==========
@@ -687,6 +823,9 @@ function parseResults(text, filename){
   const isStaffetta = STAFFETTE.some(s => garaName.toUpperCase().includes(s) || filename.toUpperCase().includes(s));
   const ptsGara = isStaffetta ? PTS.staffetta : PTS.individuale;
 
+  // Codice specialità per il controllo record (solo gare individuali)
+  const eventCode = isStaffetta ? null : detectEventCode(filename, garaName);
+
   // Data gara
   let dataGara = "";
   const dateMatch = text.match(/(\d{1,2}[\s\/]\w+[\s\/]\d{4}|\d{1,2}\/\d{2}\/\d{4})/);
@@ -696,14 +835,21 @@ function parseResults(text, filename){
   // Formato FIN: POS COGNOME NOME CAT tempi... ARRIVO [RI/RE]
   //              SOCIETA' ANNO
   const trovati = [];
+  const proposteRecord = [];
   const atletiLower = ATLETI.map(a => ({
     orig: a,
     lower: a.toLowerCase(),
     parts: a.toLowerCase().split(" ")
   }));
 
+  let currentCategoria = null; // {categoria:"M60", genere:"donne"} - aggiornata leggendo le intestazioni "MASTER XXF/M"
+
   for(let i=0; i<lines.length; i++){
     const line = lines[i];
+
+    // Aggiorna la categoria corrente se la riga è un'intestazione "MASTER XXF"/"MASTER XXM"
+    const catHeader = parseCategoriaHeader(line);
+    if(catHeader) currentCategoria = catHeader;
 
     // Cerca ogni atleta nel testo
     for(const atleta of atletiLower){
@@ -739,18 +885,15 @@ function parseResults(text, filename){
         const posMatch = line.match(/^(\d+)\s/);
         if(posMatch) pos = parseInt(posMatch[1]);
 
-        // Estrai tempo arrivo (ultimo tempo della riga)
-        const tempi = line.match(/\d+'\d+\.\d+/g);
+        // Estrai tempo arrivo (ultimo tempo della riga). Gestisce sia "M'SS.cc" (>=100m)
+        // sia "SS.cc" senza apice (gare dei 50m).
+        const tempi = line.match(/(?:\d+'\d+\.\d+|\b\d{1,2}\.\d{2}\b)/g);
         const arrivo = tempi ? tempi[tempi.length-1] : null;
-
-        // Record?
-        const isRI = /\bRI\b/.test(line);
-        const isRE = /\bRE\b/.test(line);
 
         // Squalificato?
         const isSQ = /\bSQ\b/.test(line) || /\bDNF\b/.test(line) || /\bDNS\b/.test(line);
 
-        // Calcola punti
+        // Calcola punti base
         let ptsBase = isSQ ? 0 : ptsGara;
         let ptsPodio = 0;
         if(!isSQ && pos !== null){
@@ -758,8 +901,6 @@ function parseResults(text, filename){
           else if(pos===2) ptsPodio = PTS.argento;
           else if(pos===3) ptsPodio = PTS.bronzo;
         }
-        let ptsRecord = 0;
-        if(isRI || isRE) ptsRecord = PTS.record_assoluto;
         let ptsMalus = isSQ ? PTS.squalifica : 0;
 
         // Punti FIN: due formati FIN possibili
@@ -771,8 +912,22 @@ function parseResults(text, filename){
           if(puntiFinMatch){
             ptsFin = Math.round(parseFloat(puntiFinMatch[1]) / 10 * 10) / 10;
           } else if(arrivo){
-            const m = arrivo.match(/(\d+)'(\d+\.\d+)/);
-            if(m) ptsFin = Math.round((parseInt(m[1])*60 + parseFloat(m[2]))/10 * 10)/10;
+            const secArrivo = timeToSeconds(arrivo);
+            if(secArrivo != null) ptsFin = Math.round(secArrivo/10 * 10)/10;
+          }
+        }
+
+        // Record di club (categoria + assoluto), solo se gara individuale, non squalificato, categoria nota
+        let ptsRecord = 0, labelRecord = null;
+        if(!isSQ && !isStaffetta && eventCode && currentCategoria && arrivo){
+          const secArrivo = timeToSeconds(arrivo);
+          if(secArrivo != null){
+            const check = checkRecordClub(eventCode, currentCategoria.genere, currentCategoria.categoria, secArrivo);
+            ptsRecord = check.ptsRecord;
+            labelRecord = check.labelRecord;
+            if(check.proposte.length){
+              check.proposte.forEach(p => proposteRecord.push({...p, atleta: atleta.orig, tempo: arrivo}));
+            }
           }
         }
 
@@ -783,8 +938,7 @@ function parseResults(text, filename){
           if(isStaffetta) bonus.push(`Staffetta +${PTS.staffetta}`);
           else bonus.push(`Gara individuale +${PTS.individuale}`);
           if(ptsPodio>0) bonus.push(`${pos===1?"Oro":pos===2?"Argento":"Bronzo"} +${ptsPodio}`);
-          if(isRI) bonus.push("Record Italiano +"+PTS.record_assoluto);
-          if(isRE) bonus.push("Record Europeo +"+PTS.record_assoluto);
+          if(labelRecord) bonus.push("🏆 "+labelRecord);
           if(ptsFin>0) bonus.push(`FIN÷10 +${ptsFin}`);
         }
         const malus = [];
@@ -794,7 +948,9 @@ function parseResults(text, filename){
           nome: atleta.orig,
           pos: pos,
           arrivo: arrivo,
-          isSQ, isRI, isRE, isStaffetta,
+          categoria: currentCategoria ? currentCategoria.categoria : null,
+          genere: currentCategoria ? currentCategoria.genere : null,
+          isSQ, isStaffetta,
           ptsBase, ptsPodio, ptsRecord, ptsMalus, ptsFin,
           ptsTot,
           bonus, malus
@@ -804,12 +960,22 @@ function parseResults(text, filename){
   }
 
   risultatiGara = trovati;
+  recordProposals = proposteRecord;
 
   document.getElementById("loading1").classList.remove("show");
+
+  if(isStaffetta){
+    showStatus("status1","ℹ️ Gara a staffetta: il controllo automatico dei record di club è disponibile solo per le gare individuali.","success");
+  } else if(!eventCode){
+    showStatus("status1","⚠️ Specialità non riconosciuta dal nome file: il controllo dei record di club è stato saltato per questa gara.","error");
+  } else if(recordsLoadError){
+    showStatus("status1","⚠️ Tabelle record di club non trovate nel repo GitHub: il controllo dei record è stato saltato (i punti gara/podio/FIN restano corretti).","error");
+  }
 
   // Aggiorna classifica in memoria
   if(classificaData) aggiornaPunti();
   renderPannello2(garaName, dataGara, isStaffetta, ptsGara);
+  renderProposteRecord();
   goStep(2);
 }
 
@@ -873,7 +1039,7 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
       <div class="atleta-avatar">${initials}</div>
       <div style="flex:1;">
         <div class="atleta-name">${posMedal} ${a.nome}</div>
-        <div class="atleta-gare">Arrivo: ${a.arrivo||"—"} · Categoria: —</div>
+        <div class="atleta-gare">Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"}</div>
         <div style="margin-top:6px;">${bonusPills}${malusPills}</div>
       </div>
       <div class="atleta-pts">
@@ -892,6 +1058,118 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
     </div>`).join("");
 
   updateClassificaPreview();
+}
+
+// ========== PROPOSTE NUOVI RECORD (da confermare manualmente) ==========
+function renderProposteRecord(){
+  const box = document.getElementById("record-proposte-box");
+  if(!box) return; // se l'admin.html non ha ancora questa sezione, non fare nulla
+
+  if(!recordProposals.length){
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+
+  box.style.display = "block";
+  const genereLabel = g => g==="donne" ? "Donne" : "Uomini";
+  const secToStr = s => {
+    if(s == null) return "—";
+    const m = Math.floor(s/60), r = (s - m*60).toFixed(2).padStart(5,"0");
+    return m>0 ? `${m}'${r}` : r;
+  };
+
+  box.innerHTML = `
+    <h3 style="margin-bottom:10px;">🏆 Proposte nuovi record di club (${recordProposals.length})</h3>
+    <p style="font-size:14px;margin-bottom:14px;color:var(--tmid);">
+      Nulla viene salvato finché non premi "Conferma e pubblica nuovi record". Deseleziona le voci che non vuoi aggiornare.
+    </p>
+    ${recordProposals.map((p,idx) => `
+      <div class="edit-row" style="align-items:flex-start;">
+        <input type="checkbox" id="rec-prop-${idx}" checked style="margin-top:4px;">
+        <div style="flex:1;">
+          <strong>${p.atleta}</strong> — ${p.eventCode} ${genereLabel(p.genere)}
+          ${p.tipo==="assoluto" ? "· <span style='color:var(--red)'>Record ASSOLUTO club</span>" : `· Record categoria ${p.categoria}`}
+          <div class="edit-detail">
+            Vecchio: ${p.vecchio ? `${p.vecchio.nome} ${p.vecchio.cognome} — ${secToStr(p.vecchio.secondi)}` : "nessun record precedente"}
+            &nbsp;→&nbsp; Nuovo: <strong>${secToStr(p.nuovoSecondi)}</strong>
+          </div>
+        </div>
+      </div>`).join("")}
+    <button class="btn-primary" style="margin-top:14px;" onclick="pubblicaRecord()">Conferma e pubblica nuovi record</button>
+    <div id="status-record" class="status-box"></div>
+  `;
+}
+
+// Pubblica su GitHub solo le proposte di record confermate (checkbox selezionate)
+async function pubblicaRecord(){
+  const token = document.getElementById("gh-token").value.trim();
+  if(!token){
+    document.getElementById("config-panel").style.display = "block";
+    showStatus("status-record","⚠️ Inserisci il GitHub Token nella sezione configurazione (Passo 1).","error");
+    return;
+  }
+  if(!recordsData){
+    // repo senza file record ancora: partiamo da struttura vuota
+    recordsData = {};
+  }
+
+  const confermate = recordProposals.filter((p,idx) => {
+    const cb = document.getElementById(`rec-prop-${idx}`);
+    return cb && cb.checked;
+  });
+  if(!confermate.length){ showStatus("status-record","⚠️ Nessuna proposta selezionata.","error"); return; }
+
+  // Applica le modifiche confermate alla copia locale di recordsData
+  confermate.forEach(p => {
+    recordsData[p.eventCode] = recordsData[p.eventCode] || {donne:{assoluto:null,categorie:{}}, uomini:{assoluto:null,categorie:{}}};
+    const bucket = recordsData[p.eventCode][p.genere] = recordsData[p.eventCode][p.genere] || {assoluto:null, categorie:{}};
+    const [cognome, ...nomeParts] = p.atleta.split(" ");
+    const nuovoRec = {
+      nome: nomeParts.join(" ").toUpperCase(),
+      cognome: cognome.toUpperCase(),
+      tempo: p.tempo,
+      secondi: Math.round(p.nuovoSecondi*100)/100,
+      data: new Date().toISOString().slice(0,10)
+    };
+    if(p.tipo === "assoluto") bucket.assoluto = nuovoRec;
+    else bucket.categorie[p.categoria] = nuovoRec;
+  });
+
+  try {
+    // Verifica se il file esiste già (per ottenere lo sha da aggiornare)
+    let sha = null;
+    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_RECORDS_FILE}`,{
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json"}
+    });
+    if(shaResp.ok){
+      const shaData = await shaResp.json();
+      sha = shaData.sha || null;
+    }
+
+    const jsonStr = JSON.stringify(recordsData, null, 2);
+    const bytes = new TextEncoder().encode(jsonStr);
+    const binStr = Array.from(bytes).map(b => String.fromCharCode(b)).join('');
+    const content = btoa(binStr);
+    const body = { message: "🏆 Aggiorna record di club", content };
+    if(sha) body.sha = sha;
+
+    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_RECORDS_FILE}`,{
+      method:"PUT",
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
+      body: JSON.stringify(body)
+    });
+    const putData = await putResp.json();
+    if(putData.content){
+      recordsLoadError = false;
+      showStatus("status-record","🎉 Record pubblicati su GitHub!","success");
+      // Rimuovi dalla lista le proposte appena confermate
+      recordProposals = recordProposals.filter(p => !confermate.includes(p));
+      renderProposteRecord();
+    } else throw new Error(putData.message||"Errore salvataggio");
+  } catch(e){
+    showStatus("status-record",`❌ Errore: ${e.message}`,"error");
+  }
 }
 
 function updatePts(idx, val){
