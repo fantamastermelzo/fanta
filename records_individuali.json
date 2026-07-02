@@ -1,0 +1,2776 @@
+{
+  "100DO": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:01:14.73",
+        "secondi": 74.73,
+        "data": "2023-05-07"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "LUCIA",
+          "cognome": "COLOMBO",
+          "tempo": "00:01:29.77",
+          "secondi": 89.77,
+          "data": "2024-06-30"
+        },
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:15.41",
+          "secondi": 75.41,
+          "data": "2019-05-05"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:14.73",
+          "secondi": 74.73,
+          "data": "2023-05-07"
+        },
+        "M35": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:19.87",
+          "secondi": 79.87,
+          "data": "2026-05-24"
+        },
+        "M40": {
+          "nome": "BARBARA",
+          "cognome": "FERRI",
+          "tempo": "00:01:21.71",
+          "secondi": 81.71,
+          "data": "2014-06-01"
+        },
+        "M45": {
+          "nome": "BARBARA",
+          "cognome": "FERRI",
+          "tempo": "00:01:21.91",
+          "secondi": 81.91,
+          "data": "2017-05-28"
+        },
+        "M50": {
+          "nome": "CECILIA",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:01:45.15",
+          "secondi": 105.15,
+          "data": "2023-05-20"
+        },
+        "M55": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:01:39.74",
+          "secondi": 99.74,
+          "data": "2022-06-30"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:54.06",
+          "secondi": 114.06,
+          "data": "2023-05-07"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:54.71",
+          "secondi": 114.71,
+          "data": "2025-05-04"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "LUCA",
+        "cognome": "SINIGAGLIA",
+        "tempo": "00:01:06.18",
+        "secondi": 66.18,
+        "data": "2024-06-09"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:07.49",
+          "secondi": 67.49,
+          "data": "2015-06-27"
+        },
+        "M30": {
+          "nome": "LUCA",
+          "cognome": "SINIGAGLIA",
+          "tempo": "00:01:06.18",
+          "secondi": 66.18,
+          "data": "2024-06-09"
+        },
+        "M35": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:09.52",
+          "secondi": 69.52,
+          "data": "2024-06-30"
+        },
+        "M40": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:01:08.82",
+          "secondi": 68.82,
+          "data": "2013-07-06"
+        },
+        "M45": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:01:15.33",
+          "secondi": 75.33,
+          "data": "2018-05-27"
+        },
+        "M50": {
+          "nome": "DAVIDE",
+          "cognome": "ACCOMASSO",
+          "tempo": "00:01:12.19",
+          "secondi": 72.19,
+          "data": "2024-05-18"
+        },
+        "M55": {
+          "nome": "ENRICO PAOLO",
+          "cognome": "CRESPI",
+          "tempo": "00:01:28.41",
+          "secondi": 88.41,
+          "data": "2024-05-18"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:01:26.72",
+          "secondi": 86.72,
+          "data": "2024-05-05"
+        },
+        "M65": {
+          "nome": "VALTER UMBERTO",
+          "cognome": "DOTTI",
+          "tempo": "00:01:34.89",
+          "secondi": 94.89,
+          "data": "2026-06-07"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:01:38.42",
+          "secondi": 98.42,
+          "data": "2019-06-30"
+        },
+        "M75": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:01:43.37",
+          "secondi": 103.37,
+          "data": "2024-06-30"
+        }
+      }
+    }
+  },
+  "100FA": {
+    "donne": {
+      "assoluto": {
+        "nome": "SELENE",
+        "cognome": "BOTTARI",
+        "tempo": "00:01:16.48",
+        "secondi": 76.48,
+        "data": "2025-06-02"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:16.70",
+          "secondi": 76.7,
+          "data": "2019-06-08"
+        },
+        "M30": {
+          "nome": "SELENE",
+          "cognome": "BOTTARI",
+          "tempo": "00:01:16.48",
+          "secondi": 76.48,
+          "data": "2025-06-02"
+        },
+        "M40": {
+          "nome": "MARINA",
+          "cognome": "PUCCIO",
+          "tempo": "00:01:23.88",
+          "secondi": 83.88,
+          "data": "2001-06-24"
+        },
+        "M45": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:52.07",
+          "secondi": 112.07,
+          "data": "2009-05-17"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:49.52",
+          "secondi": 109.52,
+          "data": "2010-05-09"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:43.83",
+          "secondi": 103.83,
+          "data": "2015-05-24"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:54.92",
+          "secondi": 114.92,
+          "data": "2023-06-11"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "PAOLO",
+        "cognome": "CERIANI",
+        "tempo": "00:01:05.76",
+        "secondi": 65.76,
+        "data": "2026-05-10"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "THOMAS",
+          "cognome": "LAMANNA",
+          "tempo": "00:01:09.78",
+          "secondi": 69.78,
+          "data": "2004-01-01"
+        },
+        "M30": {
+          "nome": "PAOLO",
+          "cognome": "CERIANI",
+          "tempo": "00:01:05.76",
+          "secondi": 65.76,
+          "data": "2026-05-10"
+        },
+        "M35": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:01:08.45",
+          "secondi": 68.45,
+          "data": "2009-05-30"
+        },
+        "M40": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:01:06.47",
+          "secondi": 66.47,
+          "data": "2012-06-13"
+        },
+        "M45": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:01:07.89",
+          "secondi": 67.89,
+          "data": "2016-06-26"
+        },
+        "M50": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:01:35.10",
+          "secondi": 95.1,
+          "data": "2004-05-30"
+        },
+        "M55": {
+          "nome": "MAURO",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:01:23.04",
+          "secondi": 83.04,
+          "data": "2025-06-02"
+        },
+        "M60": {
+          "nome": "GIUSEPPE",
+          "cognome": "BELLOFIORE",
+          "tempo": "00:01:22.17",
+          "secondi": 82.17,
+          "data": "2005-01-01"
+        },
+        "M65": {
+          "nome": "VALTER UMBERTO",
+          "cognome": "DOTTI",
+          "tempo": "00:01:46.04",
+          "secondi": 106.04,
+          "data": "2026-05-10"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:01:39.31",
+          "secondi": 99.31,
+          "data": "2022-06-30"
+        },
+        "M75": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:02:06.17",
+          "secondi": 126.17,
+          "data": "2026-06-07"
+        },
+        "M85": {
+          "nome": "GHERARDO",
+          "cognome": "MERCATI",
+          "tempo": "00:05:07.72",
+          "secondi": 307.72,
+          "data": "2026-05-10"
+        }
+      }
+    }
+  },
+  "100RA": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:01:26.66",
+        "secondi": 86.66,
+        "data": "2024-06-09"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "BRAVO CRISTINA",
+          "cognome": "FERRARI",
+          "tempo": "00:01:33.30",
+          "secondi": 93.3,
+          "data": "1999-01-01"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:26.66",
+          "secondi": 86.66,
+          "data": "2024-06-09"
+        },
+        "M35": {
+          "nome": "RAFFAELLA",
+          "cognome": "PIZZO",
+          "tempo": "00:01:37.44",
+          "secondi": 97.44,
+          "data": "2010-06-26"
+        },
+        "M40": {
+          "nome": "CECILIA",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:01:42.61",
+          "secondi": 102.61,
+          "data": "2016-06-26"
+        },
+        "M45": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:43.68",
+          "secondi": 103.68,
+          "data": "2008-05-04"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:40.47",
+          "secondi": 100.47,
+          "data": "2012-05-01"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:40.86",
+          "secondi": 100.86,
+          "data": "2016-05-22"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:46.73",
+          "secondi": 106.73,
+          "data": "2022-06-05"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "STEFANO",
+        "cognome": "IACOBONE",
+        "tempo": "00:01:09.00",
+        "secondi": 69.0,
+        "data": "2018-05-27"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "FABIO",
+          "cognome": "DEL CARRO",
+          "tempo": "00:01:22.58",
+          "secondi": 82.58,
+          "data": "2005-01-01"
+        },
+        "M30": {
+          "nome": "STEFANO",
+          "cognome": "IACOBONE",
+          "tempo": "00:01:09.00",
+          "secondi": 69.0,
+          "data": "2018-05-27"
+        },
+        "M35": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:01:18.65",
+          "secondi": 78.65,
+          "data": "1998-06-28"
+        },
+        "M40": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:01:20.93",
+          "secondi": 80.93,
+          "data": "2002-01-01"
+        },
+        "M45": {
+          "nome": "ANGELO",
+          "cognome": "ARIOLI",
+          "tempo": "00:01:21.73",
+          "secondi": 81.73,
+          "data": "2009-06-26"
+        },
+        "M50": {
+          "nome": "DAVIDE",
+          "cognome": "ACCOMASSO",
+          "tempo": "00:01:24.83",
+          "secondi": 84.83,
+          "data": "2024-06-30"
+        },
+        "M55": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:01:30.78",
+          "secondi": 90.78,
+          "data": "2019-05-19"
+        },
+        "M60": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:01:29.00",
+          "secondi": 89.0,
+          "data": "2025-06-28"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:45.02",
+          "secondi": 105.02,
+          "data": "2022-06-11"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:01:43.63",
+          "secondi": 103.63,
+          "data": "2022-05-22"
+        },
+        "M75": {
+          "nome": "GIOVANNI",
+          "cognome": "JACAZIO",
+          "tempo": "00:02:03.71",
+          "secondi": 123.71,
+          "data": "2019-06-30"
+        },
+        "M85": {
+          "nome": "GHERARDO",
+          "cognome": "MERCATI",
+          "tempo": "00:03:56.72",
+          "secondi": 236.72,
+          "data": "2025-11-16"
+        }
+      }
+    }
+  },
+  "100SL": {
+    "donne": {
+      "assoluto": {
+        "nome": "ILARIA",
+        "cognome": "GALIANO",
+        "tempo": "00:01:02.86",
+        "secondi": 62.86,
+        "data": "2024-06-30"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "MICAELA",
+          "cognome": "BECCALLI",
+          "tempo": "00:01:20.18",
+          "secondi": 80.18,
+          "data": "2017-06-04"
+        },
+        "M25": {
+          "nome": "ILARIA",
+          "cognome": "GALIANO",
+          "tempo": "00:01:02.86",
+          "secondi": 62.86,
+          "data": "2024-06-30"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:01:04.32",
+          "secondi": 64.32,
+          "data": "2022-06-05"
+        },
+        "M35": {
+          "nome": "BARBARA",
+          "cognome": "FERRI",
+          "tempo": "00:01:10.90",
+          "secondi": 70.9,
+          "data": "2008-06-01"
+        },
+        "M40": {
+          "nome": "BARBARA",
+          "cognome": "FERRI",
+          "tempo": "00:01:08.36",
+          "secondi": 68.36,
+          "data": "2014-06-01"
+        },
+        "M45": {
+          "nome": "LUISA MARIA",
+          "cognome": "ZARETTI",
+          "tempo": "00:01:11.23",
+          "secondi": 71.23,
+          "data": "2012-05-26"
+        },
+        "M50": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:01:19.43",
+          "secondi": 79.43,
+          "data": "2019-05-18"
+        },
+        "M55": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:01:14.19",
+          "secondi": 74.19,
+          "data": "2024-06-30"
+        },
+        "M60": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:01:17.62",
+          "secondi": 77.62,
+          "data": "2026-05-24"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:01:30.90",
+          "secondi": 90.9,
+          "data": "2025-06-02"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "VITTORIO",
+        "cognome": "POMERO",
+        "tempo": "00:00:57.33",
+        "secondi": 57.33,
+        "data": "2024-05-19"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "ALESSANDRO",
+          "cognome": "PIROLA",
+          "tempo": "00:01:05.54",
+          "secondi": 65.54,
+          "data": "2026-05-24"
+        },
+        "M25": {
+          "nome": "IVAN",
+          "cognome": "ZERLETTI",
+          "tempo": "00:00:57.85",
+          "secondi": 57.85,
+          "data": "2024-05-05"
+        },
+        "M30": {
+          "nome": "VITTORIO",
+          "cognome": "POMERO",
+          "tempo": "00:00:57.33",
+          "secondi": 57.33,
+          "data": "2024-05-19"
+        },
+        "M35": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:01:00.07",
+          "secondi": 60.07,
+          "data": "2012-05-01"
+        },
+        "M40": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:00:59.14",
+          "secondi": 59.14,
+          "data": "2014-06-27"
+        },
+        "M45": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:01:01.38",
+          "secondi": 61.38,
+          "data": "2016-05-22"
+        },
+        "M50": {
+          "nome": "DAVIDE",
+          "cognome": "ACCOMASSO",
+          "tempo": "00:01:07.04",
+          "secondi": 67.04,
+          "data": "2024-06-30"
+        },
+        "M55": {
+          "nome": "MAURO",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:01:08.81",
+          "secondi": 68.81,
+          "data": "2025-05-18"
+        },
+        "M60": {
+          "nome": "GIUSEPPE",
+          "cognome": "BELLOFIORE",
+          "tempo": "00:01:06.01",
+          "secondi": 66.01,
+          "data": "2005-01-01"
+        },
+        "M65": {
+          "nome": "ARCANGELO",
+          "cognome": "ZERBO",
+          "tempo": "00:01:17.99",
+          "secondi": 77.99,
+          "data": "2022-06-30"
+        },
+        "M70": {
+          "nome": "ARCANGELO",
+          "cognome": "ZERBO",
+          "tempo": "00:01:21.25",
+          "secondi": 81.25,
+          "data": "2025-05-04"
+        },
+        "M75": {
+          "nome": "GIOVANNI",
+          "cognome": "MAINETTI",
+          "tempo": "00:01:30.37",
+          "secondi": 90.37,
+          "data": "2026-05-10"
+        },
+        "M80": {
+          "nome": "GIOVANNI",
+          "cognome": "JACAZIO",
+          "tempo": "00:01:39.42",
+          "secondi": 99.42,
+          "data": "2025-06-27"
+        },
+        "M85": {
+          "nome": "GHERARDO",
+          "cognome": "MERCATI",
+          "tempo": "00:02:24.40",
+          "secondi": 144.4,
+          "data": "2026-05-24"
+        }
+      }
+    }
+  },
+  "1500SL": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:20:02.24",
+        "secondi": 1202.24,
+        "data": "2024-06-08"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:21:18.40",
+          "secondi": 1278.4,
+          "data": "2019-10-20"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:20:02.24",
+          "secondi": 1202.24,
+          "data": "2024-06-08"
+        },
+        "M35": {
+          "nome": "FRANCESCA",
+          "cognome": "LUCCHINI",
+          "tempo": "00:28:25.50",
+          "secondi": 1705.5,
+          "data": "2015-05-02"
+        },
+        "M40": {
+          "nome": "RAFFAELLA",
+          "cognome": "PIZZO",
+          "tempo": "00:27:05.02",
+          "secondi": 1625.02,
+          "data": "2010-10-24"
+        },
+        "M45": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:26:15.09",
+          "secondi": 1575.09,
+          "data": "2006-06-25"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:25:07.60",
+          "secondi": 1507.6,
+          "data": "2012-11-04"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:25:07.20",
+          "secondi": 1507.2,
+          "data": "2015-10-25"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:26:16.10",
+          "secondi": 1576.1,
+          "data": "2021-11-07"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:26:14.59",
+          "secondi": 1574.59,
+          "data": "2025-06-07"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "FRANCESCO",
+        "cognome": "STEFFANONI",
+        "tempo": "00:19:07.08",
+        "secondi": 1147.08,
+        "data": "2008-11-02"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:20:28.83",
+          "secondi": 1228.83,
+          "data": "2018-04-08"
+        },
+        "M30": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:19:54.03",
+          "secondi": 1194.03,
+          "data": "2007-05-13"
+        },
+        "M35": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:19:07.08",
+          "secondi": 1147.08,
+          "data": "2008-11-02"
+        },
+        "M40": {
+          "nome": "SILVANO",
+          "cognome": "COZZI",
+          "tempo": "00:21:12.05",
+          "secondi": 1272.05,
+          "data": "2006-02-05"
+        },
+        "M45": {
+          "nome": "PAOLO",
+          "cognome": "MALOBERTI",
+          "tempo": "00:20:34.00",
+          "secondi": 1234.0,
+          "data": "2006-06-25"
+        },
+        "M50": {
+          "nome": "PAOLO",
+          "cognome": "MALOBERTI",
+          "tempo": "00:20:35.01",
+          "secondi": 1235.01,
+          "data": "2007-06-24"
+        },
+        "M55": {
+          "nome": "MAURO",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:22:19.28",
+          "secondi": 1339.28,
+          "data": "2025-06-07"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:23:22.96",
+          "secondi": 1402.96,
+          "data": "2024-06-08"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:25:11.70",
+          "secondi": 1511.7,
+          "data": "2022-10-23"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:25:19.50",
+          "secondi": 1519.5,
+          "data": "2021-11-07"
+        },
+        "M75": {
+          "nome": "ALESSANDRO",
+          "cognome": "BITTO",
+          "tempo": "00:31:53.60",
+          "secondi": 1913.6,
+          "data": "2015-10-25"
+        },
+        "M80": {
+          "nome": "ALESSANDRO",
+          "cognome": "BITTO",
+          "tempo": "00:34:25.60",
+          "secondi": 2065.6,
+          "data": "2022-10-23"
+        },
+        "M85": {
+          "nome": "GHERARDO",
+          "cognome": "MERCATI",
+          "tempo": "00:48:28.60",
+          "secondi": 2908.6,
+          "data": "2025-01-31"
+        }
+      }
+    }
+  },
+  "200DO": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:02:42.71",
+        "secondi": 162.71,
+        "data": "2024-06-30"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:56.58",
+          "secondi": 176.58,
+          "data": "2017-03-26"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:42.71",
+          "secondi": 162.71,
+          "data": "2024-06-30"
+        },
+        "M35": {
+          "nome": "RAFFAELLA",
+          "cognome": "PIZZO",
+          "tempo": "00:03:18.04",
+          "secondi": 198.04,
+          "data": "2009-06-25"
+        },
+        "M40": {
+          "nome": "FRANCESCA",
+          "cognome": "LUCCHINI",
+          "tempo": "00:03:26.72",
+          "secondi": 206.72,
+          "data": "2018-07-12"
+        },
+        "M45": {
+          "nome": "FRANCESCA",
+          "cognome": "LUCCHINI",
+          "tempo": "00:03:51.15",
+          "secondi": 231.15,
+          "data": "2025-05-17"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:49.35",
+          "secondi": 229.35,
+          "data": "2011-05-15"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:47.40",
+          "secondi": 227.4,
+          "data": "2017-03-26"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:04:05.43",
+          "secondi": 245.43,
+          "data": "2024-05-19"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:53.37",
+          "secondi": 233.37,
+          "data": "2025-06-25"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "FILIPPO MARIA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:02:27.46",
+        "secondi": 147.46,
+        "data": "2021-06-27"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:33.51",
+          "secondi": 153.51,
+          "data": "2016-06-26"
+        },
+        "M30": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:27.46",
+          "secondi": 147.46,
+          "data": "2021-06-27"
+        },
+        "M35": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:32.08",
+          "secondi": 152.08,
+          "data": "2024-06-30"
+        },
+        "M40": {
+          "nome": "ANDREA",
+          "cognome": "COSTA",
+          "tempo": "00:03:28.00",
+          "secondi": 208.0,
+          "data": "2018-07-12"
+        },
+        "M45": {
+          "nome": "PAOLO",
+          "cognome": "MALOBERTI",
+          "tempo": "00:03:11.18",
+          "secondi": 191.18,
+          "data": "2003-01-01"
+        },
+        "M50": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:03:39.82",
+          "secondi": 219.82,
+          "data": "2001-06-16"
+        },
+        "M55": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:03:07.10",
+          "secondi": 187.1,
+          "data": "2023-06-30"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:03:06.54",
+          "secondi": 186.54,
+          "data": "2024-06-30"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:03:38.83",
+          "secondi": 218.83,
+          "data": "2022-06-30"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:03:34.95",
+          "secondi": 214.95,
+          "data": "2019-06-30"
+        },
+        "M75": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:03:44.47",
+          "secondi": 224.47,
+          "data": "2024-06-30"
+        }
+      }
+    }
+  },
+  "200FA": {
+    "donne": {
+      "assoluto": {
+        "nome": "SELENE",
+        "cognome": "BOTTARI",
+        "tempo": "00:03:04.51",
+        "secondi": 184.51,
+        "data": "2025-05-17"
+      },
+      "categorie": {
+        "M30": {
+          "nome": "SELENE",
+          "cognome": "BOTTARI",
+          "tempo": "00:03:04.51",
+          "secondi": 184.51,
+          "data": "2025-05-17"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:04:21.90",
+          "secondi": 261.9,
+          "data": "2010-05-16"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:04:42.11",
+          "secondi": 282.11,
+          "data": "2016-12-04"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "DAVIDE",
+        "cognome": "RIPAMONTI",
+        "tempo": "00:02:34.54",
+        "secondi": 154.54,
+        "data": "2014-06-24"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "STEFANO",
+          "cognome": "FRIGERIO",
+          "tempo": "00:03:01.17",
+          "secondi": 181.17,
+          "data": "1996-06-30"
+        },
+        "M30": {
+          "nome": "PIETRO",
+          "cognome": "BRONCONI",
+          "tempo": "00:03:07.49",
+          "secondi": 187.49,
+          "data": "1996-02-11"
+        },
+        "M35": {
+          "nome": "TOMASO",
+          "cognome": "RAVIOLA",
+          "tempo": "00:02:41.83",
+          "secondi": 161.83,
+          "data": "2024-06-30"
+        },
+        "M40": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:02:34.54",
+          "secondi": 154.54,
+          "data": "2014-06-24"
+        },
+        "M45": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:02:37.75",
+          "secondi": 157.75,
+          "data": "2016-06-26"
+        },
+        "M60": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:03:47.11",
+          "secondi": 227.11,
+          "data": "2011-06-22"
+        },
+        "M65": {
+          "nome": "VALTER UMBERTO",
+          "cognome": "DOTTI",
+          "tempo": "00:03:51.72",
+          "secondi": 231.72,
+          "data": "2026-05-30"
+        },
+        "M70": {
+          "nome": "RAOUL",
+          "cognome": "ROSSI",
+          "tempo": "00:05:26.31",
+          "secondi": 326.31,
+          "data": "2021-06-27"
+        }
+      }
+    }
+  },
+  "200MX": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:02:40.27",
+        "secondi": 160.27,
+        "data": "2021-06-13"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:50.59",
+          "secondi": 170.59,
+          "data": "2014-06-01"
+        },
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:41.97",
+          "secondi": 161.97,
+          "data": "2019-05-12"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:40.27",
+          "secondi": 160.27,
+          "data": "2021-06-13"
+        },
+        "M35": {
+          "nome": "FRANCESCA",
+          "cognome": "LUCCHINI",
+          "tempo": "00:03:26.14",
+          "secondi": 206.14,
+          "data": "2016-05-28"
+        },
+        "M40": {
+          "nome": "BARBARA",
+          "cognome": "FERRI",
+          "tempo": "00:02:57.82",
+          "secondi": 177.82,
+          "data": "2012-05-26"
+        },
+        "M45": {
+          "nome": "CECILIA",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:03:31.20",
+          "secondi": 211.2,
+          "data": "2018-05-27"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:26.25",
+          "secondi": 206.25,
+          "data": "2012-03-04"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:24.39",
+          "secondi": 204.39,
+          "data": "2018-07-12"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:39.27",
+          "secondi": 219.27,
+          "data": "2022-05-21"
+        },
+        "M65": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:04:34.54",
+          "secondi": 274.54,
+          "data": "2024-06-30"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "FILIPPO",
+        "cognome": "JACAZIO",
+        "tempo": "00:02:28.39",
+        "secondi": 148.39,
+        "data": "2016-05-28"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:38.42",
+          "secondi": 158.42,
+          "data": "2017-05-28"
+        },
+        "M30": {
+          "nome": "ROBERTO",
+          "cognome": "DE LUCIA",
+          "tempo": "00:02:37.55",
+          "secondi": 157.55,
+          "data": "2006-06-25"
+        },
+        "M35": {
+          "nome": "FILIPPO",
+          "cognome": "JACAZIO",
+          "tempo": "00:02:28.39",
+          "secondi": 148.39,
+          "data": "2016-05-28"
+        },
+        "M40": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:02:38.37",
+          "secondi": 158.37,
+          "data": "2012-05-26"
+        },
+        "M45": {
+          "nome": "DARIO",
+          "cognome": "SPERANDIO",
+          "tempo": "00:02:45.56",
+          "secondi": 165.56,
+          "data": "2026-05-24"
+        },
+        "M50": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:02:56.66",
+          "secondi": 176.66,
+          "data": "2012-05-26"
+        },
+        "M55": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:02:58.72",
+          "secondi": 178.72,
+          "data": "2017-05-28"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:03:09.71",
+          "secondi": 189.71,
+          "data": "2024-06-09"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:03:37.03",
+          "secondi": 217.03,
+          "data": "2022-05-21"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:03:25.46",
+          "secondi": 205.46,
+          "data": "2022-06-30"
+        },
+        "M75": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:03:42.25",
+          "secondi": 222.25,
+          "data": "2024-06-30"
+        }
+      }
+    }
+  },
+  "200RA": {
+    "donne": {
+      "assoluto": {
+        "nome": "BRAVO CRISTINA",
+        "cognome": "FERRARI",
+        "tempo": "00:03:24.16",
+        "secondi": 204.16,
+        "data": "1999-06-27"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "BRAVO CRISTINA",
+          "cognome": "FERRARI",
+          "tempo": "00:03:24.16",
+          "secondi": 204.16,
+          "data": "1999-06-27"
+        },
+        "M30": {
+          "nome": "BRAVO CRISTINA",
+          "cognome": "FERRARI",
+          "tempo": "00:03:30.51",
+          "secondi": 210.51,
+          "data": "2000-01-01"
+        },
+        "M35": {
+          "nome": "ALESSANDRA",
+          "cognome": "GANDELLI",
+          "tempo": "00:03:39.48",
+          "secondi": 219.48,
+          "data": "1999-06-27"
+        },
+        "M40": {
+          "nome": "ANNA",
+          "cognome": "MERONI",
+          "tempo": "00:03:50.92",
+          "secondi": 230.92,
+          "data": "1998-06-28"
+        },
+        "M45": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:45.09",
+          "secondi": 225.09,
+          "data": "2008-05-18"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:43.04",
+          "secondi": 223.04,
+          "data": "2012-06-15"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:37.79",
+          "secondi": 217.79,
+          "data": "2015-05-31"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:58.94",
+          "secondi": 238.94,
+          "data": "2022-05-28"
+        },
+        "M65": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:05:01.17",
+          "secondi": 301.17,
+          "data": "2024-06-30"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "FRANCESCO",
+        "cognome": "STEFFANONI",
+        "tempo": "00:02:56.13",
+        "secondi": 176.13,
+        "data": "2010-05-16"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "GIANFRANCO",
+          "cognome": "MASALA",
+          "tempo": "00:03:21.00",
+          "secondi": 201.0,
+          "data": "1992-02-23"
+        },
+        "M30": {
+          "nome": "MATTIA",
+          "cognome": "BONOMI",
+          "tempo": "00:03:16.26",
+          "secondi": 196.26,
+          "data": "2025-06-02"
+        },
+        "M35": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:02:56.13",
+          "secondi": 176.13,
+          "data": "2010-05-16"
+        },
+        "M40": {
+          "nome": "CLAUDIO",
+          "cognome": "CECCAGNO",
+          "tempo": "00:03:02.28",
+          "secondi": 182.28,
+          "data": "2001-06-24"
+        },
+        "M50": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:03:52.35",
+          "secondi": 232.35,
+          "data": "2008-05-18"
+        },
+        "M55": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:03:25.59",
+          "secondi": 205.59,
+          "data": "2023-06-30"
+        },
+        "M60": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:03:19.27",
+          "secondi": 199.27,
+          "data": "2025-05-17"
+        },
+        "M65": {
+          "nome": "ARCANGELO",
+          "cognome": "ZERBO",
+          "tempo": "00:03:47.24",
+          "secondi": 227.24,
+          "data": "2022-06-30"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:03:49.00",
+          "secondi": 229.0,
+          "data": "2022-06-30"
+        }
+      }
+    }
+  },
+  "200SL": {
+    "donne": {
+      "assoluto": {
+        "nome": "ILARIA",
+        "cognome": "GALIANO",
+        "tempo": "00:02:19.52",
+        "secondi": 139.52,
+        "data": "2024-06-30"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "MICAELA",
+          "cognome": "BECCALLI",
+          "tempo": "00:03:00.10",
+          "secondi": 180.1,
+          "data": "2017-05-28"
+        },
+        "M25": {
+          "nome": "ILARIA",
+          "cognome": "GALIANO",
+          "tempo": "00:02:19.52",
+          "secondi": 139.52,
+          "data": "2024-06-30"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:23.02",
+          "secondi": 143.02,
+          "data": "2021-06-13"
+        },
+        "M35": {
+          "nome": "RAFFAELLA",
+          "cognome": "PIZZO",
+          "tempo": "00:02:53.87",
+          "secondi": 173.87,
+          "data": "2010-06-24"
+        },
+        "M40": {
+          "nome": "MARINA",
+          "cognome": "PUCCIO",
+          "tempo": "00:02:48.24",
+          "secondi": 168.24,
+          "data": "2001-06-24"
+        },
+        "M45": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:03:06.84",
+          "secondi": 186.84,
+          "data": "2007-06-24"
+        },
+        "M50": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:03:00.49",
+          "secondi": 180.49,
+          "data": "2019-05-18"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:02:59.58",
+          "secondi": 179.58,
+          "data": "2019-06-30"
+        },
+        "M60": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:02:56.09",
+          "secondi": 176.09,
+          "data": "2026-05-24"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:12.51",
+          "secondi": 192.51,
+          "data": "2025-06-08"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "EDOARDO",
+        "cognome": "VASSURA",
+        "tempo": "00:02:07.56",
+        "secondi": 127.56,
+        "data": "2025-06-26"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "JACOPO",
+          "cognome": "BOTTARI",
+          "tempo": "00:02:14.22",
+          "secondi": 134.22,
+          "data": "2009-05-17"
+        },
+        "M25": {
+          "nome": "EDOARDO",
+          "cognome": "VASSURA",
+          "tempo": "00:02:07.56",
+          "secondi": 127.56,
+          "data": "2025-06-26"
+        },
+        "M30": {
+          "nome": "PAOLO",
+          "cognome": "CERIANI",
+          "tempo": "00:02:15.90",
+          "secondi": 135.9,
+          "data": "2026-05-24"
+        },
+        "M35": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:02:19.12",
+          "secondi": 139.12,
+          "data": "2010-06-05"
+        },
+        "M40": {
+          "nome": "FILIPPO",
+          "cognome": "JACAZIO",
+          "tempo": "00:02:12.48",
+          "secondi": 132.48,
+          "data": "2016-12-11"
+        },
+        "M45": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:02:19.38",
+          "secondi": 139.38,
+          "data": "2015-06-07"
+        },
+        "M50": {
+          "nome": "ALESSANDRO",
+          "cognome": "LEONI",
+          "tempo": "00:02:33.20",
+          "secondi": 153.2,
+          "data": "2022-08-31"
+        },
+        "M55": {
+          "nome": "MAURO",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:02:36.56",
+          "secondi": 156.56,
+          "data": "2025-05-17"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:02:35.23",
+          "secondi": 155.23,
+          "data": "2024-06-30"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:55.71",
+          "secondi": 175.71,
+          "data": "2022-06-30"
+        },
+        "M70": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:02:57.48",
+          "secondi": 177.48,
+          "data": "2025-06-26"
+        },
+        "M75": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:03:36.85",
+          "secondi": 216.85,
+          "data": "2026-06-07"
+        },
+        "M80": {
+          "nome": "ALESSANDRO",
+          "cognome": "BITTO",
+          "tempo": "00:04:22.56",
+          "secondi": 262.56,
+          "data": "2024-05-19"
+        },
+        "M85": {
+          "nome": "ALESSANDRO",
+          "cognome": "BITTO",
+          "tempo": "00:04:46.97",
+          "secondi": 286.97,
+          "data": "2026-05-24"
+        }
+      }
+    }
+  },
+  "400MX": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:06:07.20",
+        "secondi": 367.2,
+        "data": "2019-06-01"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:06:07.20",
+          "secondi": 367.2,
+          "data": "2019-06-01"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:06:17.34",
+          "secondi": 377.34,
+          "data": "2025-05-04"
+        },
+        "M45": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:07:51.53",
+          "secondi": 471.53,
+          "data": "2007-06-24"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:07:20.25",
+          "secondi": 440.25,
+          "data": "2014-02-16"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:07:16.68",
+          "secondi": 436.68,
+          "data": "2018-04-08"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:07:57.16",
+          "secondi": 477.16,
+          "data": "2022-06-02"
+        },
+        "M65": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:10:04.73",
+          "secondi": 604.73,
+          "data": "2025-06-25"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "FRANCESCO",
+        "cognome": "STEFFANONI",
+        "tempo": "00:05:33.65",
+        "secondi": 333.65,
+        "data": "2011-05-15"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:05:44.02",
+          "secondi": 344.02,
+          "data": "2017-03-26"
+        },
+        "M30": {
+          "nome": "SERGIO",
+          "cognome": "ZANTA",
+          "tempo": "00:05:43.77",
+          "secondi": 343.77,
+          "data": "2006-06-25"
+        },
+        "M35": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:05:33.65",
+          "secondi": 333.65,
+          "data": "2011-05-15"
+        },
+        "M40": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:05:33.82",
+          "secondi": 333.82,
+          "data": "2012-05-01"
+        },
+        "M55": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:07:37.19",
+          "secondi": 457.19,
+          "data": "2010-05-16"
+        },
+        "M60": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:07:35.26",
+          "secondi": 455.26,
+          "data": "2018-05-27"
+        },
+        "M65": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:08:29.18",
+          "secondi": 509.18,
+          "data": "2016-04-30"
+        },
+        "M70": {
+          "nome": "GIOVANNI",
+          "cognome": "MAINETTI",
+          "tempo": "00:08:29.48",
+          "secondi": 509.48,
+          "data": "2022-05-08"
+        }
+      }
+    }
+  },
+  "400SL": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:05:00.10",
+        "secondi": 300.1,
+        "data": "2021-07-04"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "MICAELA",
+          "cognome": "BECCALLI",
+          "tempo": "00:06:11.01",
+          "secondi": 371.01,
+          "data": "2018-07-11"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:05:00.10",
+          "secondi": 300.1,
+          "data": "2021-07-04"
+        },
+        "M35": {
+          "nome": "BARBARA",
+          "cognome": "FERRI",
+          "tempo": "00:05:32.14",
+          "secondi": 332.14,
+          "data": "2009-06-07"
+        },
+        "M40": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:07:01.11",
+          "secondi": 421.11,
+          "data": "2003-01-01"
+        },
+        "M45": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:06:36.25",
+          "secondi": 396.25,
+          "data": "2006-05-07"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:06:26.30",
+          "secondi": 386.3,
+          "data": "2012-03-04"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:06:27.38",
+          "secondi": 387.38,
+          "data": "2019-06-08"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:06:41.37",
+          "secondi": 401.37,
+          "data": "2022-06-05"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:06:42.33",
+          "secondi": 402.33,
+          "data": "2025-06-25"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "MORENO MARIO",
+        "cognome": "OPICI",
+        "tempo": "00:04:52.37",
+        "secondi": 292.37,
+        "data": "2016-06-26"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "MORENO MARIO",
+          "cognome": "OPICI",
+          "tempo": "00:04:53.98",
+          "secondi": 293.98,
+          "data": "2015-06-25"
+        },
+        "M30": {
+          "nome": "MORENO MARIO",
+          "cognome": "OPICI",
+          "tempo": "00:04:52.37",
+          "secondi": 292.37,
+          "data": "2016-06-26"
+        },
+        "M35": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:04:53.78",
+          "secondi": 293.78,
+          "data": "2009-06-07"
+        },
+        "M40": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:04:59.73",
+          "secondi": 299.73,
+          "data": "2012-05-13"
+        },
+        "M45": {
+          "nome": "PAOLO",
+          "cognome": "MALOBERTI",
+          "tempo": "00:05:05.81",
+          "secondi": 305.81,
+          "data": "2006-06-25"
+        },
+        "M50": {
+          "nome": "PAOLO",
+          "cognome": "MALOBERTI",
+          "tempo": "00:05:09.79",
+          "secondi": 309.79,
+          "data": "2007-06-24"
+        },
+        "M55": {
+          "nome": "MAURO",
+          "cognome": "BRAMBILLA",
+          "tempo": "00:05:41.18",
+          "secondi": 341.18,
+          "data": "2025-06-08"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:05:36.62",
+          "secondi": 336.62,
+          "data": "2024-05-05"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:06:27.97",
+          "secondi": 387.97,
+          "data": "2023-06-30"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:06:27.07",
+          "secondi": 387.07,
+          "data": "2022-06-05"
+        },
+        "M75": {
+          "nome": "ALESSANDRO",
+          "cognome": "BITTO",
+          "tempo": "00:08:24.51",
+          "secondi": 504.51,
+          "data": "2017-05-28"
+        }
+      }
+    }
+  },
+  "50DO": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:00:33.35",
+        "secondi": 33.35,
+        "data": "2019-06-28"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:36.89",
+          "secondi": 36.89,
+          "data": "2014-05-11"
+        },
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:33.35",
+          "secondi": 33.35,
+          "data": "2019-06-28"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:33.42",
+          "secondi": 33.42,
+          "data": "2025-06-27"
+        },
+        "M35": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:35.45",
+          "secondi": 35.45,
+          "data": "2026-05-24"
+        },
+        "M40": {
+          "nome": "BARBARA",
+          "cognome": "FERRI",
+          "tempo": "00:00:35.65",
+          "secondi": 35.65,
+          "data": "2014-05-31"
+        },
+        "M45": {
+          "nome": "DARIA",
+          "cognome": "MARTELLI",
+          "tempo": "00:00:45.17",
+          "secondi": 45.17,
+          "data": "2018-05-27"
+        },
+        "M50": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:00:41.84",
+          "secondi": 41.84,
+          "data": "2017-07-01"
+        },
+        "M55": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:00:41.87",
+          "secondi": 41.87,
+          "data": "2024-05-19"
+        },
+        "M60": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:00:43.20",
+          "secondi": 43.2,
+          "data": "2026-05-24"
+        },
+        "M65": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:00:54.08",
+          "secondi": 54.08,
+          "data": "2024-06-29"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "LUCA",
+        "cognome": "SINIGAGLIA",
+        "tempo": "00:00:29.48",
+        "secondi": 29.48,
+        "data": "2024-06-29"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "GIOVANNI AMEDEO",
+          "cognome": "TAVECCHIA",
+          "tempo": "00:00:30.90",
+          "secondi": 30.9,
+          "data": "2018-05-27"
+        },
+        "M30": {
+          "nome": "LUCA",
+          "cognome": "SINIGAGLIA",
+          "tempo": "00:00:29.48",
+          "secondi": 29.48,
+          "data": "2024-06-29"
+        },
+        "M35": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:32.38",
+          "secondi": 32.38,
+          "data": "2025-05-04"
+        },
+        "M40": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:00:31.37",
+          "secondi": 31.37,
+          "data": "2013-07-05"
+        },
+        "M45": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:00:34.27",
+          "secondi": 34.27,
+          "data": "2018-05-27"
+        },
+        "M50": {
+          "nome": "FULVIO",
+          "cognome": "CAMPARI",
+          "tempo": "00:00:37.25",
+          "secondi": 37.25,
+          "data": "2018-05-13"
+        },
+        "M55": {
+          "nome": "FULVIO",
+          "cognome": "CAMPARI",
+          "tempo": "00:00:39.55",
+          "secondi": 39.55,
+          "data": "2024-06-29"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:00:40.68",
+          "secondi": 40.68,
+          "data": "2025-06-28"
+        },
+        "M65": {
+          "nome": "VALTER UMBERTO",
+          "cognome": "DOTTI",
+          "tempo": "00:00:43.32",
+          "secondi": 43.32,
+          "data": "2026-05-10"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:00:42.94",
+          "secondi": 42.94,
+          "data": "2019-06-30"
+        },
+        "M75": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:00:47.37",
+          "secondi": 47.37,
+          "data": "2024-06-29"
+        },
+        "M80": {
+          "nome": "GIOVANNI",
+          "cognome": "JACAZIO",
+          "tempo": "00:00:53.84",
+          "secondi": 53.84,
+          "data": "2025-06-28"
+        },
+        "M85": {
+          "nome": "GHERARDO",
+          "cognome": "MERCATI",
+          "tempo": "00:01:09.23",
+          "secondi": 69.23,
+          "data": "2026-05-10"
+        }
+      }
+    }
+  },
+  "50FA": {
+    "donne": {
+      "assoluto": {
+        "nome": "FRANCESCA",
+        "cognome": "PITALIERI",
+        "tempo": "00:00:30.23",
+        "secondi": 30.23,
+        "data": "2024-06-30"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:33.29",
+          "secondi": 33.29,
+          "data": "2015-05-31"
+        },
+        "M25": {
+          "nome": "FRANCESCA",
+          "cognome": "PITALIERI",
+          "tempo": "00:00:30.23",
+          "secondi": 30.23,
+          "data": "2024-06-30"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:31.42",
+          "secondi": 31.42,
+          "data": "2024-05-19"
+        },
+        "M35": {
+          "nome": "SELENE",
+          "cognome": "BOTTARI",
+          "tempo": "00:00:32.57",
+          "secondi": 32.57,
+          "data": "2026-05-24"
+        },
+        "M40": {
+          "nome": "MARINA",
+          "cognome": "PUCCIO",
+          "tempo": "00:00:36.38",
+          "secondi": 36.38,
+          "data": "2001-06-24"
+        },
+        "M45": {
+          "nome": "LUISA MARIA",
+          "cognome": "ZARETTI",
+          "tempo": "00:00:34.06",
+          "secondi": 34.06,
+          "data": "2012-05-06"
+        },
+        "M50": {
+          "nome": "LUCIA",
+          "cognome": "SENA",
+          "tempo": "00:00:35.20",
+          "secondi": 35.2,
+          "data": "2026-05-24"
+        },
+        "M55": {
+          "nome": "ANNA",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:00:39.42",
+          "secondi": 39.42,
+          "data": "2024-05-19"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:00:49.23",
+          "secondi": 49.23,
+          "data": "2024-05-19"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "STEFANO",
+        "cognome": "IACOBONE",
+        "tempo": "00:00:26.45",
+        "secondi": 26.45,
+        "data": "2017-07-02"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "IVAN",
+          "cognome": "ZERLETTI",
+          "tempo": "00:00:27.65",
+          "secondi": 27.65,
+          "data": "2024-05-05"
+        },
+        "M30": {
+          "nome": "STEFANO",
+          "cognome": "IACOBONE",
+          "tempo": "00:00:26.45",
+          "secondi": 26.45,
+          "data": "2017-07-02"
+        },
+        "M35": {
+          "nome": "TOMASO",
+          "cognome": "RAVIOLA",
+          "tempo": "00:00:29.12",
+          "secondi": 29.12,
+          "data": "2024-06-30"
+        },
+        "M40": {
+          "nome": "TOMASO",
+          "cognome": "RAVIOLA",
+          "tempo": "00:00:29.07",
+          "secondi": 29.07,
+          "data": "2026-05-24"
+        },
+        "M45": {
+          "nome": "DAVIDE",
+          "cognome": "RIPAMONTI",
+          "tempo": "00:00:29.75",
+          "secondi": 29.75,
+          "data": "2016-05-15"
+        },
+        "M50": {
+          "nome": "UGO",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:00:31.03",
+          "secondi": 31.03,
+          "data": "2016-05-28"
+        },
+        "M55": {
+          "nome": "UGO",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:00:31.19",
+          "secondi": 31.19,
+          "data": "2019-06-30"
+        },
+        "M60": {
+          "nome": "UGO",
+          "cognome": "SOMIGLIANA",
+          "tempo": "00:00:31.44",
+          "secondi": 31.44,
+          "data": "2024-05-19"
+        },
+        "M65": {
+          "nome": "ARCANGELO",
+          "cognome": "ZERBO",
+          "tempo": "00:00:42.04",
+          "secondi": 42.04,
+          "data": "2022-05-21"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:00:42.02",
+          "secondi": 42.02,
+          "data": "2022-06-02"
+        },
+        "M75": {
+          "nome": "UMBERTO",
+          "cognome": "NERI",
+          "tempo": "00:00:48.91",
+          "secondi": 48.91,
+          "data": "2026-05-24"
+        },
+        "M85": {
+          "nome": "GHERARDO",
+          "cognome": "MERCATI",
+          "tempo": "00:01:47.92",
+          "secondi": 107.92,
+          "data": "2025-11-16"
+        }
+      }
+    }
+  },
+  "50RA": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:00:35.86",
+        "secondi": 35.86,
+        "data": "2019-06-30"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:40.90",
+          "secondi": 40.9,
+          "data": "2015-05-31"
+        },
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:35.86",
+          "secondi": 35.86,
+          "data": "2019-06-30"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:37.60",
+          "secondi": 37.6,
+          "data": "2022-06-30"
+        },
+        "M35": {
+          "nome": "ELENA",
+          "cognome": "PICERNO",
+          "tempo": "00:00:45.02",
+          "secondi": 45.02,
+          "data": "2019-05-19"
+        },
+        "M40": {
+          "nome": "ANNA",
+          "cognome": "MERONI",
+          "tempo": "00:00:45.50",
+          "secondi": 45.5,
+          "data": "1998-01-01"
+        },
+        "M45": {
+          "nome": "ANNA",
+          "cognome": "MIGLIAZZA",
+          "tempo": "00:00:45.96",
+          "secondi": 45.96,
+          "data": "2016-06-26"
+        },
+        "M50": {
+          "nome": "DARIA",
+          "cognome": "MARTELLI",
+          "tempo": "00:00:46.28",
+          "secondi": 46.28,
+          "data": "2024-05-18"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:00:43.17",
+          "secondi": 43.17,
+          "data": "2018-07-13"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:00:47.04",
+          "secondi": 47.04,
+          "data": "2022-05-21"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "STEFANO",
+        "cognome": "IACOBONE",
+        "tempo": "00:00:31.24",
+        "secondi": 31.24,
+        "data": "2017-07-02"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "ALESSANDRO",
+          "cognome": "PIROLA",
+          "tempo": "00:00:40.06",
+          "secondi": 40.06,
+          "data": "2026-05-24"
+        },
+        "M25": {
+          "nome": "FILIPPO MARIA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:35.29",
+          "secondi": 35.29,
+          "data": "2017-05-20"
+        },
+        "M30": {
+          "nome": "STEFANO",
+          "cognome": "IACOBONE",
+          "tempo": "00:00:31.24",
+          "secondi": 31.24,
+          "data": "2017-07-02"
+        },
+        "M35": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:00:34.41",
+          "secondi": 34.41,
+          "data": "1998-06-28"
+        },
+        "M40": {
+          "nome": "FULVIO",
+          "cognome": "CAMPARI",
+          "tempo": "00:00:34.99",
+          "secondi": 34.99,
+          "data": "2009-06-27"
+        },
+        "M45": {
+          "nome": "ANGELO",
+          "cognome": "ARIOLI",
+          "tempo": "00:00:36.47",
+          "secondi": 36.47,
+          "data": "2009-06-07"
+        },
+        "M50": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:00:37.94",
+          "secondi": 37.94,
+          "data": "2014-06-27"
+        },
+        "M55": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:00:38.14",
+          "secondi": 38.14,
+          "data": "2017-05-28"
+        },
+        "M60": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:00:38.93",
+          "secondi": 38.93,
+          "data": "2024-05-19"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:00:42.66",
+          "secondi": 42.66,
+          "data": "2022-06-30"
+        },
+        "M70": {
+          "nome": "ARCANGELO",
+          "cognome": "ZERBO",
+          "tempo": "00:00:46.43",
+          "secondi": 46.43,
+          "data": "2025-05-17"
+        }
+      }
+    }
+  },
+  "50SL": {
+    "donne": {
+      "assoluto": {
+        "nome": "FRANCESCA",
+        "cognome": "PITALIERI",
+        "tempo": "00:00:27.83",
+        "secondi": 27.83,
+        "data": "2024-06-30"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "BRAVO CRISTINA",
+          "cognome": "FERRARI",
+          "tempo": "00:03:24.16",
+          "secondi": 204.16,
+          "data": "1999-06-27"
+        },
+        "M30": {
+          "nome": "BRAVO CRISTINA",
+          "cognome": "FERRARI",
+          "tempo": "00:03:30.51",
+          "secondi": 210.51,
+          "data": "2000-01-01"
+        },
+        "M35": {
+          "nome": "ALESSANDRA",
+          "cognome": "GANDELLI",
+          "tempo": "00:03:39.48",
+          "secondi": 219.48,
+          "data": "1999-06-27"
+        },
+        "M40": {
+          "nome": "ANNA",
+          "cognome": "MERONI",
+          "tempo": "00:03:50.92",
+          "secondi": 230.92,
+          "data": "1998-06-28"
+        },
+        "M45": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:45.09",
+          "secondi": 225.09,
+          "data": "2008-05-18"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:43.04",
+          "secondi": 223.04,
+          "data": "2012-06-15"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:37.79",
+          "secondi": 217.79,
+          "data": "2015-05-31"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:03:58.94",
+          "secondi": 238.94,
+          "data": "2022-05-28"
+        },
+        "M65": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:05:01.17",
+          "secondi": 301.17,
+          "data": "2024-06-30"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "LUCA",
+        "cognome": "SINIGAGLIA",
+        "tempo": "00:00:25.23",
+        "secondi": 25.23,
+        "data": "2025-06-29"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "GIANFRANCO",
+          "cognome": "MASALA",
+          "tempo": "00:03:21.00",
+          "secondi": 201.0,
+          "data": "1992-02-23"
+        },
+        "M30": {
+          "nome": "MATTIA",
+          "cognome": "BONOMI",
+          "tempo": "00:03:16.26",
+          "secondi": 196.26,
+          "data": "2025-06-02"
+        },
+        "M35": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:02:56.13",
+          "secondi": 176.13,
+          "data": "2010-05-16"
+        },
+        "M40": {
+          "nome": "CLAUDIO",
+          "cognome": "CECCAGNO",
+          "tempo": "00:03:02.28",
+          "secondi": 182.28,
+          "data": "2001-06-24"
+        },
+        "M50": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:03:52.35",
+          "secondi": 232.35,
+          "data": "2008-05-18"
+        },
+        "M55": {
+          "nome": "ROBERTO",
+          "cognome": "SALOMONE",
+          "tempo": "00:03:25.59",
+          "secondi": 205.59,
+          "data": "2023-06-30"
+        },
+        "M60": {
+          "nome": "GIUSEPPE",
+          "cognome": "ROMANO",
+          "tempo": "00:03:19.27",
+          "secondi": 199.27,
+          "data": "2025-05-17"
+        },
+        "M65": {
+          "nome": "ARCANGELO",
+          "cognome": "ZERBO",
+          "tempo": "00:03:47.24",
+          "secondi": 227.24,
+          "data": "2022-06-30"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:03:49.00",
+          "secondi": 229.0,
+          "data": "2022-06-30"
+        }
+      }
+    }
+  },
+  "800SL": {
+    "donne": {
+      "assoluto": {
+        "nome": "SUSANNA",
+        "cognome": "BROCCOLINO",
+        "tempo": "00:10:29.31",
+        "secondi": 629.31,
+        "data": "2021-07-04"
+      },
+      "categorie": {
+        "U25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:11:25.76",
+          "secondi": 685.76,
+          "data": "2014-06-01"
+        },
+        "M25": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:13:06.40",
+          "secondi": 786.4,
+          "data": "2018-10-21"
+        },
+        "M30": {
+          "nome": "SUSANNA",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:10:29.31",
+          "secondi": 629.31,
+          "data": "2021-07-04"
+        },
+        "M40": {
+          "nome": "RAFFAELLA",
+          "cognome": "PIZZO",
+          "tempo": "00:13:45.06",
+          "secondi": 825.06,
+          "data": "2010-10-24"
+        },
+        "M45": {
+          "nome": "FULVIA",
+          "cognome": "DI BERNARDO",
+          "tempo": "00:13:38.01",
+          "secondi": 818.01,
+          "data": "2006-06-25"
+        },
+        "M50": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:13:07.70",
+          "secondi": 787.7,
+          "data": "2012-11-04"
+        },
+        "M55": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:13:01.61",
+          "secondi": 781.61,
+          "data": "2019-06-30"
+        },
+        "M60": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:13:18.64",
+          "secondi": 798.64,
+          "data": "2022-06-30"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "00:13:54.38",
+          "secondi": 834.38,
+          "data": "2025-06-24"
+        }
+      }
+    },
+    "uomini": {
+      "assoluto": {
+        "nome": "MORENO MARIO",
+        "cognome": "OPICI",
+        "tempo": "00:10:05.65",
+        "secondi": 605.65,
+        "data": "2015-06-24"
+      },
+      "categorie": {
+        "M25": {
+          "nome": "MORENO MARIO",
+          "cognome": "OPICI",
+          "tempo": "00:10:05.65",
+          "secondi": 605.65,
+          "data": "2015-06-24"
+        },
+        "M30": {
+          "nome": "PAOLO",
+          "cognome": "CONCER",
+          "tempo": "00:10:11.07",
+          "secondi": 611.07,
+          "data": "2007-03-04"
+        },
+        "M35": {
+          "nome": "FRANCESCO",
+          "cognome": "STEFFANONI",
+          "tempo": "00:10:10.02",
+          "secondi": 610.02,
+          "data": "2008-11-02"
+        },
+        "M40": {
+          "nome": "SILVANO",
+          "cognome": "COZZI",
+          "tempo": "00:11:06.04",
+          "secondi": 666.04,
+          "data": "2006-02-05"
+        },
+        "M45": {
+          "nome": "PAOLO",
+          "cognome": "MALOBERTI",
+          "tempo": "00:10:55.09",
+          "secondi": 655.09,
+          "data": "2004-01-01"
+        },
+        "M50": {
+          "nome": "PAOLO",
+          "cognome": "MALOBERTI",
+          "tempo": "00:10:41.09",
+          "secondi": 641.09,
+          "data": "2007-06-24"
+        },
+        "M55": {
+          "nome": "ENRICO PAOLO",
+          "cognome": "CRESPI",
+          "tempo": "00:11:52.63",
+          "secondi": 712.63,
+          "data": "2024-06-30"
+        },
+        "M60": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:12:13.30",
+          "secondi": 733.3,
+          "data": "2014-11-02"
+        },
+        "M65": {
+          "nome": "MARCO",
+          "cognome": "BROCCOLINO",
+          "tempo": "00:13:11.26",
+          "secondi": 791.26,
+          "data": "2022-05-28"
+        },
+        "M70": {
+          "nome": "CLAUDIO",
+          "cognome": "AZIN",
+          "tempo": "00:13:22.60",
+          "secondi": 802.6,
+          "data": "2021-11-07"
+        },
+        "M75": {
+          "nome": "ALESSANDRO",
+          "cognome": "BITTO",
+          "tempo": "00:16:12.70",
+          "secondi": 972.7,
+          "data": "2015-10-25"
+        },
+        "M80": {
+          "nome": "ALESSANDRO",
+          "cognome": "BITTO",
+          "tempo": "00:17:57.90",
+          "secondi": 1077.9,
+          "data": "2022-10-23"
+        }
+      }
+    }
+  }
+}
