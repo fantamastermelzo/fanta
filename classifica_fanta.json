@@ -3,7 +3,7 @@
     {
       "team": "Master Milza",
       "manager": "Tomaso Raviola",
-      "pts": 275.1,
+      "pts": 367.2,
       "atleti": [
         {
           "nome": "Sena Lucia",
@@ -19,7 +19,7 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 180.8
+          "pts": 272.9
         },
         {
           "nome": "Leoni Alessandro",
@@ -30,7 +30,7 @@
     {
       "team": "Dorso e pregiudizio",
       "manager": "Filippo Broccolino",
-      "pts": 275.1,
+      "pts": 367.2,
       "atleti": [
         {
           "nome": "Mercati Gherardo",
@@ -42,7 +42,7 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 180.8
+          "pts": 272.9
         },
         {
           "nome": "Somigliana Anna",
@@ -57,7 +57,7 @@
     {
       "team": "Li faremo tutti Neri",
       "manager": "Umberto Neri",
-      "pts": 262.1,
+      "pts": 354.2,
       "atleti": [
         {
           "nome": "Romano Giuseppe",
@@ -65,7 +65,7 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 180.8
+          "pts": 272.9
         },
         {
           "nome": "Sena Lucia",
@@ -77,6 +77,33 @@
         },
         {
           "nome": "Somigliana Anna",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Meltzunami",
+      "manager": "Susanna Broccolino",
+      "pts": 264.4,
+      "atleti": [
+        {
+          "nome": "Bottari Selene",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 94.3
+        },
+        {
+          "nome": "Broccolino Marco",
+          "pts": 88.8
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3
+        },
+        {
+          "nome": "Mercati Gherardo",
           "pts": 0
         }
       ]
@@ -109,20 +136,39 @@
       ]
     },
     {
-      "team": "Meltzunami",
-      "manager": "Susanna Broccolino",
-      "pts": 175.6,
+      "team": "Delfino guasto",
+      "manager": "Silvio Scotti",
+      "pts": 179.8,
       "atleti": [
+        {
+          "nome": "Somigliana Anna",
+          "pts": 0
+        },
         {
           "nome": "Bottari Selene",
           "pts": 0
         },
         {
-          "nome": "Sperandio Dario",
-          "pts": 94.3
+          "nome": "Neri Umberto",
+          "pts": 0
         },
         {
           "nome": "Broccolino Marco",
+          "pts": 88.8
+        },
+        {
+          "nome": "Brambilla Mauro",
+          "pts": 91
+        }
+      ]
+    },
+    {
+      "team": "Maestri dell'Acqua",
+      "manager": "Annamaria Naborri",
+      "pts": 170.1,
+      "atleti": [
+        {
+          "nome": "Somigliana Anna",
           "pts": 0
         },
         {
@@ -131,6 +177,41 @@
         },
         {
           "nome": "Mercati Gherardo",
+          "pts": 0
+        },
+        {
+          "nome": "Neri Umberto",
+          "pts": 0
+        },
+        {
+          "nome": "Broccolino Marco",
+          "pts": 88.8
+        }
+      ]
+    },
+    {
+      "team": "Pescidabrodo",
+      "manager": "Arcangelo Zerbo",
+      "pts": 170.1,
+      "atleti": [
+        {
+          "nome": "Broccolino Marco",
+          "pts": 88.8
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3
+        },
+        {
+          "nome": "Neri Umberto",
+          "pts": 0
+        },
+        {
+          "nome": "Brambilla Cecilia",
+          "pts": 0
+        },
+        {
+          "nome": "Bottari Giuseppe",
           "pts": 0
         }
       ]
@@ -271,29 +352,56 @@
       ]
     },
     {
-      "team": "Delfino guasto",
-      "manager": "Silvio Scotti",
-      "pts": 91,
+      "team": "NuotoMaleMaNuoto",
+      "manager": "Maria Cristina Rovida",
+      "pts": 88.8,
       "atleti": [
-        {
-          "nome": "Somigliana Anna",
-          "pts": 0
-        },
-        {
-          "nome": "Bottari Selene",
-          "pts": 0
-        },
         {
           "nome": "Neri Umberto",
           "pts": 0
         },
         {
           "nome": "Broccolino Marco",
+          "pts": 88.8
+        },
+        {
+          "nome": "Broccolino Susanna",
           "pts": 0
         },
         {
-          "nome": "Brambilla Mauro",
-          "pts": 91
+          "nome": "Somigliana Ugo",
+          "pts": 0
+        },
+        {
+          "nome": "Bottari Selene",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Virate&drammi",
+      "manager": "Selene Bottari",
+      "pts": 88.8,
+      "atleti": [
+        {
+          "nome": "Broccolino Marco",
+          "pts": 88.8
+        },
+        {
+          "nome": "Broccolino Susanna",
+          "pts": 0
+        },
+        {
+          "nome": "Vassura Edoardo",
+          "pts": 0
+        },
+        {
+          "nome": "Romano Giuseppe",
+          "pts": 0
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": 0
         }
       ]
     },
@@ -348,60 +456,6 @@
         {
           "nome": "Rovida Maria Cristina",
           "pts": 81.3
-        }
-      ]
-    },
-    {
-      "team": "Maestri dell'Acqua",
-      "manager": "Annamaria Naborri",
-      "pts": 81.3,
-      "atleti": [
-        {
-          "nome": "Somigliana Anna",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 81.3
-        },
-        {
-          "nome": "Mercati Gherardo",
-          "pts": 0
-        },
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Pescidabrodo",
-      "manager": "Arcangelo Zerbo",
-      "pts": 81.3,
-      "atleti": [
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 81.3
-        },
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        },
-        {
-          "nome": "Brambilla Cecilia",
-          "pts": 0
-        },
-        {
-          "nome": "Bottari Giuseppe",
-          "pts": 0
         }
       ]
     },
@@ -482,33 +536,6 @@
         },
         {
           "nome": "Zerbo Arcangelo",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "NuotoMaleMaNuoto",
-      "manager": "Maria Cristina Rovida",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Susanna",
-          "pts": 0
-        },
-        {
-          "nome": "Somigliana Ugo",
-          "pts": 0
-        },
-        {
-          "nome": "Bottari Selene",
           "pts": 0
         }
       ]
@@ -644,33 +671,6 @@
         },
         {
           "nome": "Crespi Enrico",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Virate&drammi",
-      "manager": "Selene Bottari",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Susanna",
-          "pts": 0
-        },
-        {
-          "nome": "Vassura Edoardo",
-          "pts": 0
-        },
-        {
-          "nome": "Romano Giuseppe",
-          "pts": 0
-        },
-        {
-          "nome": "Sena Lucia",
           "pts": 0
         }
       ]
