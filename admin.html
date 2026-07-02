@@ -350,6 +350,9 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="bonus-tipo-btns">
         <button class="btn btn-ghost bonus-tipo" data-pts="20" data-label="Record assoluto sodalizio" onclick="selectTipo(this)">🏆 Record assoluto +20</button>
         <button class="btn btn-ghost bonus-tipo" data-pts="10" data-label="Record di categoria" onclick="selectTipo(this)">🥇 Record categoria +10</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="50" data-label="Oro (1° categoria)" onclick="selectTipo(this)">🥇 Oro categoria +50</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="20" data-label="Argento (2° categoria)" onclick="selectTipo(this)">🥈 Argento categoria +20</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="5" data-label="Bronzo (3° categoria)" onclick="selectTipo(this)">🥉 Bronzo categoria +5</button>
         <button class="btn btn-ghost bonus-tipo" data-pts="10" data-label="Fedeltà al cloro" onclick="selectTipo(this)">💙 Fedeltà al cloro +10</button>
         <button class="btn btn-ghost bonus-tipo" data-pts="5" data-label="Stacanovista" onclick="selectTipo(this)">💪 Stacanovista +5</button>
         <button class="btn btn-ghost bonus-tipo" data-pts="-15" data-label="Squalifica/DNF" onclick="selectTipo(this)">❌ Squalifica -15</button>
@@ -895,12 +898,11 @@ function parseResults(text, filename){
 
         // Calcola punti base
         let ptsBase = isSQ ? 0 : ptsGara;
+        // Podio: NON assegnato automaticamente. La posizione stampata dalla FIN in questo PDF
+        // non garantisce di essere la classifica generale di categoria (es. può riflettere
+        // l'ordine di batteria). Oro/Argento/Bronzo vanno assegnati a mano dal pannello
+        // "Modifica manuale" una volta verificata la classifica ufficiale di categoria.
         let ptsPodio = 0;
-        if(!isSQ && pos !== null){
-          if(pos===1) ptsPodio = PTS.oro;
-          else if(pos===2) ptsPodio = PTS.argento;
-          else if(pos===3) ptsPodio = PTS.bronzo;
-        }
         let ptsMalus = isSQ ? PTS.squalifica : 0;
 
         // Punti FIN: due formati FIN possibili
@@ -937,7 +939,6 @@ function parseResults(text, filename){
         if(!isSQ){
           if(isStaffetta) bonus.push(`Staffetta +${PTS.staffetta}`);
           else bonus.push(`Gara individuale +${PTS.individuale}`);
-          if(ptsPodio>0) bonus.push(`${pos===1?"Oro":pos===2?"Argento":"Bronzo"} +${ptsPodio}`);
           if(labelRecord) bonus.push("🏆 "+labelRecord);
           if(ptsFin>0) bonus.push(`FIN÷10 +${ptsFin}`);
         }
@@ -1031,7 +1032,7 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
 
   list.innerHTML = risultatiGara.map((a,idx) => {
     const initials = a.nome.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
-    const posMedal = a.isSQ ? "❌ SQ" : a.pos===1?"🥇":a.pos===2?"🥈":a.pos===3?"🥉":`#${a.pos||"—"}`;
+    const posMedal = a.isSQ ? "❌ SQ" : `#${a.pos||"—"}`;
     const bonusPills = a.bonus.map(b=>`<span class="bonus-pill pill-green">${b}</span>`).join("");
     const malusPills = a.malus.map(m=>`<span class="bonus-pill pill-red">${m}</span>`).join("");
     return `
@@ -1039,7 +1040,7 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
       <div class="atleta-avatar">${initials}</div>
       <div style="flex:1;">
         <div class="atleta-name">${posMedal} ${a.nome}</div>
-        <div class="atleta-gare">Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"}</div>
+        <div class="atleta-gare">Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"} · Pos. PDF: ${a.pos??"—"} (verifica podio ufficiale e assegna oro/argento/bronzo a mano)</div>
         <div style="margin-top:6px;">${bonusPills}${malusPills}</div>
       </div>
       <div class="atleta-pts">
