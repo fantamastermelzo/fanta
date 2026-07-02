@@ -412,7 +412,8 @@ const ATLETI = [
   "Ceriani Paolo","Broccolino Susanna","Broccolino Marco","Zerbo Arcangelo","Martelli Daria",
   "Accomasso Davide","Parisi Matteo","Sinigaglia Luca","Somigliana Anna","Migliazza Anna",
   "Vassura Edoardo","Salomone Roberto","Romano Giuseppe","Galiano Ilaria","Pirola Vincenzo",
-  "Dotti Valter","Bottari Giuseppe","Facchinetti Pierpaolo","Scotti Silvio"
+  "Dotti Valter","Bottari Giuseppe","Facchinetti Pierpaolo","Scotti Silvio","Valla Nicola",
+  "Longaretti Fabio","Ferraro Sergio","Naborri Annamaria"
 ];
 
 // Gare staffetta
@@ -839,6 +840,7 @@ function parseResults(text, filename){
   //              SOCIETA' ANNO
   const trovati = [];
   const proposteRecord = [];
+  const consumedLines = new Set(); // righe già assegnate a un atleta riconosciuto (per il controllo nominativi mancanti)
   const atletiLower = ATLETI.map(a => ({
     orig: a,
     lower: a.toLowerCase(),
@@ -882,6 +884,7 @@ function parseResults(text, filename){
       if(true){
         // Già trovato?
         if(trovati.find(t => t.nome === atleta.orig)) continue;
+        consumedLines.add(i);
 
         // Estrai posizione
         let pos = null;
@@ -895,9 +898,12 @@ function parseResults(text, filename){
 
         // Squalificato?
         const isSQ = /\bSQ\b/.test(line) || /\bDNF\b/.test(line) || /\bDNS\b/.test(line);
+        // Non partito / non presentato in gara: nessun tempo, nessuna gara nuotata -> 0 punti (non è una squalifica)
+        const isNP = /\bNP\b/.test(line);
+        const nonValido = isSQ || isNP;
 
         // Calcola punti base
-        let ptsBase = isSQ ? 0 : ptsGara;
+        let ptsBase = nonValido ? 0 : ptsGara;
         // Podio: NON assegnato automaticamente. La posizione stampata dalla FIN in questo PDF
         // non garantisce di essere la classifica generale di categoria (es. può riflettere
         // l'ordine di batteria). Oro/Argento/Bronzo vanno assegnati a mano dal pannello
@@ -909,7 +915,7 @@ function parseResults(text, filename){
         // Formato B (200m, 400m...): ultima colonna già è punteggio FIN (es. 713.22) → ÷ 10
         // Formato A (1500m, 800m...): niente colonna PUNTI → convertiamo tempo arrivo in secondi ÷ 10
         let ptsFin = 0;
-        if(!isSQ){
+        if(!nonValido){
           const puntiFinMatch = line.match(/\b(\d{3,4}\.\d{2})\s*$/);
           if(puntiFinMatch){
             ptsFin = Math.round(parseFloat(puntiFinMatch[1]) / 10 * 10) / 10;
@@ -919,9 +925,9 @@ function parseResults(text, filename){
           }
         }
 
-        // Record di club (categoria + assoluto), solo se gara individuale, non squalificato, categoria nota
+        // Record di club (categoria + assoluto), solo se gara individuale, non squalificato/non partito, categoria nota
         let ptsRecord = 0, labelRecord = null;
-        if(!isSQ && !isStaffetta && eventCode && currentCategoria && arrivo){
+        if(!nonValido && !isStaffetta && eventCode && currentCategoria && arrivo){
           const secArrivo = timeToSeconds(arrivo);
           if(secArrivo != null){
             const check = checkRecordClub(eventCode, currentCategoria.genere, currentCategoria.categoria, secArrivo);
@@ -936,7 +942,7 @@ function parseResults(text, filename){
         const ptsTot = Math.round((ptsBase + ptsPodio + ptsRecord + ptsMalus + ptsFin)*10)/10;
 
         const bonus = [];
-        if(!isSQ){
+        if(!nonValido){
           if(isStaffetta) bonus.push(`Staffetta +${PTS.staffetta}`);
           else bonus.push(`Gara individuale +${PTS.individuale}`);
           if(labelRecord) bonus.push("🏆 "+labelRecord);
@@ -944,6 +950,7 @@ function parseResults(text, filename){
         }
         const malus = [];
         if(isSQ) malus.push(`Squalifica ${PTS.squalifica}`);
+        if(isNP) malus.push(`Non partito (NP) — 0 pt`);
 
         trovati.push({
           nome: atleta.orig,
@@ -951,7 +958,7 @@ function parseResults(text, filename){
           arrivo: arrivo,
           categoria: currentCategoria ? currentCategoria.categoria : null,
           genere: currentCategoria ? currentCategoria.genere : null,
-          isSQ, isStaffetta,
+          isSQ, isNP, isStaffetta,
           ptsBase, ptsPodio, ptsRecord, ptsMalus, ptsFin,
           ptsTot,
           bonus, malus
@@ -960,18 +967,36 @@ function parseResults(text, filename){
     }
   }
 
+  // Seconda passata: righe con "melzo" non associate a nessun atleta noto in ATLETI.
+  // Aiuta a scoprire nominativi mancanti dalla lista (es. nuovi tesserati non ancora inseriti).
+  const nomiSconosciuti = [];
+  const rigaConNomeRegex = /^\s*(?:\d+\s+)?([A-Za-zÀ-ÿ' \.\-]+?)\s+\d{2}[MF]\s+\d{4}\s+.*melzo/i;
+  for(let i=0; i<lines.length; i++){
+    if(consumedLines.has(i)) continue;
+    const line = lines[i];
+    if(!/melzo/i.test(line)) continue;
+    const m = line.match(rigaConNomeRegex);
+    const nomeGrezzo = m ? m[1].trim() : line.trim();
+    if(!nomiSconosciuti.includes(nomeGrezzo)) nomiSconosciuti.push(nomeGrezzo);
+  }
+
   risultatiGara = trovati;
   recordProposals = proposteRecord;
 
   document.getElementById("loading1").classList.remove("show");
 
+  const avvisi = [];
   if(isStaffetta){
-    showStatus("status1","ℹ️ Gara a staffetta: il controllo automatico dei record di club è disponibile solo per le gare individuali.","success");
+    avvisi.push("ℹ️ Gara a staffetta: il controllo automatico dei record di club è disponibile solo per le gare individuali.");
   } else if(!eventCode){
-    showStatus("status1","⚠️ Specialità non riconosciuta dal nome file: il controllo dei record di club è stato saltato per questa gara.","error");
+    avvisi.push("⚠️ Specialità non riconosciuta dal nome file: il controllo dei record di club è stato saltato per questa gara.");
   } else if(recordsLoadError){
-    showStatus("status1","⚠️ Tabelle record di club non trovate nel repo GitHub: il controllo dei record è stato saltato (i punti gara/podio/FIN restano corretti).","error");
+    avvisi.push("⚠️ Tabelle record di club non trovate nel repo GitHub: il controllo dei record è stato saltato.");
   }
+  if(nomiSconosciuti.length){
+    avvisi.push(`⚠️ Trovate righe con "Master Melzo Nuoto" per nominativi non presenti nella lista ATLETI: ${nomiSconosciuti.join(", ")}. Aggiungili nel codice per includerli nel punteggio.`);
+  }
+  if(avvisi.length) showStatus("status1", avvisi.join("  ·  "), "error");
 
   // Aggiorna classifica in memoria
   if(classificaData) aggiornaPunti();
@@ -1032,7 +1057,7 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
 
   list.innerHTML = risultatiGara.map((a,idx) => {
     const initials = a.nome.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
-    const posMedal = a.isSQ ? "❌ SQ" : `#${a.pos||"—"}`;
+    const posMedal = a.isSQ ? "❌ SQ" : a.isNP ? "🚫 NP" : `#${a.pos||"—"}`;
     const bonusPills = a.bonus.map(b=>`<span class="bonus-pill pill-green">${b}</span>`).join("");
     const malusPills = a.malus.map(m=>`<span class="bonus-pill pill-red">${m}</span>`).join("");
     return `
