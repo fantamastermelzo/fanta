@@ -2360,6 +2360,13 @@
           "tempo": "00:00:47.04",
           "secondi": 47.04,
           "data": "2022-05-21"
+        },
+        "M65": {
+          "nome": "MARIA CRISTINA",
+          "cognome": "ROVIDA",
+          "tempo": "53.90",
+          "secondi": 53.9,
+          "data": "2026-07-04"
         }
       }
     },
