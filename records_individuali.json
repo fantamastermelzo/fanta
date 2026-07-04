@@ -575,11 +575,11 @@
     },
     "uomini": {
       "assoluto": {
-        "nome": "VITTORIO",
-        "cognome": "POMERO",
-        "tempo": "00:00:57.33",
-        "secondi": 57.33,
-        "data": "2024-05-19"
+        "nome": "EDOARDO",
+        "cognome": "VASSURA",
+        "tempo": "56.67",
+        "secondi": 56.67,
+        "data": "2026-07-04"
       },
       "categorie": {
         "U25": {
@@ -590,11 +590,11 @@
           "data": "2026-05-24"
         },
         "M25": {
-          "nome": "IVAN",
-          "cognome": "ZERLETTI",
-          "tempo": "00:00:57.85",
-          "secondi": 57.85,
-          "data": "2024-05-05"
+          "nome": "EDOARDO",
+          "cognome": "VASSURA",
+          "tempo": "56.67",
+          "secondi": 56.67,
+          "data": "2026-07-04"
         },
         "M30": {
           "nome": "VITTORIO",
@@ -676,9 +676,9 @@
         "M85": {
           "nome": "GHERARDO",
           "cognome": "MERCATI",
-          "tempo": "00:02:24.40",
-          "secondi": 144.4,
-          "data": "2026-05-24"
+          "tempo": "2'09.99",
+          "secondi": 129.99,
+          "data": "2026-07-04"
         }
       }
     }
