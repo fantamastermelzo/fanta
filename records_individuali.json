@@ -2122,9 +2122,9 @@
       "assoluto": {
         "nome": "FRANCESCA",
         "cognome": "PITALIERI",
-        "tempo": "00:00:30.23",
-        "secondi": 30.23,
-        "data": "2024-06-30"
+        "tempo": "30.03",
+        "secondi": 30.03,
+        "data": "2026-07-04"
       },
       "categorie": {
         "U25": {
@@ -2137,9 +2137,9 @@
         "M25": {
           "nome": "FRANCESCA",
           "cognome": "PITALIERI",
-          "tempo": "00:00:30.23",
-          "secondi": 30.23,
-          "data": "2024-06-30"
+          "tempo": "30.03",
+          "secondi": 30.03,
+          "data": "2026-07-04"
         },
         "M30": {
           "nome": "SUSANNA",
@@ -2151,9 +2151,9 @@
         "M35": {
           "nome": "SELENE",
           "cognome": "BOTTARI",
-          "tempo": "00:00:32.57",
-          "secondi": 32.57,
-          "data": "2026-05-24"
+          "tempo": "32.02",
+          "secondi": 32.02,
+          "data": "2026-07-04"
         },
         "M40": {
           "nome": "MARINA",
@@ -2172,9 +2172,9 @@
         "M50": {
           "nome": "LUCIA",
           "cognome": "SENA",
-          "tempo": "00:00:35.20",
-          "secondi": 35.2,
-          "data": "2026-05-24"
+          "tempo": "34.40",
+          "secondi": 34.4,
+          "data": "2026-07-04"
         },
         "M55": {
           "nome": "ANNA",
