@@ -735,6 +735,33 @@ function applicaBonus(){
       if(nA === nR){
         a.pts = Math.round(((a.pts || 0) + pts) * 10) / 10;
         trovato = true;
+
+        // Dettaglio: registra anche i bonus/malus applicati a mano, per il controllo.
+        const riga = {
+          gara: null,
+          tipo: "manuale",
+          data: new Date().toISOString().slice(0,10),
+          puntiFIN: 0,
+          bonusIndividuale: 0,
+          bonusStaffetta: 0,
+          bonusRecordCategoria: 0,
+          bonusRecordAssoluto: 0,
+          bonusPodio: 0,
+          bonusStacanovista: 0,
+          malusSqualifica: 0,
+          bonusAltro: 0,
+          note: selectedTipoLabel + (nota ? " · " + nota : ""),
+          totaleGara: pts
+        };
+        if(selectedTipoLabel === "Record assoluto sodalizio") riga.bonusRecordAssoluto = pts;
+        else if(selectedTipoLabel === "Record di categoria") riga.bonusRecordCategoria = pts;
+        else if(/oro|argento|bronzo/i.test(selectedTipoLabel)) riga.bonusPodio = pts;
+        else if(selectedTipoLabel === "Stacanovista") riga.bonusStacanovista = pts;
+        else if(selectedTipoLabel === "Squalifica/DNF") riga.malusSqualifica = pts;
+        else riga.bonusAltro = pts; // Fedeltà al cloro, Personalizzato, ecc.
+
+        if(!Array.isArray(a.dettaglio)) a.dettaglio = [];
+        a.dettaglio.push(riga);
       }
     });
     team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts || 0), 0) * 10) / 10;
@@ -999,7 +1026,7 @@ function parseResults(text, filename){
     }
     const nonValido = currentTeam.status === "SQ" || currentTeam.status === "NP";
     const ptsBase = nonValido ? 0 : PTS.staffetta;
-    const ptsMalus = currentTeam.status === "SQ" ? PTS.squalifica : 0;
+    const ptsMalus = nonValido ? PTS.squalifica : 0;
 
     let ptsRecord = 0, labelRecord = null;
     if(!nonValido && staffettaSpecialty && staffettaGender && currentTeam.arrivoSeconds != null){
@@ -1023,7 +1050,7 @@ function parseResults(text, filename){
       if(labelRecord) bonus.push("🏆 "+labelRecord);
     }
     if(currentTeam.status === "SQ") malus.push(`Squalifica ${PTS.squalifica}`);
-    if(currentTeam.status === "NP") malus.push(`Non partito (NP) — 0 pt`);
+    if(currentTeam.status === "NP") malus.push(`Non partito (NP) ${PTS.squalifica}`);
 
     currentTeam.athletesMatched.forEach(({atleta, line}) => {
       const cm = line.match(/\b(\d{2})([MF])\b/);
@@ -1037,7 +1064,7 @@ function parseResults(text, filename){
         isNP: currentTeam.status === "NP",
         isStaffetta: true,
         ptsBase, ptsPodio: 0, ptsRecord, ptsMalus, ptsFin: 0,
-        ptsTot,
+        ptsTot, labelRecord,
         bonus, malus
       });
     });
@@ -1138,7 +1165,7 @@ function parseResults(text, filename){
 
         // Squalificato?
         const isSQ = /\bSQ\b/.test(line) || /\bDNF\b/.test(line) || /\bDNS\b/.test(line);
-        // Non partito / non presentato in gara: nessun tempo, nessuna gara nuotata -> 0 punti (non è una squalifica)
+        // Non partito / non presentato in gara: nessun tempo, nessuna gara nuotata -> stesso malus della squalifica
         const isNP = /\bNP\b/.test(line);
         const nonValido = isSQ || isNP;
 
@@ -1149,7 +1176,7 @@ function parseResults(text, filename){
         // l'ordine di batteria). Oro/Argento/Bronzo vanno assegnati a mano dal pannello
         // "Modifica manuale" una volta verificata la classifica ufficiale di categoria.
         let ptsPodio = 0;
-        let ptsMalus = isSQ ? PTS.squalifica : 0;
+        let ptsMalus = (isSQ || isNP) ? PTS.squalifica : 0;
 
         // Punti FIN: due formati FIN possibili
         // Formato B (200m, 400m...): ultima colonna già è punteggio FIN (es. 713.22) → ÷ 10
@@ -1190,7 +1217,7 @@ function parseResults(text, filename){
         }
         const malus = [];
         if(isSQ) malus.push(`Squalifica ${PTS.squalifica}`);
-        if(isNP) malus.push(`Non partito (NP) — 0 pt`);
+        if(isNP) malus.push(`Non partito (NP) ${PTS.squalifica}`);
 
         trovati.push({
           nome: atleta.orig,
@@ -1200,7 +1227,7 @@ function parseResults(text, filename){
           genere: currentCategoria ? currentCategoria.genere : null,
           isSQ, isNP, isStaffetta,
           ptsBase, ptsPodio, ptsRecord, ptsMalus, ptsFin,
-          ptsTot,
+          ptsTot, labelRecord,
           bonus, malus
         });
       }
@@ -1326,6 +1353,28 @@ function aggiornaPunti(){
         if(match){
           // pts null = 0, poi aggiungi i punti gara
           atleta.pts = Math.round(((atleta.pts ?? 0) + r.ptsTot)*10)/10;
+
+          // Dettaglio gara-per-gara (per controllo): una riga per ogni gara applicata,
+          // con lo spacchettamento di ogni bonus/malus che compone ptsTot.
+          const isRecAssoluto = !!(r.labelRecord && /assoluto/i.test(r.labelRecord));
+          const isRecCategoria = !!(r.labelRecord && /categoria/i.test(r.labelRecord));
+          if(!Array.isArray(atleta.dettaglio)) atleta.dettaglio = [];
+          atleta.dettaglio.push({
+            gara: currentGaraName,
+            tipo: r.isStaffetta ? "staffetta" : "individuale",
+            data: currentDataGara,
+            puntiFIN: r.ptsFin || 0,
+            bonusIndividuale: (!r.isStaffetta) ? (r.ptsBase || 0) : 0,
+            bonusStaffetta: (r.isStaffetta) ? (r.ptsBase || 0) : 0,
+            bonusRecordCategoria: isRecCategoria ? r.ptsRecord : 0,
+            bonusRecordAssoluto: isRecAssoluto ? r.ptsRecord : 0,
+            bonusPodio: r.ptsPodio || 0,
+            bonusStacanovista: 0,
+            malusSqualifica: r.ptsMalus || 0,
+            bonusAltro: 0,
+            note: r.isSQ ? "SQ" : (r.isNP ? "NP" : ""),
+            totaleGara: r.ptsTot
+          });
         }
       });
       // Ricalcola team: somma solo atleti con punti > 0, gli altri contano 0
