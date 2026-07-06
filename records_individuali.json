@@ -1248,9 +1248,9 @@
         "M45": {
           "nome": "DARIO",
           "cognome": "SPERANDIO",
-          "tempo": "00:02:45.56",
-          "secondi": 165.56,
-          "data": "2026-05-24"
+          "tempo": "2'41.00",
+          "secondi": 161,
+          "data": "2026-07-06"
         },
         "M50": {
           "nome": "GIUSEPPE",
@@ -1260,11 +1260,11 @@
           "data": "2012-05-26"
         },
         "M55": {
-          "nome": "GIUSEPPE",
-          "cognome": "ROMANO",
-          "tempo": "00:02:58.72",
-          "secondi": 178.72,
-          "data": "2017-05-28"
+          "nome": "MAURO",
+          "cognome": "BRAMBILLA",
+          "tempo": "2'56.48",
+          "secondi": 176.48,
+          "data": "2026-07-06"
         },
         "M60": {
           "nome": "ROBERTO",
