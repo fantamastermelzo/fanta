@@ -476,10 +476,11 @@ function normEventCode(code){
 // tempi/arrivo), non sul nome del file. Così anche un PDF rinominato o ricaricato per errore viene riconosciuto
 // come lo stesso risultato, mentre una correzione reale (tempi diversi) non viene bloccata per errore.
 function computeRaceId(garaName, dataGara, isStaffetta, trovati){
+  const norm = s => (s||"").trim().toLowerCase().replace(/\s+/g," ");
   const parti = trovati
     .map(t => `${t.nome}:${t.arrivo||"-"}:${t.isSQ?"SQ":t.isNP?"NP":"OK"}`)
     .sort();
-  return `${(garaName||"").trim().toLowerCase()}|${(dataGara||"").trim()}|${isStaffetta?"staffetta":"individuale"}|${parti.join(",")}`;
+  return `${norm(garaName)}|${norm(dataGara)}|${isStaffetta?"staffetta":"individuale"}|${parti.join(",")}`;
 }
 
 
@@ -851,20 +852,36 @@ function doLogin(){
 }
 
 // ========== CLASSIFICA ==========
+// Legge un file JSON dal repo GitHub preferendo la Contents API (dati sempre freschi,
+// non passa dalla CDN di raw.githubusercontent.com che può restituire contenuti vecchi
+// di alcuni minuti dopo una pubblicazione, causando la "perdita" di gare appena caricate).
+async function fetchGithubJson(path){
+  const token = (document.getElementById("gh-token")?.value || "").trim();
+  try {
+    const headers = {"Accept":"application/vnd.github.v3.raw"};
+    if(token) headers["Authorization"] = `token ${token}`;
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${path}?ref=main&_=${Date.now()}`, {headers, cache:"no-store"});
+    if(!r.ok) throw new Error(`GitHub API ${r.status}`);
+    return await r.json();
+  } catch(apiErr){
+    console.warn(`Contents API non disponibile per ${path} (${apiErr.message}), fallback su raw.githubusercontent.com`);
+    const r2 = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${path}?t=${Date.now()}`, {cache:"no-store"});
+    if(!r2.ok) throw new Error(`raw.githubusercontent.com ${r2.status}`);
+    return await r2.json();
+  }
+}
+
 async function loadClassifica(){
   try {
-    const r = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_FILE}?t=${Date.now()}`);
-    classificaData = await r.json();
-  } catch(e){ console.error("Classifica non caricata:",e); }
+    classificaData = await fetchGithubJson(GITHUB_FILE);
+  } catch(e){ console.error("Classifica non caricata:",e); classificaData = null; }
 }
 
 // ========== RECORD DI CLUB (categoria + assoluto) ==========
 async function loadRecords(){
   recordsLoadError = false;
   try {
-    const r = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_RECORDS_FILE}?t=${Date.now()}`);
-    if(!r.ok) throw new Error("File record non trovato nel repo ("+r.status+")");
-    recordsData = await r.json();
+    recordsData = await fetchGithubJson(GITHUB_RECORDS_FILE);
   } catch(e){
     console.warn("Record di club non caricati:", e.message);
     recordsData = null;
@@ -876,9 +893,7 @@ async function loadRecords(){
 async function loadRecordsStaffetta(){
   recordsStaffettaLoadError = false;
   try {
-    const r = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_RECORDS_STAFFETTA_FILE}?t=${Date.now()}`);
-    if(!r.ok) throw new Error("File record staffette non trovato nel repo ("+r.status+")");
-    recordsStaffetta = await r.json();
+    recordsStaffetta = await fetchGithubJson(GITHUB_RECORDS_STAFFETTA_FILE);
   } catch(e){
     console.warn("Record staffette di club non caricati:", e.message);
     recordsStaffetta = null;
@@ -938,20 +953,30 @@ async function handleFile(file){
       document.getElementById("loading1-text").textContent = `Lettura pagina ${i} di ${pdf.numPages}...`;
       const page = await pdf.getPage(i);
       const content = await page.getTextContent();
-      // Ricostruisce le righe mantenendo la struttura
+      // Ricostruisce le righe raggruppando i frammenti per coordinata Y (stessa riga visiva),
+      // poi li ordina per coordinata X: pdf.js NON garantisce che i frammenti di testo siano
+      // restituiti in ordine di lettura sinistra->destra, quindi senza questo riordino colonne
+      // come nome/anno/categoria/tempo rischiano di mescolarsi nella riga ricostruita.
       const items = content.items;
       let lastY = null;
-      let line = "";
+      let buffer = []; // {str, x} dei frammenti della riga corrente
+      const flushLine = () => {
+        if(buffer.length){
+          buffer.sort((a,b) => a.x - b.x);
+          fullText += buffer.map(b => b.str).join(" ").trim() + "\n";
+          buffer = [];
+        }
+      };
       for(const item of items){
         const y = Math.round(item.transform[5]);
+        const x = item.transform[4];
         if(lastY !== null && Math.abs(y - lastY) > 3){
-          fullText += line.trim() + "\n";
-          line = "";
+          flushLine();
         }
-        line += item.str + " ";
+        buffer.push({str: item.str, x});
         lastY = y;
       }
-      if(line.trim()) fullText += line.trim() + "\n";
+      flushLine();
       fullText += "\n";
     }
 
@@ -1580,13 +1605,43 @@ async function pubblicaRecord(){
 
 function updatePts(idx, val){
   const newVal = parseFloat(val)||0;
-  risultatiGara[idx].ptsTot = newVal;
+  const r = risultatiGara[idx];
+  const oldVal = r.ptsTot;
+  r.ptsTot = newVal;
   document.getElementById(`pts-display-${idx}`).textContent = newVal;
-  // Ricalcola classifica
-  if(classificaData) {
-    // Reset e ricalcola
-    loadClassifica().then(()=>{ aggiornaPunti(); updateClassificaPreview(); });
-  }
+
+  if(!classificaData) return;
+
+  // Aggiustamento LOCALE mirato: sottrae il vecchio valore e somma il nuovo,
+  // senza ricaricare la classifica da remoto (che cancellerebbe eventuali altre
+  // gare già applicate in questa sessione ma non ancora pubblicate su GitHub).
+  const delta = Math.round((newVal - oldVal) * 10) / 10;
+  classificaData.classifica.forEach(team => {
+    team.atleti.forEach(atleta => {
+      const nA = atleta.nome.toLowerCase().trim();
+      const nR = r.nome.toLowerCase().trim();
+      const partsA = nA.split(" ");
+      const partsR = nR.split(" ");
+      const cognomeMatch = partsA[0] === partsR[0];
+      const nomiA = partsA.slice(1);
+      const nomiR = partsR.slice(1);
+      const nomeMatch = nomiA.some(n => nomiR.includes(n));
+      const match = nA===nR || (cognomeMatch && nomeMatch);
+      if(match){
+        atleta.pts = Math.round(((atleta.pts ?? 0) + delta) * 10) / 10;
+        // Aggiorna anche l'ultima riga di dettaglio corrispondente a questa gara
+        if(Array.isArray(atleta.dettaglio) && atleta.dettaglio.length){
+          const last = atleta.dettaglio[atleta.dettaglio.length - 1];
+          if(last && last.gara === currentGaraName && last.data === currentDataGara){
+            last.totaleGara = newVal;
+          }
+        }
+      }
+    });
+    team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts ?? 0), 0) * 10) / 10;
+  });
+  classificaData.classifica.sort((a,b)=>b.pts-a.pts);
+  updateClassificaPreview();
 }
 
 function updateClassificaPreview(){
