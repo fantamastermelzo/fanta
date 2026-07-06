@@ -3,7 +3,7 @@
     {
       "team": "Dorso e pregiudizio",
       "manager": "Filippo Broccolino",
-      "pts": 0,
+      "pts": 285.1,
       "atleti": [
         {
           "nome": "Mercati Gherardo",
@@ -15,7 +15,41 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 0
+          "pts": 180.8,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 79.5,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 89.5
+            },
+            {
+              "gara": "400 m Stile Libero",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 81.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 91.3
+            }
+          ]
         },
         {
           "nome": "Somigliana Anna",
@@ -23,41 +57,32 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Meltzunami",
-      "manager": "Susanna Broccolino",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Bottari Selene",
-          "pts": 0
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 0
-        },
-        {
-          "nome": "Mercati Gherardo",
-          "pts": 0
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
         }
       ]
     },
     {
       "team": "Master Milza",
       "manager": "Tomaso Raviola",
-      "pts": 0,
+      "pts": 285.1,
       "atleti": [
         {
           "nome": "Sena Lucia",
@@ -69,11 +94,63 @@
         },
         {
           "nome": "Sperandio Dario",
-          "pts": 0
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 0
+          "pts": 180.8,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 79.5,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 89.5
+            },
+            {
+              "gara": "400 m Stile Libero",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 81.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 91.3
+            }
+          ]
         },
         {
           "nome": "Leoni Alessandro",
@@ -84,7 +161,7 @@
     {
       "team": "Li faremo tutti Neri",
       "manager": "Umberto Neri",
-      "pts": 0,
+      "pts": 262.1,
       "atleti": [
         {
           "nome": "Romano Giuseppe",
@@ -92,7 +169,41 @@
         },
         {
           "nome": "Salomone Roberto",
-          "pts": 0
+          "pts": 180.8,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 79.5,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 89.5
+            },
+            {
+              "gara": "400 m Stile Libero",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 81.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 91.3
+            }
+          ]
         },
         {
           "nome": "Sena Lucia",
@@ -100,7 +211,25 @@
         },
         {
           "nome": "Rovida Maria Cristina",
-          "pts": 0
+          "pts": 81.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 71.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 81.3
+            }
+          ]
         },
         {
           "nome": "Somigliana Anna",
@@ -109,28 +238,352 @@
       ]
     },
     {
-      "team": "Maestri dell'Acqua",
-      "manager": "Annamaria Naborri",
-      "pts": 0,
+      "team": "Alianti tirreni",
+      "manager": "Edoardo Vassura",
+      "pts": 205.3,
+      "atleti": [
+        {
+          "nome": "Bottari Selene",
+          "pts": 0
+        },
+        {
+          "nome": "Pitalieri Francesca",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
+        },
+        {
+          "nome": "Brambilla Mauro",
+          "pts": 101,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 81,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 101
+            }
+          ]
+        },
+        {
+          "nome": "Leoni Alessandro",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Meltzunami",
+      "manager": "Susanna Broccolino",
+      "pts": 185.6,
+      "atleti": [
+        {
+          "nome": "Bottari Selene",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
+        },
+        {
+          "nome": "Broccolino Marco",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 71.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 81.3
+            }
+          ]
+        },
+        {
+          "nome": "Mercati Gherardo",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Gli acquatori",
+      "manager": "Virginia Vassenna",
+      "pts": 104.3,
+      "atleti": [
+        {
+          "nome": "Sena Lucia",
+          "pts": 0
+        },
+        {
+          "nome": "Botteghi Alessio",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
+        },
+        {
+          "nome": "Bottari Selene",
+          "pts": 0
+        },
+        {
+          "nome": "Raviola Tomaso",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Clorotossici",
+      "manager": "Vincenzo Pirola",
+      "pts": 104.3,
       "atleti": [
         {
           "nome": "Somigliana Anna",
           "pts": 0
         },
         {
-          "nome": "Rovida Maria Cristina",
+          "nome": "Sena Lucia",
           "pts": 0
         },
         {
-          "nome": "Mercati Gherardo",
+          "nome": "Sperandio Dario",
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
+        },
+        {
+          "nome": "Zerbo Arcangelo",
           "pts": 0
         },
         {
           "nome": "Neri Umberto",
           "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "L'importante è battere Cucciolo Merda",
+      "manager": "Lucia Sena",
+      "pts": 104.3,
+      "atleti": [
+        {
+          "nome": "Sperandio Dario",
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
         },
         {
-          "nome": "Broccolino Marco",
+          "nome": "Somigliana Ugo",
+          "pts": 0
+        },
+        {
+          "nome": "Somigliana Anna",
+          "pts": 0
+        },
+        {
+          "nome": "Botteghi Alessio",
+          "pts": 0
+        },
+        {
+          "nome": "Ferrari Bravo Cristina",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "Quelli con le Birkenstock",
+      "manager": "Cecilia Brambilla",
+      "pts": 104.3,
+      "atleti": [
+        {
+          "nome": "Migliazza Anna",
+          "pts": 0
+        },
+        {
+          "nome": "Broccolino Susanna",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
+        },
+        {
+          "nome": "Vassura Edoardo",
+          "pts": 0
+        },
+        {
+          "nome": "Parisi Matteo",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "I MASTER_IZZATI",
+      "manager": "Daniel Rogati",
+      "pts": 104.3,
+      "atleti": [
+        {
+          "nome": "Pitalieri Francesca",
+          "pts": 0
+        },
+        {
+          "nome": "Vassura Edoardo",
+          "pts": 0
+        },
+        {
+          "nome": "Sperandio Dario",
+          "pts": 104.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 84.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 104.3
+            }
+          ]
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": 0
+        },
+        {
+          "nome": "Botteghi Alessio",
           "pts": 0
         }
       ]
@@ -138,7 +591,7 @@
     {
       "team": "Delfino guasto",
       "manager": "Silvio Scotti",
-      "pts": 0,
+      "pts": 101,
       "atleti": [
         {
           "nome": "Somigliana Anna",
@@ -158,33 +611,204 @@
         },
         {
           "nome": "Brambilla Mauro",
+          "pts": 101,
+          "dettaglio": [
+            {
+              "gara": "200 m Misti",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 81,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 10,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 101
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Maestri dell'Acqua",
+      "manager": "Annamaria Naborri",
+      "pts": 81.3,
+      "atleti": [
+        {
+          "nome": "Somigliana Anna",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 71.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 81.3
+            }
+          ]
+        },
+        {
+          "nome": "Mercati Gherardo",
+          "pts": 0
+        },
+        {
+          "nome": "Neri Umberto",
+          "pts": 0
+        },
+        {
+          "nome": "Broccolino Marco",
           "pts": 0
         }
       ]
     },
     {
-      "team": "Gli acquatori",
-      "manager": "Virginia Vassenna",
-      "pts": 0,
+      "team": "Pescidabrodo",
+      "manager": "Arcangelo Zerbo",
+      "pts": 81.3,
       "atleti": [
         {
-          "nome": "Sena Lucia",
+          "nome": "Broccolino Marco",
           "pts": 0
         },
         {
-          "nome": "Botteghi Alessio",
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 71.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 81.3
+            }
+          ]
+        },
+        {
+          "nome": "Neri Umberto",
           "pts": 0
         },
         {
-          "nome": "Sperandio Dario",
+          "nome": "Brambilla Cecilia",
           "pts": 0
         },
+        {
+          "nome": "Bottari Giuseppe",
+          "pts": 0
+        }
+      ]
+    },
+    {
+      "team": "BROCHINACQUA",
+      "manager": "Marco Pier Broccolino",
+      "pts": 81.3,
+      "atleti": [
+        {
+          "nome": "Pitalieri Francesca",
+          "pts": 0
+        },
+        {
+          "nome": "Ceriani Paolo",
+          "pts": 0
+        },
+        {
+          "nome": "Broccolino Susanna",
+          "pts": 0
+        },
+        {
+          "nome": "Mercati Gherardo",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 71.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 81.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Stars and Stripes Great White Sharks🦈🇺🇸",
+      "manager": "Luca Sinigaglia",
+      "pts": 81.3,
+      "atleti": [
         {
           "nome": "Bottari Selene",
           "pts": 0
         },
         {
-          "nome": "Raviola Tomaso",
+          "nome": "Somigliana Ugo",
+          "pts": 0
+        },
+        {
+          "nome": "Pitalieri Francesca",
+          "pts": 0
+        },
+        {
+          "nome": "Rovida Maria Cristina",
+          "pts": 81.3,
+          "dettaglio": [
+            {
+              "gara": "200 m Dorso",
+              "tipo": "individuale",
+              "data": "5 Luglio 2026",
+              "puntiFIN": 71.3,
+              "bonusIndividuale": 10,
+              "bonusStaffetta": 0,
+              "bonusRecordCategoria": 0,
+              "bonusRecordAssoluto": 0,
+              "bonusPodio": 0,
+              "bonusStacanovista": 0,
+              "malusSqualifica": 0,
+              "bonusAltro": 0,
+              "note": "",
+              "totaleGara": 81.3
+            }
+          ]
+        },
+        {
+          "nome": "Neri Umberto",
           "pts": 0
         }
       ]
@@ -217,141 +841,6 @@
       ]
     },
     {
-      "team": "Clorotossici",
-      "manager": "Vincenzo Pirola",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Somigliana Anna",
-          "pts": 0
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 0
-        },
-        {
-          "nome": "Zerbo Arcangelo",
-          "pts": 0
-        },
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Alianti tirreni",
-      "manager": "Edoardo Vassura",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Bottari Selene",
-          "pts": 0
-        },
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": 0
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 0
-        },
-        {
-          "nome": "Brambilla Mauro",
-          "pts": 0
-        },
-        {
-          "nome": "Leoni Alessandro",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Pescidabrodo",
-      "manager": "Arcangelo Zerbo",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Broccolino Marco",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 0
-        },
-        {
-          "nome": "Neri Umberto",
-          "pts": 0
-        },
-        {
-          "nome": "Brambilla Cecilia",
-          "pts": 0
-        },
-        {
-          "nome": "Bottari Giuseppe",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "BROCHINACQUA",
-      "manager": "Marco Pier Broccolino",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": 0
-        },
-        {
-          "nome": "Ceriani Paolo",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Susanna",
-          "pts": 0
-        },
-        {
-          "nome": "Mercati Gherardo",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "L'importante è battere Cucciolo Merda",
-      "manager": "Lucia Sena",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Sperandio Dario",
-          "pts": 0
-        },
-        {
-          "nome": "Somigliana Ugo",
-          "pts": 0
-        },
-        {
-          "nome": "Somigliana Anna",
-          "pts": 0
-        },
-        {
-          "nome": "Botteghi Alessio",
-          "pts": 0
-        },
-        {
-          "nome": "Ferrari Bravo Cristina",
-          "pts": 0
-        }
-      ]
-    },
-    {
       "team": "Gli Ondivaghi 〰️",
       "manager": "Cristina Ferrari Bravo",
       "pts": 0,
@@ -374,33 +863,6 @@
         },
         {
           "nome": "Martelli Daria",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "Stars and Stripes Great White Sharks🦈🇺🇸",
-      "manager": "Luca Sinigaglia",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Bottari Selene",
-          "pts": 0
-        },
-        {
-          "nome": "Somigliana Ugo",
-          "pts": 0
-        },
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": 0
-        },
-        {
-          "nome": "Rovida Maria Cristina",
-          "pts": 0
-        },
-        {
-          "nome": "Neri Umberto",
           "pts": 0
         }
       ]
@@ -514,33 +976,6 @@
       ]
     },
     {
-      "team": "Quelli con le Birkenstock",
-      "manager": "Cecilia Brambilla",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Migliazza Anna",
-          "pts": 0
-        },
-        {
-          "nome": "Broccolino Susanna",
-          "pts": 0
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 0
-        },
-        {
-          "nome": "Vassura Edoardo",
-          "pts": 0
-        },
-        {
-          "nome": "Parisi Matteo",
-          "pts": 0
-        }
-      ]
-    },
-    {
       "team": "la visione della riga da vicino",
       "manager": "Alessandro Leoni",
       "pts": 0,
@@ -563,33 +998,6 @@
         },
         {
           "nome": "Sinigaglia Luca",
-          "pts": 0
-        }
-      ]
-    },
-    {
-      "team": "I MASTER_IZZATI",
-      "manager": "Daniel Rogati",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": 0
-        },
-        {
-          "nome": "Vassura Edoardo",
-          "pts": 0
-        },
-        {
-          "nome": "Sperandio Dario",
-          "pts": 0
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0
-        },
-        {
-          "nome": "Botteghi Alessio",
           "pts": 0
         }
       ]
@@ -730,5 +1138,12 @@
       ]
     }
   ],
-  "_garePubblicate": []
+  "_garePubblicate": [
+    {
+      "id": "400 m stile libero|5 luglio 2026|individuale|Salomone Roberto:5'42.46:OK",
+      "gara": "400 m Stile Libero",
+      "data": "5 Luglio 2026",
+      "pubblicatoIl": "2026-07-06T13:23:53.432Z"
+    }
+  ]
 }
