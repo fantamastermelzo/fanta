@@ -132,6 +132,26 @@ footer strong{color:var(--gold2);}
 .toast{position:fixed;bottom:22px;right:22px;z-index:400;background:rgba(6,70,100,0.94);border:1px solid rgba(255,255,255,0.22);color:#fff;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;padding:13px 20px;border-radius:13px;transform:translateY(80px);opacity:0;transition:all .3s;}
 .toast.show{transform:translateY(0);opacity:1;}
 @media(max-width:640px){nav button{padding:7px 8px;font-size:11px;}.lhead,.arow{grid-template-columns:34px 1fr 90px 90px;}}
+/* --- 3o livello classifica: gara-per-gara --- */
+.race-card{background:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.9);border-radius:12px;padding:11px 14px;margin:8px 0 8px 18px;border-left:3px solid rgba(0,130,170,0.3);cursor:default;}
+.race-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px;flex-wrap:wrap;}
+.race-name{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:13px;color:var(--p5);letter-spacing:.4px;}
+.race-date{font-size:10px;color:var(--tlight);margin-left:8px;}
+.race-tot{font-family:"Bebas Neue",sans-serif;font-size:17px;color:var(--gold2);background:var(--p5);padding:1px 11px;border-radius:20px;white-space:nowrap;}
+.race-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;}
+.chip{font-size:10px;font-weight:700;letter-spacing:.2px;padding:2px 9px;border-radius:20px;white-space:nowrap;}
+.pr{background:rgba(208,40,72,0.1);color:var(--red);border:1px solid rgba(208,40,72,0.25);}
+.race-note{font-size:11px;color:var(--tmid);line-height:1.55;}
+.athlete-toggle-row{cursor:pointer;}
+.athlete-toggle-row:hover{background:rgba(255,255,255,0.5)!important;}
+/* --- Banner vincitore Home --- */
+.winner-banner{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:26px 30px;border-radius:20px;margin-bottom:30px;background:linear-gradient(135deg,rgba(245,200,0,0.95),rgba(208,150,0,0.9));border:1px solid rgba(255,255,255,0.35);box-shadow:0 10px 30px rgba(180,130,0,0.25);}
+.winner-trophy{font-size:52px;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15));}
+.winner-eyebrow{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(6,64,90,0.75);margin-bottom:4px;}
+.winner-team{font-family:"Bebas Neue",sans-serif;font-size:clamp(28px,4vw,40px);letter-spacing:1px;color:var(--p5);line-height:1.05;}
+.winner-manager{font-size:13px;color:var(--tdark);margin-top:3px;}
+.winner-pts{font-family:"Bebas Neue",sans-serif;font-size:48px;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.15);line-height:1;}
+.winner-pts-lbl{font-size:10px;color:rgba(6,64,90,0.7);text-transform:uppercase;letter-spacing:1px;text-align:center;}
 </style>
 </head>
 <body>
@@ -185,6 +205,7 @@ footer strong{color:var(--gold2);}
     </div>
   </div>
   <div class="container">
+    <div id="winnerBanner" style="display:none"></div>
     <div class="home-grid">
       <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,var(--p3),var(--p4))"></div><div class="hcard-icon">&#128176;</div><h3>Costruisci il team</h3><p>Scegli 5 atleti con 700 Clorini. Valutazione: media Supermaster &divide; 10 + gare &times; 10 + staffette &times; 10.</p><span class="hcard-pill pb2">700 Clorini budget</span></div>
       <div class="hcard"><div class="hcard-stripe" style="background:linear-gradient(90deg,#00a8c4,var(--p4))"></div><div class="hcard-icon">&#127885;</div><h3>Punteggio FIN</h3><p>Il tuo team accumula punti dal punteggio FIN medio dei 5 atleti a ogni gara del circuito.</p><span class="hcard-pill pb2">FIN &divide; 10 per gara</span></div>
@@ -562,6 +583,7 @@ function renderClassifica(){
 }
 function _renderClassificaConSquadre(squadre){
   const s=[...squadre].sort((a,b)=>b.pts-a.pts);
+  _renderWinnerBanner(squadre);
   const p=document.getElementById("podiumSection");if(!p)return;
   if(s.length===0){
     p.innerHTML="<div style='text-align:center;padding:60px 20px'>"
@@ -590,19 +612,31 @@ function _renderClassificaConSquadre(squadre){
     // Dettaglio atleti
     let detHtml="";
     if(hasAtleti){
-      const atletiRows=t.atleti.map(a=>{
+      const atletiRows=t.atleti.map((a,j)=>{
         const nome=typeof a==="string"?a:a.nome;
         const pts=typeof a==="object"&&a.pts!=null?a.pts:null;
-        return "<div style='display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,110,150,0.08);'>"
+        const dettaglio=(typeof a==="object"&&Array.isArray(a.dettaglio))?a.dettaglio:null;
+        const adetId="adet-"+i+"-"+j, achevId="achev-"+i+"-"+j;
+        const athChevron=dettaglio&&dettaglio.length?"<span id='"+achevId+"' style='font-size:9px;color:var(--tlight);transition:transform .2s;display:inline-block;margin-left:6px'>&#9660;</span>":"";
+        const athClick=dettaglio&&dettaglio.length?" class='athlete-toggle-row' onclick=\"event.stopPropagation();_toggleDet('"+adetId+"','"+achevId+"')\"":"";
+        let racesHtml="";
+        if(dettaglio&&dettaglio.length){
+          const sorted=[...dettaglio].sort((x,y)=>_dsort(x.data)<_dsort(y.data)?-1:1);
+          racesHtml="<div id='"+adetId+"' style='display:none;padding:2px 0 4px'>"+sorted.map(_renderRaceCard).join("")+"</div>";
+        }
+        return "<div>"
+          +"<div"+athClick+" style='display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,110,150,0.08);border-radius:6px'>"
           +"<div style='display:flex;align-items:center;gap:9px'>"
           +"<div style='width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--p3),var(--p5));flex-shrink:0'></div>"
-          +"<span style='font-size:13px;font-weight:600;color:var(--p5)'>"+nome+"</span>"
+          +"<span style='font-size:13px;font-weight:600;color:var(--p5)'>"+nome+"</span>"+athChevron
           +"</div>"
           +"<span style='font-family:\"Bebas Neue\",sans-serif;font-size:18px;color:"+(pts!=null?"var(--gold)":"rgba(0,90,130,0.25)")+";letter-spacing:1px'>"+(pts!=null?pts+"<span style='font-size:11px;color:var(--tlight);margin-left:3px'>pt</span>":"—")+"</span>"
+          +"</div>"
+          +racesHtml
           +"</div>";
       }).join("");
       detHtml="<div id='"+detId+"' style='display:none;padding:14px 20px 16px;background:rgba(6,84,112,0.04);border-top:1px solid rgba(0,110,150,0.1);'>"
-        +"<div style='font-family:\"Barlow Condensed\",sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tlight);margin-bottom:10px'>&#127954; Atleti in squadra</div>"
+        +"<div style='font-family:\"Barlow Condensed\",sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tlight);margin-bottom:10px'>&#127954; Atleti in squadra &mdash; clicca un nome per il dettaglio gara-per-gara</div>"
         +atletiRows
         +"</div>";
     }
@@ -626,6 +660,44 @@ function _renderClassificaConSquadre(squadre){
   }).join("");
   document.getElementById("classificaList").innerHTML="<div style='background:rgba(255,255,255,0.54);border:1px solid rgba(255,255,255,0.88);border-radius:20px;overflow:hidden;margin-top:8px'>"+rows+"</div>";
 }
+function _dsort(datestr){ // "gg/mm/aaaa" -> "aaaammgg" per ordinamento cronologico
+  const pp=(datestr||"").split("/");
+  return pp.length===3 ? (pp[2]+pp[1].padStart(2,"0")+pp[0].padStart(2,"0")) : "00000000";
+}
+function _chip(cls,label){return "<span class='chip "+cls+"'>"+label+"</span>";}
+function _renderRaceCard(d){
+  const chips=[];
+  if(d.puntiFIN) chips.push(_chip("pb2","&#128202; FIN +"+(Math.round(d.puntiFIN*10)/10)));
+  if(d.bonusIndividuale) chips.push(_chip("pb2","&#127946; Individuale +"+d.bonusIndividuale));
+  if(d.bonusStaffetta) chips.push(_chip("pb2","&#129309; Staffetta +"+d.bonusStaffetta));
+  if(d.bonusRecordCategoria) chips.push(_chip("pg","&#127941; Rec. categoria +"+d.bonusRecordCategoria));
+  if(d.bonusRecordAssoluto) chips.push(_chip("pg","&#129351; Rec. assoluto +"+d.bonusRecordAssoluto));
+  if(d.bonusPodio) chips.push(_chip("pg","&#127942; Podio +"+d.bonusPodio));
+  if(d.bonusStacanovista) chips.push(_chip("pv","&#128293; Stacanovista +"+d.bonusStacanovista));
+  if(d.bonusAltro) chips.push(_chip("pv","&#10024; Altro +"+d.bonusAltro));
+  if(d.malusSqualifica) chips.push(_chip("pr","&#10060; Squal./NP -"+d.malusSqualifica));
+  return "<div class='race-card'>"
+    +"<div class='race-top'><div><span class='race-name'>"+d.gara+"</span><span class='race-date'>"+(d.data||"")+"</span></div>"
+    +"<div class='race-tot'>"+d.totaleGara+"</div></div>"
+    +(chips.length?"<div class='race-chips'>"+chips.join("")+"</div>":"")
+    +(d.note?("<div class='race-note'>"+d.note+"</div>"):"")
+    +"</div>";
+}
+function _renderWinnerBanner(squadre){
+  const el=document.getElementById("winnerBanner");
+  if(!el) return;
+  const s=[...squadre].sort((a,b)=>b.pts-a.pts);
+  const w=s[0];
+  if(!w){el.style.display="none";return;}
+  el.style.display="flex";
+  el.className="winner-banner";
+  el.innerHTML="<div class='winner-trophy'>&#127942;</div>"
+    +"<div style='flex:1;min-width:220px'>"
+    +"<div class='winner-eyebrow'>&#127881; Campione FantaMelzo 2026 &#127881;</div>"
+    +"<div class='winner-team'>"+w.team+"</div>"
+    +"<div class='winner-manager'>&#128100; "+w.manager+"</div></div>"
+    +"<div style='text-align:center'><div class='winner-pts'>"+w.pts+"</div><div class='winner-pts-lbl'>punti finali</div></div>";
+}
 function _toggleDet(detId,chevId){
   const det=document.getElementById(detId);
   const chev=document.getElementById(chevId);
@@ -636,6 +708,7 @@ function _toggleDet(detId,chevId){
 }
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 renderTeamSlots();
+renderClassifica();
 </script>
 </body>
 </html>
