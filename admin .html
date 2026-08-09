@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FantaMelzo Admin — Stagione Supermaster 26/27</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --p3:#2aa8cc;--p4:#0e7a9e;--p5:#065470;
+  --gold:#f5c800;--gold2:#ffe566;
+  --tdark:#054060;--tmid:#1a6888;--tlight:#4a9ab8;
+  --red:#d02848;--green:#009870;
+}
+body{
+  font-family:"Barlow",-apple-system,sans-serif;
+  min-height:100vh;color:var(--tdark);overflow-x:hidden;
+  background:radial-gradient(ellipse 130% 55% at 50% 0%,#baeef9 0%,transparent 52%),
+    radial-gradient(ellipse 70% 70% at 5% 55%,#c8f0fa 0%,transparent 48%),
+    radial-gradient(ellipse 70% 70% at 95% 35%,#b8ecf8 0%,transparent 48%),
+    linear-gradient(180deg,#d4f4fc 0%,#aee5f3 40%,#8ed6ec 75%,#70c8e4 100%);
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(-42deg,transparent 0,transparent 58px,rgba(255,255,255,0.07) 58px,rgba(255,255,255,0.07) 60px),
+    repeating-linear-gradient(42deg,transparent 0,transparent 78px,rgba(255,255,255,0.05) 78px,rgba(255,255,255,0.05) 80px);
+  animation:ripple 10s linear infinite;
+}
+@keyframes ripple{0%{background-position:0 0,0 0}100%{background-position:120px 120px,-160px 160px}}
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(195,238,252,0.74);
+  backdrop-filter:blur(28px) saturate(200%);
+  border-bottom:1px solid rgba(255,255,255,0.85);
+  box-shadow:0 2px 22px rgba(0,110,160,0.1),inset 0 1px 0 rgba(255,255,255,0.95);
+}
+.hi{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;}
+.logo-text{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:3px;color:var(--p5);}
+.logo-text span{color:var(--p3);}
+.badge{background:rgba(6,84,112,0.88);color:#fff;font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;}
+.container{max-width:1100px;margin:0 auto;padding:40px 24px;position:relative;z-index:1;}
+.glass{
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.85);
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,90,140,0.1),inset 0 1px 0 rgba(255,255,255,0.92);
+  padding:28px;
+  margin-bottom:20px;
+}
+.sec-title{font-family:"Bebas Neue",sans-serif;font-size:42px;letter-spacing:3px;color:var(--p5);margin-bottom:4px;}
+.sec-title span{color:var(--p3);}
+.sec-bar{width:44px;height:3px;border-radius:2px;margin-bottom:24px;background:linear-gradient(90deg,var(--p3),var(--gold));}
+label{display:block;font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tmid);margin-bottom:6px;}
+input[type=password],input[type=text]{
+  width:100%;padding:12px 16px;border-radius:12px;
+  border:1px solid rgba(255,255,255,0.88);
+  background:rgba(255,255,255,0.72);
+  font-family:"Barlow",sans-serif;font-size:14px;color:var(--tdark);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  margin-bottom:16px;
+}
+input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:13px 26px;border-radius:30px;border:none;cursor:pointer;
+  transition:all .22s;
+}
+.btn-primary{background:linear-gradient(135deg,var(--p4),var(--p5));color:#fff;box-shadow:0 4px 18px rgba(6,84,112,0.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(6,84,112,0.4);}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-success{background:linear-gradient(135deg,#009870,#006a4e);color:#fff;box-shadow:0 4px 18px rgba(0,152,112,0.3);}
+.btn-success:hover{transform:translateY(-2px);}
+.btn-success:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-ghost{background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.88);color:var(--p4);}
+.btn-ghost:hover{background:rgba(255,255,255,0.88);}
+.btn-danger{background:rgba(208,40,72,0.1);border:1px solid rgba(208,40,72,0.2);color:var(--red);}
+.steps{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
+.step{
+  display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:30px;
+  font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.88);color:var(--tlight);transition:all .3s;
+}
+.step.active{background:rgba(6,84,112,0.88);color:#fff;border-color:transparent;}
+.step.done{background:rgba(0,152,112,0.15);color:var(--green);border-color:rgba(0,152,112,0.3);}
+.step-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:rgba(255,255,255,0.3);}
+.step.active .step-num{background:rgba(255,255,255,0.25);}
+.step.done .step-num{background:var(--green);color:#fff;}
+.panel{display:none;}.panel.active{display:block;}
+
+/* DROP ZONE */
+.dropzone{
+  border:2px dashed rgba(42,168,204,0.4);border-radius:16px;
+  padding:48px 24px;text-align:center;cursor:pointer;
+  background:rgba(255,255,255,0.4);transition:all .3s;margin-bottom:16px;
+}
+.dropzone:hover,.dropzone.drag{border-color:var(--p3);background:rgba(42,168,204,0.08);}
+.dropzone-icon{font-size:48px;margin-bottom:12px;}
+.dropzone-title{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:700;color:var(--p5);margin-bottom:6px;}
+.dropzone-sub{font-size:13px;color:var(--tlight);}
+#file-input{display:none;}
+
+/* PDF INFO */
+.pdf-info{
+  display:none;align-items:center;gap:14px;padding:16px 20px;
+  border-radius:14px;background:rgba(0,152,112,0.1);border:1px solid rgba(0,152,112,0.25);
+  margin-bottom:16px;
+}
+.pdf-info.show{display:flex;}
+.pdf-icon{font-size:32px;}
+.pdf-name{font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:700;color:var(--green);}
+.pdf-pages{font-size:12px;color:var(--tmid);}
+
+/* ATLETA CARDS */
+.atleta-card{
+  display:flex;align-items:flex-start;gap:14px;padding:16px;border-radius:14px;margin-bottom:10px;
+  background:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.88);transition:transform .2s;
+}
+.atleta-card:hover{transform:translateX(3px);}
+.atleta-avatar{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Bebas Neue",sans-serif;font-size:18px;
+  background:linear-gradient(135deg,var(--p3),var(--p5));color:#fff;
+}
+.atleta-name{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:700;color:var(--p5);margin-bottom:4px;}
+.atleta-gare{font-size:12px;color:var(--tmid);line-height:1.8;}
+.atleta-pts{margin-left:auto;text-align:right;flex-shrink:0;}
+.pts-num{font-family:"Bebas Neue",sans-serif;font-size:36px;line-height:1;color:var(--p5);}
+.pts-label{font-size:10px;color:var(--tlight);text-transform:uppercase;letter-spacing:1px;}
+.bonus-pill{
+  display:inline-block;font-family:"Barlow Condensed",sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:2px 9px;border-radius:20px;margin:2px 3px 2px 0;
+}
+.pill-green{background:rgba(0,152,112,0.12);color:var(--green);border:1px solid rgba(0,152,112,0.25);}
+.pill-gold{background:rgba(245,200,0,0.15);color:#7a5800;border:1px solid rgba(245,200,0,0.3);}
+.pill-red{background:rgba(208,40,72,0.1);color:var(--red);border:1px solid rgba(208,40,72,0.2);}
+.pill-blue{background:rgba(42,168,204,0.12);color:var(--p4);border:1px solid rgba(42,168,204,0.25);}
+.pill-neutral{background:rgba(6,84,112,0.08);color:var(--tmid);border:1px solid rgba(6,84,112,0.15);}
+
+/* CLASSIFICA */
+.team-row{
+  display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;
+  padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.52);transition:background .15s;
+}
+.team-row:last-child{border-bottom:none;}
+.team-row:hover{background:rgba(255,255,255,0.5);}
+.rank-num{font-family:"Bebas Neue",sans-serif;font-size:22px;color:rgba(0,90,130,0.3);text-align:center;}
+.rank-num.r1{color:var(--gold);}
+.rank-num.r2{color:#aaa;}
+.rank-num.r3{color:#cd7f32;}
+.team-name{font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:700;color:var(--p5);}
+.team-manager{font-size:12px;color:var(--tlight);}
+.team-pts-big{font-family:"Bebas Neue",sans-serif;font-size:28px;color:var(--p5);}
+
+.status-box{padding:14px 18px;border-radius:12px;margin-top:16px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:600;display:none;}
+.status-box.show{display:block;}
+.status-success{background:rgba(0,152,112,0.12);color:var(--green);border:1px solid rgba(0,152,112,0.25);}
+.status-error{background:rgba(208,40,72,0.1);color:var(--red);border:1px solid rgba(208,40,72,0.2);}
+.status-info{background:rgba(42,168,204,0.12);color:var(--p4);border:1px solid rgba(42,168,204,0.25);}
+.loading{display:none;align-items:center;gap:12px;padding:20px;color:var(--p4);}
+.loading.show{display:flex;}
+.spinner{width:24px;height:24px;border:3px solid rgba(42,168,204,0.2);border-top-color:var(--p3);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.config-toggle{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tlight);cursor:pointer;display:flex;align-items:center;gap:6px;padding:8px 0;border:none;background:none;}
+.config-toggle:hover{color:var(--p4);}
+.config-row{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;}
+.config-row>div{flex:1;min-width:200px;}
+
+/* EDIT MANUALE */
+.edit-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.88);}
+.edit-name{flex:1;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;color:var(--p5);}
+.edit-pts{width:70px;padding:6px 10px;border-radius:8px;border:1px solid rgba(42,168,204,0.3);background:rgba(255,255,255,0.8);font-family:"Bebas Neue",sans-serif;font-size:20px;color:var(--p5);text-align:center;outline:none;}
+.edit-detail{font-size:11px;color:var(--tlight);}
+
+#login-screen{max-width:420px;margin:80px auto;}
+.login-title{font-family:"Bebas Neue",sans-serif;font-size:52px;letter-spacing:4px;color:var(--p5);text-align:center;margin-bottom:4px;}
+.login-title span{color:var(--gold);}
+.login-sub{font-family:"Barlow Condensed",sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--tlight);text-align:center;margin-bottom:32px;}
+
+@media(max-width:640px){
+  .steps{gap:6px;}.step{padding:8px 12px;font-size:11px;}
+  .atleta-card{flex-wrap:wrap;}.atleta-pts{margin-left:0;}
+  .config-row{flex-direction:column;}
+  .team-row{grid-template-columns:32px 1fr auto;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="logo-text">FANTA<span>MELZO</span></div>
+    <div class="badge">🏊 Admin · Supermaster 26/27</div>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div class="container" id="login-screen">
+  <div class="glass">
+    <div class="login-title">ADMIN<br><span>ACCESS</span></div>
+    <div class="login-sub">FantaMelzo · Stagione Supermaster 26/27</div>
+    <label>Password Admin</label>
+    <input type="password" id="pwd-input" placeholder="Inserisci password…" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-primary" onclick="doLogin()" style="width:100%;justify-content:center;">🔐 Accedi</button>
+    <div id="login-error" class="status-box status-error"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container" id="main-app" style="display:none;">
+
+  <div class="steps">
+    <div class="step active" id="s1">
+      <div class="step-num">1</div> Carica PDF
+    </div>
+    <div class="step" id="s2">
+      <div class="step-num">2</div> Verifica Punti
+    </div>
+    <div class="step" id="s3">
+      <div class="step-num">3</div> Pubblica
+    </div>
+    <div class="step" id="s4" onclick="goManuale()" style="cursor:pointer;">
+      <div class="step-num">✏️</div> Modifica Manuale
+    </div>
+  </div>
+
+  <!-- PANNELLO 1 -->
+  <div class="panel active" id="panel1">
+    <div class="glass">
+      <div class="sec-title">CARICA <span>PDF FIN</span></div>
+      <div class="sec-bar"></div>
+      <p style="font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.6;">
+        Carica il PDF dei risultati FIN. La pagina riconosce automaticamente gli atleti del Master Melzo e calcola i punti.
+      </p>
+
+      <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+        <div class="dropzone-icon">📄</div>
+        <div class="dropzone-title">Trascina il PDF qui</div>
+        <div class="dropzone-sub">oppure clicca per selezionarlo · Funziona anche da cellulare</div>
+      </div>
+      <input type="file" id="file-input" accept=".pdf" onchange="handleFile(this.files[0])">
+
+      <div class="pdf-info" id="pdf-info">
+        <div class="pdf-icon">📋</div>
+        <div>
+          <div class="pdf-name" id="pdf-name"></div>
+          <div class="pdf-pages" id="pdf-pages"></div>
+        </div>
+      </div>
+
+      <div class="loading" id="loading1">
+        <div class="spinner"></div>
+        <span id="loading1-text">Estrazione testo dal PDF...</span>
+      </div>
+      <div class="status-box" id="status1"></div>
+
+      <!-- Config GitHub -->
+      <div style="margin-top:24px;border-top:1px solid rgba(255,255,255,0.6);padding-top:18px;">
+        <button class="config-toggle" onclick="toggleConfig()">⚙️ Configurazione GitHub <span id="config-arrow">▼</span></button>
+        <div id="config-panel" style="display:none;margin-top:16px;">
+          <div class="config-row">
+            <div>
+              <label>GitHub Token</label>
+              <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--tlight);margin-top:-8px;">⚠️ Inserisci una volta per sessione. Non viene mai salvato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANNELLO 2 -->
+  <div class="panel" id="panel2">
+    <div class="glass">
+      <div class="sec-title">VERIFICA <span>PUNTI</span></div>
+      <div class="sec-bar"></div>
+      <div id="gara-info" style="font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.8;"></div>
+      <div id="atleti-list"></div>
+
+      <div id="nessuno-box" class="status-box status-info" style="display:none;">
+        ℹ️ Nessun atleta del Master Melzo trovato in questo PDF. Controlla che il PDF sia corretto.
+      </div>
+
+      <!-- Modifica manuale -->
+      <div id="edit-section" style="display:none;margin-top:20px;border-top:1px solid rgba(255,255,255,0.6);padding-top:18px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tmid);margin-bottom:12px;">✏️ Correggi punti manualmente se necessario</div>
+        <div id="edit-list"></div>
+      </div>
+
+      <!-- Proposte nuovi record di club (categoria + assoluto), da confermare manualmente -->
+      <div id="duplicate-warning-box" style="display:none;margin-top:16px;"></div>
+
+      <div id="record-proposte-box" style="display:none;margin-top:20px;border-top:1px solid rgba(255,255,255,0.6);padding-top:18px;"></div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <button class="btn btn-ghost" onclick="goStep(1)">← Carica altro PDF</button>
+        <button class="btn btn-success" onclick="publishResults()" id="publish-btn">🚀 Pubblica su GitHub</button>
+      </div>
+      <div class="loading" id="loading2"><div class="spinner"></div><span>Aggiornamento su GitHub...</span></div>
+      <div class="status-box" id="status2"></div>
+    </div>
+
+    <!-- Classifica preview -->
+    <div class="glass">
+      <div class="sec-title">CLASSIFICA <span>AGGIORNATA</span></div>
+      <div class="sec-bar"></div>
+      <div id="classifica-preview" style="border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.88);"></div>
+    </div>
+  </div>
+
+  <!-- PANNELLO 3 -->
+  <div class="panel" id="panel3">
+    <div class="glass" style="text-align:center;padding:52px 28px;">
+      <div style="font-size:72px;margin-bottom:16px;">🎉</div>
+      <div class="sec-title" style="font-size:52px;">PUBBLICATO!</div>
+      <div class="sec-bar" style="margin:12px auto 20px;"></div>
+      <p style="font-size:16px;color:var(--tmid);margin-bottom:28px;line-height:1.7;">
+        Classifica aggiornata su GitHub!<br>Vercel pubblicherà il sito aggiornato entro 30–60 secondi. 🏊
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="goStep(1)">➕ Carica altri risultati</button>
+        <a href="https://fanta-wine.vercel.app" target="_blank" class="btn btn-ghost">🌐 Vai al sito</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANNELLO 4: MODIFICA MANUALE -->
+  <div class="panel" id="panel4">
+
+    <!-- IMPORT PRESENZE (Fedeltà al Cloro automatica) -->
+    <div class="glass">
+      <div class="sec-title">FEDELT&Agrave; AL <span>CLORO</span></div>
+      <div class="sec-bar"></div>
+      <p style="font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.6;">
+        Carica il file .xlsx presenze (sempre il file completo e aggiornato di tutta la stagione, foglio "Elenco presenze"). Ogni 5 allenamenti consecutivi in stagione = <strong>+10</strong>, ogni 5 assenze consecutive = <strong>&minus;10</strong>. Il calcolo &egrave; continuo su tutta la stagione (non si azzera a fine mese) e sostituisce automaticamente il bonus/malus fedelt&agrave; precedentemente applicato ad ogni atleta, cos&igrave; puoi ricaricare il file ogni volta senza duplicare i punti.
+      </p>
+      <input type="file" id="presenze-file-input" accept=".xlsx" onchange="handlePresenzeFile(this.files[0])" style="margin-bottom:16px;">
+      <div class="loading" id="loading-presenze"><div class="spinner"></div><span>Analisi presenze in corso...</span></div>
+      <div class="status-box" id="status-presenze"></div>
+
+      <div id="presenze-preview" style="display:none;margin-top:20px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;color:var(--p5);margin-bottom:10px;" id="presenze-summary"></div>
+        <div id="presenze-table"></div>
+        <div id="presenze-non-abbinati" style="margin-top:14px;font-size:13px;color:var(--tmid);"></div>
+        <div style="margin-top:16px;">
+          <button class="btn btn-primary" onclick="applicaPresenzeTutti()" id="presenze-apply-btn">✅ Applica a tutta la classifica</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass">
+      <div class="sec-title">MODIFICA <span>MANUALE</span></div>
+      <div class="sec-bar"></div>
+      <p style="font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.6;">
+        Aggiungi o togli punti manualmente a qualsiasi atleta. Usa per bonus speciali, record sociali, stacanovista, fedeltà al cloro o correzioni.
+      </p>
+
+      <!-- Selezione atleta -->
+      <label>Seleziona Atleta</label>
+      <select id="man-atleta" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.88);background:rgba(255,255,255,0.72);font-family:'Barlow',sans-serif;font-size:14px;color:var(--tdark);outline:none;margin-bottom:16px;">
+        <option value="">— scegli atleta —</option>
+      </select>
+
+      <!-- Tipo bonus/malus -->
+      <label>Tipo</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="bonus-tipo-btns">
+        <button class="btn btn-ghost bonus-tipo" data-pts="20" data-label="Record assoluto sodalizio" onclick="selectTipo(this)">🏆 Record assoluto +20</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="10" data-label="Record di categoria" onclick="selectTipo(this)">🥇 Record categoria +10</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="50" data-label="Oro (1° categoria)" onclick="selectTipo(this)">🥇 Oro categoria +50</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="20" data-label="Argento (2° categoria)" onclick="selectTipo(this)">🥈 Argento categoria +20</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="5" data-label="Bronzo (3° categoria)" onclick="selectTipo(this)">🥉 Bronzo categoria +5</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="10" data-label="Fedeltà al cloro" onclick="selectTipo(this)">💙 Fedeltà al cloro +10</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="5" data-label="Stacanovista" onclick="selectTipo(this)">💪 Stacanovista +5</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="-15" data-label="Squalifica/DNF" onclick="selectTipo(this)">❌ Squalifica -15</button>
+        <button class="btn btn-ghost bonus-tipo" data-pts="0" data-label="Personalizzato" onclick="selectTipo(this)">✏️ Personalizzato</button>
+      </div>
+
+      <!-- Punti personalizzati -->
+      <div id="man-custom-row" style="display:none;margin-bottom:16px;">
+        <label>Punti (usa - per malus)</label>
+        <input type="number" id="man-pts-custom" placeholder="es. 15 oppure -10" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.88);background:rgba(255,255,255,0.72);font-family:'Barlow',sans-serif;font-size:14px;color:var(--tdark);outline:none;margin-bottom:0;">
+      </div>
+
+      <!-- Note -->
+      <label>Nota (opzionale)</label>
+      <input type="text" id="man-nota" placeholder="es. Record sociale 200 dorso, Stacanovista 3 gare…" style="margin-bottom:20px;">
+
+      <!-- Preview -->
+      <div id="man-preview" style="display:none;padding:14px 18px;border-radius:12px;background:rgba(42,168,204,0.1);border:1px solid rgba(42,168,204,0.25);margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;font-size:15px;color:var(--p4);font-weight:600;"></div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="applicaBonus()" id="man-apply-btn">✅ Applica</button>
+        <button class="btn btn-ghost" onclick="goStep(1)">← Torna ai PDF</button>
+      </div>
+      <div class="status-box" id="status-man"></div>
+    </div>
+
+    <!-- Log modifiche sessione -->
+    <div class="glass" id="man-log-box" style="display:none;">
+      <div class="sec-title" style="font-size:28px;">LOG <span>MODIFICHE</span></div>
+      <div class="sec-bar"></div>
+      <div id="man-log"></div>
+      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-success" onclick="pubblicaManuale()" id="man-publish-btn">🚀 Pubblica su GitHub</button>
+      </div>
+      <div class="loading" id="loading-man"><div class="spinner"></div><span>Pubblicazione in corso...</span></div>
+      <div class="status-box" id="status-man2"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// CONFIG
+const ADMIN_PASSWORD = "melzo2026";
+const GITHUB_REPO = "fantamastermelzo/fanta";
+const GITHUB_FILE = "classifica_fanta.json";
+const GITHUB_RECORDS_FILE = "records_individuali.json";
+const GITHUB_RECORDS_STAFFETTA_FILE = "records_staffette.json";
+
+// Workerless PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// Atleti Master Melzo
+const ATLETI = [
+  "Bottari Selene","Brambilla Cecilia","Leoni Alessandro","Crespi Enrico","Pitalieri Francesca",
+  "Somigliana Ugo","Rovida Maria Cristina","Neri Umberto","Sperandio Dario","Brambilla Mauro",
+  "Raviola Tomaso","Mercati Gherardo","Botteghi Alessio","Sena Lucia","Ferrari Bravo Cristina",
+  "Ceriani Paolo","Broccolino Susanna","Broccolino Marco","Zerbo Arcangelo","Martelli Daria",
+  "Accomasso Davide","Parisi Matteo","Sinigaglia Luca","Somigliana Anna","Migliazza Anna",
+  "Vassura Edoardo","Salomone Roberto","Romano Giuseppe","Galiano Ilaria","Pirola Vincenzo",
+  "Dotti Valter","Bottari Giuseppe","Facchinetti Pierpaolo","Scotti Silvio","Valla Nicola",
+  "Longaretti Fabio","Ferraro Sergio","Naborri Annamaria"
+];
+
+// Gare staffetta
+const STAFFETTE = ["4x50","4X50","STAFFETTA","MISTAFFETTA","RELAY"];
+
+// Elenco codici specialità validi (per riconoscerli dal nome file / dal testo del PDF)
+const EVENT_CODES = [
+  "50DO","100DO","200DO","50FA","100FA","200FA","100MX","200MX","400MX",
+  "50RA","100RA","200RA","50SL","100SL","200SL","400SL","800SL","1500SL"
+];
+
+// Regolamento punti
+const PTS = {individuale:10, staffetta:5, oro:50, argento:20, bronzo:5, record_assoluto:20, record_categoria:10, squalifica:-15};
+
+let classificaData = null;
+let recordsData = null;          // dati record categoria/assoluto club (records_individuali.json)
+let recordsLoadError = false;    // true se il file record non è stato trovato/caricato
+let recordsStaffetta = null;     // dati record categoria/assoluto club per le staffette (records_staffette.json)
+let recordsStaffettaLoadError = false;
+let risultatiGara = []; // atleti trovati con punti
+let recordProposals = []; // proposte di aggiornamento record da confermare
+let appliedRaceIdsThisSession = new Set(); // gare già applicate in questa sessione (anche se non ancora pubblicate)
+let currentRaceId = null;
+let currentRaceAlreadyApplied = false;
+let currentRaceDuplicateInfo = null; // {when, garaName, dataGara}
+let currentGaraName = "", currentDataGara = "", currentIsStaffetta = false, currentPtsGara = 0;
+let selectedTipoPts = null;
+let selectedTipoLabel = "";
+let logModifiche = [];
+
+// ========== UTILS TEMPO ==========
+// Converte un tempo testuale (formati PDF FIN o Excel) in secondi (float). Ritorna null se non valido.
+function timeToSeconds(t){
+  if(!t) return null;
+  t = String(t).trim();
+  // formato Excel "HH:MM:SS.cc"
+  let m = t.match(/^(\d+):(\d{2}):(\d{2})\.(\d+)$/);
+  if(m) return parseInt(m[1])*3600 + parseInt(m[2])*60 + parseInt(m[3]) + parseFloat("0."+m[4]);
+  // formato PDF "M'SS.cc" (es. 2'40.04)
+  m = t.match(/^(\d+)'(\d+)\.(\d+)$/);
+  if(m) return parseInt(m[1])*60 + parseInt(m[2]) + parseFloat("0."+m[3]);
+  // formato solo secondi "SS.cc" (es. 33.35, gare dei 50m)
+  m = t.match(/^(\d{1,2})\.(\d+)$/);
+  if(m) return parseInt(m[1]) + parseFloat("0."+m[2]);
+  // formato referti regionali "M'SS"cc" (es. 2'06"60, 0'29"88) — apice minuti, doppio apice centesimi
+  m = t.match(/^(\d+)'(\d{2})"(\d+)$/);
+  if(m) return parseInt(m[1])*60 + parseInt(m[2]) + parseFloat("0."+m[3]);
+  // fallback raro: tempo estratto come "MM:SS:cc" invece di M'SS"cc (glitch di estrazione PDF)
+  m = t.match(/^(\d{1,2}):(\d{2}):(\d{2})$/);
+  if(m) return parseInt(m[1])*60 + parseInt(m[2]) + parseFloat("0."+m[3]);
+  return null;
+}
+
+// Normalizza codice specialità (Misti: MI -> MX, per allineare Excel record e testo FIN)
+function normEventCode(code){
+  if(!code) return code;
+  code = code.trim().toUpperCase();
+  if(code.endsWith("MI")) code = code.slice(0,-2) + "MX";
+  return code;
+}
+
+// Calcola un identificativo stabile della gara, basato sul CONTENUTO (gara + data + atleti Melzo + i loro
+// tempi/arrivo), non sul nome del file. Così anche un PDF rinominato o ricaricato per errore viene riconosciuto
+// come lo stesso risultato, mentre una correzione reale (tempi diversi) non viene bloccata per errore.
+function computeRaceId(garaName, dataGara, isStaffetta, trovati){
+  const norm = s => (s||"").trim().toLowerCase().replace(/\s+/g," ");
+  const parti = trovati
+    .map(t => `${t.nome}:${t.arrivo||"-"}:${t.isSQ?"SQ":t.isNP?"NP":"OK"}`)
+    .sort();
+  return `${norm(garaName)}|${norm(dataGara)}|${isStaffetta?"staffetta":"individuale"}|${parti.join(",")}`;
+}
+
+
+// Mappa nome disciplina italiano -> suffisso codice
+const STROKE_MAP = [
+  [/stile\s*libero/i, "SL"],
+  [/dorso/i, "DO"],
+  [/rana/i, "RA"],
+  [/farfalla|delfino/i, "FA"],
+  [/mist[oi]/i, "MX"]
+];
+
+// Cerca di individuare il codice specialità (es. "200DO") dal nome file o dal nome gara riconosciuto nel PDF
+function detectEventCode(filename, garaName){
+  // 1) dal nome file, es. CLS-MAF-200DO-TIM-ALL.pdf
+  const fromFile = (filename||"").toUpperCase().match(/(\d{2,4})(DO|FA|RA|SL|MX|MI)\b/);
+  if(fromFile){
+    const code = normEventCode(fromFile[1]+fromFile[2]);
+    if(EVENT_CODES.includes(code)) return code;
+  }
+  // 2) dal nome gara testuale, es. "200 m Dorso"
+  if(garaName){
+    const distMatch = garaName.match(/(\d{2,4})/);
+    if(distMatch){
+      for(const [re, suffix] of STROKE_MAP){
+        if(re.test(garaName)){
+          const code = normEventCode(distMatch[1]+suffix);
+          if(EVENT_CODES.includes(code)) return code;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+// Riconosce l'intestazione di categoria FIN, es. "MASTER 60F" -> {categoria:"M60", genere:"donne"}
+// La categoria "20" corrisponde a "U25" nelle tabelle record.
+function parseCategoriaHeader(line){
+  const m = line.match(/MASTER\s+(\d{2})\s*([FM])\b/i);
+  if(!m) return null;
+  const num = m[1];
+  const genereLettera = m[2].toUpperCase();
+  const categoria = (num === "20") ? "U25" : ("M"+num);
+  const genere = genereLettera === "F" ? "donne" : "uomini";
+  return {categoria, genere};
+}
+
+// Confronta il tempo di un atleta con le tabelle record di club (categoria + assoluto).
+// Ritorna { ptsRecord, labelRecord, proposte:[...] } — non modifica ancora i dati, propone solo.
+function checkRecordClub(eventCode, genere, categoria, secondiArrivo){
+  const out = { ptsRecord: 0, labelRecord: null, proposte: [] };
+  if(!eventCode || !genere || !categoria || secondiArrivo == null) return out;
+  if(!recordsData || !recordsData[eventCode] || !recordsData[eventCode][genere]) return out;
+
+  const bucket = recordsData[eventCode][genere];
+  const recAssoluto = bucket.assoluto;
+  const recCategoria = bucket.categorie ? bucket.categorie[categoria] : null;
+
+  const beatsAssoluto = !recAssoluto || (recAssoluto.secondi != null && secondiArrivo < recAssoluto.secondi);
+  const beatsCategoria = !recCategoria || (recCategoria.secondi != null && secondiArrivo < recCategoria.secondi);
+
+  // Punteggio: se batte l'assoluto vale anche come miglior tempo di categoria,
+  // ma il bonus non si somma: si applica solo il maggiore dei due.
+  if(beatsAssoluto){
+    out.ptsRecord = PTS.record_assoluto;
+    out.labelRecord = `Record assoluto club +${PTS.record_assoluto}`;
+  } else if(beatsCategoria){
+    out.ptsRecord = PTS.record_categoria;
+    out.labelRecord = `Record categoria club +${PTS.record_categoria}`;
+  }
+
+  if(beatsAssoluto){
+    out.proposte.push({
+      tipo: "assoluto", eventCode, genere, categoria: null,
+      vecchio: recAssoluto, nuovoSecondi: secondiArrivo
+    });
+  }
+  if(beatsCategoria){
+    out.proposte.push({
+      tipo: "categoria", eventCode, genere, categoria,
+      vecchio: recCategoria, nuovoSecondi: secondiArrivo
+    });
+  }
+  return out;
+}
+
+// ========== SUPPORTO STAFFETTE ==========
+
+// Soglie età (somma anni dei 4 atleti) usate dalla FIN per le categorie di staffetta:
+// la sigla stampata (es. "240") è la soglia minima della fascia; la fascia arriva
+// fino alla soglia successiva -1 (es. "240" -> "240-279").
+const RELAY_THRESHOLDS = [80,100,120,160,200,240,280,320,360,400];
+function relayRangeForCode(code){
+  code = parseInt(code, 10);
+  if(isNaN(code)) return null;
+  let idx = RELAY_THRESHOLDS.indexOf(code);
+  if(idx === -1){
+    const lower = RELAY_THRESHOLDS.filter(t => t <= code).pop();
+    if(lower === undefined) return null;
+    code = lower;
+    idx = RELAY_THRESHOLDS.indexOf(lower);
+  }
+  const upper = (idx+1 < RELAY_THRESHOLDS.length) ? RELAY_THRESHOLDS[idx+1]-1 : code+999;
+  return `${code}-${upper}`;
+}
+
+// Riconosce la specialità staffetta (es. "4X50SL") dal testo/nome file
+function detectStaffettaSpecialty(text, filename){
+  const t = (text||"") + " " + (filename||"");
+  const m = t.match(/(\d)\s*[xX]\s*(\d{2,4})\s*m?\s*(Stile Libero|Dorso|Rana|Farfalla|Misti?|Mist)/i);
+  if(m){
+    const n = m[1], dist = m[2];
+    let stroke = "SL";
+    if(/dorso/i.test(m[3])) stroke = "DO";
+    else if(/rana/i.test(m[3])) stroke = "RA";
+    else if(/farfalla/i.test(m[3])) stroke = "FA";
+    else if(/mist/i.test(m[3])) stroke = "MX";
+    else if(/stile/i.test(m[3])) stroke = "SL";
+    return `${n}X${dist}${stroke}`;
+  }
+  // fallback dal nome file, es. CLS-MAX-M050SL-TIM-ALL.pdf -> 4x50SL (le staffette FIN sono sempre 4x)
+  const m2 = (filename||"").toUpperCase().match(/(\d{2,4})(SL|DO|RA|FA|MX|MI)\b/);
+  if(m2){
+    let stroke = m2[2] === "MI" ? "MX" : m2[2];
+    return `4X${m2[1]}${stroke}`;
+  }
+  return null;
+}
+
+// Riconosce il genere della staffetta (mista/maschile/femminile) dal titolo gara
+function detectStaffettaGender(text){
+  if(/mist[ae]|mixed/i.test(text)) return "miststaffette";
+  if(/maschi/i.test(text)) return "uomini";
+  if(/femmine/i.test(text)) return "donne";
+  return null;
+}
+
+// Confronta il tempo di una staffetta con le tabelle record di club (categoria + assoluto).
+function checkRecordStaffetta(specialty, gender, catCode, secondiArrivo){
+  const out = { ptsRecord: 0, labelRecord: null, proposte: [] };
+  if(!specialty || !gender || secondiArrivo == null) return out;
+  if(!recordsStaffetta || !recordsStaffetta[specialty] || !recordsStaffetta[specialty][gender]) return out;
+
+  const bucket = recordsStaffetta[specialty][gender];
+  const recAssoluto = bucket.assoluto;
+  const range = catCode != null ? relayRangeForCode(catCode) : null;
+  const recCategoria = (range && bucket.categorie) ? bucket.categorie[range] : null;
+
+  const beatsAssoluto = !recAssoluto || (recAssoluto.secondi != null && secondiArrivo < recAssoluto.secondi);
+  const beatsCategoria = !!range && (!recCategoria || (recCategoria.secondi != null && secondiArrivo < recCategoria.secondi));
+
+  if(beatsAssoluto){
+    out.ptsRecord = PTS.record_assoluto;
+    out.labelRecord = `Record assoluto staffetta club +${PTS.record_assoluto}`;
+  } else if(beatsCategoria){
+    out.ptsRecord = PTS.record_categoria;
+    out.labelRecord = `Record categoria staffetta club +${PTS.record_categoria}`;
+  }
+
+  if(beatsAssoluto){
+    out.proposte.push({ kind:"staffetta", tipo: "assoluto", specialty, gender, catRange: null, vecchio: recAssoluto, nuovoSecondi: secondiArrivo });
+  }
+  if(beatsCategoria){
+    out.proposte.push({ kind:"staffetta", tipo: "categoria", specialty, gender, catRange: range, vecchio: recCategoria, nuovoSecondi: secondiArrivo });
+  }
+  return out;
+}
+
+// Cerca nella riga un atleta della lista ATLETI (stessa euristica cognome+nome usata per le gare individuali)
+function matchAtletaInLine(line, atletiLower){
+  for(const atleta of atletiLower){
+    const cognome = atleta.parts[0];
+    const nomi = atleta.parts.slice(1);
+    const cognomeRegex = new RegExp(`\\b${cognome}\\b`, "i");
+    if(!cognomeRegex.test(line)) continue;
+    const primoNome = nomi[0];
+    const ultimoNome = nomi[nomi.length-1];
+    const nomeRegex = new RegExp(`\\b${cognome}\\b[\\s\\w]*\\b${ultimoNome}\\b`, "i");
+    const nomeRegex2 = new RegExp(`\\b${cognome}\\b[\\s]+${primoNome}\\b`, "i");
+    if(nomeRegex.test(line) || nomeRegex2.test(line)) return atleta;
+  }
+  return null;
+}
+
+// ========== MODIFICA MANUALE ==========
+function goManuale(){
+  // Popola select atleti
+  const sel = document.getElementById("man-atleta");
+  sel.innerHTML = '<option value="">— scegli atleta —</option>';
+  ATLETI.forEach(a => {
+    const opt = document.createElement("option");
+    opt.value = a; opt.textContent = a;
+    sel.appendChild(opt);
+  });
+  sel.onchange = updateManPreview;
+  document.getElementById("man-pts-custom").oninput = updateManPreview;
+  // Reset
+  document.querySelectorAll(".bonus-tipo").forEach(b => b.classList.remove("btn-primary"));
+  document.querySelectorAll(".bonus-tipo").forEach(b => b.classList.add("btn-ghost"));
+  selectedTipoPts = null; selectedTipoLabel = "";
+  document.getElementById("man-custom-row").style.display = "none";
+  document.getElementById("man-preview").style.display = "none";
+  document.getElementById("status-man").classList.remove("show");
+  // Mostra pannello
+  [1,2,3,4].forEach(i => document.getElementById(`panel${i}`).classList.toggle("active", i===4));
+  [1,2,3].forEach(i => {
+    const s = document.getElementById(`s${i}`);
+    s.classList.remove("active","done");
+    s.classList.add("done");
+  });
+  document.getElementById("s4").classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function selectTipo(btn){
+  document.querySelectorAll(".bonus-tipo").forEach(b => { b.classList.remove("btn-primary"); b.classList.add("btn-ghost"); });
+  btn.classList.add("btn-primary"); btn.classList.remove("btn-ghost");
+  selectedTipoPts = parseFloat(btn.dataset.pts);
+  selectedTipoLabel = btn.dataset.label;
+  const isCustom = selectedTipoLabel === "Personalizzato";
+  document.getElementById("man-custom-row").style.display = isCustom ? "block" : "none";
+  updateManPreview();
+}
+
+function updateManPreview(){
+  const atleta = document.getElementById("man-atleta").value;
+  let pts = selectedTipoPts;
+  if(selectedTipoLabel === "Personalizzato") pts = parseFloat(document.getElementById("man-pts-custom").value) || 0;
+  const nota = document.getElementById("man-nota").value;
+  const prev = document.getElementById("man-preview");
+  if(!atleta || pts === null){ prev.style.display="none"; return; }
+  const segno = pts >= 0 ? "+" : "";
+  prev.style.display = "block";
+  prev.innerHTML = `👤 <strong>${atleta}</strong> → ${segno}${pts} pt &nbsp;·&nbsp; ${selectedTipoLabel}${nota ? " · " + nota : ""}`;
+}
+
+function applicaBonus(){
+  const atleta = document.getElementById("man-atleta").value;
+  let pts = selectedTipoPts;
+  if(selectedTipoLabel === "Personalizzato") pts = parseFloat(document.getElementById("man-pts-custom").value) || 0;
+  const nota = document.getElementById("man-nota").value;
+
+  if(!atleta){ showStatus("status-man","⚠️ Seleziona un atleta.","error"); return; }
+  if(pts === null || isNaN(pts)){ showStatus("status-man","⚠️ Seleziona il tipo di bonus/malus.","error"); return; }
+  if(!classificaData){ showStatus("status-man","❌ Classifica non caricata. Ricarica la pagina.","error"); return; }
+
+  // Applica punti all'atleta in tutte le squadre
+  let trovato = false;
+  classificaData.classifica.forEach(team => {
+    team.atleti.forEach(a => {
+      const nA = a.nome.toLowerCase().trim();
+      const nR = atleta.toLowerCase().trim();
+      if(nA === nR){
+        trovato = true;
+
+        // Dettaglio: registra anche i bonus/malus applicati a mano, per il controllo.
+        const riga = {
+          gara: null,
+          tipo: "manuale",
+          data: new Date().toISOString().slice(0,10),
+          puntiFIN: 0,
+          bonusIndividuale: 0,
+          bonusStaffetta: 0,
+          bonusRecordCategoria: 0,
+          bonusRecordAssoluto: 0,
+          bonusPodio: 0,
+          bonusStacanovista: 0,
+          malusSqualifica: 0,
+          bonusAltro: 0,
+          note: selectedTipoLabel + (nota ? " · " + nota : ""),
+          totaleGara: pts
+        };
+        if(selectedTipoLabel === "Record assoluto sodalizio") riga.bonusRecordAssoluto = pts;
+        else if(selectedTipoLabel === "Record di categoria") riga.bonusRecordCategoria = pts;
+        else if(/oro|argento|bronzo/i.test(selectedTipoLabel)) riga.bonusPodio = pts;
+        else if(selectedTipoLabel === "Stacanovista") riga.bonusStacanovista = pts;
+        else if(selectedTipoLabel === "Squalifica/DNF") riga.malusSqualifica = pts;
+        else riga.bonusAltro = pts; // Fedeltà al cloro, Personalizzato, ecc.
+
+        if(!Array.isArray(a.dettaglio)) a.dettaglio = [];
+        a.dettaglio.push(riga);
+      }
+    });
+  });
+  ricalcolaClassificaCompleta();
+
+  if(!trovato){ showStatus("status-man","⚠️ Atleta non trovato nella classifica.","error"); return; }
+
+  // Aggiungi al log
+  const segno = pts >= 0 ? "+" : "";
+  logModifiche.push({ atleta, pts, label: selectedTipoLabel, nota });
+
+  // Aggiorna log UI
+  document.getElementById("man-log-box").style.display = "block";
+  document.getElementById("man-log").innerHTML = logModifiche.map((m,i) => `
+    <div class="edit-row">
+      <div class="edit-name">${m.atleta}</div>
+      <div class="bonus-pill ${m.pts>=0?'pill-green':'pill-red'}">${m.pts>=0?'+':''}${m.pts} pt</div>
+      <div class="edit-detail">${m.label}${m.nota?' · '+m.nota:''}</div>
+    </div>`).join("");
+
+  showStatus("status-man", `✅ ${segno}${pts} pt applicati a ${atleta}!`, "success");
+
+  // Reset form
+  document.getElementById("man-atleta").value = "";
+  document.getElementById("man-nota").value = "";
+  document.getElementById("man-preview").style.display = "none";
+  document.querySelectorAll(".bonus-tipo").forEach(b => { b.classList.remove("btn-primary"); b.classList.add("btn-ghost"); });
+  selectedTipoPts = null; selectedTipoLabel = "";
+  document.getElementById("man-custom-row").style.display = "none";
+}
+
+async function pubblicaManuale(){
+  const token = document.getElementById("gh-token").value.trim();
+  if(!token){
+    document.getElementById("config-panel").style.display = "block";
+    showStatus("status-man2","⚠️ Inserisci il GitHub Token nella sezione configurazione (Passo 1).","error");
+    return;
+  }
+  document.getElementById("man-publish-btn").disabled = true;
+  document.getElementById("loading-man").classList.add("show");
+  document.getElementById("status-man2").classList.remove("show");
+  try {
+    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json"}
+    });
+    const shaData = await shaResp.json();
+    if(!shaData.sha) throw new Error("File non trovato nel repo GitHub.");
+    const jsonStr = JSON.stringify(classificaData, null, 2);
+    const bytes = new TextEncoder().encode(jsonStr);
+    const binStr = Array.from(bytes).map(b => String.fromCharCode(b)).join('');
+    const content = btoa(binStr);
+    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
+      method:"PUT",
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
+      body:JSON.stringify({ message:`✏️ Modifica manuale classifica`, content, sha: shaData.sha })
+    });
+    const putData = await putResp.json();
+    if(putData.content){
+      logModifiche = [];
+      document.getElementById("man-log-box").style.display = "none";
+      showStatus("status-man2","🎉 Pubblicato su GitHub!","success");
+    } else throw new Error(putData.message||"Errore salvataggio");
+  } catch(e){
+    showStatus("status-man2",`❌ Errore: ${e.message}`,"error");
+  } finally {
+    document.getElementById("man-publish-btn").disabled = false;
+    document.getElementById("loading-man").classList.remove("show");
+  }
+}
+
+// ========== FEDELTÀ AL CLORO (import presenze .xlsx) ==========
+let presenzeResults = []; // ultimo risultato di analisi, in attesa di conferma
+
+function normalizzaNome(s){
+  return String(s||"")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"") // rimuove accenti
+    .replace(/\s+/g," ")
+    .trim()
+    .toLowerCase();
+}
+
+// Data una sequenza di stati ('P'/'A'/'X') calcola quante "unità da 5" ci sono nelle strisce
+// consecutive del carattere target, sommando su tutte le strisce massimali della stagione.
+function contaUnitaStriscia(sequenza, target){
+  let unita = 0, run = 0;
+  for(const s of sequenza){
+    if(s === target) run++;
+    else { unita += Math.floor(run/5); run = 0; }
+  }
+  unita += Math.floor(run/5);
+  return unita;
+}
+
+function parsePresenzeWorkbook(wb){
+  const sheetName = wb.SheetNames.find(n => /elenco.*presenz/i.test(n)) || wb.SheetNames[0];
+  const ws = wb.Sheets[sheetName];
+  const range = XLSX.utils.decode_range(ws['!ref']);
+
+  // Trova le colonne "Cognome" e "Nome" cercando l'intestazione (riga 1 o 2), non una posizione fissa.
+  let colCognome = null, colNome = null;
+  for(let c = 0; c <= range.e.c; c++){
+    for(const r of [0,1]){
+      const v = ws[XLSX.utils.encode_cell({r,c})]?.v;
+      if(typeof v !== "string") continue;
+      const t = v.trim().toLowerCase();
+      if(t === "cognome" && colCognome === null) colCognome = c;
+      if(t === "nome" && colNome === null) colNome = c;
+    }
+  }
+  // Fallback prudente sulla struttura nota (B, C) se le intestazioni non vengono trovate.
+  if(colCognome === null) colCognome = 1;
+  if(colNome === null) colNome = 2;
+
+  // Colonne "data allenamento": quelle la cui cella di riga 2 (indice 1, 0-based) è una data reale.
+  // Si esclude la colonna A (indice 0) che può contenere una data non correlata (es. data di stampa).
+  let dateCols = [];
+  for(let c = 1; c <= range.e.c; c++){
+    const addr = XLSX.utils.encode_cell({r:1, c});
+    const cell = ws[addr];
+    if(cell && cell.t === "d") dateCols.push(c);
+  }
+  dateCols.sort((a,b) => a-b);
+
+  const atletiNorm = ATLETI.map(a => ({ nome:a, norm: normalizzaNome(a) }));
+
+  const results = [];
+  const nonAbbinati = [];
+
+  for(let r = 2; r <= range.e.r; r++){
+    const cognome = ws[XLSX.utils.encode_cell({r,c:colCognome})]?.v;
+    const nome    = ws[XLSX.utils.encode_cell({r,c:colNome})]?.v;
+    if(!cognome && !nome) continue;
+    const fullName = `${cognome||""} ${nome||""}`.trim();
+    if(!fullName) continue;
+
+    const norm = normalizzaNome(fullName);
+    const match = atletiNorm.find(a => a.norm === norm);
+
+    // Sequenza cronologica di stati su tutta la stagione (tutte le colonne data, in ordine)
+    const seq = dateCols.map(c => {
+      const cell = ws[XLSX.utils.encode_cell({r,c})];
+      const v = cell && cell.v != null ? String(cell.v).trim().toLowerCase() : "";
+      if(v === "presente") return "P";
+      if(v === "assente") return "A";
+      return "X";
+    });
+
+    const presenzeTot = seq.filter(s => s==="P").length;
+    const assenzeTot = seq.filter(s => s==="A").length;
+    if(presenzeTot === 0 && assenzeTot === 0) continue; // riga senza dati (es. allenatori, righe vuote)
+
+    const bonusUnita = contaUnitaStriscia(seq, "P");
+    const malusUnita = contaUnitaStriscia(seq, "A");
+    const totalPts = (bonusUnita - malusUnita) * 10;
+
+    const row = { fullName, matched: match ? match.nome : null, presenzeTot, assenzeTot, bonusUnita, malusUnita, totalPts };
+    if(match) results.push(row);
+    else nonAbbinati.push(row);
+  }
+
+  return { results, nonAbbinati };
+}
+
+async function handlePresenzeFile(file){
+  if(!file) return;
+  document.getElementById("presenze-preview").style.display = "none";
+  document.getElementById("status-presenze").classList.remove("show");
+  document.getElementById("loading-presenze").classList.add("show");
+  try{
+    const buf = await file.arrayBuffer();
+    const wb = XLSX.read(buf, { type:"array", cellDates:true });
+    const { results, nonAbbinati } = parsePresenzeWorkbook(wb);
+    if(results.length === 0 && nonAbbinati.length === 0){
+      showStatus("status-presenze","⚠️ Nessuna riga con presenze/assenze trovata nel file.","error");
+      return;
+    }
+    presenzeResults = results;
+    renderPresenzePreview(results, nonAbbinati);
+  } catch(e){
+    showStatus("status-presenze",`❌ Errore lettura file: ${e.message}`,"error");
+  } finally {
+    document.getElementById("loading-presenze").classList.remove("show");
+  }
+}
+
+function renderPresenzePreview(results, nonAbbinati){
+  const conBonus = results.filter(r => r.totalPts !== 0);
+  document.getElementById("presenze-summary").innerHTML =
+    `📊 ${results.length} atleti abbinati &middot; ${conBonus.length} con bonus/malus fedelt&agrave; diverso da zero`;
+
+  const rows = results.slice().sort((a,b) => b.totalPts - a.totalPts).map(r => {
+    const segno = r.totalPts >= 0 ? "+" : "";
+    const pillClass = r.totalPts > 0 ? "pill-green" : (r.totalPts < 0 ? "pill-red" : "pill-neutral");
+    return `
+    <div class="edit-row">
+      <div class="edit-name">${r.matched}</div>
+      <div class="bonus-pill ${pillClass}">${segno}${r.totalPts} pt</div>
+      <div class="edit-detail">${r.presenzeTot} pres. / ${r.assenzeTot} ass. &middot; ${r.bonusUnita} strisce presenza &ge;5 &middot; ${r.malusUnita} strisce assenza &ge;5</div>
+    </div>`;
+  }).join("");
+  document.getElementById("presenze-table").innerHTML = rows;
+
+  const nonAbbinatiBox = document.getElementById("presenze-non-abbinati");
+  if(nonAbbinati.length){
+    nonAbbinatiBox.innerHTML = `⚠️ Righe nel file non abbinate a nessun atleta del listone (${nonAbbinati.length}): ${nonAbbinati.map(r=>r.fullName).join(", ")}`;
+  } else {
+    nonAbbinatiBox.innerHTML = "";
+  }
+
+  document.getElementById("presenze-preview").style.display = "block";
+}
+
+function applicaPresenzeTutti(){
+  if(!classificaData){ showStatus("status-presenze","❌ Classifica non caricata. Ricarica la pagina.","error"); return; }
+  if(!presenzeResults.length){ showStatus("status-presenze","⚠️ Nessun dato da applicare. Carica prima il file.","error"); return; }
+
+  const oggi = new Date().toISOString().slice(0,10);
+  let applicati = 0;
+
+  classificaData.classifica.forEach(team => {
+    team.atleti.forEach(a => {
+      const nA = a.nome.toLowerCase().trim();
+      const risultato = presenzeResults.find(r => r.matched.toLowerCase().trim() === nA);
+      if(!risultato) return;
+
+      if(!Array.isArray(a.dettaglio)) a.dettaglio = [];
+      // Rimuove l'eventuale entry "fedeltà al cloro" precedentemente applicata da questo import,
+      // così ricaricare il file aggiornato sostituisce il valore invece di sommarlo.
+      a.dettaglio = a.dettaglio.filter(d => d.tipo !== "fedelta");
+
+      if(risultato.totalPts !== 0){
+        a.dettaglio.push({
+          gara: null,
+          tipo: "fedelta",
+          data: oggi,
+          puntiFIN: 0,
+          bonusIndividuale: 0,
+          bonusStaffetta: 0,
+          bonusRecordCategoria: 0,
+          bonusRecordAssoluto: 0,
+          bonusPodio: 0,
+          bonusStacanovista: 0,
+          malusSqualifica: 0,
+          bonusAltro: risultato.totalPts,
+          note: `Fedeltà al Cloro (import presenze) · ${risultato.presenzeTot} presenze / ${risultato.assenzeTot} assenze · ${risultato.bonusUnita} strisce presenza ≥5 (+${risultato.bonusUnita*10}) · ${risultato.malusUnita} strisce assenza ≥5 (−${risultato.malusUnita*10})`,
+          totaleGara: risultato.totalPts
+        });
+      }
+      applicati++;
+    });
+  });
+  ricalcolaClassificaCompleta();
+
+  // Log per pubblicazione (riusa lo stesso pannello log/pubblicazione della modifica manuale)
+  presenzeResults.filter(r => r.totalPts !== 0).forEach(r => {
+    logModifiche.push({ atleta:r.matched, pts:r.totalPts, label:"Fedeltà al cloro (import)", nota:`${r.presenzeTot}p/${r.assenzeTot}a` });
+  });
+  document.getElementById("man-log-box").style.display = "block";
+  document.getElementById("man-log").innerHTML = logModifiche.map(m => `
+    <div class="edit-row">
+      <div class="edit-name">${m.atleta}</div>
+      <div class="bonus-pill ${m.pts>=0?'pill-green':'pill-red'}">${m.pts>=0?'+':''}${m.pts} pt</div>
+      <div class="edit-detail">${m.label}${m.nota?' · '+m.nota:''}</div>
+    </div>`).join("");
+
+  showStatus("status-presenze", `✅ Fedeltà al Cloro applicata a ${applicati} atleti. Ora pubblica dal box "Log Modifiche" qui sotto.`, "success");
+}
+
+// ========== LOGIN ==========
+function doLogin(){
+  const p = document.getElementById("pwd-input").value;
+  if(p === ADMIN_PASSWORD){
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("main-app").style.display = "block";
+    // Mostra config aperta la prima volta
+    document.getElementById("config-panel").style.display = "block";
+    document.getElementById("config-arrow").textContent = "▲";
+    loadClassifica();
+    loadRecords();
+    loadRecordsStaffetta();
+  } else {
+    showStatus("login-error","❌ Password errata.","error");
+  }
+}
+
+// ========== CLASSIFICA ==========
+// Legge un file JSON dal repo GitHub preferendo la Contents API (dati sempre freschi,
+// non passa dalla CDN di raw.githubusercontent.com che può restituire contenuti vecchi
+// di alcuni minuti dopo una pubblicazione, causando la "perdita" di gare appena caricate).
+async function fetchGithubJson(path){
+  const token = (document.getElementById("gh-token")?.value || "").trim();
+  try {
+    const headers = {"Accept":"application/vnd.github.v3.raw"};
+    if(token) headers["Authorization"] = `token ${token}`;
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${path}?ref=main&_=${Date.now()}`, {headers, cache:"no-store"});
+    if(!r.ok) throw new Error(`GitHub API ${r.status}`);
+    return await r.json();
+  } catch(apiErr){
+    console.warn(`Contents API non disponibile per ${path} (${apiErr.message}), fallback su raw.githubusercontent.com`);
+    const r2 = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${path}?t=${Date.now()}`, {cache:"no-store"});
+    if(!r2.ok) throw new Error(`raw.githubusercontent.com ${r2.status}`);
+    return await r2.json();
+  }
+}
+
+// ========== CALCOLO PUNTEGGIO (migliori 9 gare individuali + migliore staffetta + resto sempre sommato) ==========
+// Regola: 3 gare sociali obbligatorie x fino a 3 specialità = 9 risultati individuali "di base";
+// chi fa più gare (es. regionali) ha solo più occasioni per migliorare uno dei 9 slot, mai da perdere.
+// Delle staffette conta solo la migliore. Fedeltà al Cloro e bonus manuali si sommano sempre per intero.
+// pts è quindi sempre un valore DERIVATO dal dettaglio, mai un accumulo.
+function calcolaPtsAtleta(atleta){
+  const dettaglio = Array.isArray(atleta.dettaglio) ? atleta.dettaglio : [];
+
+  const individuali = dettaglio.filter(d => d.tipo === "individuale").map(d => d.totaleGara || 0);
+  individuali.sort((a,b) => b - a);
+  const migliori9 = individuali.slice(0,9).reduce((s,v) => s+v, 0);
+
+  const staffette = dettaglio.filter(d => d.tipo === "staffetta").map(d => d.totaleGara || 0);
+  staffette.sort((a,b) => b - a);
+  const migliorStaffetta = staffette.length ? staffette[0] : 0;
+
+  const restoTot = dettaglio
+    .filter(d => d.tipo !== "individuale" && d.tipo !== "staffetta")
+    .reduce((s,d) => s + (d.totaleGara || 0), 0);
+
+  return Math.round((migliori9 + migliorStaffetta + restoTot) * 10) / 10;
+}
+
+// Ricalcola pts di ogni atleta e di ogni team dalla loro fonte di verità (dettaglio), poi riordina.
+// Va chiamata dopo QUALSIASI modifica al dettaglio di un atleta, invece di sommare/sottrarre a mano.
+function ricalcolaClassificaCompleta(){
+  if(!classificaData) return;
+  classificaData.classifica.forEach(team => {
+    team.atleti.forEach(a => { a.pts = calcolaPtsAtleta(a); });
+    team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts || 0), 0) * 10) / 10;
+  });
+  classificaData.classifica.sort((a,b) => b.pts - a.pts);
+}
+
+async function loadClassifica(){
+  try {
+    classificaData = await fetchGithubJson(GITHUB_FILE);
+    // Normalizza subito i punti secondo la regola vigente (migliori 3 individuali), anche se il file
+    // su GitHub è stato scritto con una versione precedente della logica.
+    ricalcolaClassificaCompleta();
+  } catch(e){ console.error("Classifica non caricata:",e); classificaData = null; }
+}
+
+// ========== RECORD DI CLUB (categoria + assoluto) ==========
+async function loadRecords(){
+  recordsLoadError = false;
+  try {
+    recordsData = await fetchGithubJson(GITHUB_RECORDS_FILE);
+  } catch(e){
+    console.warn("Record di club non caricati:", e.message);
+    recordsData = null;
+    recordsLoadError = true;
+  }
+}
+
+// ========== RECORD DI CLUB STAFFETTE (categoria + assoluto) ==========
+async function loadRecordsStaffetta(){
+  recordsStaffettaLoadError = false;
+  try {
+    recordsStaffetta = await fetchGithubJson(GITHUB_RECORDS_STAFFETTA_FILE);
+  } catch(e){
+    console.warn("Record staffette di club non caricati:", e.message);
+    recordsStaffetta = null;
+    recordsStaffettaLoadError = true;
+  }
+}
+
+// ========== UI ==========
+function goStep(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById(`panel${i}`).classList.toggle("active",i===n);
+    const s = document.getElementById(`s${i}`);
+    s.classList.remove("active","done");
+    if(i<n) s.classList.add("done");
+    if(i===n) s.classList.add("active");
+  });
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function showStatus(id,msg,type){
+  const el = document.getElementById(id);
+  el.textContent = msg; el.className = `status-box show status-${type}`;
+}
+
+function toggleConfig(){
+  const p = document.getElementById("config-panel");
+  const a = document.getElementById("config-arrow");
+  p.style.display = p.style.display==="none"?"block":"none";
+  a.textContent = p.style.display==="none"?"▼":"▲";
+}
+
+// ========== PDF HANDLING ==========
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById("dropzone").classList.remove("drag");
+  const f = e.dataTransfer.files[0];
+  if(f && f.type==="application/pdf") handleFile(f);
+  else showStatus("status1","⚠️ Carica un file PDF.","error");
+}
+
+async function handleFile(file){
+  if(!file) return;
+  document.getElementById("pdf-info").classList.add("show");
+  document.getElementById("pdf-name").textContent = file.name;
+  document.getElementById("pdf-pages").textContent = "Lettura in corso...";
+  document.getElementById("loading1").classList.add("show");
+  document.getElementById("loading1-text").textContent = "Estrazione testo dal PDF...";
+  document.getElementById("status1").classList.remove("show");
+
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+    document.getElementById("pdf-pages").textContent = `${pdf.numPages} pagine`;
+
+    let fullText = "";
+    for(let i=1; i<=pdf.numPages; i++){
+      document.getElementById("loading1-text").textContent = `Lettura pagina ${i} di ${pdf.numPages}...`;
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      // Ricostruisce le righe raggruppando i frammenti per coordinata Y (stessa riga visiva),
+      // poi li ordina per coordinata X: pdf.js NON garantisce che i frammenti di testo siano
+      // restituiti in ordine di lettura sinistra->destra, quindi senza questo riordino colonne
+      // come nome/anno/categoria/tempo rischiano di mescolarsi nella riga ricostruita.
+      const items = content.items;
+      let lastY = null;
+      let buffer = []; // {str, x} dei frammenti della riga corrente
+      const flushLine = () => {
+        if(buffer.length){
+          buffer.sort((a,b) => a.x - b.x);
+          fullText += buffer.map(b => b.str).join(" ").trim() + "\n";
+          buffer = [];
+        }
+      };
+      for(const item of items){
+        const y = Math.round(item.transform[5]);
+        const x = item.transform[4];
+        if(lastY !== null && Math.abs(y - lastY) > 3){
+          flushLine();
+        }
+        buffer.push({str: item.str, x});
+        lastY = y;
+      }
+      flushLine();
+      fullText += "\n";
+    }
+
+    document.getElementById("loading1-text").textContent = "Analisi atleti Master Melzo...";
+    if(isFormatoRegionale(fullText)){
+      parseResultsRegionaleFlow(fullText, file.name);
+    } else {
+      parseResults(fullText, file.name);
+    }
+
+  } catch(e){
+    document.getElementById("loading1").classList.remove("show");
+    showStatus("status1",`❌ Errore lettura PDF: ${e.message}`,"error");
+  }
+}
+
+// ========== PARSING RISULTATI ==========
+function parseResults(text, filename){
+  const lines = text.split("\n");
+
+  // Rileva nome gara dal testo
+  let garaName = "";
+  const garaPatterns = [
+    /(\d+)\s*m\s*(Stile Libero|Dorso|Rana|Farfalla|Misti?|Delfino)/i,
+    /(\d[xX]\d+)\s*m?\s*(Stile Libero|Dorso|Rana|Farfalla|Misti?|Mistaffetta)/i,
+    /(800|1500)\s*(Stile Libero)/i
+  ];
+  for(const line of lines){
+    for(const p of garaPatterns){
+      const m = line.match(p);
+      if(m){ garaName = m[0].trim(); break; }
+    }
+    if(garaName) break;
+  }
+  if(!garaName) garaName = filename.replace(".pdf","").replace(/_/g," ");
+
+  // Rileva se staffetta: controlla l'intero testo del PDF (non solo nome file/gara),
+  // perché il nome file spesso non contiene "staffetta"/"4x50" in modo riconoscibile.
+  const isStaffetta = /\bSTAFFETTA\b/i.test(text) || /\d\s*[xX]\s*\d+\s*m/i.test(text) ||
+    STAFFETTE.some(s => garaName.toUpperCase().includes(s) || filename.toUpperCase().includes(s));
+  const ptsGara = isStaffetta ? PTS.staffetta : PTS.individuale;
+
+  // Codice specialità per il controllo record (solo gare individuali)
+  const eventCode = isStaffetta ? null : detectEventCode(filename, garaName);
+
+  // Specialità e genere della staffetta (per il controllo record di club staffette)
+  const staffettaSpecialty = isStaffetta ? detectStaffettaSpecialty(text, filename) : null;
+  const staffettaGender = isStaffetta ? detectStaffettaGender(garaName + " " + text.slice(0,500)) : null;
+
+  // Data gara
+  let dataGara = "";
+  const dateMatch = text.match(/(\d{1,2}[\s\/]\w+[\s\/]\d{4}|\d{1,2}\/\d{2}\/\d{4})/);
+  if(dateMatch) dataGara = dateMatch[0];
+
+  // Parsing atleti
+  // Formato FIN: POS COGNOME NOME CAT tempi... ARRIVO [RI/RE]
+  //              SOCIETA' ANNO
+  const trovati = [];
+  const proposteRecord = [];
+  const consumedLines = new Set(); // righe già assegnate a un atleta riconosciuto (per il controllo nominativi mancanti)
+  const atletiLower = ATLETI.map(a => ({
+    orig: a,
+    lower: a.toLowerCase(),
+    parts: a.toLowerCase().split(" ")
+  }));
+
+  let currentCategoria = null; // {categoria:"M60", genere:"donne"} - aggiornata leggendo le intestazioni "MASTER XXF/M"
+  let currentTeam = null; // stato della squadra staffetta corrente (solo se isStaffetta)
+  const nomiSconosciuti = []; // nominativi "melzo" non riconosciuti (sia gare individuali che staffette)
+
+  // Finalizza il blocco squadra staffetta corrente (se è Master Melzo Nuoto) e genera i risultati
+  function finalizeTeam(){
+    if(!currentTeam || !currentTeam.isMelzo || currentTeam.athletesMatched.length === 0){
+      currentTeam = null;
+      return;
+    }
+    const nonValido = currentTeam.status === "SQ" || currentTeam.status === "NP";
+    const ptsBase = nonValido ? 0 : PTS.staffetta;
+    const ptsMalus = nonValido ? PTS.squalifica : 0;
+
+    let ptsRecord = 0, labelRecord = null;
+    if(!nonValido && staffettaSpecialty && staffettaGender && currentTeam.arrivoSeconds != null){
+      const check = checkRecordStaffetta(staffettaSpecialty, staffettaGender, currentTeam.catCode, currentTeam.arrivoSeconds);
+      ptsRecord = check.ptsRecord;
+      labelRecord = check.labelRecord;
+      if(check.proposte.length){
+        check.proposte.forEach(p => proposteRecord.push({
+          ...p,
+          atleti: currentTeam.athletesMatched.map(a => a.atleta.orig),
+          tempo: currentTeam.arrivo
+        }));
+      }
+    }
+
+    const ptsTot = Math.round((ptsBase + ptsRecord + ptsMalus)*10)/10;
+    const bonus = [];
+    const malus = [];
+    if(!nonValido){
+      bonus.push(`Staffetta +${PTS.staffetta}`);
+      if(labelRecord) bonus.push("🏆 "+labelRecord);
+    }
+    if(currentTeam.status === "SQ") malus.push(`Squalifica ${PTS.squalifica}`);
+    if(currentTeam.status === "NP") malus.push(`Non partito (NP) ${PTS.squalifica}`);
+
+    currentTeam.athletesMatched.forEach(({atleta, line}) => {
+      const cm = line.match(/\b(\d{2})([MF])\b/);
+      trovati.push({
+        nome: atleta.orig,
+        pos: currentTeam.pos,
+        arrivo: currentTeam.arrivo,
+        categoria: cm ? "M"+cm[1] : null,
+        genere: cm ? (cm[2]==="F" ? "donne" : "uomini") : null,
+        isSQ: currentTeam.status === "SQ",
+        isNP: currentTeam.status === "NP",
+        isStaffetta: true,
+        ptsBase, ptsPodio: 0, ptsRecord, ptsMalus, ptsFin: 0,
+        ptsTot, labelRecord,
+        bonus, malus
+      });
+    });
+    currentTeam = null;
+  }
+
+  for(let i=0; i<lines.length; i++){
+    const line = lines[i];
+
+    if(isStaffetta){
+      // Intestazione di sezione ("MASTER 280X ...") o "NON CLASSIFICATI": chiude il blocco squadra corrente
+      if(/^MASTER\s+\d+X/i.test(line) || line.trim().toUpperCase() === "NON CLASSIFICATI"){
+        finalizeTeam();
+        continue;
+      }
+      // Riga squadra: inizia con un numero di posizione (le righe atleta dentro il blocco non hanno mai un numero iniziale)
+      const teamLeadMatch = line.match(/^\s*(\d+)\s+/);
+      if(teamLeadMatch){
+        finalizeTeam(); // chiude il blocco precedente prima di aprirne uno nuovo
+        const pos = parseInt(teamLeadMatch[1]);
+        const isMelzo = /melzo/i.test(line);
+        let status = "ok";
+        if(/\bSQ\s*$/.test(line)) status = "SQ";
+        else if(/\bNP\s*$/.test(line)) status = "NP";
+        const tempi = line.match(/(?:\d+'\d+\.\d+|\b\d{1,2}\.\d{2}\b)/g);
+        const arrivo = (status === "ok" && tempi) ? tempi[tempi.length-1] : null;
+        const catMatch = line.match(/^\s*\d+\s+.+?\s+(\d{2,4})\s+/);
+        const catCode = catMatch ? catMatch[1] : null;
+        currentTeam = {
+          isMelzo, status, pos, arrivo,
+          arrivoSeconds: arrivo ? timeToSeconds(arrivo) : null,
+          catCode, athletesMatched: []
+        };
+        continue;
+      }
+      // Riga atleta dentro il blocco squadra corrente
+      if(currentTeam && currentTeam.isMelzo && currentTeam.athletesMatched.length < 4){
+        const looksLikeAthleteRow = /\b\d{4}\s+\d{2}[MF]\b/.test(line);
+        if(looksLikeAthleteRow){
+          const matched = matchAtletaInLine(line, atletiLower);
+          if(matched && !currentTeam.athletesMatched.find(a => a.atleta.orig === matched.orig)){
+            currentTeam.athletesMatched.push({atleta: matched, line});
+            consumedLines.add(i);
+          } else if(!matched){
+            const nm = line.match(/^([A-Za-zÀ-ÿ' \.\-]+?)\s+\d{4}\s+\d{2}[MF]/);
+            const nomeGrezzo = nm ? nm[1].trim() : line.trim();
+            if(!nomiSconosciuti.includes(nomeGrezzo)) nomiSconosciuti.push(nomeGrezzo);
+          }
+          if(currentTeam.athletesMatched.length >= 4) finalizeTeam();
+        }
+      }
+      continue;
+    }
+
+    // Aggiorna la categoria corrente se la riga è un'intestazione "MASTER XXF"/"MASTER XXM"
+    const catHeader = parseCategoriaHeader(line);
+    if(catHeader) currentCategoria = catHeader;
+
+    // Cerca ogni atleta nel testo
+    for(const atleta of atletiLower){
+      const cognome = atleta.parts[0];
+      const nomi = atleta.parts.slice(1); // tutti i nomi (es. ["maria","cristina"])
+
+      // Match flessibile:
+      // 1. Cognome deve essere presente
+      // 2. Almeno il PRIMO nome deve essere presente dopo il cognome
+      // 3. Eventuali secondi nomi intermedi (es. "Maria") sono opzionali
+      const cognomeRegex = new RegExp(`\\b${cognome}\\b`, "i");
+      if(!cognomeRegex.test(line)) continue;
+
+      // Controlla che il cognome sia seguito dai nomi (tutti o almeno il primo+ultimo)
+      const primoNome = nomi[0];
+      const ultimoNome = nomi[nomi.length-1];
+      const nomeRegex = new RegExp(`\\b${cognome}\\b[\\s\\w]*\\b${ultimoNome}\\b`, "i");
+      const nomeRegex2 = new RegExp(`\\b${cognome}\\b[\\s]+${primoNome}\\b`, "i");
+
+      if(!nomeRegex.test(line) && !nomeRegex2.test(line)) continue;
+
+      // Verifica società: cerca "melzo" nella riga corrente OPPURE nella riga successiva
+      // (nel formato 1500SL la società è sulla riga dopo; nel formato 200m è sulla stessa riga)
+      const lineToCheck = (line + " " + (lines[i+1]||"") + " " + (lines[i-1]||"")).toLowerCase();
+      if(!lineToCheck.includes("melzo")) continue;
+
+      if(true){
+        // Già trovato?
+        if(trovati.find(t => t.nome === atleta.orig)) continue;
+        consumedLines.add(i);
+
+        // Estrai posizione
+        let pos = null;
+        const posMatch = line.match(/^(\d+)\s/);
+        if(posMatch) pos = parseInt(posMatch[1]);
+
+        // Estrai tempo arrivo (ultimo tempo della riga). Gestisce sia "M'SS.cc" (>=100m)
+        // sia "SS.cc" senza apice (gare dei 50m).
+        const tempi = line.match(/(?:\d+'\d+\.\d+|\b\d{1,2}\.\d{2}\b)/g);
+        const arrivo = tempi ? tempi[tempi.length-1] : null;
+
+        // Squalificato?
+        const isSQ = /\bSQ\b/.test(line) || /\bDNF\b/.test(line) || /\bDNS\b/.test(line);
+        // Non partito / non presentato in gara: nessun tempo, nessuna gara nuotata -> stesso malus della squalifica
+        const isNP = /\bNP\b/.test(line);
+        const nonValido = isSQ || isNP;
+
+        // Calcola punti base
+        let ptsBase = nonValido ? 0 : ptsGara;
+        // Podio: NON assegnato automaticamente. La posizione stampata dalla FIN in questo PDF
+        // non garantisce di essere la classifica generale di categoria (es. può riflettere
+        // l'ordine di batteria). Oro/Argento/Bronzo vanno assegnati a mano dal pannello
+        // "Modifica manuale" una volta verificata la classifica ufficiale di categoria.
+        let ptsPodio = 0;
+        let ptsMalus = (isSQ || isNP) ? PTS.squalifica : 0;
+
+        // Punti FIN: due formati FIN possibili
+        // Formato B (200m, 400m...): ultima colonna già è punteggio FIN (es. 713.22) → ÷ 10
+        // Formato A (1500m, 800m...): niente colonna PUNTI → convertiamo tempo arrivo in secondi ÷ 10
+        let ptsFin = 0;
+        if(!nonValido){
+          const puntiFinMatch = line.match(/\b(\d{3,4}\.\d{2})\s*$/);
+          if(puntiFinMatch){
+            ptsFin = Math.round(parseFloat(puntiFinMatch[1]) / 10 * 10) / 10;
+          } else if(arrivo){
+            const secArrivo = timeToSeconds(arrivo);
+            if(secArrivo != null) ptsFin = Math.round(secArrivo/10 * 10)/10;
+          }
+        }
+
+        // Record di club (categoria + assoluto), solo se gara individuale, non squalificato/non partito, categoria nota
+        let ptsRecord = 0, labelRecord = null;
+        if(!nonValido && !isStaffetta && eventCode && currentCategoria && arrivo){
+          const secArrivo = timeToSeconds(arrivo);
+          if(secArrivo != null){
+            const check = checkRecordClub(eventCode, currentCategoria.genere, currentCategoria.categoria, secArrivo);
+            ptsRecord = check.ptsRecord;
+            labelRecord = check.labelRecord;
+            if(check.proposte.length){
+              check.proposte.forEach(p => proposteRecord.push({...p, atleta: atleta.orig, tempo: arrivo}));
+            }
+          }
+        }
+
+        const ptsTot = Math.round((ptsBase + ptsPodio + ptsRecord + ptsMalus + ptsFin)*10)/10;
+
+        const bonus = [];
+        if(!nonValido){
+          if(isStaffetta) bonus.push(`Staffetta +${PTS.staffetta}`);
+          else bonus.push(`Gara individuale +${PTS.individuale}`);
+          if(labelRecord) bonus.push("🏆 "+labelRecord);
+          if(ptsFin>0) bonus.push(`FIN÷10 +${ptsFin}`);
+        }
+        const malus = [];
+        if(isSQ) malus.push(`Squalifica ${PTS.squalifica}`);
+        if(isNP) malus.push(`Non partito (NP) ${PTS.squalifica}`);
+
+        trovati.push({
+          nome: atleta.orig,
+          pos: pos,
+          arrivo: arrivo,
+          categoria: currentCategoria ? currentCategoria.categoria : null,
+          genere: currentCategoria ? currentCategoria.genere : null,
+          isSQ, isNP, isStaffetta,
+          ptsBase, ptsPodio, ptsRecord, ptsMalus, ptsFin,
+          ptsTot, labelRecord,
+          bonus, malus
+        });
+      }
+    }
+  }
+  if(isStaffetta) finalizeTeam(); // chiude l'ultimo blocco squadra se il file finisce senza intestazione successiva
+
+  // Seconda passata (solo gare individuali): righe con "melzo" non associate a nessun atleta noto in ATLETI.
+  // Per le staffette il controllo equivalente avviene già durante il parsing del blocco squadra.
+  if(!isStaffetta){
+    const rigaConNomeRegex = /^\s*(?:\d+\s+)?([A-Za-zÀ-ÿ' \.\-]+?)\s+\d{2}[MF]\s+\d{4}\s+.*melzo/i;
+    for(let i=0; i<lines.length; i++){
+      if(consumedLines.has(i)) continue;
+      const line = lines[i];
+      if(!/melzo/i.test(line)) continue;
+      const m = line.match(rigaConNomeRegex);
+      const nomeGrezzo = m ? m[1].trim() : line.trim();
+      if(!nomiSconosciuti.includes(nomeGrezzo)) nomiSconosciuti.push(nomeGrezzo);
+    }
+  }
+
+  risultatiGara = trovati;
+  recordProposals = proposteRecord;
+  currentGaraName = garaName; currentDataGara = dataGara; currentIsStaffetta = isStaffetta; currentPtsGara = ptsGara;
+
+  document.getElementById("loading1").classList.remove("show");
+
+  const avvisi = [];
+  if(isStaffetta){
+    if(!staffettaSpecialty){
+      avvisi.push("⚠️ Specialità staffetta non riconosciuta: il controllo dei record di club è stato saltato per questa gara.");
+    } else if(!staffettaGender){
+      avvisi.push("⚠️ Genere staffetta (mista/maschile/femminile) non riconosciuto: il controllo dei record di club è stato saltato per questa gara.");
+    } else if(recordsStaffettaLoadError){
+      avvisi.push("⚠️ Tabelle record di club per le staffette non trovate nel repo GitHub (records_staffette.json): il controllo dei record è stato saltato.");
+    }
+  } else if(!eventCode){
+    avvisi.push("⚠️ Specialità non riconosciuta dal nome file: il controllo dei record di club è stato saltato per questa gara.");
+  } else if(recordsLoadError){
+    avvisi.push("⚠️ Tabelle record di club non trovate nel repo GitHub: il controllo dei record è stato saltato.");
+  }
+  if(nomiSconosciuti.length){
+    avvisi.push(`⚠️ Trovate righe con "Master Melzo Nuoto" per nominativi non presenti nella lista ATLETI: ${nomiSconosciuti.join(", ")}. Aggiungili nel codice per includerli nel punteggio.`);
+  }
+  if(avvisi.length) showStatus("status1", avvisi.join("  ·  "), "error");
+
+  // Controllo anti-duplicati: stessa gara + stessi atleti Melzo + stessi tempi già applicati in precedenza?
+  currentRaceId = trovati.length ? computeRaceId(garaName, dataGara, isStaffetta, trovati) : null;
+  currentRaceDuplicateInfo = null;
+  currentRaceAlreadyApplied = false;
+  if(currentRaceId){
+    const persisted = (classificaData && Array.isArray(classificaData._garePubblicate)) ? classificaData._garePubblicate : [];
+    const foundPersisted = persisted.find(g => g.id === currentRaceId);
+    if(foundPersisted){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: foundPersisted.pubblicatoIl || "in una pubblicazione precedente" };
+    } else if(appliedRaceIdsThisSession.has(currentRaceId)){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: "già in questa sessione (non ancora pubblicata)" };
+    }
+  }
+
+  // Aggiorna classifica in memoria — SALTATO se la gara risulta un duplicato, per non sommare due volte i punti.
+  if(classificaData && currentRaceId && !currentRaceAlreadyApplied){
+    aggiornaPunti();
+    appliedRaceIdsThisSession.add(currentRaceId);
+  }
+  renderPannello2(garaName, dataGara, isStaffetta, ptsGara);
+  renderDuplicateWarning();
+  renderProposteRecord();
+  goStep(2);
+}
+
+// ========== FORMATO "REGIONALE" (referto multi-specialità, es. Risultati e Record Regionali) ==========
+// A differenza del referto FIN classico (un PDF = una gara), questo formato elenca in un unico
+// documento decine di specialità individuali diverse, una riga per atleta con: posizione (o np/sq),
+// cognome+nome, sesso, categoria, codice specialità, tempo (M'SS"cc) e punti FIN già calcolati
+// (virgola come separatore decimale). Non contiene la parola "melzo": il filtro sugli atleti Master
+// Melzo avviene solo per corrispondenza col listone ATLETI.
+const REGIONALE_ROW_RE = /^(\d+|np|sq)\s+(.+?)\s+([mf])\s+([A-Za-z]{1,2}\d{2})\s+(\d{2,4}(?:DO|FA|RA|SL|MI|MX))\s*(\d+'\d{2}"\d+|\d{1,2}:\d{2}:\d{2})?\s*(\d+,\d+)?/i;
+const STROKE_NAME = {DO:"Dorso", FA:"Farfalla", RA:"Rana", SL:"Stile Libero", MX:"Misti"};
+
+function isFormatoRegionale(text){
+  const lines = text.split("\n");
+  let matches = 0;
+  for(const line of lines){
+    if(REGIONALE_ROW_RE.test(line.trim())) matches++;
+    if(matches >= 3) return true;
+  }
+  return false;
+}
+
+// Analizza il referto multi-specialità: ritorna un risultato per ogni riga atleta riconosciuta
+// nel listone ATLETI, con lo stesso "shape" usato da parseResults (compatibile con aggiornaPunti),
+// più i campi gara/data per riga (perché ogni riga può appartenere a una specialità diversa).
+function parseResultsRegionale(text, filename){
+  const lines = text.split("\n");
+  const atletiLower = ATLETI.map(a => ({orig:a, lower:a.toLowerCase(), parts:a.toLowerCase().split(" ")}));
+
+  // Periodo della manifestazione, es. "7 -15 febbraio 2026"
+  let periodo = "";
+  const periodoMatch = text.match(/(\d{1,2}\s*-\s*\d{1,2}\s+[a-zàèéìòù]+\s+\d{4})/i);
+  if(periodoMatch) periodo = periodoMatch[1].replace(/\s+/g," ").trim();
+  else {
+    const singleDate = text.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+    if(singleDate) periodo = singleDate[1];
+  }
+
+  // Nome manifestazione, es. "Regionali Lombardia" -> "Regionale Lombardia"
+  let meetName = "Regionale";
+  const meetMatch = text.match(/Regional[ei]\s+([A-Za-zÀ-ÿ]+)/i);
+  if(meetMatch) meetName = "Regionale " + meetMatch[1];
+
+  const trovati = [];
+  const nonAbbinati = [];
+  const proposteRecord = [];
+
+  for(const rawLine of lines){
+    const line = rawLine.trim();
+    if(!line) continue;
+    const rm = line.match(REGIONALE_ROW_RE);
+    if(!rm) continue;
+
+    const [, posRaw, nomeGrezzo, sessoL, categoriaRaw, eventoRiga, tempoRaw, puntiRaw] = rm;
+    const eventCode = normEventCode(eventoRiga);
+    const categoria = categoriaRaw.toUpperCase();
+
+    // Abbinamento al listone: stessa euristica cognome + almeno un nome in comune usata altrove
+    // (gestisce nomi doppi/secondi nomi che compaiono solo nel referto o solo nel listone).
+    const nomeNorm = nomeGrezzo.trim().toLowerCase().replace(/\s+/g," ");
+    const partsRow = nomeNorm.split(" ");
+    let atleta = null;
+    for(const a of atletiLower){
+      if(a.parts[0] !== partsRow[0]) continue; // cognome deve combaciare
+      const nomiA = a.parts.slice(1), nomiR = partsRow.slice(1);
+      const nomeMatch = nomiR.some(n => nomiA.includes(n)) || nomiA.some(n => nomiR.includes(n));
+      if(nomeNorm === a.lower || nomeMatch){ atleta = a; break; }
+    }
+    if(!atleta){
+      const nomePulito = nomeGrezzo.trim();
+      if(nomePulito && !nonAbbinati.includes(nomePulito)) nonAbbinati.push(nomePulito);
+      continue;
+    }
+    // Evita doppioni se la stessa riga/atleta+specialità comparisse più volte nel referto
+    if(trovati.find(t => t.nome === atleta.orig && t.eventCode === eventCode)) continue;
+
+    const isSQ = /^sq$/i.test(posRaw);
+    const isNP = /^np$/i.test(posRaw);
+    const nonValido = isSQ || isNP;
+    const pos = (!isSQ && !isNP) ? parseInt(posRaw) : null;
+    const genere = sessoL.toLowerCase() === "f" ? "donne" : "uomini";
+
+    let arrivo = null, secArrivo = null;
+    if(tempoRaw){
+      arrivo = tempoRaw;
+      secArrivo = timeToSeconds(tempoRaw);
+    }
+
+    let ptsFin = 0;
+    if(!nonValido && puntiRaw){
+      const val = parseFloat(puntiRaw.replace(",", "."));
+      if(!isNaN(val)) ptsFin = Math.round(val/10*10)/10;
+    }
+
+    const ptsBase = nonValido ? 0 : PTS.individuale;
+    // Podio NON assegnato automaticamente: l'ordine di riga in questo referto non garantisce di
+    // essere la classifica ufficiale di categoria (stessa cautela già usata per il referto FIN).
+    const ptsPodio = 0;
+    const ptsMalus = nonValido ? PTS.squalifica : 0;
+
+    let ptsRecord = 0, labelRecord = null;
+    if(!nonValido && eventCode && EVENT_CODES.includes(eventCode) && secArrivo != null){
+      const check = checkRecordClub(eventCode, genere, categoria, secArrivo);
+      ptsRecord = check.ptsRecord;
+      labelRecord = check.labelRecord;
+      if(check.proposte.length){
+        check.proposte.forEach(p => proposteRecord.push({...p, atleta: atleta.orig, tempo: arrivo}));
+      }
+    }
+
+    const ptsTot = Math.round((ptsBase + ptsPodio + ptsRecord + ptsMalus + ptsFin)*10)/10;
+    const bonus = [];
+    if(!nonValido){
+      bonus.push(`Gara individuale +${PTS.individuale}`);
+      if(labelRecord) bonus.push("🏆 "+labelRecord);
+      if(ptsFin>0) bonus.push(`FIN÷10 +${ptsFin}`);
+    }
+    const malus = [];
+    if(isSQ) malus.push(`Squalifica ${PTS.squalifica}`);
+    if(isNP) malus.push(`Non partito (NP) ${PTS.squalifica}`);
+
+    const strokeSuffix = eventCode ? eventCode.replace(/^\d+/,"") : eventoRiga.toUpperCase().replace(/^\d+/,"");
+    const distanza = eventCode ? eventCode.match(/^\d+/)[0] : (eventoRiga.match(/^\d+/)||[""])[0];
+    const garaNome = `${distanza}m ${STROKE_NAME[strokeSuffix]||strokeSuffix} · ${meetName}`;
+
+    trovati.push({
+      nome: atleta.orig, pos, arrivo,
+      categoria, genere,
+      isSQ, isNP, isStaffetta:false,
+      ptsBase, ptsPodio, ptsRecord, ptsMalus, ptsFin,
+      ptsTot, labelRecord, bonus, malus,
+      eventCode, gara: garaNome, data: periodo
+    });
+  }
+
+  return { trovati, nonAbbinati, proposteRecord, meetName, periodo };
+}
+
+// Orchestrazione: analizza il referto multi-specialità e prepara l'anteprima (riusa lo stesso
+// pannello 2 / stessa logica di applicazione e pubblicazione del referto FIN singolo).
+function parseResultsRegionaleFlow(text, filename){
+  const { trovati, nonAbbinati, proposteRecord, meetName, periodo } = parseResultsRegionale(text, filename);
+
+  const nEventi = new Set(trovati.map(t => t.eventCode)).size;
+  const garaName = `${meetName} — ${nEventi} gare individuali (referto multi-specialità)`;
+
+  risultatiGara = trovati;
+  recordProposals = proposteRecord;
+  currentGaraName = garaName; currentDataGara = periodo; currentIsStaffetta = false; currentPtsGara = PTS.individuale;
+
+  document.getElementById("loading1").classList.remove("show");
+
+  const avvisi = [];
+  if(recordsLoadError){
+    avvisi.push("⚠️ Tabelle record di club non trovate nel repo GitHub: il controllo dei record è stato saltato.");
+  }
+  if(nonAbbinati.length){
+    avvisi.push(`⚠️ Nominativi nel referto non trovati nel listone ATLETI (${nonAbbinati.length}, probabilmente atleti di altre società o non ancora inseriti): ${nonAbbinati.join(", ")}`);
+  }
+  if(trovati.length === 0){
+    avvisi.push("⚠️ Nessun atleta del listone riconosciuto in questo referto.");
+  }
+  if(avvisi.length) showStatus("status1", avvisi.join("  ·  "), "error");
+
+  // Anti-duplicati: un unico ID calcolato su tutto il referto (stessa gara + stessa data + stessi
+  // atleti/tempi/eventi). Ricaricare lo stesso PDF non raddoppia i punti.
+  currentRaceId = trovati.length ? computeRaceId(garaName, periodo, false, trovati) : null;
+  currentRaceDuplicateInfo = null;
+  currentRaceAlreadyApplied = false;
+  if(currentRaceId){
+    const persisted = (classificaData && Array.isArray(classificaData._garePubblicate)) ? classificaData._garePubblicate : [];
+    const foundPersisted = persisted.find(g => g.id === currentRaceId);
+    if(foundPersisted){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: foundPersisted.pubblicatoIl || "in una pubblicazione precedente" };
+    } else if(appliedRaceIdsThisSession.has(currentRaceId)){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: "già in questa sessione (non ancora pubblicata)" };
+    }
+  }
+
+  if(classificaData && currentRaceId && !currentRaceAlreadyApplied){
+    aggiornaPunti();
+    appliedRaceIdsThisSession.add(currentRaceId);
+  }
+  renderPannello2(garaName, periodo, false, PTS.individuale);
+  renderDuplicateWarning();
+  renderProposteRecord();
+  goStep(2);
+}
+
+// Mostra un avviso bloccante se questa gara (stessi atleti+tempi) risulta già applicata/pubblicata,
+// con un pulsante esplicito per forzare comunque l'applicazione (solo se l'utente ha verificato che non è un duplicato).
+function renderDuplicateWarning(){
+  const box = document.getElementById("duplicate-warning-box");
+  if(!box) return;
+  if(!currentRaceAlreadyApplied){
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+  box.style.display = "block";
+  box.innerHTML = `
+    <div class="status-box status-error show" style="margin-bottom:10px;">
+      🚫 <strong>Questa gara risulta già applicata</strong> (${currentRaceDuplicateInfo ? currentRaceDuplicateInfo.when : ""}):
+      stessi atleti Melzo con esattamente gli stessi tempi di arrivo. I punti qui sotto NON sono stati sommati alla classifica,
+      per evitare di raddoppiarli. Se sei certo che non sia un duplicato (es. la gara è stata rinuotata a parità di tempo, caso rarissimo),
+      puoi forzare l'applicazione col pulsante sotto.
+    </div>
+    <button class="btn btn-ghost" style="border-color:var(--red);color:var(--red);" onclick="forzaApplicaGaraDuplicata()">⚠️ Applica comunque i punti (ignora la protezione anti-duplicati)</button>
+  `;
+}
+
+function forzaApplicaGaraDuplicata(){
+  if(!currentRaceId || !classificaData) return;
+  aggiornaPunti();
+  appliedRaceIdsThisSession.add(currentRaceId);
+  currentRaceAlreadyApplied = false; // ora è stata applicata "consapevolmente" in questa sessione
+  currentRaceDuplicateInfo = null;
+  renderDuplicateWarning();
+  renderPannello2(currentGaraName, currentDataGara, currentIsStaffetta, currentPtsGara);
+  showStatus("status2", "⚠️ Punti applicati forzatamente ignorando la protezione anti-duplicati.", "error");
+}
+
+// ========== AGGIORNA PUNTI IN MEMORIA ==========
+function aggiornaPunti(){
+  if(!classificaData) return;
+  // Aggiorna solo i punti degli atleti trovati
+  risultatiGara.forEach(r => {
+    const garaNome = r.gara || currentGaraName;
+    const dataRiga = r.data || currentDataGara;
+    classificaData.classifica.forEach(team => {
+      team.atleti.forEach(atleta => {
+        const nA = atleta.nome.toLowerCase().trim();
+        const nR = r.nome.toLowerCase().trim();
+        const partsA = nA.split(" ");
+        const partsR = nR.split(" ");
+        const cognomeMatch = partsA[0] === partsR[0];
+        const nomiA = partsA.slice(1);
+        const nomiR = partsR.slice(1);
+        const nomeMatch = nomiA.some(n => nomiR.includes(n));
+        const match = nA===nR || (cognomeMatch && nomeMatch);
+        if(match){
+          // Dettaglio gara-per-gara (per controllo): una riga per ogni gara applicata,
+          // con lo spacchettamento di ogni bonus/malus che compone ptsTot.
+          const isRecAssoluto = !!(r.labelRecord && /assoluto/i.test(r.labelRecord));
+          const isRecCategoria = !!(r.labelRecord && /categoria/i.test(r.labelRecord));
+          if(!Array.isArray(atleta.dettaglio)) atleta.dettaglio = [];
+          const riga = {
+            gara: garaNome,
+            tipo: r.isStaffetta ? "staffetta" : "individuale",
+            data: dataRiga,
+            puntiFIN: r.ptsFin || 0,
+            bonusIndividuale: (!r.isStaffetta) ? (r.ptsBase || 0) : 0,
+            bonusStaffetta: (r.isStaffetta) ? (r.ptsBase || 0) : 0,
+            bonusRecordCategoria: isRecCategoria ? r.ptsRecord : 0,
+            bonusRecordAssoluto: isRecAssoluto ? r.ptsRecord : 0,
+            bonusPodio: r.ptsPodio || 0,
+            bonusStacanovista: 0,
+            malusSqualifica: r.ptsMalus || 0,
+            bonusAltro: 0,
+            note: r.isSQ ? "SQ" : (r.isNP ? "NP" : ""),
+            totaleGara: r.ptsTot
+          };
+          atleta.dettaglio.push(riga);
+          // Riferimento diretto alla riga appena creata, per poter correggere il punteggio
+          // dall'anteprima (updatePts) senza dover ri-cercare per testo gara/data — indispensabile
+          // quando un referto contiene più gare diverse nello stesso caricamento.
+          r._dettaglioRef = riga;
+        }
+      });
+    });
+  });
+  ricalcolaClassificaCompleta();
+}
+
+// ========== RENDER PANNELLO 2 ==========
+function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
+  document.getElementById("gara-info").innerHTML =
+    `<strong>Gara:</strong> ${garaName} &nbsp;|&nbsp; ` +
+    `<strong>Tipo:</strong> ${isStaffetta?"🤝 Staffetta (+"+PTS.staffetta+"pt)":"🏊 Individuale (+"+PTS.individuale+"pt)"} &nbsp;|&nbsp; ` +
+    `<strong>Atleti trovati:</strong> ${risultatiGara.length}` +
+    (dataGara ? ` &nbsp;|&nbsp; <strong>Data:</strong> ${dataGara}` : "");
+
+  const list = document.getElementById("atleti-list");
+  const editList = document.getElementById("edit-list");
+
+  if(risultatiGara.length === 0){
+    list.innerHTML = "";
+    document.getElementById("nessuno-box").style.display = "block";
+    document.getElementById("edit-section").style.display = "none";
+    updateClassificaPreview();
+    return;
+  }
+
+  document.getElementById("nessuno-box").style.display = "none";
+  document.getElementById("edit-section").style.display = "block";
+
+  list.innerHTML = risultatiGara.map((a,idx) => {
+    const initials = a.nome.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
+    const posMedal = a.isSQ ? "❌ SQ" : a.isNP ? "🚫 NP" : `#${a.pos||"—"}`;
+    const bonusPills = a.bonus.map(b=>`<span class="bonus-pill pill-green">${b}</span>`).join("");
+    const malusPills = a.malus.map(m=>`<span class="bonus-pill pill-red">${m}</span>`).join("");
+    const garaPrefix = a.gara ? `<strong>${a.gara}</strong> · ` : "";
+    return `
+    <div class="atleta-card">
+      <div class="atleta-avatar">${initials}</div>
+      <div style="flex:1;">
+        <div class="atleta-name">${posMedal} ${a.nome}</div>
+        <div class="atleta-gare">${garaPrefix}Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"} · Pos. PDF: ${a.pos??"—"} (verifica podio ufficiale e assegna oro/argento/bronzo a mano)</div>
+        <div style="margin-top:6px;">${bonusPills}${malusPills}</div>
+      </div>
+      <div class="atleta-pts">
+        <div class="pts-num" id="pts-display-${idx}">${a.ptsTot}</div>
+        <div class="pts-label">punti</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  // Edit manuale
+  editList.innerHTML = risultatiGara.map((a,idx) => `
+    <div class="edit-row">
+      <div class="edit-name">${a.nome}${a.gara ? ` <span style="font-weight:400;color:var(--tlight)">— ${a.gara}</span>` : ""}</div>
+      <input class="edit-pts" type="number" value="${a.ptsTot}" id="edit-${idx}" oninput="updatePts(${idx},this.value)">
+      <div class="edit-detail">punti</div>
+    </div>`).join("");
+
+  updateClassificaPreview();
+}
+
+// ========== PROPOSTE NUOVI RECORD (da confermare manualmente) ==========
+function renderProposteRecord(){
+  const box = document.getElementById("record-proposte-box");
+  if(!box) return; // se l'admin.html non ha ancora questa sezione, non fare nulla
+
+  if(!recordProposals.length){
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+
+  box.style.display = "block";
+  const genereLabel = g => g==="donne" ? "Donne" : g==="uomini" ? "Uomini" : "Mista";
+  const secToStr = s => {
+    if(s == null) return "—";
+    const m = Math.floor(s/60), r = (s - m*60).toFixed(2).padStart(5,"0");
+    return m>0 ? `${m}'${r}` : r;
+  };
+
+  box.innerHTML = `
+    <h3 style="margin-bottom:10px;">🏆 Proposte nuovi record di club (${recordProposals.length})</h3>
+    <p style="font-size:14px;margin-bottom:14px;color:var(--tmid);">
+      Nulla viene salvato finché non premi "Conferma e pubblica nuovi record". Deseleziona le voci che non vuoi aggiornare.
+    </p>
+    ${recordProposals.map((p,idx) => {
+      const isStaffettaProp = p.kind === "staffetta";
+      const chiSono = isStaffettaProp ? p.atleti.join(", ") : p.atleta;
+      const gara = isStaffettaProp ? p.specialty : p.eventCode;
+      const tipoLabel = p.tipo==="assoluto"
+        ? "· <span style='color:var(--red)'>Record ASSOLUTO club</span>"
+        : `· Record categoria ${isStaffettaProp ? p.catRange : p.categoria}`;
+      const vecchioLabel = p.vecchio
+        ? (isStaffettaProp ? `${(p.vecchio.atleti||[]).join(", ")} — ${secToStr(p.vecchio.secondi)}` : `${p.vecchio.nome} ${p.vecchio.cognome} — ${secToStr(p.vecchio.secondi)}`)
+        : "nessun record precedente";
+      return `
+      <div class="edit-row" style="align-items:flex-start;">
+        <input type="checkbox" id="rec-prop-${idx}" checked style="margin-top:4px;">
+        <div style="flex:1;">
+          <strong>${chiSono}</strong> — ${gara} ${genereLabel(p.genere||p.gender)}
+          ${tipoLabel}
+          <div class="edit-detail">
+            Vecchio: ${vecchioLabel}
+            &nbsp;→&nbsp; Nuovo: <strong>${secToStr(p.nuovoSecondi)}</strong>
+          </div>
+        </div>
+      </div>`;
+    }).join("")}
+    <button class="btn-primary" style="margin-top:14px;" onclick="pubblicaRecord()">Conferma e pubblica nuovi record</button>
+    <div id="status-record" class="status-box"></div>
+  `;
+}
+
+// Pubblica su GitHub solo le proposte di record confermate (checkbox selezionate).
+// Le proposte individuali vanno in records_individuali.json, quelle di staffetta in records_staffette.json.
+async function pubblicaRecord(){
+  const token = document.getElementById("gh-token").value.trim();
+  if(!token){
+    document.getElementById("config-panel").style.display = "block";
+    showStatus("status-record","⚠️ Inserisci il GitHub Token nella sezione configurazione (Passo 1).","error");
+    return;
+  }
+  if(!recordsData) recordsData = {};
+  if(!recordsStaffetta) recordsStaffetta = {};
+
+  const confermate = recordProposals.filter((p,idx) => {
+    const cb = document.getElementById(`rec-prop-${idx}`);
+    return cb && cb.checked;
+  });
+  if(!confermate.length){ showStatus("status-record","⚠️ Nessuna proposta selezionata.","error"); return; }
+
+  const confIndividuali = confermate.filter(p => p.kind !== "staffetta");
+  const confStaffette = confermate.filter(p => p.kind === "staffetta");
+
+  // Applica le proposte individuali confermate alla copia locale di recordsData
+  confIndividuali.forEach(p => {
+    recordsData[p.eventCode] = recordsData[p.eventCode] || {donne:{assoluto:null,categorie:{}}, uomini:{assoluto:null,categorie:{}}};
+    const bucket = recordsData[p.eventCode][p.genere] = recordsData[p.eventCode][p.genere] || {assoluto:null, categorie:{}};
+    const [cognome, ...nomeParts] = p.atleta.split(" ");
+    const nuovoRec = {
+      nome: nomeParts.join(" ").toUpperCase(),
+      cognome: cognome.toUpperCase(),
+      tempo: p.tempo,
+      secondi: Math.round(p.nuovoSecondi*100)/100,
+      data: new Date().toISOString().slice(0,10)
+    };
+    if(p.tipo === "assoluto") bucket.assoluto = nuovoRec;
+    else bucket.categorie[p.categoria] = nuovoRec;
+  });
+
+  // Applica le proposte di staffetta confermate alla copia locale di recordsStaffetta
+  confStaffette.forEach(p => {
+    recordsStaffetta[p.specialty] = recordsStaffetta[p.specialty] || {donne:{assoluto:null,categorie:{}}, uomini:{assoluto:null,categorie:{}}, miststaffette:{assoluto:null,categorie:{}}};
+    const bucket = recordsStaffetta[p.specialty][p.gender] = recordsStaffetta[p.specialty][p.gender] || {assoluto:null, categorie:{}};
+    const nuovoRec = {
+      atleti: p.atleti.map(a => a.toUpperCase()),
+      tempo: p.tempo,
+      secondi: Math.round(p.nuovoSecondi*100)/100,
+      data: new Date().toISOString().slice(0,10)
+    };
+    if(p.tipo === "assoluto") bucket.assoluto = nuovoRec;
+    else bucket.categorie[p.catRange] = nuovoRec;
+  });
+
+  async function putFile(path, data, message){
+    let sha = null;
+    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${path}`,{
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json"}
+    });
+    if(shaResp.ok){
+      const shaData = await shaResp.json();
+      sha = shaData.sha || null;
+    }
+    const jsonStr = JSON.stringify(data, null, 2);
+    const bytes = new TextEncoder().encode(jsonStr);
+    const binStr = Array.from(bytes).map(b => String.fromCharCode(b)).join('');
+    const content = btoa(binStr);
+    const body = { message, content };
+    if(sha) body.sha = sha;
+    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${path}`,{
+      method:"PUT",
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
+      body: JSON.stringify(body)
+    });
+    const putData = await putResp.json();
+    if(!putData.content) throw new Error(putData.message||"Errore salvataggio "+path);
+  }
+
+  try {
+    if(confIndividuali.length) await putFile(GITHUB_RECORDS_FILE, recordsData, "🏆 Aggiorna record di club");
+    if(confStaffette.length) await putFile(GITHUB_RECORDS_STAFFETTA_FILE, recordsStaffetta, "🏆 Aggiorna record di club (staffette)");
+    recordsLoadError = false;
+    recordsStaffettaLoadError = false;
+    showStatus("status-record","🎉 Record pubblicati su GitHub!","success");
+    // Rimuovi dalla lista le proposte appena confermate
+    recordProposals = recordProposals.filter(p => !confermate.includes(p));
+    renderProposteRecord();
+  } catch(e){
+    showStatus("status-record",`❌ Errore: ${e.message}`,"error");
+  }
+}
+
+function updatePts(idx, val){
+  const newVal = parseFloat(val)||0;
+  const r = risultatiGara[idx];
+  r.ptsTot = newVal;
+  document.getElementById(`pts-display-${idx}`).textContent = newVal;
+
+  // Riferimento diretto alla riga di dettaglio creata da aggiornaPunti() per questo risultato:
+  // niente più ricerca per testo gara/data, funziona anche con più gare diverse nello stesso caricamento.
+  if(r._dettaglioRef) r._dettaglioRef.totaleGara = newVal;
+
+  ricalcolaClassificaCompleta();
+  updateClassificaPreview();
+}
+
+function updateClassificaPreview(){
+  if(!classificaData) return;
+  const el = document.getElementById("classifica-preview");
+  el.innerHTML = classificaData.classifica.map((team,i)=>{
+    const r = i+1;
+    return `
+    <div class="team-row">
+      <div class="rank-num ${r===1?"r1":r===2?"r2":r===3?"r3":""}">${r}</div>
+      <div>
+        <div class="team-name">${team.team}</div>
+        <div class="team-manager">Manager: ${team.manager}</div>
+      </div>
+      <div class="team-pts-big">${team.pts}</div>
+    </div>`;
+  }).join("");
+}
+
+// ========== PUBBLICA ==========
+async function publishResults(){
+  const token = document.getElementById("gh-token").value.trim();
+  if(!token){
+    document.getElementById("config-panel").style.display = "block";
+    document.getElementById("config-arrow").textContent = "▲";
+    showStatus("status2","⚠️ Inserisci il GitHub Token nella sezione configurazione (Passo 1).","error");
+    return;
+  }
+  if(!classificaData){ showStatus("status2","❌ Classifica non caricata.","error"); return; }
+
+  // Registra questa gara come "pubblicata" per la protezione anti-duplicati (solo se non già presente)
+  if(currentRaceId){
+    if(!Array.isArray(classificaData._garePubblicate)) classificaData._garePubblicate = [];
+    if(!classificaData._garePubblicate.some(g => g.id === currentRaceId)){
+      classificaData._garePubblicate.push({
+        id: currentRaceId,
+        gara: currentGaraName,
+        data: currentDataGara,
+        pubblicatoIl: new Date().toISOString()
+      });
+    }
+  }
+
+  document.getElementById("publish-btn").disabled = true;
+  document.getElementById("loading2").classList.add("show");
+  document.getElementById("status2").classList.remove("show");
+
+  try {
+    // SHA file attuale
+    const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json"}
+    });
+    const shaData = await shaResp.json();
+    if(!shaData.sha) throw new Error("File non trovato nel repo GitHub.");
+
+    // Encoding sicuro per Unicode (emoji, caratteri speciali)
+    const jsonStr = JSON.stringify(classificaData, null, 2);
+    const bytes = new TextEncoder().encode(jsonStr);
+    const binStr = Array.from(bytes).map(b => String.fromCharCode(b)).join('');
+    const content = btoa(binStr);
+    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
+      method:"PUT",
+      headers:{"Authorization":`token ${token}`,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"},
+      body:JSON.stringify({
+        message:`🏊 Aggiorna classifica Supermaster 26/27`,
+        content: content,
+        sha: shaData.sha
+      })
+    });
+    const putData = await putResp.json();
+    if(putData.content){ goStep(3); }
+    else throw new Error(putData.message||"Errore salvataggio");
+  } catch(e){
+    showStatus("status2",`❌ Errore: ${e.message}`,"error");
+  } finally {
+    document.getElementById("publish-btn").disabled = false;
+    document.getElementById("loading2").classList.remove("show");
+  }
+}
+</script>
+</body>
+</html>
