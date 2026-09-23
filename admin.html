@@ -6,6 +6,7 @@
 <title>FantaMelzo Admin — Stagione Supermaster 26/27</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -142,6 +143,7 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
 .pill-gold{background:rgba(245,200,0,0.15);color:#7a5800;border:1px solid rgba(245,200,0,0.3);}
 .pill-red{background:rgba(208,40,72,0.1);color:var(--red);border:1px solid rgba(208,40,72,0.2);}
 .pill-blue{background:rgba(42,168,204,0.12);color:var(--p4);border:1px solid rgba(42,168,204,0.25);}
+.pill-neutral{background:rgba(6,84,112,0.08);color:var(--tmid);border:1px solid rgba(6,84,112,0.15);}
 
 /* CLASSIFICA */
 .team-row{
@@ -334,6 +336,28 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
 
   <!-- PANNELLO 4: MODIFICA MANUALE -->
   <div class="panel" id="panel4">
+
+    <!-- IMPORT PRESENZE (Fedeltà al Cloro automatica) -->
+    <div class="glass">
+      <div class="sec-title">FEDELT&Agrave; AL <span>CLORO</span></div>
+      <div class="sec-bar"></div>
+      <p style="font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.6;">
+        Carica il file .xlsx presenze (sempre il file completo e aggiornato di tutta la stagione, foglio "Elenco presenze"). Ogni 5 allenamenti consecutivi in stagione = <strong>+10</strong>, ogni 5 assenze consecutive = <strong>&minus;10</strong>. Il calcolo &egrave; continuo su tutta la stagione (non si azzera a fine mese) e sostituisce automaticamente il bonus/malus fedelt&agrave; precedentemente applicato ad ogni atleta, cos&igrave; puoi ricaricare il file ogni volta senza duplicare i punti.
+      </p>
+      <input type="file" id="presenze-file-input" accept=".xlsx" onchange="handlePresenzeFile(this.files[0])" style="margin-bottom:16px;">
+      <div class="loading" id="loading-presenze"><div class="spinner"></div><span>Analisi presenze in corso...</span></div>
+      <div class="status-box" id="status-presenze"></div>
+
+      <div id="presenze-preview" style="display:none;margin-top:20px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;color:var(--p5);margin-bottom:10px;" id="presenze-summary"></div>
+        <div id="presenze-table"></div>
+        <div id="presenze-non-abbinati" style="margin-top:14px;font-size:13px;color:var(--tmid);"></div>
+        <div style="margin-top:16px;">
+          <button class="btn btn-primary" onclick="applicaPresenzeTutti()" id="presenze-apply-btn">✅ Applica a tutta la classifica</button>
+        </div>
+      </div>
+    </div>
+
     <div class="glass">
       <div class="sec-title">MODIFICA <span>MANUALE</span></div>
       <div class="sec-bar"></div>
@@ -424,7 +448,7 @@ const STAFFETTE = ["4x50","4X50","STAFFETTA","MISTAFFETTA","RELAY"];
 
 // Elenco codici specialità validi (per riconoscerli dal nome file / dal testo del PDF)
 const EVENT_CODES = [
-  "50DO","100DO","200DO","50FA","100FA","200FA","200MX","400MX",
+  "50DO","100DO","200DO","50FA","100FA","200FA","100MX","200MX","400MX",
   "50RA","100RA","200RA","50SL","100SL","200SL","400SL","800SL","1500SL"
 ];
 
@@ -461,6 +485,12 @@ function timeToSeconds(t){
   // formato solo secondi "SS.cc" (es. 33.35, gare dei 50m)
   m = t.match(/^(\d{1,2})\.(\d+)$/);
   if(m) return parseInt(m[1]) + parseFloat("0."+m[2]);
+  // formato referti regionali "M'SS"cc" (es. 2'06"60, 0'29"88) — apice minuti, doppio apice centesimi
+  m = t.match(/^(\d+)'(\d{2})"(\d+)$/);
+  if(m) return parseInt(m[1])*60 + parseInt(m[2]) + parseFloat("0."+m[3]);
+  // fallback raro: tempo estratto come "MM:SS:cc" invece di M'SS"cc (glitch di estrazione PDF)
+  m = t.match(/^(\d{1,2}):(\d{2}):(\d{2})$/);
+  if(m) return parseInt(m[1])*60 + parseInt(m[2]) + parseFloat("0."+m[3]);
   return null;
 }
 
@@ -734,7 +764,6 @@ function applicaBonus(){
       const nA = a.nome.toLowerCase().trim();
       const nR = atleta.toLowerCase().trim();
       if(nA === nR){
-        a.pts = Math.round(((a.pts || 0) + pts) * 10) / 10;
         trovato = true;
 
         // Dettaglio: registra anche i bonus/malus applicati a mano, per il controllo.
@@ -765,9 +794,8 @@ function applicaBonus(){
         a.dettaglio.push(riga);
       }
     });
-    team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts || 0), 0) * 10) / 10;
   });
-  classificaData.classifica.sort((a,b) => b.pts - a.pts);
+  ricalcolaClassificaCompleta();
 
   if(!trovato){ showStatus("status-man","⚠️ Atleta non trovato nella classifica.","error"); return; }
 
@@ -834,6 +862,204 @@ async function pubblicaManuale(){
   }
 }
 
+// ========== FEDELTÀ AL CLORO (import presenze .xlsx) ==========
+let presenzeResults = []; // ultimo risultato di analisi, in attesa di conferma
+
+function normalizzaNome(s){
+  return String(s||"")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"") // rimuove accenti
+    .replace(/\s+/g," ")
+    .trim()
+    .toLowerCase();
+}
+
+// Data una sequenza di stati ('P'/'A'/'X') calcola quante "unità da 5" ci sono nelle strisce
+// consecutive del carattere target, sommando su tutte le strisce massimali della stagione.
+function contaUnitaStriscia(sequenza, target){
+  let unita = 0, run = 0;
+  for(const s of sequenza){
+    if(s === target) run++;
+    else { unita += Math.floor(run/5); run = 0; }
+  }
+  unita += Math.floor(run/5);
+  return unita;
+}
+
+function parsePresenzeWorkbook(wb){
+  const sheetName = wb.SheetNames.find(n => /elenco.*presenz/i.test(n)) || wb.SheetNames[0];
+  const ws = wb.Sheets[sheetName];
+  const range = XLSX.utils.decode_range(ws['!ref']);
+
+  // Trova le colonne "Cognome" e "Nome" cercando l'intestazione (riga 1 o 2), non una posizione fissa.
+  let colCognome = null, colNome = null;
+  for(let c = 0; c <= range.e.c; c++){
+    for(const r of [0,1]){
+      const v = ws[XLSX.utils.encode_cell({r,c})]?.v;
+      if(typeof v !== "string") continue;
+      const t = v.trim().toLowerCase();
+      if(t === "cognome" && colCognome === null) colCognome = c;
+      if(t === "nome" && colNome === null) colNome = c;
+    }
+  }
+  // Fallback prudente sulla struttura nota (B, C) se le intestazioni non vengono trovate.
+  if(colCognome === null) colCognome = 1;
+  if(colNome === null) colNome = 2;
+
+  // Colonne "data allenamento": quelle la cui cella di riga 2 (indice 1, 0-based) è una data reale.
+  // Si esclude la colonna A (indice 0) che può contenere una data non correlata (es. data di stampa).
+  let dateCols = [];
+  for(let c = 1; c <= range.e.c; c++){
+    const addr = XLSX.utils.encode_cell({r:1, c});
+    const cell = ws[addr];
+    if(cell && cell.t === "d") dateCols.push(c);
+  }
+  dateCols.sort((a,b) => a-b);
+
+  const atletiNorm = ATLETI.map(a => ({ nome:a, norm: normalizzaNome(a) }));
+
+  const results = [];
+  const nonAbbinati = [];
+
+  for(let r = 2; r <= range.e.r; r++){
+    const cognome = ws[XLSX.utils.encode_cell({r,c:colCognome})]?.v;
+    const nome    = ws[XLSX.utils.encode_cell({r,c:colNome})]?.v;
+    if(!cognome && !nome) continue;
+    const fullName = `${cognome||""} ${nome||""}`.trim();
+    if(!fullName) continue;
+
+    const norm = normalizzaNome(fullName);
+    const match = atletiNorm.find(a => a.norm === norm);
+
+    // Sequenza cronologica di stati su tutta la stagione (tutte le colonne data, in ordine)
+    const seq = dateCols.map(c => {
+      const cell = ws[XLSX.utils.encode_cell({r,c})];
+      const v = cell && cell.v != null ? String(cell.v).trim().toLowerCase() : "";
+      if(v === "presente") return "P";
+      if(v === "assente") return "A";
+      return "X";
+    });
+
+    const presenzeTot = seq.filter(s => s==="P").length;
+    const assenzeTot = seq.filter(s => s==="A").length;
+    if(presenzeTot === 0 && assenzeTot === 0) continue; // riga senza dati (es. allenatori, righe vuote)
+
+    const bonusUnita = contaUnitaStriscia(seq, "P");
+    const malusUnita = contaUnitaStriscia(seq, "A");
+    const totalPts = (bonusUnita - malusUnita) * 10;
+
+    const row = { fullName, matched: match ? match.nome : null, presenzeTot, assenzeTot, bonusUnita, malusUnita, totalPts };
+    if(match) results.push(row);
+    else nonAbbinati.push(row);
+  }
+
+  return { results, nonAbbinati };
+}
+
+async function handlePresenzeFile(file){
+  if(!file) return;
+  document.getElementById("presenze-preview").style.display = "none";
+  document.getElementById("status-presenze").classList.remove("show");
+  document.getElementById("loading-presenze").classList.add("show");
+  try{
+    const buf = await file.arrayBuffer();
+    const wb = XLSX.read(buf, { type:"array", cellDates:true });
+    const { results, nonAbbinati } = parsePresenzeWorkbook(wb);
+    if(results.length === 0 && nonAbbinati.length === 0){
+      showStatus("status-presenze","⚠️ Nessuna riga con presenze/assenze trovata nel file.","error");
+      return;
+    }
+    presenzeResults = results;
+    renderPresenzePreview(results, nonAbbinati);
+  } catch(e){
+    showStatus("status-presenze",`❌ Errore lettura file: ${e.message}`,"error");
+  } finally {
+    document.getElementById("loading-presenze").classList.remove("show");
+  }
+}
+
+function renderPresenzePreview(results, nonAbbinati){
+  const conBonus = results.filter(r => r.totalPts !== 0);
+  document.getElementById("presenze-summary").innerHTML =
+    `📊 ${results.length} atleti abbinati &middot; ${conBonus.length} con bonus/malus fedelt&agrave; diverso da zero`;
+
+  const rows = results.slice().sort((a,b) => b.totalPts - a.totalPts).map(r => {
+    const segno = r.totalPts >= 0 ? "+" : "";
+    const pillClass = r.totalPts > 0 ? "pill-green" : (r.totalPts < 0 ? "pill-red" : "pill-neutral");
+    return `
+    <div class="edit-row">
+      <div class="edit-name">${r.matched}</div>
+      <div class="bonus-pill ${pillClass}">${segno}${r.totalPts} pt</div>
+      <div class="edit-detail">${r.presenzeTot} pres. / ${r.assenzeTot} ass. &middot; ${r.bonusUnita} strisce presenza &ge;5 &middot; ${r.malusUnita} strisce assenza &ge;5</div>
+    </div>`;
+  }).join("");
+  document.getElementById("presenze-table").innerHTML = rows;
+
+  const nonAbbinatiBox = document.getElementById("presenze-non-abbinati");
+  if(nonAbbinati.length){
+    nonAbbinatiBox.innerHTML = `⚠️ Righe nel file non abbinate a nessun atleta del listone (${nonAbbinati.length}): ${nonAbbinati.map(r=>r.fullName).join(", ")}`;
+  } else {
+    nonAbbinatiBox.innerHTML = "";
+  }
+
+  document.getElementById("presenze-preview").style.display = "block";
+}
+
+function applicaPresenzeTutti(){
+  if(!classificaData){ showStatus("status-presenze","❌ Classifica non caricata. Ricarica la pagina.","error"); return; }
+  if(!presenzeResults.length){ showStatus("status-presenze","⚠️ Nessun dato da applicare. Carica prima il file.","error"); return; }
+
+  const oggi = new Date().toISOString().slice(0,10);
+  let applicati = 0;
+
+  classificaData.classifica.forEach(team => {
+    team.atleti.forEach(a => {
+      const nA = a.nome.toLowerCase().trim();
+      const risultato = presenzeResults.find(r => r.matched.toLowerCase().trim() === nA);
+      if(!risultato) return;
+
+      if(!Array.isArray(a.dettaglio)) a.dettaglio = [];
+      // Rimuove l'eventuale entry "fedeltà al cloro" precedentemente applicata da questo import,
+      // così ricaricare il file aggiornato sostituisce il valore invece di sommarlo.
+      a.dettaglio = a.dettaglio.filter(d => d.tipo !== "fedelta");
+
+      if(risultato.totalPts !== 0){
+        a.dettaglio.push({
+          gara: null,
+          tipo: "fedelta",
+          data: oggi,
+          puntiFIN: 0,
+          bonusIndividuale: 0,
+          bonusStaffetta: 0,
+          bonusRecordCategoria: 0,
+          bonusRecordAssoluto: 0,
+          bonusPodio: 0,
+          bonusStacanovista: 0,
+          malusSqualifica: 0,
+          bonusAltro: risultato.totalPts,
+          note: `Fedeltà al Cloro (import presenze) · ${risultato.presenzeTot} presenze / ${risultato.assenzeTot} assenze · ${risultato.bonusUnita} strisce presenza ≥5 (+${risultato.bonusUnita*10}) · ${risultato.malusUnita} strisce assenza ≥5 (−${risultato.malusUnita*10})`,
+          totaleGara: risultato.totalPts
+        });
+      }
+      applicati++;
+    });
+  });
+  ricalcolaClassificaCompleta();
+
+  // Log per pubblicazione (riusa lo stesso pannello log/pubblicazione della modifica manuale)
+  presenzeResults.filter(r => r.totalPts !== 0).forEach(r => {
+    logModifiche.push({ atleta:r.matched, pts:r.totalPts, label:"Fedeltà al cloro (import)", nota:`${r.presenzeTot}p/${r.assenzeTot}a` });
+  });
+  document.getElementById("man-log-box").style.display = "block";
+  document.getElementById("man-log").innerHTML = logModifiche.map(m => `
+    <div class="edit-row">
+      <div class="edit-name">${m.atleta}</div>
+      <div class="bonus-pill ${m.pts>=0?'pill-green':'pill-red'}">${m.pts>=0?'+':''}${m.pts} pt</div>
+      <div class="edit-detail">${m.label}${m.nota?' · '+m.nota:''}</div>
+    </div>`).join("");
+
+  showStatus("status-presenze", `✅ Fedeltà al Cloro applicata a ${applicati} atleti. Ora pubblica dal box "Log Modifiche" qui sotto.`, "success");
+}
+
 // ========== LOGIN ==========
 function doLogin(){
   const p = document.getElementById("pwd-input").value;
@@ -871,9 +1097,46 @@ async function fetchGithubJson(path){
   }
 }
 
+// ========== CALCOLO PUNTEGGIO (migliori 5 gare individuali + migliore staffetta + resto sempre sommato) ==========
+// Regola: delle gare individuali contano solo le 5 con punteggio più alto della stagione, chi fa più
+// gare ha solo più occasioni per migliorare uno dei 5 slot, mai da perdere. Delle staffette conta solo
+// la migliore. Fedeltà al Cloro e bonus manuali si sommano sempre per intero.
+// pts è quindi sempre un valore DERIVATO dal dettaglio, mai un accumulo.
+function calcolaPtsAtleta(atleta){
+  const dettaglio = Array.isArray(atleta.dettaglio) ? atleta.dettaglio : [];
+
+  const individuali = dettaglio.filter(d => d.tipo === "individuale").map(d => d.totaleGara || 0);
+  individuali.sort((a,b) => b - a);
+  const migliori5 = individuali.slice(0,5).reduce((s,v) => s+v, 0);
+
+  const staffette = dettaglio.filter(d => d.tipo === "staffetta").map(d => d.totaleGara || 0);
+  staffette.sort((a,b) => b - a);
+  const migliorStaffetta = staffette.length ? staffette[0] : 0;
+
+  const restoTot = dettaglio
+    .filter(d => d.tipo !== "individuale" && d.tipo !== "staffetta")
+    .reduce((s,d) => s + (d.totaleGara || 0), 0);
+
+  return Math.round((migliori5 + migliorStaffetta + restoTot) * 10) / 10;
+}
+
+// Ricalcola pts di ogni atleta e di ogni team dalla loro fonte di verità (dettaglio), poi riordina.
+// Va chiamata dopo QUALSIASI modifica al dettaglio di un atleta, invece di sommare/sottrarre a mano.
+function ricalcolaClassificaCompleta(){
+  if(!classificaData) return;
+  classificaData.classifica.forEach(team => {
+    team.atleti.forEach(a => { a.pts = calcolaPtsAtleta(a); });
+    team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts || 0), 0) * 10) / 10;
+  });
+  classificaData.classifica.sort((a,b) => b.pts - a.pts);
+}
+
 async function loadClassifica(){
   try {
     classificaData = await fetchGithubJson(GITHUB_FILE);
+    // Normalizza subito i punti secondo la regola vigente (migliori 3 individuali), anche se il file
+    // su GitHub è stato scritto con una versione precedente della logica.
+    ricalcolaClassificaCompleta();
   } catch(e){ console.error("Classifica non caricata:",e); classificaData = null; }
 }
 
@@ -981,7 +1244,11 @@ async function handleFile(file){
     }
 
     document.getElementById("loading1-text").textContent = "Analisi atleti Master Melzo...";
-    parseResults(fullText, file.name);
+    if(isFormatoRegionale(fullText)){
+      parseResultsRegionaleFlow(fullText, file.name);
+    } else {
+      parseResults(fullText, file.name);
+    }
 
   } catch(e){
     document.getElementById("loading1").classList.remove("show");
@@ -1326,6 +1593,194 @@ function parseResults(text, filename){
   goStep(2);
 }
 
+// ========== FORMATO "REGIONALE" (referto multi-specialità, es. Risultati e Record Regionali) ==========
+// A differenza del referto FIN classico (un PDF = una gara), questo formato elenca in un unico
+// documento decine di specialità individuali diverse, una riga per atleta con: posizione (o np/sq),
+// cognome+nome, sesso, categoria, codice specialità, tempo (M'SS"cc) e punti FIN già calcolati
+// (virgola come separatore decimale). Non contiene la parola "melzo": il filtro sugli atleti Master
+// Melzo avviene solo per corrispondenza col listone ATLETI.
+const REGIONALE_ROW_RE = /^(\d+|np|sq)\s+(.+?)\s+([mf])\s+([A-Za-z]{1,2}\d{2})\s+(\d{2,4}(?:DO|FA|RA|SL|MI|MX))\s*(\d+'\d{2}"\d+|\d{1,2}:\d{2}:\d{2})?\s*(\d+,\d+)?/i;
+const STROKE_NAME = {DO:"Dorso", FA:"Farfalla", RA:"Rana", SL:"Stile Libero", MX:"Misti"};
+
+function isFormatoRegionale(text){
+  const lines = text.split("\n");
+  let matches = 0;
+  for(const line of lines){
+    if(REGIONALE_ROW_RE.test(line.trim())) matches++;
+    if(matches >= 3) return true;
+  }
+  return false;
+}
+
+// Analizza il referto multi-specialità: ritorna un risultato per ogni riga atleta riconosciuta
+// nel listone ATLETI, con lo stesso "shape" usato da parseResults (compatibile con aggiornaPunti),
+// più i campi gara/data per riga (perché ogni riga può appartenere a una specialità diversa).
+function parseResultsRegionale(text, filename){
+  const lines = text.split("\n");
+  const atletiLower = ATLETI.map(a => ({orig:a, lower:a.toLowerCase(), parts:a.toLowerCase().split(" ")}));
+
+  // Periodo della manifestazione, es. "7 -15 febbraio 2026"
+  let periodo = "";
+  const periodoMatch = text.match(/(\d{1,2}\s*-\s*\d{1,2}\s+[a-zàèéìòù]+\s+\d{4})/i);
+  if(periodoMatch) periodo = periodoMatch[1].replace(/\s+/g," ").trim();
+  else {
+    const singleDate = text.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+    if(singleDate) periodo = singleDate[1];
+  }
+
+  // Nome manifestazione, es. "Regionali Lombardia" -> "Regionale Lombardia"
+  let meetName = "Regionale";
+  const meetMatch = text.match(/Regional[ei]\s+([A-Za-zÀ-ÿ]+)/i);
+  if(meetMatch) meetName = "Regionale " + meetMatch[1];
+
+  const trovati = [];
+  const nonAbbinati = [];
+  const proposteRecord = [];
+
+  for(const rawLine of lines){
+    const line = rawLine.trim();
+    if(!line) continue;
+    const rm = line.match(REGIONALE_ROW_RE);
+    if(!rm) continue;
+
+    const [, posRaw, nomeGrezzo, sessoL, categoriaRaw, eventoRiga, tempoRaw, puntiRaw] = rm;
+    const eventCode = normEventCode(eventoRiga);
+    const categoria = categoriaRaw.toUpperCase();
+
+    // Abbinamento al listone: stessa euristica cognome + almeno un nome in comune usata altrove
+    // (gestisce nomi doppi/secondi nomi che compaiono solo nel referto o solo nel listone).
+    const nomeNorm = nomeGrezzo.trim().toLowerCase().replace(/\s+/g," ");
+    const partsRow = nomeNorm.split(" ");
+    let atleta = null;
+    for(const a of atletiLower){
+      if(a.parts[0] !== partsRow[0]) continue; // cognome deve combaciare
+      const nomiA = a.parts.slice(1), nomiR = partsRow.slice(1);
+      const nomeMatch = nomiR.some(n => nomiA.includes(n)) || nomiA.some(n => nomiR.includes(n));
+      if(nomeNorm === a.lower || nomeMatch){ atleta = a; break; }
+    }
+    if(!atleta){
+      const nomePulito = nomeGrezzo.trim();
+      if(nomePulito && !nonAbbinati.includes(nomePulito)) nonAbbinati.push(nomePulito);
+      continue;
+    }
+    // Evita doppioni se la stessa riga/atleta+specialità comparisse più volte nel referto
+    if(trovati.find(t => t.nome === atleta.orig && t.eventCode === eventCode)) continue;
+
+    const isSQ = /^sq$/i.test(posRaw);
+    const isNP = /^np$/i.test(posRaw);
+    const nonValido = isSQ || isNP;
+    const pos = (!isSQ && !isNP) ? parseInt(posRaw) : null;
+    const genere = sessoL.toLowerCase() === "f" ? "donne" : "uomini";
+
+    let arrivo = null, secArrivo = null;
+    if(tempoRaw){
+      arrivo = tempoRaw;
+      secArrivo = timeToSeconds(tempoRaw);
+    }
+
+    let ptsFin = 0;
+    if(!nonValido && puntiRaw){
+      const val = parseFloat(puntiRaw.replace(",", "."));
+      if(!isNaN(val)) ptsFin = Math.round(val/10*10)/10;
+    }
+
+    const ptsBase = nonValido ? 0 : PTS.individuale;
+    // Podio NON assegnato automaticamente: l'ordine di riga in questo referto non garantisce di
+    // essere la classifica ufficiale di categoria (stessa cautela già usata per il referto FIN).
+    const ptsPodio = 0;
+    const ptsMalus = nonValido ? PTS.squalifica : 0;
+
+    let ptsRecord = 0, labelRecord = null;
+    if(!nonValido && eventCode && EVENT_CODES.includes(eventCode) && secArrivo != null){
+      const check = checkRecordClub(eventCode, genere, categoria, secArrivo);
+      ptsRecord = check.ptsRecord;
+      labelRecord = check.labelRecord;
+      if(check.proposte.length){
+        check.proposte.forEach(p => proposteRecord.push({...p, atleta: atleta.orig, tempo: arrivo}));
+      }
+    }
+
+    const ptsTot = Math.round((ptsBase + ptsPodio + ptsRecord + ptsMalus + ptsFin)*10)/10;
+    const bonus = [];
+    if(!nonValido){
+      bonus.push(`Gara individuale +${PTS.individuale}`);
+      if(labelRecord) bonus.push("🏆 "+labelRecord);
+      if(ptsFin>0) bonus.push(`FIN÷10 +${ptsFin}`);
+    }
+    const malus = [];
+    if(isSQ) malus.push(`Squalifica ${PTS.squalifica}`);
+    if(isNP) malus.push(`Non partito (NP) ${PTS.squalifica}`);
+
+    const strokeSuffix = eventCode ? eventCode.replace(/^\d+/,"") : eventoRiga.toUpperCase().replace(/^\d+/,"");
+    const distanza = eventCode ? eventCode.match(/^\d+/)[0] : (eventoRiga.match(/^\d+/)||[""])[0];
+    const garaNome = `${distanza}m ${STROKE_NAME[strokeSuffix]||strokeSuffix} · ${meetName}`;
+
+    trovati.push({
+      nome: atleta.orig, pos, arrivo,
+      categoria, genere,
+      isSQ, isNP, isStaffetta:false,
+      ptsBase, ptsPodio, ptsRecord, ptsMalus, ptsFin,
+      ptsTot, labelRecord, bonus, malus,
+      eventCode, gara: garaNome, data: periodo
+    });
+  }
+
+  return { trovati, nonAbbinati, proposteRecord, meetName, periodo };
+}
+
+// Orchestrazione: analizza il referto multi-specialità e prepara l'anteprima (riusa lo stesso
+// pannello 2 / stessa logica di applicazione e pubblicazione del referto FIN singolo).
+function parseResultsRegionaleFlow(text, filename){
+  const { trovati, nonAbbinati, proposteRecord, meetName, periodo } = parseResultsRegionale(text, filename);
+
+  const nEventi = new Set(trovati.map(t => t.eventCode)).size;
+  const garaName = `${meetName} — ${nEventi} gare individuali (referto multi-specialità)`;
+
+  risultatiGara = trovati;
+  recordProposals = proposteRecord;
+  currentGaraName = garaName; currentDataGara = periodo; currentIsStaffetta = false; currentPtsGara = PTS.individuale;
+
+  document.getElementById("loading1").classList.remove("show");
+
+  const avvisi = [];
+  if(recordsLoadError){
+    avvisi.push("⚠️ Tabelle record di club non trovate nel repo GitHub: il controllo dei record è stato saltato.");
+  }
+  if(nonAbbinati.length){
+    avvisi.push(`⚠️ Nominativi nel referto non trovati nel listone ATLETI (${nonAbbinati.length}, probabilmente atleti di altre società o non ancora inseriti): ${nonAbbinati.join(", ")}`);
+  }
+  if(trovati.length === 0){
+    avvisi.push("⚠️ Nessun atleta del listone riconosciuto in questo referto.");
+  }
+  if(avvisi.length) showStatus("status1", avvisi.join("  ·  "), "error");
+
+  // Anti-duplicati: un unico ID calcolato su tutto il referto (stessa gara + stessa data + stessi
+  // atleti/tempi/eventi). Ricaricare lo stesso PDF non raddoppia i punti.
+  currentRaceId = trovati.length ? computeRaceId(garaName, periodo, false, trovati) : null;
+  currentRaceDuplicateInfo = null;
+  currentRaceAlreadyApplied = false;
+  if(currentRaceId){
+    const persisted = (classificaData && Array.isArray(classificaData._garePubblicate)) ? classificaData._garePubblicate : [];
+    const foundPersisted = persisted.find(g => g.id === currentRaceId);
+    if(foundPersisted){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: foundPersisted.pubblicatoIl || "in una pubblicazione precedente" };
+    } else if(appliedRaceIdsThisSession.has(currentRaceId)){
+      currentRaceAlreadyApplied = true;
+      currentRaceDuplicateInfo = { when: "già in questa sessione (non ancora pubblicata)" };
+    }
+  }
+
+  if(classificaData && currentRaceId && !currentRaceAlreadyApplied){
+    aggiornaPunti();
+    appliedRaceIdsThisSession.add(currentRaceId);
+  }
+  renderPannello2(garaName, periodo, false, PTS.individuale);
+  renderDuplicateWarning();
+  renderProposteRecord();
+  goStep(2);
+}
+
 // Mostra un avviso bloccante se questa gara (stessi atleti+tempi) risulta già applicata/pubblicata,
 // con un pulsante esplicito per forzare comunque l'applicazione (solo se l'utente ha verificato che non è un duplicato).
 function renderDuplicateWarning(){
@@ -1364,6 +1819,8 @@ function aggiornaPunti(){
   if(!classificaData) return;
   // Aggiorna solo i punti degli atleti trovati
   risultatiGara.forEach(r => {
+    const garaNome = r.gara || currentGaraName;
+    const dataRiga = r.data || currentDataGara;
     classificaData.classifica.forEach(team => {
       team.atleti.forEach(atleta => {
         const nA = atleta.nome.toLowerCase().trim();
@@ -1376,18 +1833,15 @@ function aggiornaPunti(){
         const nomeMatch = nomiA.some(n => nomiR.includes(n));
         const match = nA===nR || (cognomeMatch && nomeMatch);
         if(match){
-          // pts null = 0, poi aggiungi i punti gara
-          atleta.pts = Math.round(((atleta.pts ?? 0) + r.ptsTot)*10)/10;
-
           // Dettaglio gara-per-gara (per controllo): una riga per ogni gara applicata,
           // con lo spacchettamento di ogni bonus/malus che compone ptsTot.
           const isRecAssoluto = !!(r.labelRecord && /assoluto/i.test(r.labelRecord));
           const isRecCategoria = !!(r.labelRecord && /categoria/i.test(r.labelRecord));
           if(!Array.isArray(atleta.dettaglio)) atleta.dettaglio = [];
-          atleta.dettaglio.push({
-            gara: currentGaraName,
+          const riga = {
+            gara: garaNome,
             tipo: r.isStaffetta ? "staffetta" : "individuale",
-            data: currentDataGara,
+            data: dataRiga,
             puntiFIN: r.ptsFin || 0,
             bonusIndividuale: (!r.isStaffetta) ? (r.ptsBase || 0) : 0,
             bonusStaffetta: (r.isStaffetta) ? (r.ptsBase || 0) : 0,
@@ -1399,14 +1853,17 @@ function aggiornaPunti(){
             bonusAltro: 0,
             note: r.isSQ ? "SQ" : (r.isNP ? "NP" : ""),
             totaleGara: r.ptsTot
-          });
+          };
+          atleta.dettaglio.push(riga);
+          // Riferimento diretto alla riga appena creata, per poter correggere il punteggio
+          // dall'anteprima (updatePts) senza dover ri-cercare per testo gara/data — indispensabile
+          // quando un referto contiene più gare diverse nello stesso caricamento.
+          r._dettaglioRef = riga;
         }
       });
-      // Ricalcola team: somma solo atleti con punti > 0, gli altri contano 0
-      team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts ?? 0), 0)*10)/10;
     });
   });
-  classificaData.classifica.sort((a,b)=>b.pts-a.pts);
+  ricalcolaClassificaCompleta();
 }
 
 // ========== RENDER PANNELLO 2 ==========
@@ -1436,12 +1893,13 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
     const posMedal = a.isSQ ? "❌ SQ" : a.isNP ? "🚫 NP" : `#${a.pos||"—"}`;
     const bonusPills = a.bonus.map(b=>`<span class="bonus-pill pill-green">${b}</span>`).join("");
     const malusPills = a.malus.map(m=>`<span class="bonus-pill pill-red">${m}</span>`).join("");
+    const garaPrefix = a.gara ? `<strong>${a.gara}</strong> · ` : "";
     return `
     <div class="atleta-card">
       <div class="atleta-avatar">${initials}</div>
       <div style="flex:1;">
         <div class="atleta-name">${posMedal} ${a.nome}</div>
-        <div class="atleta-gare">Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"} · Pos. PDF: ${a.pos??"—"} (verifica podio ufficiale e assegna oro/argento/bronzo a mano)</div>
+        <div class="atleta-gare">${garaPrefix}Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"} · Pos. PDF: ${a.pos??"—"} (verifica podio ufficiale e assegna oro/argento/bronzo a mano)</div>
         <div style="margin-top:6px;">${bonusPills}${malusPills}</div>
       </div>
       <div class="atleta-pts">
@@ -1454,7 +1912,7 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
   // Edit manuale
   editList.innerHTML = risultatiGara.map((a,idx) => `
     <div class="edit-row">
-      <div class="edit-name">${a.nome}</div>
+      <div class="edit-name">${a.nome}${a.gara ? ` <span style="font-weight:400;color:var(--tlight)">— ${a.gara}</span>` : ""}</div>
       <input class="edit-pts" type="number" value="${a.ptsTot}" id="edit-${idx}" oninput="updatePts(${idx},this.value)">
       <div class="edit-detail">punti</div>
     </div>`).join("");
@@ -1606,41 +2064,14 @@ async function pubblicaRecord(){
 function updatePts(idx, val){
   const newVal = parseFloat(val)||0;
   const r = risultatiGara[idx];
-  const oldVal = r.ptsTot;
   r.ptsTot = newVal;
   document.getElementById(`pts-display-${idx}`).textContent = newVal;
 
-  if(!classificaData) return;
+  // Riferimento diretto alla riga di dettaglio creata da aggiornaPunti() per questo risultato:
+  // niente più ricerca per testo gara/data, funziona anche con più gare diverse nello stesso caricamento.
+  if(r._dettaglioRef) r._dettaglioRef.totaleGara = newVal;
 
-  // Aggiustamento LOCALE mirato: sottrae il vecchio valore e somma il nuovo,
-  // senza ricaricare la classifica da remoto (che cancellerebbe eventuali altre
-  // gare già applicate in questa sessione ma non ancora pubblicate su GitHub).
-  const delta = Math.round((newVal - oldVal) * 10) / 10;
-  classificaData.classifica.forEach(team => {
-    team.atleti.forEach(atleta => {
-      const nA = atleta.nome.toLowerCase().trim();
-      const nR = r.nome.toLowerCase().trim();
-      const partsA = nA.split(" ");
-      const partsR = nR.split(" ");
-      const cognomeMatch = partsA[0] === partsR[0];
-      const nomiA = partsA.slice(1);
-      const nomiR = partsR.slice(1);
-      const nomeMatch = nomiA.some(n => nomiR.includes(n));
-      const match = nA===nR || (cognomeMatch && nomeMatch);
-      if(match){
-        atleta.pts = Math.round(((atleta.pts ?? 0) + delta) * 10) / 10;
-        // Aggiorna anche l'ultima riga di dettaglio corrispondente a questa gara
-        if(Array.isArray(atleta.dettaglio) && atleta.dettaglio.length){
-          const last = atleta.dettaglio[atleta.dettaglio.length - 1];
-          if(last && last.gara === currentGaraName && last.data === currentDataGara){
-            last.totaleGara = newVal;
-          }
-        }
-      }
-    });
-    team.pts = Math.round(team.atleti.reduce((s,a) => s + (a.pts ?? 0), 0) * 10) / 10;
-  });
-  classificaData.classifica.sort((a,b)=>b.pts-a.pts);
+  ricalcolaClassificaCompleta();
   updateClassificaPreview();
 }
 
