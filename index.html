@@ -249,46 +249,45 @@ footer strong{color:var(--gold2);}
     </div>
     <div class="info-box" style="margin-top:18px">
       <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--p5);margin-bottom:9px">&#128200; Valore per i nuovi iscritti (senza storico)</h3>
-      <p style="font-size:13px;color:var(--tmid);line-height:1.7;margin-bottom:14px">Un atleta nuovo, senza gare disputate nella stagione 2025/2026, entra nel listone al valore <strong>medio</strong> della sua categoria FIN (et&agrave; e sesso), calcolato sugli atleti gi&agrave; in listone. Le categorie segnate con &#9888; hanno un campione troppo piccolo (1-2 atleti) per essere pienamente affidabili: in quel caso si consiglia il fallback generale in fondo alla tabella, eventualmente aggiustato a buon senso.</p>
+      <p style="font-size:13px;color:var(--tmid);line-height:1.7;margin-bottom:14px">Chi non ha gare nella stagione 2025/2026 entra nel listone al valore <strong>medio dei Clorini della sua categoria</strong> (et&agrave; e sesso), calcolato sui soci con storico. Se la categoria ha meno di 3 atleti con storico, la media si allarga alle categorie vicine (&plusmn;5 anni) finch&eacute; il campione &egrave; sufficiente.</p>
       <div style="overflow-x:auto">
         <table style="width:100%;border-collapse:collapse;font-size:13px">
           <thead>
             <tr style="background:var(--p5);color:#fff">
-              <th style="padding:8px 10px;text-align:left;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px">Categoria</th>
-              <th style="padding:8px 10px;text-align:left;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px">Sesso</th>
-              <th style="padding:8px 10px;text-align:center;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px">N. Atleti</th>
-              <th style="padding:8px 10px;text-align:center;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px">Media &#127915;</th>
-              <th style="padding:8px 10px;text-align:center;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px">Mediana &#127915;</th>
+              <th style="padding:8px 10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px;text-align:left">Categoria</th>
+              <th style="padding:8px 10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px;text-align:left">Sesso</th>
+              <th style="padding:8px 10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px;text-align:center">Atleti con storico</th>
+              <th style="padding:8px 10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px;text-align:center">Valore &#127915;</th>
+              <th style="padding:8px 10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;text-transform:uppercase;font-size:11px;text-align:left">Base di calcolo</th>
             </tr>
           </thead>
           <tbody>
-<tr><td>M20</td><td>Uomini</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>94.2 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>94.2</td></tr>
-<tr><td>M25</td><td>Donne</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>141.4 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>141.4</td></tr>
-<tr><td>M25</td><td>Uomini</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>151.4 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>151.4</td></tr>
-<tr><td>M30</td><td>Donne</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>180.8 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>180.8</td></tr>
-<tr><td>M30</td><td>Uomini</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>201.5</td><td style='text-align:center'>221.9</td></tr>
-<tr><td>M35</td><td>Donne</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>156.0</td><td style='text-align:center'>156.4</td></tr>
-<tr><td>M35</td><td>Uomini</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>128.2 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>128.2</td></tr>
-<tr><td>M40</td><td>Uomini</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>169.3 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>169.3</td></tr>
-<tr><td>M45</td><td>Donne</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>106.8 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>106.8</td></tr>
-<tr><td>M45</td><td>Uomini</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>165.2 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>165.2</td></tr>
-<tr><td>M50</td><td>Donne</td><td style='text-align:center'>4</td><td style='text-align:center;font-weight:700'>142.2</td><td style='text-align:center'>144.4</td></tr>
-<tr><td>M50</td><td>Uomini</td><td style='text-align:center'>5</td><td style='text-align:center;font-weight:700'>129.8</td><td style='text-align:center'>136.9</td></tr>
-<tr><td>M55</td><td>Donne</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>148.4</td><td style='text-align:center'>129.4</td></tr>
-<tr><td>M55</td><td>Uomini</td><td style='text-align:center'>5</td><td style='text-align:center;font-weight:700'>134.3</td><td style='text-align:center'>143.9</td></tr>
-<tr><td>M60</td><td>Donne</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>134.6</td><td style='text-align:center'>134.1</td></tr>
-<tr><td>M60</td><td>Uomini</td><td style='text-align:center'>6</td><td style='text-align:center;font-weight:700'>174.4</td><td style='text-align:center'>186.3</td></tr>
-<tr><td>M65</td><td>Donne</td><td style='text-align:center'>4</td><td style='text-align:center;font-weight:700'>134.1</td><td style='text-align:center'>137.2</td></tr>
-<tr><td>M65</td><td>Uomini</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>135.3</td><td style='text-align:center'>117.7</td></tr>
-<tr><td>M70</td><td>Uomini</td><td style='text-align:center'>4</td><td style='text-align:center;font-weight:700'>161.5</td><td style='text-align:center'>178.2</td></tr>
-<tr><td>M75</td><td>Uomini</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>191.5</td><td style='text-align:center'>223.6</td></tr>
-<tr><td>M80</td><td>Uomini</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>100.2 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>100.2</td></tr>
-<tr><td>M85</td><td>Uomini</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>182.4 <span style='color:#c0392b;font-weight:700' title="Campione piccolo (1-2 atleti): valuta il fallback generale">&#9888;</span></td><td style='text-align:center'>182.4</td></tr>
-<tr style='background:rgba(6,84,112,0.06);font-weight:700'><td colspan='2'>Fallback generale (tutte le categorie)</td><td style='text-align:center'>62</td><td style='text-align:center'>149.3</td><td style='text-align:center'>143.8</td></tr>
+<tr><td>M20</td><td>Donne</td><td style='text-align:center'>0</td><td style='text-align:center;font-weight:700'>154.5</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M20-M30 (n=3)</td></tr>
+<tr><td>M20</td><td>Uomini</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>144.4</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M20-M30 (n=5)</td></tr>
+<tr><td>M25</td><td>Donne</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>154.5</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M20-M30 (n=3)</td></tr>
+<tr><td>M25</td><td>Uomini</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>144.4</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M20-M30 (n=5)</td></tr>
+<tr><td>M30</td><td>Donne</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>155.3</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M25-M35 (n=6)</td></tr>
+<tr><td>M30</td><td>Uomini</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>177.8</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M30 (n=3)</td></tr>
+<tr><td>M35</td><td>Donne</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>156.0</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M35 (n=3)</td></tr>
+<tr><td>M35</td><td>Uomini</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>159.9</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M30-M40 (n=6)</td></tr>
+<tr><td>M40</td><td>Uomini</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>141.9</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M35-M45 (n=3)</td></tr>
+<tr><td>M45</td><td>Uomini</td><td style='text-align:center'>0</td><td style='text-align:center;font-weight:700'>149.8</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M40-M50 (n=6)</td></tr>
+<tr><td>M50</td><td>Donne</td><td style='text-align:center'>5</td><td style='text-align:center;font-weight:700'>139.0</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M50 (n=5)</td></tr>
+<tr><td>M50</td><td>Uomini</td><td style='text-align:center'>5</td><td style='text-align:center;font-weight:700'>145.9</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M50 (n=5)</td></tr>
+<tr><td>M55</td><td>Donne</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>140.4</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M50-M60 (n=11)</td></tr>
+<tr><td>M55</td><td>Uomini</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>171.0</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M55 (n=3)</td></tr>
+<tr><td>M60</td><td>Donne</td><td style='text-align:center'>4</td><td style='text-align:center;font-weight:700'>133.3</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M60 (n=4)</td></tr>
+<tr><td>M60</td><td>Uomini</td><td style='text-align:center'>7</td><td style='text-align:center;font-weight:700'>160.5</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M60 (n=7)</td></tr>
+<tr><td>M65</td><td>Donne</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>135.2</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M65 (n=3)</td></tr>
+<tr><td>M65</td><td>Uomini</td><td style='text-align:center'>4</td><td style='text-align:center;font-weight:700'>143.1</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M65 (n=4)</td></tr>
+<tr><td>M70</td><td>Uomini</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>188.5</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M70 (n=3)</td></tr>
+<tr><td>M75</td><td>Uomini</td><td style='text-align:center'>3</td><td style='text-align:center;font-weight:700'>191.5</td><td style='font-size:11px;color:var(--tlight)'>Propria categoria: M75 (n=3)</td></tr>
+<tr><td>M80</td><td>Uomini</td><td style='text-align:center'>1</td><td style='text-align:center;font-weight:700'>173.3</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M75-M85 (n=6)</td></tr>
+<tr><td>M85</td><td>Uomini</td><td style='text-align:center'>2</td><td style='text-align:center;font-weight:700'>155.0</td><td style='font-size:11px;color:var(--tlight)'>Fascia allargata: M80-M85 (n=3)</td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:11px;color:var(--tlight);margin-top:10px">Dati calcolati sui risultati della stagione 2025/2026 (62 atleti), formula Clorini: (Media Supermaster &divide; 10) + (Gare &times; 5) + (Staffette &times; 5).</p>
+      <p style="font-size:11px;color:var(--tlight);margin-top:10px">Basato sui risultati 2025/2026 dei soci attivi nel 2026/2027 (72 atleti). Formula Clorini: (Media Supermaster &divide; 10) + (Gare &times; 5) + (Staffette &times; 5).</p>
     </div>
   </div>
 </section>
@@ -334,9 +333,9 @@ footer strong{color:var(--gold2);}
     </div>
     <div class="filters">
       <button class="fbtn active" onclick="filterAthletes('tutti',this)">Tutti</button>
-      <button class="fbtn" onclick="filterAthletes('top',this)">&#11088; Top (&ge;170&#127915;)</button>
-      <button class="fbtn" onclick="filterAthletes('mid',this)">&#128170; Medi (120-170&#127915;)</button>
-      <button class="fbtn" onclick="filterAthletes('low',this)">&#128161; Occasioni (&lt;120&#127915;)</button>
+      <button class="fbtn" onclick="filterAthletes('top',this)">&#11088; Top (&ge;160&#127915;)</button>
+      <button class="fbtn" onclick="filterAthletes('mid',this)">&#128170; Medi (135-160&#127915;)</button>
+      <button class="fbtn" onclick="filterAthletes('low',this)">&#128161; Occasioni (&lt;135&#127915;)</button>
       <div class="search-wrap">
         <span style="color:var(--tlight)">&#128269;</span>
         <input type="text" id="searchInput" placeholder="Cerca atleta..." oninput="renderAthletes()">
@@ -424,12 +423,11 @@ const BUDGET=700,APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbyv-bk
 let currentFilter="tutti",team=[],registeredTeams=[];
 const teamSet=new Set();
 const athletes=[
-  {name:"Dotti Valter Umberto",clorini:258.3,sex:"M"},
+  {name:"Dotti Valter",clorini:258.3,sex:"M"},
   {name:"Mercati Gherardo",clorini:253.5,sex:"M"},
   {name:"Neri Umberto",clorini:252,sex:"M"},
   {name:"Sperandio Dario",clorini:230.1,sex:"M"},
   {name:"Mainetti Giovanni",clorini:223.6,sex:"M"},
-  {name:"Ceriani Paolo",clorini:222.4,sex:"M"},
   {name:"Sinigaglia Luca",clorini:221.9,sex:"M"},
   {name:"Bottari Selene",clorini:211.3,sex:"F"},
   {name:"Somigliana Ugo",clorini:211.2,sex:"M"},
@@ -443,24 +441,39 @@ const athletes=[
   {name:"Zerbo Arcangelo",clorini:182.3,sex:"M"},
   {name:"Galiano Ilaria",clorini:180.8,sex:"F"},
   {name:"Somigliana Anna",clorini:178.7,sex:"F"},
+  {name:"Giancristofaro Stefano",clorini:177.8,sex:"M"},
   {name:"Bottari Giuseppe",clorini:174.1,sex:"M"},
   {name:"Floris Cristina",clorini:171.2,sex:"F"},
   {name:"Raviola Tomaso",clorini:169.3,sex:"M"},
   {name:"Romano Giuseppe",clorini:166.2,sex:"M"},
   {name:"Parisi Matteo",clorini:160.2,sex:"M"},
+  {name:"Bonomi Mattia",clorini:159.9,sex:"M"},
   {name:"Pirola Vincenzo",clorini:157.5,sex:"M"},
   {name:"Broccolino Susanna",clorini:156.4,sex:"F"},
+  {name:"Beretta Alice",clorini:155.3,sex:"F"},
+  {name:"Bignami Greta",clorini:155.3,sex:"F"},
+  {name:"Bartolotta Aurora",clorini:154.5,sex:"F"},
+  {name:"Colombo Lucia",clorini:154.5,sex:"F"},
+  {name:"Ferri Caterina",clorini:154.5,sex:"F"},
+  {name:"Patti Alessia",clorini:154.5,sex:"F"},
+  {name:"Vassenna Virginia",clorini:154.5,sex:"F"},
   {name:"Accomasso Davide",clorini:153.5,sex:"M"},
   {name:"Vassura Edoardo",clorini:151.4,sex:"M"},
+  {name:"Bordoni Andrea",clorini:149.8,sex:"M"},
+  {name:"Scalabrini Diego",clorini:149.8,sex:"M"},
   {name:"Leoni Alessandro",clorini:149.6,sex:"M"},
   {name:"Brambilla Cecilia",clorini:146.8,sex:"F"},
+  {name:"Taverna Nicolò",clorini:144.4,sex:"M"},
   {name:"Ferraro Sergio",clorini:143.9,sex:"M"},
   {name:"Rovida Maria Cristina",clorini:143.6,sex:"F"},
+  {name:"Bissi Luigi",clorini:143.1,sex:"M"},
+  {name:"Ponzi Maurizio",clorini:143.1,sex:"M"},
   {name:"Martelli Daria",clorini:142.1,sex:"F"},
+  {name:"Bottari Jacopo",clorini:141.9,sex:"M"},
+  {name:"Mombello Rita",clorini:139,sex:"F"},
   {name:"Longaretti Fabio",clorini:136.9,sex:"M"},
   {name:"Botteghi Alessio",clorini:134.7,sex:"M"},
   {name:"Naborri Annamaria",clorini:134.1,sex:"F"},
-  {name:"Di Bernardo Fulvia",clorini:130.9,sex:"F"},
   {name:"Migliazza Anna",clorini:129.4,sex:"F"},
   {name:"Dossena Fabiana",clorini:127.9,sex:"F"},
   {name:"Baldo Veronica",clorini:126.5,sex:"F"},
@@ -471,7 +484,6 @@ const athletes=[
   {name:"Pirola Alessandro",clorini:116.8,sex:"M"},
   {name:"Abrusci Domenico",clorini:111.6,sex:"M"},
   {name:"Bitto Alessandro",clorini:111.4,sex:"M"},
-  {name:"Balicchia Filippo",clorini:100.4,sex:"M"},
   {name:"De Gaspari Emilia",clorini:100.4,sex:"F"},
   {name:"Jacazio Giovanni",clorini:100.2,sex:"M"},
   {name:"Azin Claudio",clorini:98.9,sex:"M"},
@@ -480,14 +492,11 @@ const athletes=[
   {name:"Scala Sandra",clorini:95,sex:"F"},
   {name:"Barbic Franca",clorini:91.1,sex:"F"},
   {name:"Pandolfi Maria",clorini:90.8,sex:"F"},
-  {name:"Lucchini Francesca",clorini:87,sex:"F"},
-  {name:"Zuccardi Merli Gianluigi",clorini:80.6,sex:"M"},
   {name:"Pirola Anna",clorini:74.1,sex:"F"},
   {name:"Alessandrello Federico",clorini:71.5,sex:"M"},
-  {name:"Sigona Attilio",clorini:65.4,sex:"M"},
   {name:"Arioli Angelo",clorini:30,sex:"M"}
 ];
-const athletesMeta=athletes.map((a,i)=>({rank:i+1,rc:i===0?"gold":i===1?"silver":i===2?"bronze":"",tier:a.clorini>=170?"hi":a.clorini>=120?"md":"lo",c:a.clorini.toFixed(1)}));
+const athletesMeta=athletes.map((a,i)=>({rank:i+1,rc:i===0?"gold":i===1?"silver":i===2?"bronze":"",tier:a.clorini>=160?"hi":a.clorini>=135?"md":"lo",c:a.clorini.toFixed(1)}));
 const demoClassifica=[];
 function showSection(id){
   document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
@@ -506,9 +515,9 @@ function _doRender(){
   for(let i=0;i<athletes.length;i++){
     const a=athletes[i],m=athletesMeta[i];
     if(q&&!a.name.toLowerCase().includes(q))continue;
-    if(currentFilter==="top"&&a.clorini<170)continue;
-    if(currentFilter==="mid"&&(a.clorini<120||a.clorini>=170))continue;
-    if(currentFilter==="low"&&a.clorini>=120)continue;
+    if(currentFilter==="top"&&a.clorini<160)continue;
+    if(currentFilter==="mid"&&(a.clorini<135||a.clorini>=160))continue;
+    if(currentFilter==="low"&&a.clorini>=135)continue;
     const inTeam=teamSet.has(a.name);
     const canAdd=!inTeam&&team.length<5&&(spent+a.clorini)<=BUDGET+0.1;
     parts.push("<div class='arow' onclick=\"toggleAthlete('"+a.name+"')\">"
