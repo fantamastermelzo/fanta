@@ -187,6 +187,17 @@ footer strong{color:var(--gold2);}
         <div class="hstat"><div class="v">5</div><div class="l">Per team</div></div>
         <div class="hstat"><div class="v">700</div><div class="l">Clorini</div></div>
       </div>
+      <div id="cdBox" style="margin-top:26px">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--p5);margin-bottom:10px">&#9203; Iscrizioni aperte fino a sabato 24 ottobre, ore 23:59</div>
+        <div class="hero-stats">
+          <div class="hstat" style="min-width:76px;padding:12px 16px"><div class="v" id="cdD">--</div><div class="l">Giorni</div></div>
+          <div class="hstat" style="min-width:76px;padding:12px 16px"><div class="v" id="cdH">--</div><div class="l">Ore</div></div>
+          <div class="hstat" style="min-width:76px;padding:12px 16px"><div class="v" id="cdM">--</div><div class="l">Minuti</div></div>
+          <div class="hstat" style="min-width:76px;padding:12px 16px"><div class="v" id="cdS">--</div><div class="l">Secondi</div></div>
+        </div>
+        <p style="font-size:13px;color:var(--tmid);margin:10px 0 14px">In vista della prima gara della stagione: domenica 25 ottobre a Verolanuova.</p>
+        <button onclick="showSection('iscrizione')" style="background:var(--gold);color:var(--p5);border:none;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1.5px;padding:11px 26px;border-radius:12px">&#127944; ISCRIVITI ORA</button>
+      </div>
     </div>
     <div class="hero-waves">
       <svg viewBox="0 0 1440 68" preserveAspectRatio="none" style="width:100%;height:68px;display:block;">
@@ -242,10 +253,10 @@ footer strong{color:var(--gold2);}
       <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--p5);margin-bottom:9px">&#128197; Calendario gare e mercato</h3>
       <p style="font-size:14px;color:var(--tmid);line-height:1.8;margin-bottom:10px">Il gioco segue la stagione agonistica 2026/2027 del <strong>Circuito Supermaster FIN</strong>. Il calendario ufficiale delle manifestazioni &egrave; consultabile sul sito della Federazione:</p>
       <p style="margin:0 0 16px"><a href="https://www.federnuoto.it/home/master/circuito-supermaster/eventi-circuito-supermaster.html" target="_blank" rel="noopener" style="display:inline-block;padding:10px 18px;border-radius:12px;background:var(--p5);color:#fff;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase">&#128279; Calendario eventi Circuito Supermaster</a></p>
-      <p style="font-size:14px;color:var(--tmid);line-height:1.8;margin-bottom:10px"><strong>&#128221; Iscrizioni.</strong> Le iscrizioni chiudono <strong>24 ore prima dell'inizio della gara</strong>.</p>
+      <p style="font-size:14px;color:var(--tmid);line-height:1.8;margin-bottom:10px"><strong>&#128221; Iscrizioni.</strong> Le iscrizioni al gioco chiudono alle <strong>23:59 di sabato 24 ottobre 2026</strong>, in vista della prima gara della stagione, domenica 25 ottobre a Verolanuova.</p>
       <p style="font-size:14px;color:var(--tmid);line-height:1.8;margin-bottom:10px"><strong>&#128274; Squadre bloccate.</strong> Dopo l'iscrizione le squadre non si possono modificare, se non durante le finestre di mercato.</p>
       <p style="font-size:14px;color:var(--tmid);line-height:1.8;margin-bottom:10px"><strong>&#128260; Finestre di mercato.</strong> Le squadre si possono modificare nei <strong>15 giorni precedenti ogni gara sociale</strong>. Oltre ai Campionati Regionali, quali siano le altre gare sociali &egrave; ancora da definire.</p>
-      <p style="font-size:14px;color:var(--tmid);line-height:1.8;margin:10px 0 0"><strong>&#128257; Come funziona il mercato.</strong> Si svincola un atleta della squadra e lo si sostituisce con uno nuovo, sempre nel rispetto del <strong>budget di 700 Clorini</strong>. Il punteggio ottenuto dalla squadra aggiornata si <strong>somma</strong> a quello gi&agrave; accumulato fino a quel momento.</p>
+      <p style="font-size:14px;color:var(--tmid);line-height:1.8;margin:10px 0 0"><strong>&#128257; Mercato di riparazione.</strong> Il mercato consiste nello svincolare un atleta della squadra e sostituirlo con uno nuovo, sempre nel rispetto del <strong>budget di 700 Clorini</strong>. Dopo il mercato la squadra <strong>riparte dal punteggio ottenuto fino a quel momento</strong> e prosegue la stagione con la nuova formazione: i punti gi&agrave; conquistati restano alla squadra, anche quelli degli atleti svincolati, e a questi si sommano i punti della squadra aggiornata.</p>
     </div>
     <div class="info-box" style="margin-top:18px">
       <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--p5);margin-bottom:9px">&#128200; Valore per i nuovi iscritti (senza storico)</h3>
@@ -357,6 +368,7 @@ footer strong{color:var(--gold2);}
   <div class="container">
     <div class="sec-title">Iscri<span>viti</span></div>
     <div class="sec-bar"></div>
+    <p id="iscrNote" style="font-size:14px;color:var(--tmid);margin:-6px 0 18px">&#9203; Le iscrizioni chiudono alle <strong>23:59 di sabato 24 ottobre 2026</strong>.</p>
     <div class="iscr-grid">
       <div class="fcard glass">
         <h3>&#128100; I tuoi dati</h3>
@@ -420,6 +432,24 @@ footer strong{color:var(--gold2);}
 
 <script>
 const BUDGET=700,APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbz5e4XdgjNjqfN-c8g3cz2W1VsYlLmmixXQ__87wY4Jpup3U0vjJXXYl-DuotTAy_GO/exec";
+// Chiusura iscrizioni: 24 ottobre 2026, 23:59 (ora italiana, UTC+2). Il controllo vero lo fa lo script Google.
+const ISCRIZIONI_FINE=new Date("2026-10-24T23:59:59+02:00");
+function _iscrizioniChiuse(){return Date.now()>ISCRIZIONI_FINE.getTime();}
+function _tickCountdown(){
+  const box=document.getElementById("cdBox");
+  const note=document.getElementById("iscrNote");
+  const ms=ISCRIZIONI_FINE.getTime()-Date.now();
+  if(ms<=0){
+    if(box)box.innerHTML="<div style=\"font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--p5)\">&#128274; Iscrizioni chiuse</div>";
+    if(note)note.innerHTML="&#128274; Le iscrizioni sono chiuse.";
+    clearInterval(window._cdTimer);
+    return;
+  }
+  const s=Math.floor(ms/1000);
+  const set=function(id,v){const e=document.getElementById(id);if(e)e.textContent=String(v).padStart(2,"0");};
+  set("cdD",Math.floor(s/86400));set("cdH",Math.floor(s%86400/3600));set("cdM",Math.floor(s%3600/60));set("cdS",s%60);
+}
+_tickCountdown();window._cdTimer=setInterval(_tickCountdown,1000);
 let currentFilter="tutti",team=[],registeredTeams=[];
 const teamSet=new Set();
 const athletes=[
@@ -604,6 +634,7 @@ function _scriptCall(params,onOk,onFail){
 }
 function submitTeam(){
   const name=document.getElementById("managerName").value,email=document.getElementById("managerEmail").value,tname=document.getElementById("teamName").value;
+  if(_iscrizioniChiuse()){showToast("Le iscrizioni sono chiuse. 🔒");return;}
   if(!name||!email||!tname||team.length<5){showToast("Completa tutti i campi!");return;}
   const donne=team.filter(a=>a.sex==="F").length;
   const uomini=team.filter(a=>a.sex==="M").length;
