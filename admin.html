@@ -1825,13 +1825,45 @@ function forzaApplicaGaraDuplicata(){
 }
 
 // ========== AGGIORNA PUNTI IN MEMORIA ==========
+// ========== REGOLA ISCRIZIONE: contano solo le gare dopo il giorno dell'iscrizione ==========
+const MESI_IT = {gen:0,feb:1,mar:2,apr:3,mag:4,giu:5,lug:6,ago:7,set:8,ott:9,nov:10,dic:11};
+let dateNonRiconosciute = false;
+
+// Ritorna la data (mezzanotte locale) del PRIMO giorno della gara/evento, oppure null se non riconosciuta.
+// Formati gestiti: 25/10/2026, 2026-10-25, "25 ottobre 2026", "7 -15 febbraio 2026" (usa il 7).
+function parseDataGara(s){
+  if(!s) return null;
+  s = String(s).trim().toLowerCase();
+  let m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(m) return new Date(+m[1], +m[2]-1, +m[3]);
+  m = s.match(/(\d{1,2})\s*[\/.]\s*(\d{1,2})\s*[\/.]\s*(\d{4})/);
+  if(m) return new Date(+m[3], +m[2]-1, +m[1]);
+  m = s.match(/(\d{1,2})(?:\s*-\s*\d{1,2})?\s+([a-zàèéìòù]+)\s+(\d{4})/);
+  if(m && MESI_IT[m[2].slice(0,3)] !== undefined) return new Date(+m[3], MESI_IT[m[2].slice(0,3)], +m[1]);
+  return null;
+}
+
+// Una squadra iscritta a stagione in corso (campo "iscrizione": "AAAA-MM-GG") ottiene punti solo
+// dalle gare il cui primo giorno è successivo al giorno dell'iscrizione. Senza campo: conta tutto.
+function garaContaPerSquadra(team, dataRiga){
+  if(!team.iscrizione) return true;
+  const lim = parseDataGara(team.iscrizione);
+  if(!lim) return true;
+  const dg = parseDataGara(dataRiga);
+  if(!dg){ dateNonRiconosciute = true; return true; }
+  return dg.getTime() > lim.getTime();
+}
+
 function aggiornaPunti(){
   if(!classificaData) return;
+  dateNonRiconosciute = false;
   // Aggiorna solo i punti degli atleti trovati
   risultatiGara.forEach(r => {
+    r._dettaglioRefs = [];
     const garaNome = r.gara || currentGaraName;
     const dataRiga = r.data || currentDataGara;
     classificaData.classifica.forEach(team => {
+      if(!garaContaPerSquadra(team, dataRiga)) return; // squadra iscritta dopo questa gara
       team.atleti.forEach(atleta => {
         const nA = atleta.nome.toLowerCase().trim();
         const nR = r.nome.toLowerCase().trim();
@@ -1868,12 +1900,15 @@ function aggiornaPunti(){
           // Riferimento diretto alla riga appena creata, per poter correggere il punteggio
           // dall'anteprima (updatePts) senza dover ri-cercare per testo gara/data — indispensabile
           // quando un referto contiene più gare diverse nello stesso caricamento.
-          r._dettaglioRef = riga;
+          r._dettaglioRefs.push(riga); // lo stesso atleta può stare in più squadre: una riga per squadra
         }
       });
     });
   });
   ricalcolaClassificaCompleta();
+  if(dateNonRiconosciute && classificaData.classifica.some(t => t.iscrizione)){
+    showStatus("status1","⚠️ Data della gara non riconosciuta: per le squadre iscritte a stagione in corso sono state conteggiate comunque tutte le gare. Controlla la data.","error");
+  }
 }
 
 // ========== RENDER PANNELLO 2 ==========
@@ -2079,7 +2114,7 @@ function updatePts(idx, val){
 
   // Riferimento diretto alla riga di dettaglio creata da aggiornaPunti() per questo risultato:
   // niente più ricerca per testo gara/data, funziona anche con più gare diverse nello stesso caricamento.
-  if(r._dettaglioRef) r._dettaglioRef.totaleGara = newVal;
+  (r._dettaglioRefs || []).forEach(riga => { riga.totaleGara = newVal; });
 
   ricalcolaClassificaCompleta();
   updateClassificaPreview();
