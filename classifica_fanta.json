@@ -164,6 +164,39 @@
         }
       ],
       "iscrizione": "2026-10-24"
+    },
+    {
+      "team": "Real Pupazzi",
+      "manager": "Alessandro Leoni",
+      "pts": 0,
+      "iscrizione": "2026-11-12",
+      "atleti": [
+        {
+          "nome": "Mercati Gherardo",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Arioli Angelo",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Azin Claudio",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Sena Lucia",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Dossena Fabiana",
+          "pts": 0,
+          "dettaglio": []
+        }
+      ]
     }
   ],
   "_garePubblicate": []
