@@ -199,5 +199,12 @@
       ]
     }
   ],
-  "_garePubblicate": []
+  "_garePubblicate": [
+    {
+      "id": "verolanuova — 4 gare individuali (referto multi-specialità)|25 ottobre 2026|individuale|Bitto Alessandro:02'15\"29:OK,Bitto Alessandro:10'14\"69:OK,Broccolino Marco:01'25\"53:OK,Broccolino Marco:47\"98:OK,Dotti Valter:01'23\"23:OK,Dotti Valter:01'37\"11:OK,Dotti Valter:06'40\"31:OK,Mercati Gherardo:02'20\"16:OK,Mercati Gherardo:13'15\"35:OK,Scotti Silvio:01'21\"11:OK,Scotti Silvio:06'31\"14:OK",
+      "gara": "Verolanuova — 4 gare individuali (referto multi-specialità)",
+      "data": "25 ottobre 2026",
+      "pubblicatoIl": "2026-11-13T18:15:55.724Z"
+    }
+  ]
 }
