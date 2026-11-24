@@ -1620,7 +1620,7 @@ function parseResults(text, filename){
 // cognome+nome, sesso, categoria, codice specialità, tempo (M'SS"cc) e punti FIN già calcolati
 // (virgola come separatore decimale). Non contiene la parola "melzo": il filtro sugli atleti Master
 // Melzo avviene solo per corrispondenza col listone ATLETI.
-const REGIONALE_ROW_RE = /^(\d+|np|sq)\s+(.+?)\s+([mf])\s+([A-Za-z]{1,2}\d{2})\s+(\d{2,4}(?:DO|FA|RA|SL|MI|MX))\s*(\d+'\d{2}"\d+|\d{1,2}:\d{2}:\d{2}|\d{1,2}"\d{2})?\s*(\d+,\d+)?/i;
+const REGIONALE_ROW_RE = /^(\d+|np|sq)\s+(.+?)\s+([mf])\s+([A-Za-z]{1,2}\d{2})\s+(\d{2,4}(?:DO|FA|RA|SL|MI|MX)|\d{2,4}\s+(?:Dorso|Farfalla|Rana|Stile\s+Libero|Misti))\s*(\d+'\d{2}"\d+|\d{1,2}:\d{2}:\d{2}|\d{1,2}"\d{2})?\s*(\d+,\d+)?/i;
 // Refusi ricorrenti nei referti -> nome corretto (tutto minuscolo)
 const ALIAS_NOMI_REFERTO = { "dotti walter": "dotti valter umberto" };
 const STROKE_NAME = {DO:"Dorso", FA:"Farfalla", RA:"Rana", SL:"Stile Libero", MX:"Misti"};
@@ -1655,7 +1655,7 @@ function parseResultsRegionale(text, filename){
 
   // Nome manifestazione, es. "Regionali Lombardia" -> "Regionale Lombardia"
   let meetName = "Regionale";
-  const dopoMatch = text.match(/dopo\s+([A-Za-zÀ-ÿ' ]+?)\s+\d{1,2}\s+[a-zàèéìòù]+\s+\d{4}/i); // es. "Risultati e Record dopo Verolanuova 25 ottobre 2026"
+  const dopoMatch = text.match(/dopo\s+([A-Za-zÀ-ÿ' \-]+?)\s+\d{1,2}\s+[a-zàèéìòù]+\s+\d{4}/i); // es. "Risultati e Record dopo Verolanuova 25 ottobre 2026"
   const meetMatch = text.match(/Regional[ei]\s+([A-Za-zÀ-ÿ]+)/i);
   if(dopoMatch) meetName = dopoMatch[1].trim();
   else if(meetMatch) meetName = "Regionale " + meetMatch[1];
@@ -1671,8 +1671,16 @@ function parseResultsRegionale(text, filename){
     if(!rm) continue;
 
     const [, posRaw, nomeGrezzo, sessoL, categoriaRaw, eventoRiga, tempoRaw, puntiRaw] = rm;
-    const eventCode = normEventCode(eventoRiga);
+    // Formato "Risultati e Record": specialità scritta per esteso ("100 Dorso") -> codice ("100DO")
+    let eventoCodice = eventoRiga;
+    const lungo = eventoRiga.match(/^(\d+)\s+(Dorso|Farfalla|Rana|Stile\s+Libero|Misti)$/i);
+    if(lungo){
+      const sigla = {dorso:"DO", farfalla:"FA", rana:"RA", "stile libero":"SL", misti:"MX"}[lungo[2].toLowerCase().replace(/\s+/g," ")];
+      eventoCodice = lungo[1] + sigla;
+    }
+    const eventCode = normEventCode(eventoCodice);
     const categoria = categoriaRaw.toUpperCase();
+    const recordDaReferto = /record\s+sociale/i.test(line);
 
     // Abbinamento al listone: stessa euristica cognome + almeno un nome in comune usata altrove
     // (gestisce nomi doppi/secondi nomi che compaiono solo nel referto o solo nel listone).
@@ -1728,6 +1736,9 @@ function parseResultsRegionale(text, filename){
       }
     }
 
+    // Il referto "Risultati e Record" indica già i record sociali: se le tabelle del repo non lo riconoscono, vale l'indicazione del referto.
+    const usaRecordReferto = recordDaReferto && !nonValido && ptsRecord === 0;
+    if(usaRecordReferto){ ptsRecord = PTS.record_categoria; labelRecord = `Record categoria club +${PTS.record_categoria} (da referto)`; }
     const ptsTot = Math.round((ptsBase + ptsPodio + ptsRecord + ptsMalus + ptsFin)*10)/10;
     const bonus = [];
     if(!nonValido){
@@ -1750,7 +1761,7 @@ function parseResultsRegionale(text, filename){
       isSQ, isNP, isStaffetta:false,
       ptsBase, ptsPodio, ptsRecord, ptsMalus, ptsFin,
       ptsTot, labelRecord, bonus, malus,
-      eventCode, gara: garaNome, data: periodo
+      eventCode, gara: garaNome, data: periodo, recordDaReferto: usaRecordReferto
     });
   }
 
@@ -1767,11 +1778,11 @@ function parseResultsRegionale(text, filename){
     if(!t.eventCode) return;
     const haAss = proposteVincenti.some(p => p.tipo === "assoluto" && p.atleta === t.nome && p.eventCode === t.eventCode);
     const haCat = proposteVincenti.some(p => p.tipo === "categoria" && p.atleta === t.nome && p.eventCode === t.eventCode);
-    const nuovoPts = haAss ? PTS.record_assoluto : haCat ? PTS.record_categoria : 0;
+    const nuovoPts = haAss ? PTS.record_assoluto : haCat ? PTS.record_categoria : (t.recordDaReferto ? PTS.record_categoria : 0);
     if(nuovoPts === t.ptsRecord) return;
     t.ptsTot = Math.round((t.ptsTot - t.ptsRecord + nuovoPts) * 10) / 10;
     t.ptsRecord = nuovoPts;
-    t.labelRecord = haAss ? `Record assoluto club +${PTS.record_assoluto}` : haCat ? `Record categoria club +${PTS.record_categoria}` : null;
+    t.labelRecord = haAss ? `Record assoluto club +${PTS.record_assoluto}` : haCat ? `Record categoria club +${PTS.record_categoria}` : (t.recordDaReferto ? `Record categoria club +${PTS.record_categoria} (da referto)` : null);
     t.bonus = t.bonus.filter(b => !b.startsWith("🏆"));
     if(t.labelRecord) t.bonus.push("🏆 " + t.labelRecord);
   });
