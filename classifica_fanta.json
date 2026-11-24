@@ -1,368 +1,1315 @@
 {
-  "classifica": [
+ "classifica": [
+  {
+   "team": "Meltzunami",
+   "manager": "Susanna Broccolino",
+   "pts": 711.1,
+   "iscrizione": "2026-11-17",
+   "atleti": [
     {
-      "team": "Maestri dell'Acqua 2027",
-      "manager": "Annamaria Naborri",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Vassura Edoardo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Beretta Alice",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Floris Cristina",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Facchinetti Pierpaolo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Scala Sandra",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ],
-      "iscrizione": "2026-10-12"
+     "nome": "Sperandio Dario",
+     "pts": 378.9,
+     "dettaglio": [
+      {
+       "gara": "100 Dorso · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 83.2,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 20,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 123.2
+      },
+      {
+       "gara": "100 Misti · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 83.2,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 153.2
+      },
+      {
+       "gara": "50 Farfalla · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 82.5,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 5,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 97.5
+      },
+      {
+       "gara": "Stacanovista · Gonzaga Lodi",
+       "tipo": "stacanovista",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 5,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "Stacanovista (3 gare)",
+       "totaleGara": 5
+      }
+     ]
     },
     {
-      "team": "Phoenix",
-      "manager": "Silvio Scotti",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Sena Lucia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Azin Claudio",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Brambilla Cecilia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Martelli Daria",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Bottari Ciro",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ],
-      "iscrizione": "2026-10-12"
+     "nome": "Bordoni Andrea",
+     "pts": 161.7,
+     "dettaglio": [
+      {
+       "gara": "50 Farfalla · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 69.4,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 79.4
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.3,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 82.3
+      }
+     ]
     },
     {
-      "team": "Bono's Wet Team",
-      "manager": "Mattia Bonomi",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Brambilla Mauro",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Ferraro Sergio",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Arioli Angelo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Naborri Annamaria",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ],
-      "iscrizione": "2026-10-16"
+     "nome": "Martelli Daria",
+     "pts": 0.0,
+     "dettaglio": []
     },
     {
-      "team": "Luci’s in corsia 🏊‍♀️🔥",
-      "manager": "Lucia Colombo",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Pitalieri Francesca",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Parisi Matteo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Vassenna Virginia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Pirola Alessandro",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Arioli Angelo",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ],
-      "iscrizione": "2026-10-24"
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
     },
     {
-      "team": "delfinisti anonimi",
-      "manager": "francesca pitalieri",
-      "pts": 0,
-      "atleti": [
-        {
-          "nome": "Jacazio Giovanni",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Broccolino Susanna",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Azin Claudio",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Vassura Edoardo",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ],
-      "iscrizione": "2026-10-24"
-    },
-    {
-      "team": "Real Pupazzi",
-      "manager": "Alessandro Leoni",
-      "pts": 0,
-      "iscrizione": "2026-11-12",
-      "atleti": [
-        {
-          "nome": "Mercati Gherardo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Arioli Angelo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Azin Claudio",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Dossena Fabiana",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ]
-    },
-    {
-      "team": "Team Ariolengers",
-      "manager": "Luca Sini",
-      "pts": 0,
-      "iscrizione": "2026-11-15",
-      "atleti": [
-        {
-          "nome": "Sena Lucia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Pirola Vincenzo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Broccolino Susanna",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Vassura Edoardo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Arioli Angelo",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ]
-    },
-    {
-      "team": "Cuccioli Piritosi",
-      "manager": "Dario Sperandio",
-      "pts": 0,
-      "iscrizione": "2026-11-16",
-      "atleti": [
-        {
-          "nome": "Bartolotta Aurora",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Pirola Alessandro",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Bottari Jacopo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Scotti Silvio",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ]
-    },
-    {
-      "team": "splash💦",
-      "manager": "Virginia Vassenna",
-      "pts": 0,
-      "iscrizione": "2026-11-16",
-      "atleti": [
-        {
-          "nome": "Bottari Selene",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Sena Lucia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Botteghi Alessio",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Pirola Alessandro",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Arioli Angelo",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ]
-    },
-    {
-      "team": "Ogcocephalus darwini",
-      "manager": "Arcangelo Zerbo",
-      "pts": 0,
-      "iscrizione": "2026-11-16",
-      "atleti": [
-        {
-          "nome": "Sinigaglia Luca",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Vassura Edoardo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Mombello Rita",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "De Gaspari Emilia",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Arioli Angelo",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ]
-    },
-    {
-      "team": "Meltzunami",
-      "manager": "Susanna Broccolino",
-      "pts": 0,
-      "iscrizione": "2026-11-17",
-      "atleti": [
-        {
-          "nome": "Sperandio Dario",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Bordoni Andrea",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Martelli Daria",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Arioli Angelo",
-          "pts": 0,
-          "dettaglio": []
-        },
-        {
-          "nome": "Brambilla Cecilia",
-          "pts": 0,
-          "dettaglio": []
-        }
-      ]
+     "nome": "Brambilla Cecilia",
+     "pts": 170.5,
+     "dettaglio": [
+      {
+       "gara": "100 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 73.5,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 5,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 88.5
+      },
+      {
+       "gara": "200 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.0,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 82.0
+      }
+     ]
     }
-  ],
-  "_garePubblicate": []
+   ]
+  },
+  {
+   "team": "Real Pupazzi",
+   "manager": "Alessandro Leoni",
+   "pts": 569.2,
+   "iscrizione": "2026-11-12",
+   "atleti": [
+    {
+     "nome": "Mercati Gherardo",
+     "pts": 569.2,
+     "dettaglio": [
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 56.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 116.9
+      },
+      {
+       "gara": "50 Dorso · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 58.6,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 118.6
+      },
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 40.3,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 100.3
+      },
+      {
+       "gara": "50 Stile Libero · De Akker",
+       "tipo": "individuale",
+       "data": "15/11/2026",
+       "puntiFIN": 62.0,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 122.0
+      },
+      {
+       "gara": "100 Rana · De Akker",
+       "tipo": "individuale",
+       "data": "15/11/2026",
+       "puntiFIN": 41.4,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 101.4
+      },
+      {
+       "gara": "50 Farfalla · De Akker",
+       "tipo": "individuale",
+       "data": "15/11/2026",
+       "puntiFIN": 40.2,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 100.2
+      },
+      {
+       "gara": "Stacanovista · Gonzaga Lodi",
+       "tipo": "stacanovista",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 5,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "Stacanovista (3 gare)",
+       "totaleGara": 5
+      },
+      {
+       "gara": "Stacanovista · De Akker",
+       "tipo": "stacanovista",
+       "data": "15/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 5,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "Stacanovista (3 gare)",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Azin Claudio",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Sena Lucia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Dossena Fabiana",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "splash💦",
+   "manager": "Virginia Vassenna",
+   "pts": 497.0,
+   "iscrizione": "2026-11-16",
+   "atleti": [
+    {
+     "nome": "Bottari Selene",
+     "pts": 312.4,
+     "dettaglio": [
+      {
+       "gara": "100 Farfalla · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 80.8,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 150.8
+      },
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 91.6,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 161.6
+      }
+     ]
+    },
+    {
+     "nome": "Sena Lucia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Botteghi Alessio",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Alessandro",
+     "pts": 184.6,
+     "dettaglio": [
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.7,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 92.7
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 76.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 86.9
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "Cuccioli Piritosi",
+   "manager": "Dario Sperandio",
+   "pts": 398.3,
+   "iscrizione": "2026-11-16",
+   "atleti": [
+    {
+     "nome": "Bartolotta Aurora",
+     "pts": 243.7,
+     "dettaglio": [
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 66.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 76.9
+      },
+      {
+       "gara": "200 Dorso · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 68.7,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 78.7
+      },
+      {
+       "gara": "200 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 68.1,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 78.1
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      },
+      {
+       "gara": "Stacanovista · Gonzaga Lodi",
+       "tipo": "stacanovista",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 5,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "Stacanovista (3 gare)",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Sena Lucia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Alessandro",
+     "pts": 184.6,
+     "dettaglio": [
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.7,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 92.7
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 76.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 86.9
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Bottari Jacopo",
+     "pts": -30.0,
+     "dettaglio": [
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": -15,
+       "bonusAltro": 0,
+       "note": "NP",
+       "totaleGara": -15
+      },
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": -15,
+       "bonusAltro": 0,
+       "note": "NP",
+       "totaleGara": -15
+      }
+     ]
+    },
+    {
+     "nome": "Scotti Silvio",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "Luci’s in corsia 🏊‍♀️🔥",
+   "manager": "Lucia Colombo",
+   "pts": 378.0,
+   "atleti": [
+    {
+     "nome": "Pitalieri Francesca",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Parisi Matteo",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Vassenna Virginia",
+     "pts": 193.4,
+     "dettaglio": [
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 75.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 20,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 105.9
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.5,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 82.5
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Pirola Alessandro",
+     "pts": 184.6,
+     "dettaglio": [
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.7,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 92.7
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 76.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 86.9
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ],
+   "iscrizione": "2026-10-24"
+  },
+  {
+   "team": "Ogcocephalus darwini",
+   "manager": "Arcangelo Zerbo",
+   "pts": 348.7,
+   "iscrizione": "2026-11-16",
+   "atleti": [
+    {
+     "nome": "Sinigaglia Luca",
+     "pts": 247.9,
+     "dettaglio": [
+      {
+       "gara": "50 Dorso · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 84.3,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 94.3
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 88.6,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 50,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 148.6
+      },
+      {
+       "gara": "Staffetta 4x50 Stile Miste · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Vassura Edoardo",
+     "pts": 100.8,
+     "dettaglio": [
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 85.8,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 95.8
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Mombello Rita",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "De Gaspari Emilia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "Maestri dell'Acqua 2027",
+   "manager": "Annamaria Naborri",
+   "pts": 296.9,
+   "atleti": [
+    {
+     "nome": "Vassura Edoardo",
+     "pts": 100.8,
+     "dettaglio": [
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 85.8,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 95.8
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Beretta Alice",
+     "pts": 196.1,
+     "dettaglio": [
+      {
+       "gara": "50 Farfalla · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 73.5,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 20,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 103.5
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 77.6,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 87.6
+      },
+      {
+       "gara": "Staffetta 4x50 Stile Miste · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Floris Cristina",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Facchinetti Pierpaolo",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Scala Sandra",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ],
+   "iscrizione": "2026-10-12"
+  },
+  {
+   "team": "Bono's Wet Team",
+   "manager": "Mattia Bonomi",
+   "pts": 288.9,
+   "atleti": [
+    {
+     "nome": "Brambilla Mauro",
+     "pts": 288.9,
+     "dettaglio": [
+      {
+       "gara": "100 Misti · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 81.3,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 91.3
+      },
+      {
+       "gara": "50 Farfalla · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 84.6,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 5,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 99.6
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 83.0,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 93.0
+      },
+      {
+       "gara": "Stacanovista · Gonzaga Lodi",
+       "tipo": "stacanovista",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 5,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "Stacanovista (3 gare)",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Sena Lucia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Ferraro Sergio",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Naborri Annamaria",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ],
+   "iscrizione": "2026-10-16"
+  },
+  {
+   "team": "Phoenix",
+   "manager": "Silvio Scotti",
+   "pts": 170.5,
+   "atleti": [
+    {
+     "nome": "Sena Lucia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Azin Claudio",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Brambilla Cecilia",
+     "pts": 170.5,
+     "dettaglio": [
+      {
+       "gara": "100 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 73.5,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 5,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 88.5
+      },
+      {
+       "gara": "200 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.0,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 82.0
+      }
+     ]
+    },
+    {
+     "nome": "Martelli Daria",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Bottari Ciro",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ],
+   "iscrizione": "2026-10-12"
+  },
+  {
+   "team": "delfinisti anonimi",
+   "manager": "francesca pitalieri",
+   "pts": 100.8,
+   "atleti": [
+    {
+     "nome": "Jacazio Giovanni",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Broccolino Susanna",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Sena Lucia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Azin Claudio",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Vassura Edoardo",
+     "pts": 100.8,
+     "dettaglio": [
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 85.8,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 95.8
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    }
+   ],
+   "iscrizione": "2026-10-24"
+  },
+  {
+   "team": "Team Ariolengers",
+   "manager": "Luca Sini",
+   "pts": 100.8,
+   "iscrizione": "2026-11-15",
+   "atleti": [
+    {
+     "nome": "Sena Lucia",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Vincenzo",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Broccolino Susanna",
+     "pts": 0.0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Vassura Edoardo",
+     "pts": 100.8,
+     "dettaglio": [
+      {
+       "gara": "100 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 85.8,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 95.8
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      }
+     ]
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ]
+  }
+ ],
+ "_garePubblicate": [
+  {
+   "id": "manuale-lodi-2026-11-22",
+   "gara": "Gonzaga Lodi",
+   "data": "22/11/2026"
+  },
+  {
+   "id": "manuale-saronno",
+   "gara": "Saronno",
+   "data": "da verificare"
+  },
+  {
+   "id": "manuale-de-akker",
+   "gara": "De Akker",
+   "data": "da verificare"
+  }
+ ]
 }
