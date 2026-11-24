@@ -329,6 +329,39 @@
           "dettaglio": []
         }
       ]
+    },
+    {
+      "team": "Meltzunami",
+      "manager": "Susanna Broccolino",
+      "pts": 0,
+      "iscrizione": "2026-11-17",
+      "atleti": [
+        {
+          "nome": "Sperandio Dario",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Bordoni Andrea",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Martelli Daria",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Arioli Angelo",
+          "pts": 0,
+          "dettaglio": []
+        },
+        {
+          "nome": "Brambilla Cecilia",
+          "pts": 0,
+          "dettaglio": []
+        }
+      ]
     }
   ],
   "_garePubblicate": []
