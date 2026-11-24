@@ -273,7 +273,7 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
               <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
             </div>
           </div>
-          <p style="font-size:12px;color:var(--tlight);margin-top:-8px;">⚠️ Inserisci una volta per sessione. Non viene mai salvato.</p>
+          <p style="font-size:12px;color:var(--tlight);margin-top:-8px;">🔒 Il token viene ricordato solo su questo browser. Per toglierlo, svuota il campo.</p>
         </div>
       </div>
     </div>
@@ -463,7 +463,9 @@ const EVENT_CODES = [
 ];
 
 // Regolamento punti
-const PTS = {individuale:10, staffetta:5, oro:50, argento:20, bronzo:5, record_assoluto:20, record_categoria:10, squalifica:-15};
+const PTS = {individuale:10, staffetta:5, oro:50, argento:20, bronzo:5, record_assoluto:20, record_categoria:10, squalifica:-15, stacanovista:5};
+// Stacanovista automatico (referti multi-gara): scatta quando lo stesso atleta compare in almeno N gare nel referto.
+const STACANOVISTA_MIN_GARE = 3;
 
 let classificaData = null;
 let recordsData = null;          // dati record categoria/assoluto club (records_individuali.json)
@@ -1082,6 +1084,12 @@ function doLogin(){
     // Mostra config aperta la prima volta
     document.getElementById("config-panel").style.display = "block";
     document.getElementById("config-arrow").textContent = "▲";
+    try{
+      const tk=localStorage.getItem("fanta_gh_token");
+      const inp=document.getElementById("gh-token");
+      if(tk){ inp.value=tk; document.getElementById("config-panel").style.display="none"; document.getElementById("config-arrow").textContent="▼"; }
+      inp.addEventListener("change",()=>{ try{ const v=inp.value.trim(); if(v) localStorage.setItem("fanta_gh_token",v); else localStorage.removeItem("fanta_gh_token"); }catch(e){} });
+    }catch(e){}
     loadClassifica();
     loadRecords();
     loadRecordsStaffetta();
@@ -1705,9 +1713,9 @@ function parseResultsRegionale(text, filename){
     }
 
     const ptsBase = nonValido ? 0 : PTS.individuale;
-    // Podio NON assegnato automaticamente: l'ordine di riga in questo referto non garantisce di
-    // essere la classifica ufficiale di categoria (stessa cautela già usata per il referto FIN).
-    const ptsPodio = 0;
+    // Podio di categoria dalla colonna "ordine arrivo" del referto: 1 = oro, 2 = argento, 3 = bronzo.
+    const ptsPodio = nonValido ? 0 : (pos===1 ? PTS.oro : pos===2 ? PTS.argento : pos===3 ? PTS.bronzo : 0);
+    const labelPodio = pos===1 ? "🥇 Oro categoria" : pos===2 ? "🥈 Argento categoria" : pos===3 ? "🥉 Bronzo categoria" : null;
     const ptsMalus = nonValido ? PTS.squalifica : 0;
 
     let ptsRecord = 0, labelRecord = null;
@@ -1724,6 +1732,7 @@ function parseResultsRegionale(text, filename){
     const bonus = [];
     if(!nonValido){
       bonus.push(`Gara individuale +${PTS.individuale}`);
+      if(ptsPodio>0) bonus.push(`${labelPodio} +${ptsPodio}`);
       if(labelRecord) bonus.push("🏆 "+labelRecord);
       if(ptsFin>0) bonus.push(`FIN÷10 +${ptsFin}`);
     }
@@ -1744,6 +1753,47 @@ function parseResultsRegionale(text, filename){
       eventCode, gara: garaNome, data: periodo
     });
   }
+
+  // Record: se più atleti battono lo stesso record nello stesso referto (stessa specialità, stesso sesso,
+  // stessa categoria; o assoluto), lo ottiene solo chi ha il tempo più basso (a parità, tutti).
+  const tempoMigliore = {};
+  const chiaveRecord = p => `${p.tipo}|${p.eventCode}|${p.genere}|${p.categoria || ""}`;
+  proposteRecord.forEach(p => {
+    const k = chiaveRecord(p);
+    if(tempoMigliore[k] === undefined || p.nuovoSecondi < tempoMigliore[k]) tempoMigliore[k] = p.nuovoSecondi;
+  });
+  const proposteVincenti = proposteRecord.filter(p => p.nuovoSecondi <= tempoMigliore[chiaveRecord(p)]);
+  trovati.forEach(t => {
+    if(!t.eventCode) return;
+    const haAss = proposteVincenti.some(p => p.tipo === "assoluto" && p.atleta === t.nome && p.eventCode === t.eventCode);
+    const haCat = proposteVincenti.some(p => p.tipo === "categoria" && p.atleta === t.nome && p.eventCode === t.eventCode);
+    const nuovoPts = haAss ? PTS.record_assoluto : haCat ? PTS.record_categoria : 0;
+    if(nuovoPts === t.ptsRecord) return;
+    t.ptsTot = Math.round((t.ptsTot - t.ptsRecord + nuovoPts) * 10) / 10;
+    t.ptsRecord = nuovoPts;
+    t.labelRecord = haAss ? `Record assoluto club +${PTS.record_assoluto}` : haCat ? `Record categoria club +${PTS.record_categoria}` : null;
+    t.bonus = t.bonus.filter(b => !b.startsWith("🏆"));
+    if(t.labelRecord) t.bonus.push("🏆 " + t.labelRecord);
+  });
+  proposteRecord.length = 0;
+  proposteVincenti.forEach(p => proposteRecord.push(p));
+
+  // Stacanovista: atleta presente in almeno STACANOVISTA_MIN_GARE gare del referto. Il bonus è una riga a sé
+  // (tipo "stacanovista"), così non rientra nel limite delle migliori gare individuali.
+  const gareFatte = {};
+  trovati.forEach(t => { if(!t.isNP) gareFatte[t.nome] = (gareFatte[t.nome] || 0) + 1; });
+  Object.keys(gareFatte).forEach(nome => {
+    if(gareFatte[nome] < STACANOVISTA_MIN_GARE) return;
+    const prima = trovati.find(t => t.nome === nome);
+    trovati.push({
+      nome, pos:null, arrivo:null, categoria:prima.categoria, genere:prima.genere,
+      isSQ:false, isNP:false, isStaffetta:false, isBonusRow:true, tipoDettaglio:"stacanovista",
+      ptsBase:0, ptsPodio:0, ptsRecord:0, ptsMalus:0, ptsFin:0, ptsStaca:PTS.stacanovista,
+      ptsTot:PTS.stacanovista, labelRecord:null,
+      bonus:[`💪 Stacanovista +${PTS.stacanovista} (${gareFatte[nome]} gare)`], malus:[],
+      eventCode:null, gara:`Stacanovista · ${meetName}`, data:periodo
+    });
+  });
 
   return { trovati, nonAbbinati, proposteRecord, meetName, periodo };
 }
@@ -1892,18 +1942,18 @@ function aggiornaPunti(){
           if(!Array.isArray(atleta.dettaglio)) atleta.dettaglio = [];
           const riga = {
             gara: garaNome,
-            tipo: r.isStaffetta ? "staffetta" : "individuale",
+            tipo: r.tipoDettaglio || (r.isStaffetta ? "staffetta" : "individuale"),
             data: dataRiga,
             puntiFIN: r.ptsFin || 0,
-            bonusIndividuale: (!r.isStaffetta) ? (r.ptsBase || 0) : 0,
+            bonusIndividuale: (!r.isStaffetta && !r.isBonusRow) ? (r.ptsBase || 0) : 0,
             bonusStaffetta: (r.isStaffetta) ? (r.ptsBase || 0) : 0,
             bonusRecordCategoria: isRecCategoria ? r.ptsRecord : 0,
             bonusRecordAssoluto: isRecAssoluto ? r.ptsRecord : 0,
             bonusPodio: r.ptsPodio || 0,
-            bonusStacanovista: 0,
+            bonusStacanovista: r.ptsStaca || 0,
             malusSqualifica: r.ptsMalus || 0,
             bonusAltro: 0,
-            note: r.isSQ ? "SQ" : (r.isNP ? "NP" : ""),
+            note: r.isBonusRow ? "Stacanovista" : (r.isSQ ? "SQ" : (r.isNP ? "NP" : "")),
             totaleGara: r.ptsTot
           };
           atleta.dettaglio.push(riga);
@@ -1945,7 +1995,7 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
 
   list.innerHTML = risultatiGara.map((a,idx) => {
     const initials = a.nome.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
-    const posMedal = a.isSQ ? "❌ SQ" : a.isNP ? "🚫 NP" : `#${a.pos||"—"}`;
+    const posMedal = a.isBonusRow ? "💪 BONUS" : a.isSQ ? "❌ SQ" : a.isNP ? "🚫 NP" : `#${a.pos||"—"}`;
     const bonusPills = a.bonus.map(b=>`<span class="bonus-pill pill-green">${b}</span>`).join("");
     const malusPills = a.malus.map(m=>`<span class="bonus-pill pill-red">${m}</span>`).join("");
     const garaPrefix = a.gara ? `<strong>${a.gara}</strong> · ` : "";
@@ -1954,7 +2004,7 @@ function renderPannello2(garaName, dataGara, isStaffetta, ptsGara){
       <div class="atleta-avatar">${initials}</div>
       <div style="flex:1;">
         <div class="atleta-name">${posMedal} ${a.nome}</div>
-        <div class="atleta-gare">${garaPrefix}Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"} · Pos. PDF: ${a.pos??"—"} (verifica podio ufficiale e assegna oro/argento/bronzo a mano)</div>
+        <div class="atleta-gare">${garaPrefix}Arrivo: ${a.arrivo||"—"} · Categoria: ${a.categoria||"—"} · Pos. PDF: ${a.pos??"—"}${a.tipoDettaglio ? "" : (a.gara ? "" : " (verifica podio ufficiale e assegna oro/argento/bronzo a mano)")}</div>
         <div style="margin-top:6px;">${bonusPills}${malusPills}</div>
       </div>
       <div class="atleta-pts">
