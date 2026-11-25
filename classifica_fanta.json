@@ -1524,6 +1524,39 @@
      "dettaglio": []
     }
    ]
+  },
+  {
+   "team": "Team domenica e staffette",
+   "manager": "Alessia",
+   "pts": 0,
+   "iscrizione": "2026-11-25",
+   "atleti": [
+    {
+     "nome": "Sinigaglia Luca",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Somigliana Ugo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Beretta Alice",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Anna",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
   }
  ],
  "_garePubblicate": [
