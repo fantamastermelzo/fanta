@@ -1491,6 +1491,39 @@
      "dettaglio": []
     }
    ]
+  },
+  {
+   "team": "MM nel ❤",
+   "manager": "Daria",
+   "pts": 0,
+   "iscrizione": "2026-11-25",
+   "atleti": [
+    {
+     "nome": "Pitalieri Francesca",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Somigliana Anna",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Vincenzo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Broccolino Filippo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
   }
  ],
  "_garePubblicate": [
