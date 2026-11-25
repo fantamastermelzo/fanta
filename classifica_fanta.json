@@ -1557,6 +1557,39 @@
      "dettaglio": []
     }
    ]
+  },
+  {
+   "team": "Chronos",
+   "manager": "Jacopo Bottari",
+   "pts": 0,
+   "iscrizione": "2026-11-25",
+   "atleti": [
+    {
+     "nome": "Bottari Selene",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Galiano Ilaria",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Raviola Tomaso",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Scala Sandra",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
   }
  ],
  "_garePubblicate": [
