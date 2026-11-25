@@ -1293,6 +1293,204 @@
      "dettaglio": []
     }
    ]
+  },
+  {
+   "team": "Fantacazzo",
+   "manager": "Alessio Botteghi",
+   "pts": 0,
+   "iscrizione": "2026-11-24",
+   "atleti": [
+    {
+     "nome": "Sinigaglia Luca",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Alessandro",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Brambilla Cecilia",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Galiano Ilaria",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "Ciccipasticci",
+   "manager": "Mauro Brambilla",
+   "pts": 0,
+   "iscrizione": "2026-11-24",
+   "atleti": [
+    {
+     "nome": "Sperandio Dario",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Bottari Selene",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "De Gaspari Emilia",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Alessandro",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "Pinne colorate",
+   "manager": "Alice Beretta",
+   "pts": 0,
+   "iscrizione": "2026-11-24",
+   "atleti": [
+    {
+     "nome": "Bordoni Andrea",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Somigliana Ugo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Brambilla Cecilia",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Alessandro",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Anna",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "CECIOSI",
+   "manager": "Cecilia Brambilla",
+   "pts": 0,
+   "iscrizione": "2026-11-24",
+   "atleti": [
+    {
+     "nome": "Zerbo Arcangelo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Somigliana Anna",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Bottari Selene",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Scotti Silvio",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "BBBAB",
+   "manager": "Roberto Salomone",
+   "pts": 0,
+   "iscrizione": "2026-11-25",
+   "atleti": [
+    {
+     "nome": "Bottari Selene",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Broccolino Susanna",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Bitto Alessandro",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Azin Claudio",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Broccolino Filippo",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
+  },
+  {
+   "team": "Oca Juniors",
+   "manager": "Lusi Sena",
+   "pts": 0,
+   "iscrizione": "2026-11-25",
+   "atleti": [
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Sperandio Dario",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Pirola Anna",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Bottari Selene",
+     "pts": 0,
+     "dettaglio": []
+    },
+    {
+     "nome": "Vassura Edoardo",
+     "pts": 0,
+     "dettaglio": []
+    }
+   ]
   }
  ],
  "_garePubblicate": [
