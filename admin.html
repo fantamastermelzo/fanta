@@ -342,7 +342,7 @@ input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(42,168,204,0.15);}
       <div class="sec-title">FEDELT&Agrave; AL <span>CLORO</span></div>
       <div class="sec-bar"></div>
       <p style="font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.6;">
-        Carica il file .xlsx presenze (sempre il file completo e aggiornato di tutta la stagione, foglio "Elenco presenze"). Ogni 5 allenamenti consecutivi in stagione = <strong>+10</strong>, ogni 5 assenze consecutive = <strong>&minus;10</strong>. Il calcolo &egrave; continuo su tutta la stagione (non si azzera a fine mese) e sostituisce automaticamente il bonus/malus fedelt&agrave; precedentemente applicato ad ogni atleta, cos&igrave; puoi ricaricare il file ogni volta senza duplicare i punti.
+        Carica il file .xlsx presenze (sempre il file completo e aggiornato di tutta la stagione, foglio "Elenco presenze"). Ogni 5 allenamenti consecutivi in stagione = <strong>+10</strong>, ogni 5 assenze consecutive = <strong>&minus;10</strong> (mono e trisettimanali). Le celle vuote (giorni non previsti per l\'atleta) non interrompono la serie, un\'assenza s&igrave;. Un blocco vale per una squadra solo se si completa dopo la sua iscrizione. Il calcolo &egrave; continuo su tutta la stagione (non si azzera a fine mese) e sostituisce automaticamente il bonus/malus fedelt&agrave; precedentemente applicato ad ogni atleta, cos&igrave; puoi ricaricare il file ogni volta senza duplicare i punti.
       </p>
       <input type="file" id="presenze-file-input" accept=".xlsx" onchange="handlePresenzeFile(this.files[0])" style="margin-bottom:16px;">
       <div class="loading" id="loading-presenze"><div class="spinner"></div><span>Analisi presenze in corso...</span></div>
@@ -893,11 +893,23 @@ function normalizzaNome(s){
 function contaUnitaStriscia(sequenza, target){
   let unita = 0, run = 0;
   for(const s of sequenza){
+    if(s === "X") continue; // cella vuota / extra: giorno non previsto, non interrompe la serie
     if(s === target) run++;
     else { unita += Math.floor(run/5); run = 0; }
   }
   unita += Math.floor(run/5);
   return unita;
+}
+// Date (ISO) in cui si completa ogni blocco di 5 presenze consecutive
+function dateBlocchiPresenza(seqConDate, target){
+  target = target || "P";
+  const out = []; let run = 0;
+  for(const {s,d} of seqConDate){
+    if(s === "X") continue;
+    if(s === target){ run++; if(run % 5 === 0) out.push(d); }
+    else run = 0;
+  }
+  return out;
 }
 
 function parsePresenzeWorkbook(wb){
@@ -922,20 +934,24 @@ function parsePresenzeWorkbook(wb){
 
   // Colonne "data allenamento": quelle la cui cella di riga 2 (indice 1, 0-based) è una data reale.
   // Si esclude la colonna A (indice 0) che può contenere una data non correlata (es. data di stampa).
-  let dateCols = [];
-  for(let c = 1; c <= range.e.c; c++){
-    const addr = XLSX.utils.encode_cell({r:1, c});
-    const cell = ws[addr];
-    if(cell && cell.t === "d") dateCols.push(c);
+  let dateCols = [], dateRow = 1, best = -1;
+  for(const rr of [0,1,2,3,4]){
+    const cs = [];
+    for(let c = 1; c <= range.e.c; c++){
+      const cell = ws[XLSX.utils.encode_cell({r:rr, c})];
+      if(cell && cell.t === "d") cs.push(c);
+    }
+    if(cs.length > best){ best = cs.length; dateRow = rr; dateCols = cs; }
   }
   dateCols.sort((a,b) => a-b);
+  const oggiMs = Date.now();
 
   const atletiNorm = ATLETI.map(a => ({ nome:a, norm: normalizzaNome(a) }));
 
   const results = [];
   const nonAbbinati = [];
 
-  for(let r = 2; r <= range.e.r; r++){
+  for(let r = dateRow + 1; r <= range.e.r; r++){
     const cognome = ws[XLSX.utils.encode_cell({r,c:colCognome})]?.v;
     const nome    = ws[XLSX.utils.encode_cell({r,c:colNome})]?.v;
     if(!cognome && !nome) continue;
@@ -946,23 +962,30 @@ function parsePresenzeWorkbook(wb){
     const match = atletiNorm.find(a => a.norm === norm);
 
     // Sequenza cronologica di stati su tutta la stagione (tutte le colonne data, in ordine)
-    const seq = dateCols.map(c => {
+    const seqConDate = dateCols.map(c => {
       const cell = ws[XLSX.utils.encode_cell({r,c})];
       const v = cell && cell.v != null ? String(cell.v).trim().toLowerCase() : "";
-      if(v === "presente") return "P";
-      if(v === "assente") return "A";
-      return "X";
+      const dc = ws[XLSX.utils.encode_cell({r:dateRow, c})].v;
+      const d = new Date(dc.getTime() - dc.getTimezoneOffset()*60000).toISOString().slice(0,10);
+      let s = "X";
+      if(v === "presente") s = "P";
+      else if(v === "assente") s = "A";
+      if(dc.getTime() > oggiMs) s = "X"; // solo sessioni gia' svolte
+      return {s, d};
     });
+    const seq = seqConDate.map(x => x.s);
 
     const presenzeTot = seq.filter(s => s==="P").length;
     const assenzeTot = seq.filter(s => s==="A").length;
     if(presenzeTot === 0 && assenzeTot === 0) continue; // riga senza dati (es. allenatori, righe vuote)
 
-    const bonusUnita = contaUnitaStriscia(seq, "P");
-    const malusUnita = contaUnitaStriscia(seq, "A");
+    const dateBlocchi = dateBlocchiPresenza(seqConDate, "P");
+    const dateMalus = dateBlocchiPresenza(seqConDate, "A");
+    const bonusUnita = dateBlocchi.length;
+    const malusUnita = dateMalus.length;
     const totalPts = (bonusUnita - malusUnita) * 10;
 
-    const row = { fullName, matched: match ? match.nome : null, presenzeTot, assenzeTot, bonusUnita, malusUnita, totalPts };
+    const row = { fullName, matched: match ? match.nome : null, presenzeTot, assenzeTot, bonusUnita, malusUnita, totalPts, dateBlocchi, dateMalus };
     if(match) results.push(row);
     else nonAbbinati.push(row);
   }
@@ -1004,7 +1027,7 @@ function renderPresenzePreview(results, nonAbbinati){
     <div class="edit-row">
       <div class="edit-name">${r.matched}</div>
       <div class="bonus-pill ${pillClass}">${segno}${r.totalPts} pt</div>
-      <div class="edit-detail">${r.presenzeTot} pres. / ${r.assenzeTot} ass. &middot; ${r.bonusUnita} strisce presenza &ge;5 &middot; ${r.malusUnita} strisce assenza &ge;5</div>
+      <div class="edit-detail">${r.presenzeTot} pres. / ${r.assenzeTot} ass. &middot; ${r.bonusUnita} blocchi da 5 presenze (+10) &middot; ${r.malusUnita} blocchi da 5 assenze (&minus;10)</div>
     </div>`;
   }).join("");
   document.getElementById("presenze-table").innerHTML = rows;
@@ -1037,7 +1060,10 @@ function applicaPresenzeTutti(){
       // così ricaricare il file aggiornato sostituisce il valore invece di sommarlo.
       a.dettaglio = a.dettaglio.filter(d => d.tipo !== "fedelta");
 
-      if(risultato.totalPts !== 0){
+      const blocchiValidi = (risultato.dateBlocchi||[]).filter(d => !team.iscrizione || d > team.iscrizione).length;
+      const malusValidi = (risultato.dateMalus||[]).filter(d => !team.iscrizione || d > team.iscrizione).length;
+      const ptsFedelta = (blocchiValidi - malusValidi) * 10;
+      if(ptsFedelta !== 0){
         a.dettaglio.push({
           gara: null,
           tipo: "fedelta",
@@ -1050,9 +1076,9 @@ function applicaPresenzeTutti(){
           bonusPodio: 0,
           bonusStacanovista: 0,
           malusSqualifica: 0,
-          bonusAltro: risultato.totalPts,
-          note: `Fedeltà al Cloro (import presenze) · ${risultato.presenzeTot} presenze / ${risultato.assenzeTot} assenze · ${risultato.bonusUnita} strisce presenza ≥5 (+${risultato.bonusUnita*10}) · ${risultato.malusUnita} strisce assenza ≥5 (−${risultato.malusUnita*10})`,
-          totaleGara: risultato.totalPts
+          bonusAltro: ptsFedelta,
+          note: `Fedeltà al Cloro · ${risultato.presenzeTot} presenze · ${blocchiValidi} blocchi presenza (+${blocchiValidi*10}) · ${malusValidi} blocchi assenza (−${malusValidi*10}) dopo l\'iscrizione`,
+          totaleGara: ptsFedelta
         });
       }
       applicati++;

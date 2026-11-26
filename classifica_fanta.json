@@ -3,7 +3,7 @@
   {
    "team": "Meltzunami",
    "manager": "Susanna Broccolino",
-   "pts": 711.1,
+   "pts": 731.1,
    "iscrizione": "2026-11-17",
    "atleti": [
     {
@@ -116,8 +116,25 @@
     },
     {
      "nome": "Martelli Daria",
-     "pts": 0.0,
-     "dettaglio": []
+     "pts": 10.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 30 presenze / 2 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
+      }
+     ]
     },
     {
      "nome": "Arioli Angelo",
@@ -126,7 +143,7 @@
     },
     {
      "nome": "Brambilla Cecilia",
-     "pts": 170.5,
+     "pts": 180.5,
      "dettaglio": [
       {
        "gara": "100 Rana · Gonzaga Lodi",
@@ -159,6 +176,22 @@
        "bonusAltro": 0,
        "note": "",
        "totaleGara": 82.0
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 28 presenze / 4 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
       }
      ]
     }
@@ -329,12 +362,12 @@
   {
    "team": "splash💦",
    "manager": "Virginia Vassenna",
-   "pts": 497.0,
+   "pts": 517.0,
    "iscrizione": "2026-11-16",
    "atleti": [
     {
      "nome": "Bottari Selene",
-     "pts": 312.4,
+     "pts": 322.4,
      "dettaglio": [
       {
        "gara": "100 Farfalla · Gonzaga Lodi",
@@ -367,6 +400,22 @@
        "bonusAltro": 0,
        "note": "",
        "totaleGara": 161.6
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 29 presenze / 12 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
       }
      ]
     },
@@ -382,7 +431,7 @@
     },
     {
      "nome": "Pirola Alessandro",
-     "pts": 184.6,
+     "pts": 194.6,
      "dettaglio": [
       {
        "gara": "50 Rana · Gonzaga Lodi",
@@ -431,6 +480,22 @@
        "bonusAltro": 0,
        "note": "",
        "totaleGara": 5
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 28 presenze / 4 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
       }
      ]
     },
@@ -442,9 +507,206 @@
    ]
   },
   {
+   "team": "Luci’s in corsia 🏊‍♀️🔥",
+   "manager": "Lucia Colombo",
+   "pts": 458.0,
+   "atleti": [
+    {
+     "nome": "Pitalieri Francesca",
+     "pts": 20.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 20,
+       "note": "Fedeltà al Cloro · 30 presenze / 2 assenze · 2 blocchi presenza (+20) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 20
+      }
+     ]
+    },
+    {
+     "nome": "Parisi Matteo",
+     "pts": 30.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 30,
+       "note": "Fedeltà al Cloro · 31 presenze / 1 assenze · 3 blocchi presenza (+30) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 30
+      }
+     ]
+    },
+    {
+     "nome": "Vassenna Virginia",
+     "pts": 213.4,
+     "dettaglio": [
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 75.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 20,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 105.9
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.5,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 82.5
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 20,
+       "note": "Fedeltà al Cloro · 26 presenze / 6 assenze · 2 blocchi presenza (+20) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 20
+      }
+     ]
+    },
+    {
+     "nome": "Pirola Alessandro",
+     "pts": 194.6,
+     "dettaglio": [
+      {
+       "gara": "50 Rana · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 72.7,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 10,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 92.7
+      },
+      {
+       "gara": "50 Stile Libero · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 76.9,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 86.9
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 28 presenze / 4 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
+      }
+     ]
+    },
+    {
+     "nome": "Arioli Angelo",
+     "pts": 0.0,
+     "dettaglio": []
+    }
+   ],
+   "iscrizione": "2026-10-24"
+  },
+  {
    "team": "Cuccioli Piritosi",
    "manager": "Dario Sperandio",
-   "pts": 398.3,
+   "pts": 418.3,
    "iscrizione": "2026-11-16",
    "atleti": [
     {
@@ -540,7 +802,7 @@
     },
     {
      "nome": "Pirola Alessandro",
-     "pts": 184.6,
+     "pts": 194.6,
      "dettaglio": [
       {
        "gara": "50 Rana · Gonzaga Lodi",
@@ -589,6 +851,22 @@
        "bonusAltro": 0,
        "note": "",
        "totaleGara": 5
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 28 presenze / 4 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
       }
      ]
     },
@@ -632,35 +910,96 @@
     },
     {
      "nome": "Scotti Silvio",
-     "pts": 0.0,
-     "dettaglio": []
+     "pts": 10.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 16 presenze / 0 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
+      }
+     ]
     }
    ]
   },
   {
-   "team": "Luci’s in corsia 🏊‍♀️🔥",
-   "manager": "Lucia Colombo",
-   "pts": 378.0,
+   "team": "Maestri dell'Acqua 2027",
+   "manager": "Annamaria Naborri",
+   "pts": 356.9,
    "atleti": [
     {
-     "nome": "Pitalieri Francesca",
-     "pts": 0.0,
-     "dettaglio": []
-    },
-    {
-     "nome": "Parisi Matteo",
-     "pts": 0.0,
-     "dettaglio": []
-    },
-    {
-     "nome": "Vassenna Virginia",
-     "pts": 193.4,
+     "nome": "Vassura Edoardo",
+     "pts": 110.8,
      "dettaglio": [
       {
-       "gara": "50 Rana · Gonzaga Lodi",
+       "gara": "100 Stile Libero · Gonzaga Lodi",
        "tipo": "individuale",
        "data": "22/11/2026",
-       "puntiFIN": 75.9,
+       "puntiFIN": 85.8,
+       "bonusIndividuale": 10,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 95.8
+      },
+      {
+       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "tipo": "staffetta",
+       "data": "22/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 5,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 0,
+       "note": "",
+       "totaleGara": 5
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 18 presenze / 14 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
+      }
+     ]
+    },
+    {
+     "nome": "Beretta Alice",
+     "pts": 206.1,
+     "dettaglio": [
+      {
+       "gara": "50 Farfalla · Gonzaga Lodi",
+       "tipo": "individuale",
+       "data": "22/11/2026",
+       "puntiFIN": 73.5,
        "bonusIndividuale": 10,
        "bonusStaffetta": 0,
        "bonusRecordCategoria": 0,
@@ -670,13 +1009,13 @@
        "malusSqualifica": 0,
        "bonusAltro": 0,
        "note": "",
-       "totaleGara": 105.9
+       "totaleGara": 103.5
       },
       {
        "gara": "50 Stile Libero · Gonzaga Lodi",
        "tipo": "individuale",
        "data": "22/11/2026",
-       "puntiFIN": 72.5,
+       "puntiFIN": 77.6,
        "bonusIndividuale": 10,
        "bonusStaffetta": 0,
        "bonusRecordCategoria": 0,
@@ -686,10 +1025,10 @@
        "malusSqualifica": 0,
        "bonusAltro": 0,
        "note": "",
-       "totaleGara": 82.5
+       "totaleGara": 87.6
       },
       {
-       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
+       "gara": "Staffetta 4x50 Stile Miste · Gonzaga Lodi",
        "tipo": "staffetta",
        "data": "22/11/2026",
        "puntiFIN": 0,
@@ -703,70 +1042,76 @@
        "bonusAltro": 0,
        "note": "",
        "totaleGara": 5
-      }
-     ]
-    },
-    {
-     "nome": "Pirola Alessandro",
-     "pts": 184.6,
-     "dettaglio": [
-      {
-       "gara": "50 Rana · Gonzaga Lodi",
-       "tipo": "individuale",
-       "data": "22/11/2026",
-       "puntiFIN": 72.7,
-       "bonusIndividuale": 10,
-       "bonusStaffetta": 0,
-       "bonusRecordCategoria": 10,
-       "bonusRecordAssoluto": 0,
-       "bonusPodio": 0,
-       "bonusStacanovista": 0,
-       "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 92.7
       },
       {
-       "gara": "50 Stile Libero · Gonzaga Lodi",
-       "tipo": "individuale",
-       "data": "22/11/2026",
-       "puntiFIN": 76.9,
-       "bonusIndividuale": 10,
-       "bonusStaffetta": 0,
-       "bonusRecordCategoria": 0,
-       "bonusRecordAssoluto": 0,
-       "bonusPodio": 0,
-       "bonusStacanovista": 0,
-       "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 86.9
-      },
-      {
-       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
-       "tipo": "staffetta",
-       "data": "22/11/2026",
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
        "puntiFIN": 0,
        "bonusIndividuale": 0,
-       "bonusStaffetta": 5,
+       "bonusStaffetta": 0,
        "bonusRecordCategoria": 0,
        "bonusRecordAssoluto": 0,
        "bonusPodio": 0,
        "bonusStacanovista": 0,
        "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 5
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 15 presenze / 17 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
       }
      ]
     },
     {
-     "nome": "Arioli Angelo",
+     "nome": "Floris Cristina",
      "pts": 0.0,
      "dettaglio": []
+    },
+    {
+     "nome": "Facchinetti Pierpaolo",
+     "pts": 20.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 20,
+       "note": "Fedeltà al Cloro · 27 presenze / 5 assenze · 2 blocchi presenza (+20) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 20
+      }
+     ]
+    },
+    {
+     "nome": "Scala Sandra",
+     "pts": 20.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 20,
+       "note": "Fedeltà al Cloro · 26 presenze / 6 assenze · 2 blocchi presenza (+20) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 20
+      }
+     ]
     }
    ],
-   "iscrizione": "2026-10-24"
+   "iscrizione": "2026-10-12"
   },
   {
    "team": "Ogcocephalus darwini",
@@ -884,121 +1229,6 @@
    ]
   },
   {
-   "team": "Maestri dell'Acqua 2027",
-   "manager": "Annamaria Naborri",
-   "pts": 296.9,
-   "atleti": [
-    {
-     "nome": "Vassura Edoardo",
-     "pts": 100.8,
-     "dettaglio": [
-      {
-       "gara": "100 Stile Libero · Gonzaga Lodi",
-       "tipo": "individuale",
-       "data": "22/11/2026",
-       "puntiFIN": 85.8,
-       "bonusIndividuale": 10,
-       "bonusStaffetta": 0,
-       "bonusRecordCategoria": 0,
-       "bonusRecordAssoluto": 0,
-       "bonusPodio": 0,
-       "bonusStacanovista": 0,
-       "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 95.8
-      },
-      {
-       "gara": "Staffetta 4x50 Mista Misti · Gonzaga Lodi",
-       "tipo": "staffetta",
-       "data": "22/11/2026",
-       "puntiFIN": 0,
-       "bonusIndividuale": 0,
-       "bonusStaffetta": 5,
-       "bonusRecordCategoria": 0,
-       "bonusRecordAssoluto": 0,
-       "bonusPodio": 0,
-       "bonusStacanovista": 0,
-       "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 5
-      }
-     ]
-    },
-    {
-     "nome": "Beretta Alice",
-     "pts": 196.1,
-     "dettaglio": [
-      {
-       "gara": "50 Farfalla · Gonzaga Lodi",
-       "tipo": "individuale",
-       "data": "22/11/2026",
-       "puntiFIN": 73.5,
-       "bonusIndividuale": 10,
-       "bonusStaffetta": 0,
-       "bonusRecordCategoria": 0,
-       "bonusRecordAssoluto": 0,
-       "bonusPodio": 20,
-       "bonusStacanovista": 0,
-       "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 103.5
-      },
-      {
-       "gara": "50 Stile Libero · Gonzaga Lodi",
-       "tipo": "individuale",
-       "data": "22/11/2026",
-       "puntiFIN": 77.6,
-       "bonusIndividuale": 10,
-       "bonusStaffetta": 0,
-       "bonusRecordCategoria": 0,
-       "bonusRecordAssoluto": 0,
-       "bonusPodio": 0,
-       "bonusStacanovista": 0,
-       "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 87.6
-      },
-      {
-       "gara": "Staffetta 4x50 Stile Miste · Gonzaga Lodi",
-       "tipo": "staffetta",
-       "data": "22/11/2026",
-       "puntiFIN": 0,
-       "bonusIndividuale": 0,
-       "bonusStaffetta": 5,
-       "bonusRecordCategoria": 0,
-       "bonusRecordAssoluto": 0,
-       "bonusPodio": 0,
-       "bonusStacanovista": 0,
-       "malusSqualifica": 0,
-       "bonusAltro": 0,
-       "note": "",
-       "totaleGara": 5
-      }
-     ]
-    },
-    {
-     "nome": "Floris Cristina",
-     "pts": 0.0,
-     "dettaglio": []
-    },
-    {
-     "nome": "Facchinetti Pierpaolo",
-     "pts": 0.0,
-     "dettaglio": []
-    },
-    {
-     "nome": "Scala Sandra",
-     "pts": 0.0,
-     "dettaglio": []
-    }
-   ],
-   "iscrizione": "2026-10-12"
-  },
-  {
    "team": "Bono's Wet Team",
    "manager": "Mattia Bonomi",
    "pts": 288.9,
@@ -1099,7 +1329,7 @@
   {
    "team": "Phoenix",
    "manager": "Silvio Scotti",
-   "pts": 170.5,
+   "pts": 230.5,
    "atleti": [
     {
      "nome": "Sena Lucia",
@@ -1113,7 +1343,7 @@
     },
     {
      "nome": "Brambilla Cecilia",
-     "pts": 170.5,
+     "pts": 200.5,
      "dettaglio": [
       {
        "gara": "100 Rana · Gonzaga Lodi",
@@ -1146,18 +1376,68 @@
        "bonusAltro": 0,
        "note": "",
        "totaleGara": 82.0
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 30,
+       "note": "Fedeltà al Cloro · 28 presenze / 4 assenze · 3 blocchi presenza (+30) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 30
       }
      ]
     },
     {
      "nome": "Martelli Daria",
-     "pts": 0.0,
-     "dettaglio": []
+     "pts": 40.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 40,
+       "note": "Fedeltà al Cloro · 30 presenze / 2 assenze · 4 blocchi presenza (+40) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 40
+      }
+     ]
     },
     {
      "nome": "Bottari Ciro",
-     "pts": 0.0,
-     "dettaglio": []
+     "pts": -10.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": -10,
+       "note": "Fedeltà al Cloro · 11 presenze / 10 assenze · 1 blocchi presenza (+10) · 2 blocchi assenza (−20) dopo l'iscrizione",
+       "totaleGara": -10
+      }
+     ]
     }
    ],
    "iscrizione": "2026-10-12"
@@ -1165,7 +1445,7 @@
   {
    "team": "delfinisti anonimi",
    "manager": "francesca pitalieri",
-   "pts": 100.8,
+   "pts": 120.8,
    "atleti": [
     {
      "nome": "Jacazio Giovanni",
@@ -1174,8 +1454,25 @@
     },
     {
      "nome": "Broccolino Susanna",
-     "pts": 0.0,
-     "dettaglio": []
+     "pts": 10.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 29 presenze / 12 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
+      }
+     ]
     },
     {
      "nome": "Sena Lucia",
@@ -1189,7 +1486,7 @@
     },
     {
      "nome": "Vassura Edoardo",
-     "pts": 100.8,
+     "pts": 110.8,
      "dettaglio": [
       {
        "gara": "100 Stile Libero · Gonzaga Lodi",
@@ -1222,6 +1519,22 @@
        "bonusAltro": 0,
        "note": "",
        "totaleGara": 5
+      },
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 18 presenze / 14 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
       }
      ]
     }
@@ -1231,7 +1544,7 @@
   {
    "team": "Team Ariolengers",
    "manager": "Luca Sini",
-   "pts": 100.8,
+   "pts": 120.8,
    "iscrizione": "2026-11-15",
    "atleti": [
     {
@@ -1241,13 +1554,47 @@
     },
     {
      "nome": "Pirola Vincenzo",
-     "pts": 0.0,
-     "dettaglio": []
+     "pts": 10.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 25 presenze / 7 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
+      }
+     ]
     },
     {
      "nome": "Broccolino Susanna",
-     "pts": 0.0,
-     "dettaglio": []
+     "pts": 10.0,
+     "dettaglio": [
+      {
+       "gara": null,
+       "tipo": "fedelta",
+       "data": "26/11/2026",
+       "puntiFIN": 0,
+       "bonusIndividuale": 0,
+       "bonusStaffetta": 0,
+       "bonusRecordCategoria": 0,
+       "bonusRecordAssoluto": 0,
+       "bonusPodio": 0,
+       "bonusStacanovista": 0,
+       "malusSqualifica": 0,
+       "bonusAltro": 10,
+       "note": "Fedeltà al Cloro · 29 presenze / 12 assenze · 1 blocchi presenza (+10) · 0 blocchi assenza (−0) dopo l'iscrizione",
+       "totaleGara": 10
+      }
+     ]
     },
     {
      "nome": "Vassura Edoardo",
@@ -1297,32 +1644,32 @@
   {
    "team": "Fantacazzo",
    "manager": "Alessio Botteghi",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-24",
    "atleti": [
     {
      "nome": "Sinigaglia Luca",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Pirola Alessandro",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Brambilla Cecilia",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Arioli Angelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Galiano Ilaria",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
@@ -1330,22 +1677,22 @@
   {
    "team": "Ciccipasticci",
    "manager": "Mauro Brambilla",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-24",
    "atleti": [
     {
      "nome": "Sperandio Dario",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Bottari Selene",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Arioli Angelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
@@ -1355,7 +1702,7 @@
     },
     {
      "nome": "Pirola Alessandro",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
@@ -1363,32 +1710,32 @@
   {
    "team": "Pinne colorate",
    "manager": "Alice Beretta",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-24",
    "atleti": [
     {
      "nome": "Bordoni Andrea",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Somigliana Ugo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Brambilla Cecilia",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Pirola Alessandro",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Pirola Anna",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
@@ -1396,32 +1743,32 @@
   {
    "team": "CECIOSI",
    "manager": "Cecilia Brambilla",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-24",
    "atleti": [
     {
      "nome": "Zerbo Arcangelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Somigliana Anna",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Bottari Selene",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Scotti Silvio",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Arioli Angelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
@@ -1429,17 +1776,17 @@
   {
    "team": "BBBAB",
    "manager": "Roberto Salomone",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-25",
    "atleti": [
     {
      "nome": "Bottari Selene",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Broccolino Susanna",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
@@ -1462,32 +1809,32 @@
   {
    "team": "Oca Juniors",
    "manager": "Lusi Sena",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-25",
    "atleti": [
     {
      "nome": "Arioli Angelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Sperandio Dario",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Pirola Anna",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Bottari Selene",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Vassura Edoardo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
@@ -1495,22 +1842,22 @@
   {
    "team": "MM nel ❤",
    "manager": "Daria",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-25",
    "atleti": [
     {
      "nome": "Pitalieri Francesca",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Somigliana Anna",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Pirola Vincenzo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
@@ -1520,7 +1867,7 @@
     },
     {
      "nome": "Arioli Angelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
@@ -1528,32 +1875,32 @@
   {
    "team": "Team domenica e staffette",
    "manager": "Alessia",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-25",
    "atleti": [
     {
      "nome": "Sinigaglia Luca",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Somigliana Ugo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Beretta Alice",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Arioli Angelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Pirola Anna",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
@@ -1561,32 +1908,32 @@
   {
    "team": "Chronos",
    "manager": "Jacopo Bottari",
-   "pts": 0,
+   "pts": 0.0,
    "iscrizione": "2026-11-25",
    "atleti": [
     {
      "nome": "Bottari Selene",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Galiano Ilaria",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Raviola Tomaso",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Arioli Angelo",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     },
     {
      "nome": "Scala Sandra",
-     "pts": 0,
+     "pts": 0.0,
      "dettaglio": []
     }
    ]
